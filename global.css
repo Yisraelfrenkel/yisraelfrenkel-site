@@ -1,0 +1,55 @@
+---
+import { testimonials } from "../data/content.js";
+---
+
+<section id="testimonials">
+  <div class="container">
+    <div class="thread reveal measure">
+      <p class="eyebrow">{testimonials.eyebrow}</p>
+      <h2>{testimonials.heading}</h2>
+    </div>
+
+    <div class="grid">
+      {testimonials.items.map((t) => (
+        <figure class="card reveal">
+          <blockquote>“{t.quote}”</blockquote>
+          <figcaption>{t.name}</figcaption>
+        </figure>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  h2 {
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    margin-top: 0.6rem;
+    max-width: 26ch;
+  }
+  .grid {
+    margin-top: 3rem;
+    display: grid;
+    align-items: start;
+    gap: 1.5rem;
+    grid-template-columns: repeat(auto-fit, minmax(15rem, 1fr));
+  }
+  .card {
+    margin: 0;
+    background: var(--paper);
+    border: 1px solid var(--line);
+    border-radius: 4px;
+    padding: 1.75rem;
+  }
+  blockquote {
+    margin: 0;
+    font-size: 1.05rem;
+    line-height: 1.6;
+    color: var(--ink);
+  }
+  figcaption {
+    margin-top: 1.25rem;
+    font-family: var(--font-ui);
+    font-size: 0.85rem;
+    color: var(--sage);
+  }
+</style>
