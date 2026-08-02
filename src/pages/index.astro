@@ -1,0 +1,48 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/content.js";
+---
+
+<Layout title={site.title} description={site.description}>
+  <main class="placeholder">
+    <div class="placeholder-inner">
+      <p class="eyebrow">{site.title}</p>
+      <h1>The main site is still being built.</h1>
+      <p class="placeholder-sub">
+        In the meantime, the Or HaBris course page is live —
+        <a href="/or-habris">take a look here</a>.
+      </p>
+    </div>
+  </main>
+</Layout>
+
+<style>
+  .placeholder {
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 2rem;
+    background: var(--paper);
+  }
+  .placeholder-inner {
+    max-width: 32rem;
+    text-align: center;
+  }
+  h1 {
+    font-family: var(--font-display);
+    font-size: clamp(1.6rem, 4vw, 2.3rem);
+    margin-top: 0.75rem;
+    color: var(--ink);
+  }
+  .placeholder-sub {
+    margin-top: 1.25rem;
+    font-family: var(--font-body);
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+  }
+  .placeholder-sub a {
+    color: var(--gold);
+    text-decoration: underline;
+  }
+</style>
