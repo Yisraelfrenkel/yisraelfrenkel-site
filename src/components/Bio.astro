@@ -1,0 +1,68 @@
+---
+import { bio } from "../data/content.js";
+---
+
+<section id="about">
+  <div class="container bio-layout">
+    {bio.photo && (
+      <img src={bio.photo} alt={bio.heading} class="bio-photo reveal" />
+    )}
+    <div class="thread reveal measure">
+      <p class="eyebrow">{bio.eyebrow}</p>
+      <h2>{bio.heading}</h2>
+      <p class="bio-hook">{bio.hook}</p>
+      <div class="bio-paragraphs">
+        {bio.paragraphs.map((p) => (
+          <p>{p}</p>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<style>
+  .bio-layout {
+    display: flex;
+    gap: clamp(2rem, 5vw, 4rem);
+    align-items: flex-start;
+  }
+  .bio-photo {
+    width: clamp(9rem, 18vw, 12rem);
+    height: clamp(9rem, 18vw, 12rem);
+    border-radius: 50%;
+    object-fit: cover;
+    flex-shrink: 0;
+    border: 1px solid var(--line);
+  }
+  h2 {
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    margin-top: 0.6rem;
+  }
+  .bio-hook {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: 1.35rem;
+    line-height: 1.55;
+    color: var(--ink);
+    margin-top: 1.75rem;
+  }
+  .bio-paragraphs {
+    margin-top: 1.75rem;
+    display: flex;
+    flex-direction: column;
+    gap: 1.15rem;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+  }
+  @media (max-width: 640px) {
+    .bio-layout {
+      flex-direction: column;
+      align-items: center;
+      text-align: center;
+    }
+    .bio-paragraphs {
+      text-align: left;
+    }
+  }
+</style>
