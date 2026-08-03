@@ -1,0 +1,52 @@
+---
+import { site, freeClass } from "../data/content.js";
+---
+
+<section id="free-class" class="free-class">
+  <div class="container">
+    <div class="thread reveal measure-wide">
+      <p class="eyebrow">{freeClass.eyebrow}</p>
+      <p class="note">{freeClass.note}</p>
+    </div>
+    <div class="video-frame reveal">
+      <iframe
+        src={`https://www.youtube-nocookie.com/embed/${site.freeClassVideoId}`}
+        title="The Beauty of Human Desire — free class with Rav Yisrael Frenkel"
+        loading="lazy"
+        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+        allowfullscreen
+      ></iframe>
+    </div>
+  </div>
+</section>
+
+<style>
+  .free-class {
+    background: var(--paper);
+  }
+  .measure-wide {
+    max-width: 44rem;
+  }
+  .note {
+    margin-top: 0.75rem;
+    font-size: 1.05rem;
+    color: var(--ink-soft);
+  }
+  .video-frame {
+    margin-top: 2.5rem;
+    position: relative;
+    width: 100%;
+    padding-top: 56.25%;
+    border-radius: 10px;
+    overflow: hidden;
+    box-shadow: 0 20px 50px rgba(43, 36, 32, 0.16);
+    border: 1px solid var(--line);
+  }
+  .video-frame iframe {
+    position: absolute;
+    inset: 0;
+    width: 100%;
+    height: 100%;
+    border: 0;
+  }
+</style>

@@ -1,0 +1,42 @@
+---
+import { continueJourney } from "../data/content.js";
+---
+
+<section class="continue-journey">
+  <div class="container">
+    <p class="eyebrow on-dusk reveal">{continueJourney.eyebrow}</p>
+    <div class="thread measure">
+      {continueJourney.lines.map((line) => (
+        <p class="line reveal">{line}</p>
+      ))}
+    </div>
+  </div>
+</section>
+
+<style>
+  .continue-journey {
+    background: radial-gradient(120% 140% at 50% 0%, var(--dusk-soft) 0%, var(--dusk) 60%);
+    padding-top: clamp(5rem, 11vw, 7.5rem);
+    padding-bottom: clamp(5rem, 11vw, 7.5rem);
+  }
+  .eyebrow.on-dusk {
+    color: var(--gold-bright);
+    text-align: center;
+  }
+  .thread {
+    margin: 0 auto;
+    margin-top: 1.25rem;
+    text-align: center;
+  }
+  .line {
+    font-family: var(--font-display);
+    font-style: italic;
+    font-weight: 500;
+    font-size: clamp(1.4rem, 3.2vw, 1.9rem);
+    line-height: 1.5;
+    color: var(--dusk-text);
+  }
+  .line + .line {
+    margin-top: 0.6rem;
+  }
+</style>

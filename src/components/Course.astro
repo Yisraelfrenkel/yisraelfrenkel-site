@@ -1,12 +1,11 @@
 ---
-import { site, course } from "../data/content.js";
+import { course } from "../data/content.js";
 ---
 
 <section id="course" class="course">
   <div class="container">
     <div class="thread reveal measure">
       <p class="eyebrow">{course.eyebrow}</p>
-      <p class="course-hook">{course.hook}</p>
       <div class="course-title">
         {course.logo && <img src={course.logo} alt="" class="course-logo" />}
         <h2>{course.name}</h2>
@@ -25,10 +24,6 @@ import { site, course } from "../data/content.js";
         </li>
       ))}
     </ol>
-
-    <div class="course-cta">
-      <a href={site.signupUrl} class="btn btn-primary">{course.ctaLabel}</a>
-    </div>
   </div>
 </section>
 
@@ -41,21 +36,11 @@ import { site, course } from "../data/content.js";
   h2 {
     font-size: clamp(1.6rem, 3vw, 2.1rem);
   }
-  .course-hook {
-    font-family: var(--font-display);
-    font-style: italic;
-    font-weight: 500;
-    font-size: 1.35rem;
-    line-height: 1.55;
-    color: var(--ink);
-    margin-top: 0.75rem;
-    max-width: 34ch;
-  }
   .course-title {
     display: flex;
     align-items: center;
     gap: 1rem;
-    margin-top: 2.5rem;
+    margin-top: 0.75rem;
   }
   .course-logo {
     width: 3.25rem;
@@ -76,7 +61,7 @@ import { site, course } from "../data/content.js";
     display: flex;
     flex-direction: column;
     gap: 0;
-    max-width: 42rem;
+    max-width: 44rem;
   }
   .step {
     display: flex;
@@ -101,8 +86,6 @@ import { site, course } from "../data/content.js";
   .step p {
     margin-top: 0.4rem;
     color: var(--ink-soft);
-  }
-  .course-cta {
-    margin-top: 3rem;
+    line-height: 1.6;
   }
 </style>
