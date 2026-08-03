@@ -1,20 +1,16 @@
 ---
-import { site, signup } from "../data/content.js";
+import { site, finalRegistration } from "../data/content.js";
 ---
 
 <section id="signup" class="signup">
   <div class="container">
     <div class="reveal measure">
-      <p class="eyebrow on-dusk">{signup.eyebrow}</p>
-      <h2>{signup.heading}</h2>
-      <div class="signup-body">
-        {signup.body.map((paragraph) => (
-          <p>{paragraph}</p>
-        ))}
-      </div>
+      <p class="eyebrow on-dusk">{finalRegistration.eyebrow}</p>
+      <h2>{finalRegistration.heading}</h2>
+      <p class="signup-body">{finalRegistration.body}</p>
       <div class="signup-ctas">
-        <a href={site.signupUrl} class="btn btn-primary">{signup.primaryCtaLabel}</a>
-        <a href={site.whatsappUrl} class="btn btn-ghost on-dusk">{signup.whatsappCtaLabel}</a>
+        <a href={site.signupUrl} class="btn btn-primary">{finalRegistration.primaryCtaLabel}</a>
+        <a href={site.whatsappUrl} class="btn btn-ghost on-dusk">{finalRegistration.whatsappCtaLabel}</a>
       </div>
     </div>
   </div>
@@ -22,7 +18,7 @@ import { site, signup } from "../data/content.js";
 
 <style>
   .signup {
-    background: var(--dusk);
+    background: radial-gradient(120% 140% at 50% 0%, var(--dusk-soft) 0%, var(--dusk) 60%);
     color: var(--dusk-text);
   }
   .eyebrow.on-dusk {
@@ -35,11 +31,9 @@ import { site, signup } from "../data/content.js";
   }
   .signup-body {
     margin-top: 1.25rem;
-    display: flex;
-    flex-direction: column;
-    gap: 0.9rem;
     font-size: 1.08rem;
-    color: rgba(233, 228, 216, 0.82);
+    line-height: 1.65;
+    color: rgba(243, 239, 224, 0.82);
   }
   .signup-ctas {
     display: flex;

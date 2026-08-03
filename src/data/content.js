@@ -8,117 +8,136 @@ export const site = {
   // Direct personal contact — shown in the Contact section:
   personalWhatsappUrl: "https://wa.me/972587613153",
   email: "Yisrael@YisraelFrenkel.com",
+  freeClassVideoId: "jqa55Zmn-yY",
 };
- 
-export const contact = {
-  eyebrow: "Get in touch",
-  heading: "Reach out directly",
-  whatsappLabel: "Message on WhatsApp",
-  emailLabel: "Send an email",
+
+// ---------------------------------------------------------------
+// PAGE ONE — "Start Here" (The Beauty of Human Desire)
+// ---------------------------------------------------------------
+
+export const startHero = {
+  eyebrow: "Start Here",
+  titleLines: [
+    "The Beauty of Human Desire",
+    "Why Good People Keep Falling",
+    "Understanding Ourselves Through the Eyes of the Torah",
+  ],
+  welcome: [
+    "I'm so glad you're here. Whether you've struggled yourself, or simply want to understand the human heart more deeply, I hope this class helps you discover something beautiful.",
+    "This class has become the doorway into my work. I invite you to experience it slowly.",
+  ],
+  ctaLabel: "Watch the Free Class",
 };
- 
+
+export const freeClass = {
+  eyebrow: "The Free Class",
+  note: "If you can, set aside one uninterrupted hour. The final portion is questions and answers, so you can stop there if you need to.",
+};
+
+export const continueJourney = {
+  eyebrow: "Continue the Journey",
+  lines: [
+    "Today's class invited you to see your desires differently.",
+    "Or HaBris is where we learn how to live that vision.",
+  ],
+};
+
+export const stepsTeaser = {
+  intro: "Everything you experience in this class becomes practical through five stages.",
+  names: ["Listen", "Discern", "Fulfill", "Heal", "Build"],
+  ctaLabel: "Continue the Journey",
+};
+
+// ---------------------------------------------------------------
+// PAGE TWO — "Or HaBris"
+// ---------------------------------------------------------------
+
 export const nav = {
   links: [
     { label: "The Path", href: "#course" },
-    { label: "Others' Experience", href: "#testimonials" },
-    { label: "Rav Frenkel", href: "#about" },
+    { label: "Testimonials", href: "#testimonials" },
+    { label: "About", href: "#about" },
+    { label: "FAQ", href: "#faq" },
   ],
-  ctaLabel: "Begin",
+  ctaLabel: "Join the Next Chaburah",
 };
- 
+
 export const hero = {
-  eyebrow: "A different way to understand desire",
-  headlineLines: [
-    "Your desires are not your enemy.",
-    "At their core, they are reaching for something beautiful.",
-  ],
-  sub: [
-    "For more than twenty years, Rav Yisrael Frenkel has helped people uncover the real needs beneath powerful desires, painful patterns, and choices that leave them feeling confused or ashamed.",
-    "Through a practical five-step path — Listen, Discern, Fulfill, Heal, and Build — you will learn to understand what your desires are truly seeking, distinguish false promises from genuine fulfillment, heal the wounds that keep you living in lack, and begin building a life that reflects your deepest רצון.",
-  ],
-  primaryCtaLabel: "Begin the course",
+  eyebrow: "Or HaBris",
+  headlineLines: ["A five-week small-group journey for men", "who want to understand their desires,", "heal shame, and build a more fulfilling life."],
+  primaryCtaLabel: "Join the Next Chaburah",
   secondaryCtaLabel: "Join the WhatsApp group",
 };
- 
-// One question. No answer. The scroll into Journey provides it.
-export const question = {
-  text: "Why do good people keep reaching for things they themselves believe are wrong?",
+
+export const bridge = {
+  text: "The free class revealed why your desires are not your enemy. Or HaBris teaches you how to listen, discern, fulfill, heal, and build.",
 };
- 
-// The emotional arc, told the way it would be spoken, not summarized.
-// Each line is its own beat — meant to be read slowly, one at a time.
-export const journey = {
-  lines: [
-    "For years —",
-    "you may have believed —",
-    "that your greatest struggle —",
-    "was your desires.",
-    "What if —",
-    "the struggle was never your desires?",
-    "What if —",
-    "the struggle was misunderstanding what they were trying to accomplish?",
-    "Because perhaps —",
-    "your deepest desires are not trying to pull you away from the life you long for.",
-    "Perhaps —",
-    "they are trying to lead you there.",
-    "The question isn't “how do I stop wanting?”",
-    "The question is “what is my heart really longing for?”",
-    "That question changes everything.",
-  ],
-};
- 
-export const bio = {
-  eyebrow: "Your guide",
-  heading: "Rav Yisrael Frenkel",
-  photo: "/images/yisrael-frenkel.jpeg",
-  hook: "For more than twenty years, I've had the privilege of listening to people tell me things they had never told anyone else.",
-  paragraphs: [
-    "That listening became a life's work — helping students and young men worldwide understand their own healthy sexuality, their own self-discovery, and what they're truly searching for before and after marriage.",
-    "Rav Frenkel has learned in leading yeshivos and kollelim in Israel since the age of seventeen — sitting on the Beis Din of Rabbi Vind, contributing to Oz VeHadar's Shulchan Aruch HaMevoar project, and later leading an international chabura in Yiddish as a Ram in Yeshivas Mir. He taught full-time in Yeshiva Gedola, and continues teaching students around the world from his home in Jerusalem.",
-    "He founded and continues to run Lev Yisrael, where he works today in trauma and emotional therapy, intimacy and couples counseling, and addiction recovery — still listening, still helping people understand what's underneath.",
-  ],
-};
- 
+
 export const course = {
   eyebrow: "The Path",
   name: "Or HaBris",
   logo: "/images/or-habris-logo.jpeg",
-  hook: "Most people get stuck the same way: they fight the desire, or they give in to it. Either way, the real need underneath stays buried — and comes back. This is different. Five steps that help you meet what you're actually longing for, instead of managing it forever.",
   intro: "Five steps. Each one builds on the one before it.",
   steps: [
     {
       title: "Listen",
-      body: "Discover the holy desire beneath every behavior.",
+      body: "Discover the holy desire beneath every behavior. Before asking whether something is right or wrong, ask what it's actually reaching for.",
     },
     {
       title: "Discern",
-      body: "Separate false promises from true fulfillment.",
+      body: "Not every desire and every strategy for meeting it are the same thing. Is this pull about connection, or something masquerading as it — the difference between porn and real intimacy, or what actually changes when two people wait versus when they don't. Learn to tell the true need apart from the false promise.",
     },
     {
       title: "Fulfill",
-      body: "Begin meeting your deepest needs in healthy ways.",
+      body: "Once you know what you're really longing for, you can start meeting it — in ways that build you rather than leave you emptier than before.",
     },
     {
       title: "Heal",
-      body: "Remove the wounds that tell you your needs will never be met.",
+      body: "Underneath the pattern is usually a wound — shame, isolation, an old belief that you're the only one still struggling. This is where that gets addressed directly, not just managed.",
     },
     {
       title: "Build",
-      body: "Use your deepest desires to build the life you truly want.",
+      body: "Take what you've learned about your own heart and let it shape something real: a marriage, a life, a way of relating to yourself that isn't at war with who you are.",
     },
   ],
-  ctaLabel: "Begin the course",
 };
- 
+
+export const whyOrHabris = {
+  eyebrow: "Why Or HaBris",
+  heading: "The name carries the whole journey.",
+  paragraphs: [
+    "In Gan Eden, after they'd eaten from the tree, Adam and Chava did the same thing every one of us has done since: they hid. Ashamed of their bodies, ashamed of their desires, believing that something about them — right at their core — was wrong.",
+    "Generations later, at the very end of his life, Avraham sent Eliezer to find a wife for Yitzchak, and he pointed to the very place Adam had hidden from in shame. The Or HaChaim HaKadosh asks why Avraham could do this so openly, with no trace of embarrassment — and answers that Avraham no longer saw a place of shame. He saw the place through which he had spent his entire life expressing his relationship with Hashem. There was no hiding left. Only holiness.",
+    "That's the whole journey in one name. Or HaBris — the light of the covenant — is what happens when the very thing we've hidden from becomes, instead, the place where we meet Hashem most fully. Not despite the desire. Through it.",
+  ],
+};
+
+export const chaburahInfo = {
+  eyebrow: "The Chaburah",
+  heading: "What the Chaburah is",
+  paragraphs: [
+    "Or HaBris runs as a five-week small Chaburah for men. Every person is known and heard — this group format has been refined over nine years of leading Chaburot, building on more than twenty years guiding people through this work. If more people want to join than one group can hold well, we open an additional small Chaburah rather than making one group too large.",
+  ],
+  audienceNote: "Or HaBris is for men — married and unmarried both.",
+};
+
+export const experience = {
+  eyebrow: "Inside the Chaburah",
+  heading: "What you'll experience",
+  items: [
+    "Torah learning that grounds every step in real sources, not slogans",
+    "Guided self-understanding — structured reflection, not lecture alone",
+    "Practical exercises between sessions",
+    "Honest discussion in a small, confidential group",
+    "Brotherhood — learning from other men's courage and insight, not just the teacher's",
+    "Concrete steps to carry into the following week",
+  ],
+};
+
 export const testimonials = {
   eyebrow: "What others have found",
   heading: "Others who have walked this path",
-  items: [
-    {
-      quote:
-        "It didn't feel like another mussar schmooze — it reached something deeply emotional and spiritual in me. Between the group meditation, the visualization, and the tools Rav Frenkel brings, the whole experience became something I actually felt, not just heard.",
-      name: "Y.J.",
-    },
+  anchors: [
     {
       quote:
         "For years, I thought something was wrong with me. Then, in Or HaBris, I finally understood — it hit like aloe on a burn. Rav Frenkel showed me that these feelings weren't separate from my relationship with Hashem, but connected to it. And underneath all of it, I got in touch with what I actually wanted from my life, apart from anyone else's expectations.",
@@ -126,8 +145,15 @@ export const testimonials = {
     },
     {
       quote:
-        "For the first time, I understood what Torah had always been telling me — not 613 rules, but 613 ways to connect. Or HaBris taught me how to live like a free man.",
+        "I've always known that Torah has no rules but rather 613 means of connection to the infinite. Or HaBris taught me — and continues teaching me — how to live like a free man.",
       name: "Y.S.",
+    },
+  ],
+  secondary: [
+    {
+      quote:
+        "It didn't feel like another mussar schmooze — it reached something deeply emotional and spiritual in me. Between the group meditation, the visualization, and the tools Rav Frenkel brings, the whole experience became something I actually felt, not just heard.",
+      name: "Y.J.",
     },
     {
       quote:
@@ -136,18 +162,90 @@ export const testimonials = {
     },
   ],
 };
- 
-export const signup = {
+
+export const bio = {
+  eyebrow: "Your guide",
+  heading: "Rav Yisrael Frenkel",
+  photo: "/images/yisrael-frenkel.jpeg",
+  hook: "For more than twenty years, I've had the privilege of listening to people tell me things they had never told anyone else.",
+  paragraphs: [
+    "That listening became a life's work — helping students and young men worldwide understand their own healthy sexuality, their own self-discovery, and what they're truly searching for before and after marriage.",
+    "Rav Frenkel has learned in leading yeshivos and kollelim in Israel since the age of seventeen — sitting on the Beis Din of Rabbi Vind, contributing to Oz VeHadar's Shulchan Aruch HaMevoar project, later leading an international chabura in Yiddish as a Ram in Yeshivas Mir, and serving as a Rosh Yeshiva. He taught full-time in Yeshiva Gedola, and continues teaching students around the world from his home near Jerusalem.",
+    "Today he works in trauma and emotional therapy, intimacy and couples counseling, and addiction recovery — still listening, still helping people understand what's underneath.",
+  ],
+};
+
+export const practicalDetails = {
+  eyebrow: "The Details",
+  heading: "What to expect",
+  items: [
+    { label: "Starts", value: "Sunday, August 9, 2026 — 8:00 PM Israel time" },
+    { label: "Length", value: "Five weekly sessions" },
+    { label: "Format", value: "Live online — the link is sent after registration" },
+    { label: "Investment", value: "$399" },
+    { label: "Included", value: "One private session with Rav Yisrael, at no additional cost" },
+    { label: "If you miss a week", value: "Every session is recorded" },
+  ],
+};
+
+export const faq = {
+  eyebrow: "Questions",
+  heading: "Frequently asked questions",
+  items: [
+    {
+      q: "Is this therapy?",
+      a: "No. Or HaBris is Torah-based group learning and guided self-understanding — not a substitute for individual therapy. Many participants pair it with their own therapeutic or halachic guidance, and private sessions with Rav Yisrael are available for anyone who wants that additional layer.",
+    },
+    {
+      q: "Do I have to share private details?",
+      a: "No one is ever required to share more than they're comfortable with. The Chaburah works through learning and guided reflection — how much you share out loud in the group is always your choice.",
+    },
+    {
+      q: "Is this only for married men?",
+      a: "No. Or HaBris is for men, married and unmarried both. The material speaks to anyone trying to understand and build a healthy relationship with their own desire.",
+    },
+    {
+      q: "Is it only for people struggling with pornography?",
+      a: "No. That struggle is one real starting point for many participants, but the course is built around a broader question — understanding what your desire is actually reaching for — that applies whether or not pornography is part of your story.",
+    },
+    {
+      q: "What if I can't attend a session live?",
+      a: "Every session is recorded, so you'll never lose access to the material even if you miss a week live.",
+    },
+    {
+      q: "How private is the group?",
+      a: "The Chaburah is kept small and confidential. What's shared inside the group stays inside the group.",
+    },
+    {
+      q: "How large is the group?",
+      a: "Groups are kept intentionally small so each person can be known. If more men want to join than one group can hold well, a second small Chaburah opens rather than enlarging the first.",
+    },
+    {
+      q: "Is there individual support?",
+      a: "Yes. One private session with Rav Yisrael is included at no extra cost, and further private guidance can be arranged.",
+    },
+    {
+      q: "What happens after the five weeks?",
+      a: "Many participants continue with private sessions, return for a future Chaburah, or stay connected through the WhatsApp community for ongoing learning.",
+    },
+  ],
+};
+
+export const finalRegistration = {
   eyebrow: "Begin",
   heading: "The journey begins here.",
-  body: [
-    "The course walks you through it, step by step — Listen, Discern, Fulfill, Heal, Build.",
-    "Not ready for that yet? Join the WhatsApp group and keep receiving these ideas in the meantime.",
-  ],
-  primaryCtaLabel: "Begin the course",
+  body: "Groups stay small so that each person can be known and supported. If more people want to join, we open another small Chaburah rather than making one too large.",
+  primaryCtaLabel: "Join the Next Chaburah",
   whatsappCtaLabel: "Join the WhatsApp group",
 };
- 
+
+export const contact = {
+  eyebrow: "Get in touch",
+  heading: "Reach out directly",
+  whatsappLabel: "Message on WhatsApp",
+  emailLabel: "Send an email",
+};
+
 export const footer = {
   note: "",
 };

@@ -1,0 +1,67 @@
+---
+import { practicalDetails } from "../data/content.js";
+---
+
+<section class="practical">
+  <div class="container">
+    <div class="thread reveal measure">
+      <p class="eyebrow">{practicalDetails.eyebrow}</p>
+      <h2>{practicalDetails.heading}</h2>
+    </div>
+    <dl class="details reveal">
+      {practicalDetails.items.map((item) => (
+        <div class="detail-row">
+          <dt>{item.label}</dt>
+          <dd>{item.value}</dd>
+        </div>
+      ))}
+    </dl>
+  </div>
+</section>
+
+<style>
+  .practical {
+    background: var(--paper-dim);
+  }
+  h2 {
+    font-size: clamp(1.6rem, 3vw, 2.1rem);
+    margin-top: 0.6rem;
+  }
+  .details {
+    margin: 2.5rem 0 0;
+    max-width: 40rem;
+    display: flex;
+    flex-direction: column;
+  }
+  .detail-row {
+    display: flex;
+    justify-content: space-between;
+    gap: 1.5rem;
+    padding: 1.1rem 0;
+    border-top: 1px solid var(--line);
+  }
+  .detail-row:last-child {
+    border-bottom: 1px solid var(--line);
+  }
+  dt {
+    font-family: var(--font-ui);
+    font-size: 0.9rem;
+    color: var(--ink-soft);
+    flex-shrink: 0;
+  }
+  dd {
+    margin: 0;
+    text-align: right;
+    font-weight: 600;
+    color: var(--ink);
+  }
+  @media (max-width: 520px) {
+    .detail-row {
+      flex-direction: column;
+      gap: 0.25rem;
+    }
+    dd {
+      text-align: left;
+    }
+  }
+</style>
