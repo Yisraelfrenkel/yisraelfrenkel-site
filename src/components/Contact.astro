@@ -10,12 +10,7 @@ const mailtoHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURICom
       <p class="eyebrow">{contact.eyebrow}</p>
       <h2>{contact.heading}</h2>
       <div class="contact-ctas">
-        
-          href={site.personalWhatsappUrl}
-          class="btn btn-ghost"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
+        <a href={site.personalWhatsappUrl} class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
           {contact.whatsappLabel}
         </a>
         <a href={mailtoHref} class="btn btn-ghost" target="_blank" rel="noopener noreferrer">
