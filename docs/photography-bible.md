@@ -5,6 +5,16 @@ renamed `photo-001.jpg` – `photo-145.jpg` in the order they were delivered).
 This is a **proposal for review, not yet wired into any page** — per Yisrael's
 instruction, selection and reasoning come before use.
 
+**HOLD — 2026-08-04:** Yisrael has asked that one specific woman who appears
+in some family/couple images be completely removed from any use on the site
+— no exceptions, not even cropped/edited versions unless she's fully absent
+from the result. Identification of exactly which image groups show her is
+pending his confirmation. Until confirmed, **every image below involving a
+woman is on hold and must not be used**: photo-043, photo-068, photo-108,
+photo-113, and the broader 101–137 forest/vineyard sequence. Do not
+reintroduce any of these without his explicit go-ahead on which specific
+person is fine to keep, if any.
+
 Every pick is judged against his five questions: does it create trust,
 communicate wisdom, feel deeply human, communicate relationship, and support
 the emotional journey of the page it's on. "Pretty" alone was not a reason
