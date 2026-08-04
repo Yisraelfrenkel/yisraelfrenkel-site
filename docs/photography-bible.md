@@ -2,24 +2,19 @@
 
 Curated 2026-08-04 from the full 145-image collection (`websizephotos.zip`,
 renamed `photo-001.jpg` – `photo-145.jpg` in the order they were delivered).
-This is a **proposal for review, not yet wired into any page** — per Yisrael's
-instruction, selection and reasoning come before use.
+**Final — confirmed by Yisrael.** 15 images selected, organized by where
+each belongs and why. Every pick is judged against his five questions: does
+it create trust, communicate wisdom, feel deeply human, communicate
+relationship, and support the emotional journey of the page it's on.
+"Pretty" alone was never a sufficient reason to include anything.
 
-**HOLD — 2026-08-04:** Yisrael has asked that one specific woman who appears
-in some family/couple images be completely removed from any use on the site
-— no exceptions, not even cropped/edited versions unless she's fully absent
-from the result. Identification of exactly which image groups show her is
-pending his confirmation. Until confirmed, **every image below involving a
-woman is on hold and must not be used**: photo-043, photo-068, photo-108,
-photo-113, and the broader 101–137 forest/vineyard sequence. Do not
-reintroduce any of these without his explicit go-ahead on which specific
-person is fine to keep, if any.
+**Standing rule for all site photography, confirmed by Yisrael:** only he
+and his students/clients appear on this site. No spouse, no children, no
+family — full stop, not a style preference. A number of otherwise strong
+images were removed on this basis; see "Excluded" below.
 
-Every pick is judged against his five questions: does it create trust,
-communicate wisdom, feel deeply human, communicate relationship, and support
-the emotional journey of the page it's on. "Pretty" alone was not a reason
-to include anything, and several genuinely beautiful images were left out
-for exactly that reason (see "Deliberately excluded" at the end).
+Nothing is copied into the site or wired into any page yet — that's the
+next step once he gives final sign-off on placement.
 
 ---
 
@@ -29,18 +24,18 @@ for exactly that reason (see "Deliberately excluded" at the end).
 plants behind him, soft morning window light.
 *Why:* This is the room the "office" feedback was about — books, plants,
 warm wood, no performance. It says "come in, let's think together" without
-a single word of copy. Wisdom + trust, before anything is explained.
+a word of copy. Wisdom and trust, before anything is explained.
 
 **photo-119** — Vineyard portrait, arms crossed, open unguarded smile,
-golden-hour light. (This is effectively the same shot as the "current look"
-reference he sent — already his own calibration image.)
+golden-hour light. (Effectively the same shot as the "current look"
+reference he sent — his own calibration image.)
 *Why:* The canonical headshot. Warm, confident, not stiff — the face people
 should learn to recognize across every page.
 
-**photo-043** — Family portrait: Yisrael, his wife, and their child, all
-genuinely laughing, home library in the background.
-*Why:* Deeply human, and it does real trust-building work that no solo
-portrait can: this is a man whose own home is warm, not just his teaching.
+**photo-078** — Alone in the office, leaned back with a sefer, one leg
+crossed, relaxed and reflective.
+*Why:* A second register of the same room — not writing, just sitting with
+an idea. Pairs with photo-072 to show both effort and ease.
 
 ---
 
@@ -58,22 +53,23 @@ seated around tables, whiteboard behind him.
 be alone in that room.
 
 **photo-009** — In tefillin at the shtender, fully absorbed in learning.
-*Why:* A single credibility anchor for "this comes from real learning," used
-sparingly — not a hero image (see "the rabbi's website" note below).
+*Why:* One credibility anchor for "this comes from real learning," used
+sparingly — not a hero image (see the "rabbi's website" note under
+Excluded).
 
 ---
 
 ## Therapy / trauma / mental health practice
 
 **photo-059** — Extreme close crop on the back of his head and a mid-gesture
-hand, a second person softly blurred in the foreground.
-*Why:* This is the single strongest image in the whole collection for this
-page. It's shot from roughly the client's own eyeline — the visitor isn't
-looking at him, they're almost sitting across from him. That's "someone
-understands me," not "beautiful landscape."
+hand, a second person (a client) softly blurred in the foreground.
+*Why:* The strongest image in the whole collection for this page. It's shot
+from roughly the client's own eyeline — the visitor isn't looking at him,
+they're almost sitting across from him. That's "someone understands me,"
+not "beautiful landscape."
 
 **photo-048** — Relaxed in the rattan chair, plants behind, mid-conversation,
-a second person's leg/knee just visible in frame.
+a client's leg/knee just visible in frame.
 *Why:* A conversation caught candidly, not a posed "therapist headshot."
 
 **photo-045** — Seated on the built-in daybed bench, casual posture, in
@@ -86,16 +82,21 @@ before anything else.
 
 ## Coaching
 
+**photo-095** — Two men walking a sunlit dirt path together, motion, warm
+light, mostly seen from the side/behind.
 **photo-081** — Two men mid-conversation, walking a forest path, golden
 light, both gesturing.
 **photo-084** — Sitting across a rustic picnic table from another man,
 animated real dialogue, sunlit pines behind.
-**photo-095** — Two men walking a sunlit dirt path together, motion, warm
-light.
-*Why (all three):* This set is the clearest real-world embodiment of "the
-path" as a motif — not a decorative graphic standing in for a journey, an
-actual journey happening between two people. This is coaching as walking
-alongside someone, which is exactly the register that page needs.
+*Why (all three):* The clearest real-world embodiment of "the path" as a
+motif — not a decorative graphic standing in for a journey, an actual
+journey happening between two people. Ordered with photo-095 first
+deliberately: it reads more as silhouette/motion, while photo-084 shows the
+student's clothing most clearly. **Flagged for your judgment:** that
+student is dressed casually (open shirt, longer hair) in a way that may not
+represent your typical client — if that matters to you, lead with
+photo-095/081 and treat photo-084 as optional, or hold this set for a
+future shoot with a different student.
 
 ---
 
@@ -104,33 +105,9 @@ alongside someone, which is exactly the register that page needs.
 **photo-101** — Solo, cross-legged in a forest clearing, eyes closed, full
 figure, golden light through trees.
 **photo-106** — Same pose, tighter crop, softer focus.
-*Why:* Interiority and stillness — a completely different register from the
-teaching photos, which this work needs. Nothing performative here; eyes
-closed, no audience.
-
----
-
-## Marriage course
-
-**photo-108** — Walking hand-in-hand with his wife down a sunlit forest
-path, mostly backs to camera.
-**photo-113** — Embracing his wife in dappled forest light.
-**photo-068** — With his wife and their baby at the home dining table,
-plants and blue curtains behind, visibly tender.
-*Why (all three):* He teaches marriage from lived experience, not theory —
-these images are the proof, and photo-108 in particular quietly carries
-both the "path" motif and the relationship-first principle in one frame.
-
----
-
-## Parenting content
-
-**photo-038** — Tender embrace with his son at the shul table, right after
-learning together.
-**photo-035** — Teaching his son at the same table, mid-gesture, the boy
-visibly engaged.
-*Why:* Warmth without staging — a father actually present with his child,
-not a stock "dad and kid" photo.
+*Why:* Interiority and stillness — a different register from the teaching
+photos, which this work needs. Nothing performative here; eyes closed, no
+audience.
 
 ---
 
@@ -143,37 +120,46 @@ credibility, without leaning on the more formal shul/amud shots.
 
 ---
 
-## Deliberately excluded (and why)
+## Marriage course — no photograph selected
 
-- **photo-026 to photo-029** (the heavily sepia-toned, soft-filtered close
-  portraits): technically striking, but they read as processed/posed —
-  closer to a magazine cover than "invisible editing." They compete with
-  the person rather than revealing him.
-- **Most of the shul/amud lectern portraits** (photo-013–025, 030–033):
-  beautifully shot, but this is exactly the "website of a rabbi" register
-  he asked to avoid as the default — formal, pulpit-facing, one-directional.
-  Fine as a single supporting credibility image somewhere (not chosen here),
-  wrong as a recurring visual identity.
-- **The full vineyard couple-walking sequence** (photo-126–137): gorgeous
-  light, but largely redundant with photo-108/113 above — including all of
-  them would dilute rather than strengthen the marriage-page story.
+Every image that could have served this page (the forest/vineyard couple
+sequence, the home dining-table family scene) was excluded under the
+standing rule above. Recommendation: build this page's visual identity the
+same way the rest of the site handles imagery it doesn't have yet —
+typography, warm color, and the symbolic motifs already established
+(Jerusalem stone, olive branch, a path, morning light) rather than any
+photograph of a couple. If real, consented, appropriately-boundaried
+photography becomes available later, revisit.
 
-## One wardrobe note, flagged rather than acted on
+## Parenting content — no photograph selected
 
-In the forest/vineyard sets (photo-080 onward), he's in a loose white linen
-tunic and drawstring pants — different from the collared shirt / suit pants
-he described as his standard current look elsewhere in this conversation.
-The emotional content of several of these images (especially the marriage
-and coaching sets) is strong enough that I didn't exclude them over
-wardrobe alone, but this is worth his own eye before anything ships: keep
-as-is, or treat the wardrobe style as something to standardize in a future
-shoot.
+Same situation: the two candidate images both involved a child who falls
+under the standing rule. No other children appear anywhere in the
+collection. Hold this content area for symbolic/typographic treatment, or
+until different, appropriate imagery exists.
+
+---
+
+## Excluded
+
+- **All family and spousal imagery**, per the standing rule above — this
+  removes the home dining-table family scene, the shul-table
+  parent-and-child sequence, and the full forest/vineyard couple sequence.
+  Not a quality judgment — several of these were the most technically
+  beautiful images in the collection. Excluded on principle, not aesthetics.
+- **photo-026 to photo-029** (heavily sepia-toned, soft-filtered close
+  portraits): technically striking, but read as processed/posed — closer to
+  a magazine cover than "invisible editing." They compete with the person
+  rather than revealing him.
+- **Most of the shul/amud lectern portraits** (roughly photo-013–033):
+  beautifully shot, but exactly the "website of a rabbi" register he asked
+  to avoid as a default — formal, pulpit-facing, one-directional. Fine as a
+  single supporting credibility image elsewhere, wrong as a recurring
+  visual identity.
 
 ## Next step
 
-No files have been copied into the site or wired into any page yet. Once
-Yisrael confirms this shortlist (or edits it), the approved images move into
-`public/images/` and get placed page by page — and only then does subtle
-technical retouching (the "warm the white balance slightly" note, natural
-kippah placement, etc.) happen, on the confirmed set only, so nothing gets
-retouched that doesn't end up used.
+Once placement is confirmed, the 15 approved images move into
+`public/images/` and get placed page by page. Subtle technical retouching
+(warming the white balance slightly, natural kippah placement) happens only
+on this confirmed set, so nothing gets retouched that doesn't end up used.
