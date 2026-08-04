@@ -16,12 +16,11 @@ export const site = {
 // ---------------------------------------------------------------
 
 export const startHero = {
-  eyebrow: "Start Here",
   titleLines: [
     "The Beauty of Human Desire",
     "Why Good People Keep Falling",
   ],
-  photo: "/images/yisrael-frenkel.jpeg",
+  photo: "/images/start-here-hero.jpg",
   // Each beat is a role in the unveiling, not just a paragraph — role
   // drives size, spacing, and whether it stands alone on screen.
   // Roles: trust, setup, question, mystery, discovery, hope.
