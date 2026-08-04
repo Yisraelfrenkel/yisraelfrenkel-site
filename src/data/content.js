@@ -64,16 +64,47 @@ export const freeClass = {
 
 export const continueJourney = {
   eyebrow: "Continue the Journey",
-  lines: [
-    "Today's class invited you to see your desires differently.",
-    "Or HaBris is where we learn how to live that vision.",
-  ],
+  lines: ["If what you've just discovered is true…", "it changes everything."],
 };
 
+// Five full-width paintings, museum-style — title and one line only.
+// No paragraphs, no icons. artPlaceholder is the brief for the real
+// painting, not something Claude designed — held here only until the
+// real artwork (art-directed separately) is ready to drop in.
 export const stepsTeaser = {
-  intro: "Everything you experience in this class becomes practical through five stages.",
-  names: ["Listen", "Discern", "Fulfill", "Heal", "Build"],
   ctaLabel: "Continue the Journey",
+  steps: [
+    {
+      title: "Listen",
+      caption: "Discover the holy desire beneath every expression.",
+      artPlaceholder:
+        "An ancient olive tree rooted in Jerusalem stone, golden evening light, an open journal nearby.",
+    },
+    {
+      title: "Discern",
+      caption: "Separate the promise from the truth.",
+      artPlaceholder:
+        "Several beautiful roads; only one quietly leads toward light. The false roads look genuinely attractive.",
+    },
+    {
+      title: "Fulfill",
+      caption: "Learn to satisfy what your heart has really been asking for.",
+      artPlaceholder:
+        "A deep spring emerging from rock, living water overflowing, someone drinking with real satisfaction.",
+    },
+    {
+      title: "Heal",
+      caption: "Understand the wounds that taught you to fear your own needs.",
+      artPlaceholder:
+        "A magnificent tree, half the painting underground — beautiful roots in warm earth, light reaching into the darkness.",
+    },
+    {
+      title: "Build",
+      caption: "Let your deepest desire become the compass of your life.",
+      artPlaceholder:
+        "Jerusalem at sunrise, one stone being placed into a growing, unfinished foundation. Hope fills the scene.",
+    },
+  ],
 };
 
 // ---------------------------------------------------------------
