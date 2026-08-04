@@ -11,7 +11,21 @@ relationship, and support the emotional journey of the page it's on.
 **Standing rule for all site photography, confirmed by Yisrael:** only he
 and his students/clients appear on this site. No spouse, no children, no
 family — full stop, not a style preference. A number of otherwise strong
-images were removed on this basis; see "Excluded" below.
+images were removed on this basis; see "Excluded" below. This rule is about
+*who appears*, and editing cannot fix it — it's the one thing selection
+below does not assume can be solved after the fact.
+
+**Working assumption for every image below: appearance is fixable, identity
+is not.** Selection assumes each chosen photo will be subtly edited toward
+how Yisrael dresses and presents today (collared shirt, standard kippah,
+suit pants — not the looser linen/drawstring styling some of these were
+shot in) and toward representing his actual current clientele where a
+student or client appears alongside him. So a photo was never downgraded
+or hedged on for wardrobe alone — clothing, kippah placement, and similar
+surface details get corrected before use; the person's face, expression,
+and the emotional truth of the moment do not change (same rule as his
+original photography brief: invisible edits, never a different person or a
+different feeling).
 
 Nothing is copied into the site or wired into any page yet — that's the
 next step once he gives final sign-off on placement.
@@ -82,21 +96,21 @@ before anything else.
 
 ## Coaching
 
-**photo-095** — Two men walking a sunlit dirt path together, motion, warm
-light, mostly seen from the side/behind.
 **photo-081** — Two men mid-conversation, walking a forest path, golden
 light, both gesturing.
 **photo-084** — Sitting across a rustic picnic table from another man,
 animated real dialogue, sunlit pines behind.
+**photo-095** — Two men walking a sunlit dirt path together, motion, warm
+light.
 *Why (all three):* The clearest real-world embodiment of "the path" as a
 motif — not a decorative graphic standing in for a journey, an actual
-journey happening between two people. Ordered with photo-095 first
-deliberately: it reads more as silhouette/motion, while photo-084 shows the
-student's clothing most clearly. **Flagged for your judgment:** that
-student is dressed casually (open shirt, longer hair) in a way that may not
-represent your typical client — if that matters to you, lead with
-photo-095/081 and treat photo-084 as optional, or hold this set for a
-future shoot with a different student.
+journey happening between two people.
+*Editing planned:* the student walking with him is dressed more casually
+than his typical clientele (open-collar shirt, longer hair) — clothing and
+grooming get brought in line with how his actual students dress before
+these go live, the same way his own wardrobe gets corrected across the
+collection. The conversation, the setting, and the relationship stay
+exactly as shot.
 
 ---
 
@@ -160,6 +174,7 @@ until different, appropriate imagery exists.
 ## Next step
 
 Once placement is confirmed, the 15 approved images move into
-`public/images/` and get placed page by page. Subtle technical retouching
-(warming the white balance slightly, natural kippah placement) happens only
-on this confirmed set, so nothing gets retouched that doesn't end up used.
+`public/images/`, get the planned edits (wardrobe/grooming toward his
+current look and clientele, warmed white balance, natural kippah
+placement), and get placed page by page — all edits done only on this
+confirmed set, so nothing gets retouched that doesn't end up used.
