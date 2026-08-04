@@ -52,7 +52,7 @@ import { startHero } from "../data/content.js";
     overflow: hidden;
     padding-top: clamp(5rem, 12vw, 8rem);
     padding-bottom: clamp(4rem, 12vw, 9rem);
-    background: linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 65%);
+    background: linear-gradient(180deg, var(--stone) 0%, var(--paper-warm) 40%, var(--paper) 100%);
   }
   .sun {
     position: absolute;
@@ -64,9 +64,9 @@ import { startHero } from "../data/content.js";
     border-radius: 50%;
     background: radial-gradient(
       circle,
-      rgba(232, 193, 112, 0.55) 0%,
-      rgba(232, 193, 112, 0.18) 40%,
-      rgba(232, 193, 112, 0) 70%
+      rgba(232, 193, 112, 0.6) 0%,
+      rgba(185, 163, 116, 0.28) 45%,
+      rgba(185, 163, 116, 0) 72%
     );
     pointer-events: none;
   }
@@ -201,11 +201,10 @@ import { startHero } from "../data/content.js";
 
   .hero-photo {
     width: 100%;
-    max-width: 22rem;
-    aspect-ratio: 1 / 1;
+    max-width: 34rem;
+    aspect-ratio: 1200 / 796;
     border-radius: 10px;
     object-fit: cover;
-    object-position: center 30%;
     border: 1px solid var(--line);
     box-shadow: 0 16px 40px rgba(43, 36, 32, 0.14);
     margin-top: clamp(1.5rem, 4vw, 2.5rem);
