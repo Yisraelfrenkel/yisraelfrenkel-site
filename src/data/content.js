@@ -179,7 +179,7 @@ export const practicalDetails = {
   eyebrow: "The Details",
   heading: "What to expect",
   items: [
-    { label: "Starts", value: "Sunday, August 9, 2026 — 8:00 PM Israel time" },
+    { label: "Starts", value: "Sunday, August 16, 2026 — 8:00 PM Israel time" },
     { label: "Length", value: "Five weekly sessions" },
     { label: "Format", value: "Live online — the link is sent after registration" },
     { label: "Investment", value: "$399" },
