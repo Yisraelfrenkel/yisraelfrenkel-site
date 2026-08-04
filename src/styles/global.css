@@ -10,18 +10,22 @@
   --paper-dim: #f1e9d6;
   --paper-warm: #fdf0d9;
 
+  /* Jerusalem stone — the site's own material, not a generic neutral */
+  --stone: #e3d4ae;
+  --stone-deep: #b9a374;
+
   /* ink */
   --ink: #2b2420;
   --ink-soft: #6b6055;
   --line: rgba(43, 36, 32, 0.12);
 
-  /* gold accent */
-  --gold: #ab7a26;
+  /* muted gold accent */
+  --gold: #a6822e;
   --gold-bright: #e8c170;
-  --gold-soft: rgba(171, 122, 38, 0.14);
+  --gold-soft: rgba(166, 130, 46, 0.14);
 
-  /* sage accent (secondary) */
-  --sage: #6f7d5b;
+  /* olive accent (secondary) */
+  --sage: #6b7a45;
 
   /* reserved dusk — transition moments only */
   --dusk: #1c2340;
@@ -47,6 +51,7 @@ body {
   background: var(--paper);
   color: var(--ink);
   font-family: var(--font-body);
+  line-height: 1.65;
   -webkit-font-smoothing: antialiased;
   overflow-x: hidden;
 }
@@ -88,11 +93,12 @@ img {
 .thread {
   display: flex;
   flex-direction: column;
+  gap: 1.35rem;
 }
 
 section {
-  padding-top: clamp(3.5rem, 8vw, 6rem);
-  padding-bottom: clamp(3.5rem, 8vw, 6rem);
+  padding-top: clamp(4.5rem, 10vw, 8rem);
+  padding-bottom: clamp(4.5rem, 10vw, 8rem);
 }
 
 .eyebrow {
