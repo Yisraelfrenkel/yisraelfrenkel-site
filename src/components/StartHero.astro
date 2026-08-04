@@ -5,7 +5,6 @@ import { startHero } from "../data/content.js";
 <section class="start-hero">
   <div class="sun" aria-hidden="true"></div>
   <div class="container">
-    <p class="eyebrow reveal">{startHero.eyebrow}</p>
     <h1 class="reveal">
       {startHero.titleLines.map((line, i) => (
         <span class:list={["title-line", { main: i === 0 }]}>{line}</span>
@@ -139,12 +138,14 @@ import { startHero } from "../data/content.js";
   }
 
   .hero-photo {
-    width: clamp(5rem, 12vw, 6.5rem);
-    height: clamp(5rem, 12vw, 6.5rem);
-    border-radius: 50%;
+    width: 100%;
+    max-width: 22rem;
+    aspect-ratio: 1 / 1;
+    border-radius: 10px;
     object-fit: cover;
-    object-position: top center;
+    object-position: center 30%;
     border: 1px solid var(--line);
+    box-shadow: 0 16px 40px rgba(43, 36, 32, 0.14);
     margin-top: clamp(1.5rem, 4vw, 2.5rem);
   }
 </style>
