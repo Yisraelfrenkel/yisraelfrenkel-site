@@ -20,18 +20,47 @@ export const startHero = {
   titleLines: [
     "The Beauty of Human Desire",
     "Why Good People Keep Falling",
-    "Understanding Ourselves Through the Eyes of the Torah",
   ],
-  welcome: [
-    "I'm so glad you're here. Whether you've struggled yourself, or simply want to understand the human heart more deeply, I hope this class helps you discover something beautiful.",
-    "This class has become the doorway into my work. I invite you to experience it slowly.",
+  photo: "/images/yisrael-frenkel.jpeg",
+  // Each beat is a role in the unveiling, not just a paragraph — role
+  // drives size, spacing, and whether it stands alone on screen.
+  // Roles: trust, setup, question, mystery, discovery, hope.
+  beats: [
+    {
+      role: "trust",
+      text: "For more than twenty years, people have trusted me with the parts of themselves they believed they could never share with another human being.",
+    },
+    {
+      role: "setup",
+      text: "Again and again, I heard the same question.",
+    },
+    {
+      role: "question",
+      text: "“If I know this is hurting me… why can’t I stop wanting it?”",
+      standalone: true,
+    },
+    {
+      role: "mystery",
+      text: "Over the years, I discovered something that completely changed the way I understand the human heart.",
+    },
+    {
+      role: "mystery",
+      text: "The very desire that has been leading you toward what never satisfied you—that has brought pain and shame into your life—",
+    },
+    {
+      role: "discovery",
+      text: "is, at its core, the very force trying to lead you toward everything your heart has been longing for.",
+      standalone: true,
+    },
+    {
+      role: "hope",
+      text: "This class is the beginning of seeing that for yourself.",
+    },
   ],
-  ctaLabel: "Watch the Free Class",
 };
 
 export const freeClass = {
   eyebrow: "The Free Class",
-  note: "If you can, set aside one uninterrupted hour. The final portion is questions and answers, so you can stop there if you need to.",
 };
 
 export const continueJourney = {

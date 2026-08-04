@@ -4,10 +4,7 @@ import { site, freeClass } from "../data/content.js";
 
 <section id="free-class" class="free-class">
   <div class="container">
-    <div class="thread reveal measure-wide">
-      <p class="eyebrow">{freeClass.eyebrow}</p>
-      <p class="note">{freeClass.note}</p>
-    </div>
+    <p class="eyebrow reveal">{freeClass.eyebrow}</p>
     <div class="video-frame reveal">
       <iframe
         src={`https://www.youtube-nocookie.com/embed/${site.freeClassVideoId}`}
@@ -24,16 +21,8 @@ import { site, freeClass } from "../data/content.js";
   .free-class {
     background: var(--paper);
   }
-  .measure-wide {
-    max-width: 44rem;
-  }
-  .note {
-    margin-top: 0.75rem;
-    font-size: 1.05rem;
-    color: var(--ink-soft);
-  }
   .video-frame {
-    margin-top: 2.5rem;
+    margin-top: 1.5rem;
     position: relative;
     width: 100%;
     padding-top: 56.25%;

@@ -11,12 +11,25 @@ import { startHero } from "../data/content.js";
         <span class:list={["title-line", { main: i === 0 }]}>{line}</span>
       ))}
     </h1>
-    <div class="welcome measure reveal">
-      {startHero.welcome.map((p) => (
-        <p>{p}</p>
+
+    <div class="beats">
+      {startHero.beats.map((beat, i) => (
+        <>
+          <p
+            class:list={["beat", `beat-${beat.role}`, "reveal", { standalone: beat.standalone }]}
+          >
+            {beat.text}
+          </p>
+          {i === 0 && (
+            <img
+              src={startHero.photo}
+              alt="Rav Yisrael Frenkel"
+              class="hero-photo reveal"
+            />
+          )}
+        </>
       ))}
     </div>
-    <a href="#free-class" class="btn btn-primary">{startHero.ctaLabel}</a>
   </div>
 </section>
 
@@ -25,7 +38,7 @@ import { startHero } from "../data/content.js";
     position: relative;
     overflow: hidden;
     padding-top: clamp(5rem, 12vw, 8rem);
-    padding-bottom: clamp(4rem, 10vw, 6rem);
+    padding-bottom: clamp(4rem, 12vw, 9rem);
     background: linear-gradient(180deg, var(--paper-warm) 0%, var(--paper) 65%);
   }
   .sun {
@@ -64,16 +77,74 @@ import { startHero } from "../data/content.js";
     color: var(--ink);
     max-width: 22ch;
   }
-  .welcome {
-    margin-top: 2rem;
+
+  /* ---------------------------------------------------------------
+     The beats — a staged unveiling, not a paragraph. Role drives
+     size, weight, and how much silence surrounds it.
+  ----------------------------------------------------------------- */
+  .beats {
+    margin-top: clamp(3rem, 8vw, 5rem);
     display: flex;
     flex-direction: column;
-    gap: 1.1rem;
-    font-size: 1.15rem;
-    line-height: 1.7;
+    max-width: 34rem;
+  }
+  .beat {
+    font-family: var(--font-body);
+    color: var(--ink);
+    line-height: 1.6;
+    margin-top: clamp(2.5rem, 6vw, 4rem);
+  }
+  .beat:first-child {
+    margin-top: 0;
+  }
+  .beat-trust {
+    font-size: clamp(1.15rem, 2.6vw, 1.4rem);
     color: var(--ink-soft);
   }
-  .btn {
-    margin-top: 2.25rem;
+  .beat-setup {
+    font-size: clamp(1rem, 2.2vw, 1.15rem);
+    color: var(--ink-soft);
+    font-style: italic;
+  }
+  .beat-question {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.6rem, 4.2vw, 2.3rem);
+    line-height: 1.35;
+    color: var(--ink);
+  }
+  .beat-mystery {
+    font-size: clamp(1.15rem, 2.6vw, 1.4rem);
+    color: var(--ink-soft);
+  }
+  .beat-discovery {
+    font-family: var(--font-display);
+    font-weight: 600;
+    font-size: clamp(1.9rem, 5.4vw, 3rem);
+    line-height: 1.3;
+    color: var(--gold);
+  }
+  .beat-hope {
+    font-size: clamp(1.15rem, 2.6vw, 1.4rem);
+    color: var(--ink);
+  }
+
+  /* Standalone beats get room to sit alone on the screen — the pause */
+  .beat.standalone {
+    margin-top: clamp(4rem, 10vw, 7rem);
+    margin-bottom: clamp(4rem, 10vw, 7rem);
+  }
+  .beat.standalone + .beat {
+    margin-top: 0;
+  }
+
+  .hero-photo {
+    width: clamp(5rem, 12vw, 6.5rem);
+    height: clamp(5rem, 12vw, 6.5rem);
+    border-radius: 50%;
+    object-fit: cover;
+    object-position: top center;
+    border: 1px solid var(--line);
+    margin-top: clamp(1.5rem, 4vw, 2.5rem);
   }
 </style>
