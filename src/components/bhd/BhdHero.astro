@@ -3,25 +3,16 @@ import { bhdHero } from "../../data/content.js";
 ---
 
 <section class="bhd-hero">
-  <p class="eyebrow">{bhdHero.eyebrow}</p>
   <h1>{bhdHero.title}</h1>
   <p class="subtitle">{bhdHero.subtitle}</p>
 </section>
 
 <style>
   .bhd-hero {
-    max-width: 680px;
+    max-width: 960px;
     margin: 0 auto;
     padding: var(--bhd-hero-space) 32px var(--bhd-section-space);
     text-align: center;
-  }
-  .eyebrow {
-    font-family: "Inter", system-ui, sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.14em;
-    text-transform: uppercase;
-    color: oklch(48% 0.012 75);
-    margin: 0 0 28px;
   }
   h1 {
     font-family: "Newsreader", Georgia, serif;

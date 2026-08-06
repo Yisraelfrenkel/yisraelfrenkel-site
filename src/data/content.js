@@ -20,7 +20,6 @@ export const site = {
 // ---------------------------------------------------------------
 
 export const bhdHero = {
-  eyebrow: "A Free Class",
   title: "The Beauty of Human Desire",
   subtitle: "Why Good People Keep Falling",
 };
