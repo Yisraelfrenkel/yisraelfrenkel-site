@@ -7,7 +7,7 @@ export const site = {
   whatsappUrl: "https://chat.whatsapp.com/Ee1YH3IRM06LZ9WB80N73Q",
   // Direct personal contact:
   personalWhatsappUrl: "https://wa.me/972587613153",
-  email: "Yisrael@YisraelFrenkel.com",
+  email: "ravyisraelf@gmail.com",
   freeClassVideoId: "jqa55Zmn-yY",
   accentColor: "#bc5a29",
 };
