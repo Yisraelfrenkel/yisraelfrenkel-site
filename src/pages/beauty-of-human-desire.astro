@@ -19,7 +19,9 @@ import WhatsAppFloat from "../components/WhatsAppFloat.astro";
 >
   <header class="minimal-nav">
     <div class="nav-inner">
-      <a href="/" class="nav-name">{site.title}</a>
+      <a href="/" class="nav-logo">
+        <img src="/images/logo.png" alt={site.title} />
+      </a>
     </div>
   </header>
   <main class="bhd-page">
@@ -59,14 +61,15 @@ import WhatsAppFloat from "../components/WhatsAppFloat.astro";
     padding: 1.5rem 32px;
   }
   .nav-inner {
-    max-width: 900px;
+    max-width: 1260px;
     margin: 0 auto;
   }
-  .nav-name {
-    font-family: "Newsreader", Georgia, serif;
-    font-weight: 500;
-    font-size: 1.05rem;
-    text-decoration: none;
-    color: oklch(22% 0.012 75);
+  .nav-logo {
+    display: inline-block;
+  }
+  .nav-logo img {
+    height: 32px;
+    width: auto;
+    display: block;
   }
 </style>

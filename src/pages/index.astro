@@ -6,7 +6,7 @@ import { site } from "../data/content.js";
 <Layout title={site.title} description={site.description}>
   <main class="placeholder">
     <div class="placeholder-inner">
-      <p class="eyebrow">{site.title}</p>
+      <img src="/images/logo.png" alt={site.title} class="logo" />
       <h1>The main site is still being built.</h1>
       <p class="placeholder-sub">
         In the meantime, start here —
@@ -28,6 +28,11 @@ import { site } from "../data/content.js";
   .placeholder-inner {
     max-width: 32rem;
     text-align: center;
+  }
+  .logo {
+    height: 40px;
+    width: auto;
+    margin: 0 auto;
   }
   h1 {
     font-family: var(--font-display);
