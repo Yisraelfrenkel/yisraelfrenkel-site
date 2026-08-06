@@ -1,0 +1,43 @@
+---
+import { bhdHero } from "../../data/content.js";
+---
+
+<section class="bhd-hero">
+  <p class="eyebrow">{bhdHero.eyebrow}</p>
+  <h1>{bhdHero.title}</h1>
+  <p class="subtitle">{bhdHero.subtitle}</p>
+</section>
+
+<style>
+  .bhd-hero {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: var(--bhd-hero-space) 32px var(--bhd-section-space);
+    text-align: center;
+  }
+  .eyebrow {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: oklch(48% 0.012 75);
+    margin: 0 0 28px;
+  }
+  h1 {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: clamp(40px, 6vw, 64px);
+    font-weight: 500;
+    line-height: 1.12;
+    letter-spacing: -0.01em;
+    margin: 0 0 20px;
+    color: oklch(22% 0.012 75);
+  }
+  .subtitle {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: clamp(20px, 2.6vw, 26px);
+    font-style: italic;
+    font-weight: 400;
+    color: oklch(45% 0.014 75);
+    margin: 0;
+  }
+</style>

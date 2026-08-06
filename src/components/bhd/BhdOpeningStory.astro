@@ -1,0 +1,50 @@
+---
+import { openingStory } from "../../data/content.js";
+---
+
+<section class="opening-story">
+  <div class="row">
+    <div class="text-col">
+      <p>{openingStory.paragraph}</p>
+    </div>
+    <div class="photo-col">
+      <img src={openingStory.photo} alt="Rav Frenkel in conversation" />
+    </div>
+  </div>
+</section>
+
+<style>
+  .opening-story {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px var(--bhd-section-space);
+  }
+  .row {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+    gap: 40px;
+  }
+  .text-col {
+    flex: 1 1 320px;
+    min-width: 260px;
+  }
+  .text-col p {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 22px;
+    line-height: 1.7;
+    color: oklch(22% 0.012 75);
+    margin: 0;
+  }
+  .photo-col {
+    flex: 1 1 280px;
+    min-width: 240px;
+  }
+  .photo-col img {
+    width: 100%;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    border-radius: 4px;
+    display: block;
+  }
+</style>

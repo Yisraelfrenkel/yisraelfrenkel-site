@@ -1,0 +1,83 @@
+---
+import { testimonials, videoTestimonials } from "../../data/content.js";
+---
+
+<section class="testimonials">
+  <div class="eyebrow">Others who have walked this path</div>
+
+  {testimonials.map((t) => (
+    <blockquote>
+      <p class="quote">"{t.quote}"</p>
+      <p class="name">{t.name}</p>
+    </blockquote>
+  ))}
+
+  <div class="video-row">
+    {videoTestimonials.map((id) => (
+      <div class="video-embed">
+        <iframe
+          src={`https://www.youtube.com/embed/${id}`}
+          title="Testimonial"
+          allowfullscreen
+        ></iframe>
+      </div>
+    ))}
+  </div>
+</section>
+
+<style>
+  .testimonials {
+    max-width: 680px;
+    margin: 0 auto;
+    padding: 0 32px var(--bhd-hero-space);
+  }
+  .eyebrow {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    color: oklch(48% 0.012 75);
+    text-align: center;
+    margin-bottom: var(--bhd-section-space);
+  }
+  blockquote {
+    margin: var(--bhd-section-space) 0 0;
+    padding: 0;
+  }
+  blockquote:first-of-type {
+    margin-top: 0;
+  }
+  .quote {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 19px;
+    line-height: 1.75;
+    font-style: italic;
+    color: oklch(22% 0.012 75);
+    margin: 0 0 16px;
+  }
+  .name {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 14px;
+    letter-spacing: 0.04em;
+    color: oklch(45% 0.012 75);
+    margin: 0;
+  }
+  .video-row {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 24px;
+    margin: var(--bhd-section-space) 0 0;
+  }
+  .video-embed {
+    flex: 1 1 260px;
+    max-width: 320px;
+    aspect-ratio: 16 / 9;
+  }
+  .video-embed iframe {
+    width: 100%;
+    height: 100%;
+    border: 0;
+    border-radius: 4px;
+  }
+</style>

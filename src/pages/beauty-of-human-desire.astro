@@ -1,0 +1,72 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site } from "../data/content.js";
+import BhdHero from "../components/bhd/BhdHero.astro";
+import BhdOpeningStory from "../components/bhd/BhdOpeningStory.astro";
+import BhdQuestion from "../components/bhd/BhdQuestion.astro";
+import BhdReveal from "../components/bhd/BhdReveal.astro";
+import BhdSteps from "../components/bhd/BhdSteps.astro";
+import BhdTorah from "../components/bhd/BhdTorah.astro";
+import BhdTestimonials from "../components/bhd/BhdTestimonials.astro";
+import BhdContact from "../components/bhd/BhdContact.astro";
+import Footer from "../components/Footer.astro";
+import WhatsAppFloat from "../components/WhatsAppFloat.astro";
+---
+
+<Layout
+  title={`The Beauty of Human Desire — ${site.title}`}
+  description={site.description}
+>
+  <header class="minimal-nav">
+    <div class="nav-inner">
+      <a href="/" class="nav-name">{site.title}</a>
+    </div>
+  </header>
+  <main class="bhd-page">
+    <BhdHero />
+    <BhdOpeningStory />
+    <BhdQuestion />
+    <BhdReveal />
+    <BhdSteps />
+    <BhdTorah />
+    <BhdTestimonials />
+    <BhdContact />
+  </main>
+  <Footer />
+  <WhatsAppFloat />
+</Layout>
+
+<style>
+  .bhd-page {
+    /* Spacing tokens from the approved design — "relaxed" pacing */
+    --bhd-hero-space: 96px;
+    --bhd-section-space: 80px;
+    --bhd-inner-space: 26px;
+    background: oklch(97% 0.012 75);
+    color: oklch(22% 0.012 75);
+    width: 100%;
+    overflow-x: hidden;
+  }
+  @media (max-width: 640px) {
+    .bhd-page {
+      --bhd-hero-space: 64px;
+      --bhd-section-space: 52px;
+      --bhd-inner-space: 20px;
+    }
+  }
+  .minimal-nav {
+    background: oklch(97% 0.012 75);
+    padding: 1.5rem 32px;
+  }
+  .nav-inner {
+    max-width: 900px;
+    margin: 0 auto;
+  }
+  .nav-name {
+    font-family: "Newsreader", Georgia, serif;
+    font-weight: 500;
+    font-size: 1.05rem;
+    text-decoration: none;
+    color: oklch(22% 0.012 75);
+  }
+</style>

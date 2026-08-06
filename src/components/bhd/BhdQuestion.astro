@@ -1,0 +1,42 @@
+---
+import { question } from "../../data/content.js";
+---
+
+<section class="question">
+  <p class="line">{question.line}</p>
+  <p class="quote">
+    {question.quoteStart}<br />
+    <span class="emphasis">{question.quoteEmphasis}</span>
+  </p>
+</section>
+
+<style>
+  .question {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 32px var(--bhd-section-space);
+    text-align: center;
+  }
+  .line {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: 22px;
+    line-height: 1.7;
+    color: oklch(35% 0.012 75);
+    margin: 0 0 var(--bhd-inner-space);
+  }
+  .quote {
+    font-family: "Newsreader", Georgia, serif;
+    font-size: clamp(30px, 4.4vw, 46px);
+    font-style: italic;
+    font-weight: 600;
+    letter-spacing: -0.01em;
+    line-height: 1.35;
+    color: oklch(38% 0.09 25);
+    margin: 0;
+  }
+  .emphasis {
+    display: inline-block;
+    margin-top: 0.25em;
+    font-size: clamp(46px, 7.2vw, 74px);
+  }
+</style>
