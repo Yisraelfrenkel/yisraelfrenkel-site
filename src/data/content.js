@@ -3,7 +3,7 @@ export const site = {
   description:
     "The Beauty of Human Desire — a free class from Rav Yisrael Frenkel on why good people keep falling, and what their deepest desire is actually reaching for.",
   // The two links that power the whole funnel:
-  signupUrl: "https://secure.cardcom.solutions/EA/EA5/XYvshyNq2UaDnwZh4ft3bg/PaymentSP",
+  signupUrl: "https://tally.so/r/7RY1QR",
   whatsappUrl: "https://chat.whatsapp.com/Ee1YH3IRM06LZ9WB80N73Q",
   // Direct personal contact:
   personalWhatsappUrl: "https://wa.me/972587613153",
