@@ -16,7 +16,6 @@ import { site, beginningLine, freeClassVideo } from "../../data/content.js";
 </section>
 
 <section class="video-cta">
-  <div class="video-label">{freeClassVideo.label}</div>
   <a href={freeClassVideo.href} class="video-link" target="_blank" rel="noopener noreferrer">
     <img src={freeClassVideo.thumbnail} alt="The Free Class" />
     <div class="play-overlay">
@@ -86,13 +85,6 @@ import { site, beginningLine, freeClassVideo } from "../../data/content.js";
     margin: 0 auto;
     padding: var(--bhd-inner-space) 32px var(--bhd-hero-space);
     text-align: center;
-  }
-  .video-label {
-    font-family: "Newsreader", Georgia, serif;
-    font-style: italic;
-    font-size: 19px;
-    color: oklch(45% 0.012 75);
-    margin-bottom: 28px;
   }
   .video-link {
     display: block;

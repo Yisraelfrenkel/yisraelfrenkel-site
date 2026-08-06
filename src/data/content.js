@@ -41,7 +41,6 @@ export const beginningLine =
   "This class is the beginning of seeing that for yourself.";
 
 export const freeClassVideo = {
-  label: "Start here.",
   thumbnail: "https://img.youtube.com/vi/jqa55Zmn-yY/maxresdefault.jpg",
   href: "https://youtu.be/jqa55Zmn-yY",
 };
