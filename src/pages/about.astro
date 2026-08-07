@@ -1,67 +1,93 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import {
-  site,
-  aboutHero,
-  aboutPortraitMain,
-  aboutPortraitTeaching,
-  aboutEssayPartOne,
-  aboutEssayPartTwo,
-  aboutPullQuote,
-  aboutEssayPartThree,
-  invitations,
-} from "../data/content.js";
+import { site, about, invitations } from "../data/content.js";
 import Footer from "../components/Footer.astro";
 import WhatsAppFloat from "../components/WhatsAppFloat.astro";
+
+// blocks[0] is the "intro" entrance line. blocks[1] and blocks[2] (a "p"
+// and a "line") are the two paragraphs that flow beside the floated
+// portrait. Everything from blocks[3] on (starting with "credentials")
+// renders in the normal narrow reading column.
+const [introBlock, floatP, floatLine, ...restBlocks] = about.blocks;
 ---
 
 <Layout
   title={`About Yisrael — ${site.title}`}
-  description={site.description}
+  description={about.metaDescription}
 >
   <main class="about-page">
     <section class="hero">
-      <div class="eyebrow">{aboutHero.eyebrow}</div>
+      <div class="eyebrow">{about.eyebrow}</div>
       <h1>
-        {aboutHero.heading[0]}<br />
-        {aboutHero.heading[1]}
+        {about.heading[0]}<br />
+        {about.heading[1]}
       </h1>
     </section>
 
-    <section class="portrait">
-      <img src={aboutPortraitMain} alt="Portrait of Rav Yisrael Frenkel" />
+    <section class="intro">
+      <p>{introBlock.text}</p>
     </section>
 
-    {aboutEssayPartOne.map((group) => (
-      <section class="essay">
-        {group.map((p) => <p>{p}</p>)}
-      </section>
-    ))}
-
-    <section class="photo-wide">
-      <img src={aboutPortraitTeaching} alt="Rav Yisrael Frenkel teaching" />
+    <section class="essay-open">
+      <img class="portrait-float" src={about.portraitMain} alt="Portrait of Rav Yisrael Frenkel" />
+      <p>{floatP.text}</p>
+      <p>{floatLine.text}</p>
+      <div class="clearfix"></div>
     </section>
 
-    {aboutEssayPartTwo.map((group) => (
-      <section class="essay">
-        {group.map((p) => <p>{p}</p>)}
-      </section>
-    ))}
+    {restBlocks.map((block) => (
+      <>
+        {block.type === "p" && <p class="essay-p">{block.text}</p>}
 
-    <section class="pull-quote">
-      <p>
-        “{aboutPullQuote[0]}<br />
-        {aboutPullQuote[1]}<br />
-        {aboutPullQuote[2]}<br />
-        {aboutPullQuote[3]}<br />
-        {aboutPullQuote[4]}”
-      </p>
-    </section>
+        {block.type === "line" && <p class="essay-line">{block.text}</p>}
 
-    {aboutEssayPartThree.map((group) => (
-      <section class="essay">
-        {group.map((p) => <p>{p}</p>)}
-      </section>
+        {block.type === "credentials" && (
+          <div class="credentials">
+            <p class="credentials-lead">{block.lead}</p>
+            <div class="credentials-list">
+              {block.items.map((item) => <p class="credentials-item">{item}</p>)}
+            </div>
+            <p class="credentials-closing">{block.closing}</p>
+          </div>
+        )}
+
+        {block.type === "photo" && (
+          <div class="photo-wide">
+            <img src={about.portraitTeaching} alt="Rav Yisrael Frenkel teaching" />
+          </div>
+        )}
+
+        {block.type === "quote" && (
+          <div class="pull-quote">
+            <div class="quote-mark" aria-hidden="true">&ldquo;</div>
+            <p>
+              {block.lines.map((line, i) => (
+                <>
+                  {i > 0 && <br />}
+                  {line}
+                </>
+              ))}
+            </p>
+          </div>
+        )}
+
+        {block.type === "turn" && (
+          <div class="turn">
+            <p class="turn-lead">{block.lead}</p>
+            <p class="turn-emphasis">{block.emphasis}</p>
+          </div>
+        )}
+
+        {block.type === "close" && <p class="close">{block.text}</p>}
+
+        {block.type === "credentials" && (
+          <div class="divider" aria-hidden="true">
+            <span class="divider-line"></span>
+            <span class="divider-mark">✦</span>
+            <span class="divider-line"></span>
+          </div>
+        )}
+      </>
     ))}
 
     <section class="invitations">
@@ -92,63 +118,159 @@ import WhatsAppFloat from "../components/WhatsAppFloat.astro";
     width: 100%;
     overflow-x: hidden;
   }
+
+  /* ---------- Hero: the entrance ---------- */
   .hero {
-    max-width: 700px;
+    max-width: 760px;
     margin: 0 auto;
-    padding: 104px 32px 12px;
+    padding: 120px 32px 20px;
     text-align: center;
   }
   .eyebrow {
     font-family: var(--ab-sans);
     font-size: 13px;
-    letter-spacing: 0.16em;
+    letter-spacing: 0.2em;
     text-transform: uppercase;
     color: rgba(79, 52, 34, 0.55);
-    margin-bottom: 24px;
+    margin-bottom: 28px;
   }
   .hero h1 {
     font-family: var(--ab-serif);
-    font-size: 44px;
+    font-size: 68px;
     font-weight: 500;
     font-style: italic;
-    line-height: 1.3;
+    line-height: 1.15;
     margin: 0;
     color: var(--ab-text);
   }
-  .portrait {
-    max-width: 900px;
+
+  .intro {
+    max-width: 700px;
     margin: 0 auto;
-    padding: 56px 32px 88px;
+    padding: 8px 32px 72px;
+    text-align: center;
   }
-  .portrait img {
-    width: 38%;
-    min-width: 260px;
+  .intro p {
+    font-family: var(--ab-serif);
+    font-size: 27px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.5;
+    color: var(--ab-text);
+    margin: 0;
+  }
+
+  /* ---------- Opening flow: portrait floats beside the first lines ---------- */
+  .essay-open {
+    max-width: 860px;
+    margin: 0 auto;
+    padding: 0 32px 12px;
+    text-align: left;
+  }
+  .portrait-float {
+    float: right;
+    width: 380px;
+    max-width: 44%;
     aspect-ratio: 4 / 5;
     object-fit: cover;
     display: block;
-    margin: 0 auto;
+    margin: 6px 0 32px 44px;
     border-radius: 4px;
   }
-  .essay {
-    max-width: 1100px;
-    margin: 0 auto;
-    padding: 0 48px 88px;
-    text-align: left;
-  }
-  .essay p {
+  .essay-open p {
     font-family: var(--ab-sans);
     font-size: 18px;
     line-height: 1.65;
     margin: 0 0 27px;
     color: var(--ab-text);
   }
-  .essay p:last-child {
+  .clearfix {
+    clear: both;
+  }
+
+  /* ---------- Standard narrow reading column ---------- */
+  .essay-p {
+    max-width: 840px;
+    margin: 0 auto 27px;
+    padding: 0 32px;
+    font-family: var(--ab-sans);
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--ab-text);
+    text-align: left;
+  }
+  .essay-line {
+    max-width: 620px;
+    margin: 48px auto;
+    padding: 0 32px;
+    font-family: var(--ab-serif);
+    font-size: 25px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--ab-text);
+    text-align: center;
+  }
+
+  /* ---------- Credentials: broken visually, not bulleted ---------- */
+  .credentials {
+    max-width: 840px;
+    margin: 44px auto;
+    padding: 0 32px;
+  }
+  .credentials-lead {
+    font-family: var(--ab-serif);
+    font-style: italic;
+    font-size: 20px;
+    color: var(--ab-text);
+    margin: 0 0 18px;
+  }
+  .credentials-list {
+    padding-left: 20px;
+    border-left: 2px solid rgba(164, 112, 79, 0.35);
+  }
+  .credentials-item {
+    font-family: var(--ab-sans);
+    font-size: 17px;
+    line-height: 1.6;
+    color: rgba(79, 52, 34, 0.85);
+    margin: 0 0 14px;
+  }
+  .credentials-item:last-child {
     margin-bottom: 0;
   }
+  .credentials-closing {
+    font-family: var(--ab-sans);
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--ab-text);
+    margin: 24px 0 0;
+  }
+
+  /* ---------- The one visual moment ---------- */
+  .divider {
+    max-width: 420px;
+    margin: 72px auto;
+    padding: 0 32px;
+    display: flex;
+    align-items: center;
+    gap: 20px;
+  }
+  .divider-line {
+    flex: 1 1 auto;
+    height: 1px;
+    background: rgba(164, 112, 79, 0.4);
+  }
+  .divider-mark {
+    font-size: 15px;
+    color: var(--ab-accent);
+  }
+
+  /* ---------- Teaching photo ---------- */
   .photo-wide {
     max-width: 900px;
     margin: 0 auto;
-    padding: 0 32px 96px;
+    padding: 44px 32px;
   }
   .photo-wide img {
     width: 100%;
@@ -157,21 +279,71 @@ import WhatsAppFloat from "../components/WhatsAppFloat.astro";
     display: block;
     border-radius: 4px;
   }
+
+  /* ---------- The pull quote: the moment that stops people ---------- */
   .pull-quote {
-    max-width: 780px;
+    max-width: 900px;
     margin: 0 auto;
-    padding: 40px 32px 104px;
+    padding: 24px 32px 96px;
     text-align: center;
+  }
+  .quote-mark {
+    font-family: var(--ab-serif);
+    font-size: 110px;
+    line-height: 0.5;
+    color: var(--ab-accent);
+    opacity: 0.5;
+    margin-bottom: 8px;
   }
   .pull-quote p {
     font-family: var(--ab-serif);
-    font-size: 36px;
+    font-size: 46px;
     font-style: italic;
     font-weight: 500;
-    line-height: 1.45;
+    line-height: 1.42;
     color: var(--ab-accent);
     margin: 0;
   }
+
+  /* ---------- The turn: the hinge of the piece ---------- */
+  .turn {
+    max-width: 760px;
+    margin: 56px auto;
+    padding: 0 32px;
+    text-align: center;
+  }
+  .turn-lead {
+    font-family: var(--ab-sans);
+    font-size: 18px;
+    line-height: 1.65;
+    color: var(--ab-text);
+    margin: 0 0 14px;
+  }
+  .turn-emphasis {
+    font-family: var(--ab-serif);
+    font-size: 30px;
+    font-style: italic;
+    font-weight: 600;
+    line-height: 1.4;
+    color: var(--ab-accent);
+    margin: 0;
+  }
+
+  /* ---------- Closing statement ---------- */
+  .close {
+    max-width: 760px;
+    margin: 0 auto;
+    padding: 32px 32px 88px;
+    font-family: var(--ab-serif);
+    font-size: 24px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.55;
+    color: var(--ab-text);
+    text-align: center;
+  }
+
+  /* ---------- Invitations ---------- */
   .invitations {
     max-width: 640px;
     margin: 0 auto;
@@ -220,5 +392,29 @@ import WhatsAppFloat from "../components/WhatsAppFloat.astro";
     font-size: 14px;
     line-height: 1.5;
     color: rgba(79, 52, 34, 0.7);
+  }
+
+  @media (max-width: 640px) {
+    .hero {
+      padding-top: 88px;
+    }
+    .hero h1 {
+      font-size: 44px;
+    }
+    .intro p {
+      font-size: 22px;
+    }
+    .portrait-float {
+      float: none;
+      width: 220px;
+      max-width: 60%;
+      margin: 0 auto 24px;
+    }
+    .essay-open p {
+      text-align: left;
+    }
+    .pull-quote p {
+      font-size: 32px;
+    }
   }
 </style>

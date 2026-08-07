@@ -1,5 +1,5 @@
 ---
-import { stepsIntro, steps } from "../../data/content.js";
+import { stepsIntro, steps, stepsDownload } from "../../data/content.js";
 ---
 
 <section class="steps-intro" id="continue">
@@ -28,6 +28,29 @@ import { stepsIntro, steps } from "../../data/content.js";
     </div>
   </section>
 ))}
+
+{/* The five steps as one page the visitor can keep. Placed after the
+    paintings so it reads as a parting gift, not an offer. */}
+<section class="steps-download">
+  <div class="download-card">
+    <a
+      class="download-preview"
+      href={stepsDownload.image}
+      download={stepsDownload.filename}
+      aria-label={stepsDownload.label}
+    >
+      <img src={stepsDownload.image} alt={stepsDownload.alt} loading="lazy" />
+    </a>
+    <p class="download-note">{stepsDownload.note}</p>
+    <a
+      class="download-link"
+      href={stepsDownload.image}
+      download={stepsDownload.filename}
+    >
+      {stepsDownload.label}
+    </a>
+  </div>
+</section>
 
 <style>
   .steps-intro {
@@ -81,5 +104,75 @@ import { stepsIntro, steps } from "../../data/content.js";
   }
   .caption p:last-child {
     margin-bottom: 0;
+  }
+
+  /* ---------- The keepsake ---------- */
+  /* An invitation, not a call-to-action: outline only, no shadow, no
+     colour fill. It should read as part of the sefer, not as UI. */
+  .steps-download {
+    max-width: 1300px;
+    margin: 0 auto;
+    padding: 0 24px calc(var(--bhd-section-pad) * 1.5);
+    text-align: center;
+  }
+  .download-card {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 34px 38px 38px;
+    background: var(--bhd-parchment-3);
+    border: 1px solid rgba(79, 52, 34, 0.22);
+    border-radius: 8px;
+  }
+  .download-preview {
+    display: block;
+    text-decoration: none;
+    border-radius: 4px;
+    overflow: hidden;
+    border: 1px solid rgba(79, 52, 34, 0.16);
+    transition: border-color 0.5s ease, transform 0.5s ease;
+  }
+  .download-preview:hover {
+    border-color: var(--bhd-accent);
+    transform: translateY(-2px);
+  }
+  .download-preview img {
+    width: 100%;
+    aspect-ratio: 3 / 2;
+    object-fit: cover;
+    display: block;
+  }
+  .download-note {
+    font-family: var(--bhd-serif);
+    font-size: calc(var(--bhd-body) * 1.15);
+    font-style: italic;
+    line-height: 1.5;
+    color: rgba(79, 52, 34, 0.75);
+    margin: 24px 0 20px;
+  }
+  .download-link {
+    display: inline-block;
+    font-family: var(--bhd-sans);
+    font-size: 15px;
+    letter-spacing: 0.04em;
+    color: var(--bhd-text);
+    text-decoration: none;
+    padding: 13px 30px;
+    border: 1px solid var(--bhd-accent);
+    border-radius: 4px;
+    transition: background 0.5s ease, color 0.5s ease;
+  }
+  .download-link:hover {
+    background: var(--bhd-accent);
+    color: var(--bhd-parchment);
+  }
+
+  @media (prefers-reduced-motion: reduce) {
+    .download-preview,
+    .download-link {
+      transition: none;
+    }
+    .download-preview:hover {
+      transform: none;
+    }
   }
 </style>
