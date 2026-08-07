@@ -6,50 +6,26 @@ import { stepsIntro, steps } from "../../data/content.js";
   {stepsIntro.map((line) => <p>{line}</p>)}
 </section>
 
-{steps.map((step) => (
-  <section class="step">
-    <div class="eyebrow">{step.title}</div>
-    {step.bordered ? (
-      <div class="bordered-frame">
-        <img src={step.image} alt={step.title} />
-        <div class="caption-in-card">
-          {step.paragraphs.map((p) =>
-            Array.isArray(p) ? (
-              <p>
-                {p.map((line, i) => (
-                  <>
-                    {i > 0 && <br />}
-                    {line}
-                  </>
-                ))}
-              </p>
-            ) : (
-              <p>{p}</p>
-            )
-          )}
-        </div>
-      </div>
-    ) : (
-      <>
-        <img src={step.image} alt={step.title} class="borderless" />
-        <div class="caption-below">
-          {step.paragraphs.map((p) =>
-            Array.isArray(p) ? (
-              <p>
-                {p.map((line, i) => (
-                  <>
-                    {i > 0 && <br />}
-                    {line}
-                  </>
-                ))}
-              </p>
-            ) : (
-              <p>{p}</p>
-            )
-          )}
-        </div>
-      </>
-    )}
+{steps.map((step, i) => (
+  <section class="step" style={i === steps.length - 1 ? "padding-bottom: calc(var(--bhd-hero-pad) * 0.65);" : undefined}>
+    <div class="eyebrow" style={`color:${step.color}`}>{step.title}</div>
+    <img src={step.image} alt={step.title} />
+    <div class="caption">
+      {step.paragraphs.map((p) =>
+        Array.isArray(p) ? (
+          <p>
+            {p.map((line, i) => (
+              <>
+                {i > 0 && <br />}
+                {line}
+              </>
+            ))}
+          </p>
+        ) : (
+          <p>{p}</p>
+        )
+      )}
+    </div>
   </section>
 ))}
 
@@ -57,72 +33,52 @@ import { stepsIntro, steps } from "../../data/content.js";
   .steps-intro {
     max-width: 900px;
     margin: 0 auto;
-    padding: 0 32px var(--bhd-section-space);
+    padding: 0 32px var(--bhd-section-pad);
     text-align: center;
   }
   .steps-intro p {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 22px;
-    line-height: 1.7;
-    color: oklch(22% 0.012 75);
-    margin: 0 0 16px;
+    font-family: var(--bhd-serif);
+    font-size: calc(var(--bhd-h2) * 1.15);
+    font-weight: 500;
+    line-height: 1.4;
+    margin: 0 0 var(--bhd-para-gap);
   }
   .steps-intro p:last-child {
     margin-bottom: 0;
   }
 
   .step {
-    max-width: 980px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 0 24px var(--bhd-section-space);
+    padding: 0 24px calc(var(--bhd-section-pad) * 1.5);
     text-align: center;
   }
   .eyebrow {
-    font-family: "Inter", system-ui, sans-serif;
-    font-size: 13px;
-    letter-spacing: 0.16em;
+    font-family: var(--bhd-sans);
+    font-size: calc(var(--bhd-body) * 1.2);
+    letter-spacing: 0.08em;
     text-transform: uppercase;
-    color: oklch(48% 0.012 75);
     margin-bottom: 22px;
   }
-  .bordered-frame {
-    border: 1px solid oklch(70% 0.02 75);
-    border-radius: 16px;
-    overflow: hidden;
-  }
-  .bordered-frame img {
+  .step img {
     width: 100%;
     aspect-ratio: 2 / 1;
     object-fit: cover;
     display: block;
+    border-radius: 4px;
   }
-  .caption-in-card {
-    padding: 32px 36px;
-    border-top: 1px solid oklch(70% 0.02 75);
-    text-align: left;
+  .caption {
+    padding: 12px 0 0;
+    text-align: center;
   }
-  img.borderless {
-    width: 100%;
-    aspect-ratio: 2 / 1;
-    object-fit: cover;
-    display: block;
-    border-radius: 16px;
+  .caption p {
+    font-family: var(--bhd-sans);
+    font-size: calc(var(--bhd-body) * 1.2);
+    line-height: var(--bhd-body-lh);
+    margin: 0 0 var(--bhd-para-gap);
+    color: var(--bhd-text);
   }
-  .caption-below {
-    max-width: 780px;
-    margin: 26px auto 0;
-    text-align: left;
-  }
-  .caption-in-card p,
-  .caption-below p {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 18px;
-    line-height: 1.65;
-    color: oklch(22% 0.012 75);
-    margin: 0 0 14px;
-  }
-  .caption-in-card p:last-child,
-  .caption-below p:last-child {
+  .caption p:last-child {
     margin-bottom: 0;
   }
 </style>

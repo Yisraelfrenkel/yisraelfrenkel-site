@@ -3,7 +3,6 @@ import Layout from "../layouts/Layout.astro";
 import { site } from "../data/content.js";
 import BhdHero from "../components/bhd/BhdHero.astro";
 import BhdOpeningStory from "../components/bhd/BhdOpeningStory.astro";
-import BhdQuestion from "../components/bhd/BhdQuestion.astro";
 import BhdReveal from "../components/bhd/BhdReveal.astro";
 import BhdSteps from "../components/bhd/BhdSteps.astro";
 import BhdTorah from "../components/bhd/BhdTorah.astro";
@@ -17,59 +16,53 @@ import WhatsAppFloat from "../components/WhatsAppFloat.astro";
   title={`The Beauty of Human Desire — ${site.title}`}
   description={site.description}
 >
-  <header class="minimal-nav">
-    <div class="nav-inner">
-      <a href="/" class="nav-logo">
-        <img src="/images/logo.png" alt={site.title} />
-      </a>
-    </div>
-  </header>
   <main class="bhd-page">
     <BhdHero />
     <BhdOpeningStory />
-    <BhdQuestion />
     <BhdReveal />
     <BhdSteps />
     <BhdTorah />
-    <BhdTestimonials />
-    <BhdContact />
+    <div class="bhd-tint-3">
+      <BhdTestimonials />
+      <BhdContact />
+      <Footer />
+    </div>
   </main>
-  <Footer />
   <WhatsAppFloat />
 </Layout>
 
-<style>
+<style is:global>
   .bhd-page {
-    /* Spacing tokens from the approved design — "relaxed" pacing */
-    --bhd-hero-space: 96px;
-    --bhd-section-space: 80px;
-    --bhd-inner-space: 26px;
-    background: oklch(97% 0.012 75);
-    color: oklch(22% 0.012 75);
+    /* Design tokens — type system "B / Spacious Editorial", the approved
+       default from design_handoff_beauty_of_human_desire (2026-08-07). */
+    --bhd-h1: 52px;
+    --bhd-h2: 30px;
+    --bhd-h3: 22px;
+    --bhd-body: 18px;
+    --bhd-body-lh: 1.65;
+    --bhd-quote: 23px;
+    --bhd-quote-lg: 34px;
+    --bhd-para-gap: 1.5em;
+    --bhd-hero-pad: 104px;
+    --bhd-section-pad: 88px;
+
+    --bhd-parchment: #f8f3ea;
+    --bhd-parchment-2: #f3eee4;
+    --bhd-parchment-3: #fcfaf6;
+    --bhd-parchment-4: #efe9df;
+    --bhd-text: #4f3422;
+    --bhd-accent: #a4704f;
+
+    --bhd-serif: "Cormorant Garamond", serif;
+    --bhd-sans: "Inter", system-ui, sans-serif;
+
+    background: var(--bhd-parchment);
+    color: var(--bhd-text);
     width: 100%;
     overflow-x: hidden;
   }
-  @media (max-width: 640px) {
-    .bhd-page {
-      --bhd-hero-space: 64px;
-      --bhd-section-space: 52px;
-      --bhd-inner-space: 20px;
-    }
-  }
-  .minimal-nav {
-    background: oklch(97% 0.012 75);
-    padding: 1.5rem 32px;
-  }
-  .nav-inner {
-    max-width: 1260px;
-    margin: 0 auto;
-  }
-  .nav-logo {
-    display: inline-block;
-  }
-  .nav-logo img {
-    height: 32px;
-    width: auto;
-    display: block;
+  .bhd-tint-3 {
+    background: var(--bhd-parchment-3);
+    width: 100%;
   }
 </style>

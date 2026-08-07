@@ -1,50 +1,113 @@
 ---
-import { openingStory } from "../../data/content.js";
+import { openingStory, question, invitations } from "../../data/content.js";
 ---
 
 <section class="opening-story">
-  <div class="row">
-    <div class="text-col">
-      <p>{openingStory.paragraph}</p>
-    </div>
-    <div class="photo-col">
-      <img src={openingStory.photo} alt="Rav Frenkel in conversation" />
+  <div class="col">
+    <p class="paragraph">{openingStory.paragraph}</p>
+    <p class="question-line">{question.line}</p>
+    <p class="quote-start">{question.quoteStart}</p>
+    <p class="quote-emphasis">{question.quoteEmphasis}</p>
+    <div class="invitations">
+      {invitations.map((card) => (
+        <a href={card.href} class="invitation" target="_blank" rel="noopener noreferrer">
+          <div class="invitation-title">{card.title}</div>
+          <div class="invitation-desc">{card.description}</div>
+        </a>
+      ))}
     </div>
   </div>
 </section>
 
 <style>
   .opening-story {
-    max-width: 1260px;
-    margin: 0 auto;
-    padding: 0 32px var(--bhd-section-space);
-  }
-  .row {
-    display: flex;
-    flex-wrap: wrap;
-    align-items: center;
-    gap: 40px;
-  }
-  .text-col {
-    flex: 1 1 320px;
-    min-width: 260px;
-  }
-  .text-col p {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 22px;
-    line-height: 1.7;
-    color: oklch(22% 0.012 75);
-    margin: 0;
-  }
-  .photo-col {
-    flex: 1 1 280px;
-    min-width: 240px;
-  }
-  .photo-col img {
+    box-sizing: border-box;
     width: 100%;
-    aspect-ratio: 4 / 5;
-    object-fit: cover;
-    border-radius: 16px;
+    margin: 0 auto;
+    padding: 0 5vw calc(var(--bhd-section-pad) * 0.25);
+  }
+  .col {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    max-width: 700px;
+    margin: 0 auto;
+  }
+  .paragraph {
+    font-family: var(--bhd-serif);
+    font-size: calc(var(--bhd-h2) * 1.2);
+    font-weight: 600;
+    line-height: 1.25;
+    margin: 0 0 var(--bhd-para-gap);
+  }
+  .question-line {
+    font-family: var(--bhd-sans);
+    font-size: calc(var(--bhd-body) * 1.7);
+    line-height: var(--bhd-body-lh);
+    margin: 0 0 var(--bhd-para-gap);
+    color: rgba(79, 52, 34, 0.75);
+  }
+  .quote-start {
+    font-family: var(--bhd-serif);
+    font-size: calc(var(--bhd-quote-lg) * 1.3);
+    font-style: italic;
+    font-weight: 400;
+    line-height: 1.5;
+    color: var(--bhd-accent);
+    margin: 0 0 0.35em;
+  }
+  .quote-emphasis {
+    font-family: var(--bhd-serif);
+    font-size: calc(var(--bhd-quote-lg) * 2.6);
+    font-style: italic;
+    font-weight: 700;
+    line-height: 1.1;
+    color: var(--bhd-accent);
+    margin: 0 0 var(--bhd-section-pad);
+  }
+  .invitations {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: stretch;
+    justify-content: center;
+    flex-wrap: wrap;
+    width: 100%;
+  }
+  .invitation {
     display: block;
+    flex: 1 1 240px;
+    max-width: 280px;
+    padding: 34px 38px;
+    background: var(--bhd-parchment);
+    border: 1px solid rgba(79, 52, 34, 0.25);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.5s ease, border-color 0.5s ease;
+    text-align: left;
+  }
+  .invitation:hover {
+    background: var(--bhd-parchment-2);
+    border-color: var(--bhd-accent);
+  }
+  .invitation:first-child {
+    border-color: var(--bhd-accent);
+  }
+  .invitation:first-child:hover {
+    border-color: var(--bhd-text);
+  }
+  .invitation-title {
+    font-family: var(--bhd-serif);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--bhd-text);
+    margin-bottom: 8px;
+  }
+  .invitation-desc {
+    font-family: var(--bhd-sans);
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(79, 52, 34, 0.7);
   }
 </style>

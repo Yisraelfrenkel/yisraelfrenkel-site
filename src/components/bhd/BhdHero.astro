@@ -3,32 +3,40 @@ import { bhdHero } from "../../data/content.js";
 ---
 
 <section class="bhd-hero">
+  <img class="wordmark" src={bhdHero.wordmark} alt="Yisrael Frenkel" />
   <h1>{bhdHero.title}</h1>
   <p class="subtitle">{bhdHero.subtitle}</p>
 </section>
 
 <style>
   .bhd-hero {
-    max-width: 960px;
+    max-width: 1000px;
     margin: 0 auto;
-    padding: var(--bhd-hero-space) 32px var(--bhd-section-space);
+    padding: var(--bhd-hero-pad) 32px var(--bhd-section-pad);
     text-align: center;
   }
+  .wordmark {
+    max-width: 320px;
+    width: 60%;
+    height: auto;
+    display: block;
+    margin: 0 auto calc(var(--bhd-section-pad) * 0.6);
+  }
   h1 {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: clamp(40px, 6vw, 64px);
-    font-weight: 500;
-    line-height: 1.12;
-    letter-spacing: -0.01em;
+    font-family: var(--bhd-serif);
+    font-size: calc(var(--bhd-h1) * 1.15);
+    font-weight: 600;
+    line-height: 1.1;
     margin: 0 0 20px;
-    color: oklch(22% 0.012 75);
+    color: var(--bhd-text);
   }
   .subtitle {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: clamp(20px, 2.6vw, 26px);
+    font-family: var(--bhd-serif);
+    font-size: calc(var(--bhd-h2) * 1.35);
     font-style: italic;
-    font-weight: 400;
-    color: oklch(45% 0.014 75);
+    font-weight: 500;
+    color: rgba(79, 52, 34, 0.55);
+    line-height: 1.35;
     margin: 0;
   }
 </style>

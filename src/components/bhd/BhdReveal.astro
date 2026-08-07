@@ -1,25 +1,35 @@
 ---
-import { site, beginningLine, freeClassVideo } from "../../data/content.js";
+import { beginningLine, freeClassVideo } from "../../data/content.js";
 ---
 
-<section class="reveal-trigger" data-reveal-trigger>
-  <p class="over-line" data-reveal-over></p>
+<section class="reveal-intro">
+  <p>Over the years, I discovered the reason</p>
 </section>
 
 <section class="reveal-mid">
-  <p class="desire-line" data-reveal-desire></p>
-  <p class="force-line" data-reveal-force></p>
+  <p class="desire-line">
+    The very desire that has brought you all this<br />
+    <strong>pain</strong>,<br />
+    <strong>shame</strong>,<br />
+    and <strong>dissatisfaction</strong>—
+  </p>
+  <p class="force-line">
+    at its <em>core</em><br />
+    is the very force trying to lead you towards <span class="big-1">everything your heart needs<br />
+    to become your true,<br />
+    <span class="big-2">beautiful, and holy self.</span></span>
+  </p>
 </section>
 
 <section class="beginning">
-  <p class="beginning-line" data-reveal-beginning>{beginningLine}</p>
+  <p>{beginningLine}</p>
 </section>
 
 <section class="video-cta">
   <a href={freeClassVideo.href} class="video-link" target="_blank" rel="noopener noreferrer">
     <img src={freeClassVideo.thumbnail} alt="The Free Class" />
     <div class="play-overlay">
-      <div class="play-button" style={`background:${site.accentColor}`}>
+      <div class="play-button">
         <div class="play-triangle"></div>
       </div>
     </div>
@@ -27,84 +37,93 @@ import { site, beginningLine, freeClassVideo } from "../../data/content.js";
 </section>
 
 <style>
-  .reveal-trigger {
+  .reveal-intro {
     max-width: 900px;
     margin: 0 auto;
-    padding: 0 32px calc(var(--bhd-section-space) * 0.4);
+    padding: calc(var(--bhd-hero-pad) * 0.3) 32px calc(var(--bhd-section-pad) * 0.4);
     text-align: center;
   }
-  .over-line {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 22px;
-    line-height: 1.7;
-    color: oklch(22% 0.012 75);
+  .reveal-intro p {
+    font-family: var(--bhd-serif);
+    font-size: calc(var(--bhd-h1) * 0.6);
+    font-weight: 500;
+    line-height: 1.3;
     margin: 0;
-    min-height: 1.7em;
+    color: var(--bhd-text);
   }
   .reveal-mid {
     max-width: 900px;
     margin: 0 auto;
-    padding: 0 32px calc(var(--bhd-section-space) * 0.4);
+    padding: 0 32px calc(var(--bhd-section-pad) * 0.4);
     text-align: center;
   }
   .desire-line {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: clamp(21px, 2.6vw, 26px);
+    font-family: var(--bhd-serif);
+    font-size: calc(var(--bhd-quote) * 1.5);
     line-height: 1.6;
+    font-style: italic;
     font-weight: 400;
-    color: oklch(35% 0.012 75);
-    margin: 0 0 var(--bhd-inner-space);
-    min-height: 5.5em;
+    color: rgba(79, 52, 34, 0.8);
+    margin: 0 0 var(--bhd-para-gap);
+  }
+  .desire-line strong {
+    font-weight: 600;
   }
   .force-line {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: clamp(26px, 3.2vw, 32px);
-    line-height: 1.55;
+    font-family: var(--bhd-serif);
+    font-size: calc(var(--bhd-h2) * 1.3);
+    line-height: 1.4;
     font-weight: 500;
-    color: oklch(22% 0.012 75);
-    margin: var(--bhd-inner-space) 0 10px;
+    color: var(--bhd-accent);
+    margin: var(--bhd-para-gap) 0 10px;
+  }
+  .big-1 {
+    font-size: 1.3em;
+  }
+  .big-2 {
+    font-size: 1.6em;
   }
   .beginning {
     max-width: 900px;
     margin: 0 auto;
-    padding: calc(var(--bhd-section-space) * 0.35) 32px var(--bhd-section-space);
+    padding: calc(var(--bhd-section-pad) * 0.35) 32px calc(var(--bhd-hero-pad) * 0.15);
     text-align: center;
   }
-  .beginning-line {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 26px;
-    line-height: 1.6;
+  .beginning p {
+    font-family: var(--bhd-serif);
+    font-size: calc(var(--bhd-quote) * 1.5);
+    line-height: 1.5;
     font-style: italic;
-    color: oklch(22% 0.012 75);
+    color: var(--bhd-accent);
     margin: 0;
-    opacity: 0;
-    transition: opacity 0.8s ease;
   }
   .video-cta {
     max-width: 900px;
     margin: 0 auto;
-    padding: var(--bhd-inner-space) 32px var(--bhd-hero-space);
+    padding: 0 32px var(--bhd-hero-pad);
     text-align: center;
   }
   .video-link {
     display: block;
     position: relative;
     width: 100%;
-    max-width: 780px;
+    max-width: 560px;
     margin: 0 auto;
     text-decoration: none;
+    padding: 10px;
+    background: var(--bhd-parchment-4);
+    border-radius: 8px;
   }
   .video-link img {
     width: 100%;
     aspect-ratio: 16 / 9;
     object-fit: cover;
-    border-radius: 16px;
+    border-radius: 6px;
     display: block;
-    background: oklch(90% 0.012 75);
   }
   .play-overlay {
     position: absolute;
-    inset: 0;
+    inset: 10px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -114,10 +133,11 @@ import { site, beginningLine, freeClassVideo } from "../../data/content.js";
     width: 76px;
     height: 76px;
     border-radius: 50%;
+    background: var(--bhd-accent);
     display: flex;
     align-items: center;
     justify-content: center;
-    box-shadow: 0 8px 24px oklch(20% 0.01 75 / 0.3);
+    box-shadow: 0 8px 24px rgba(79, 52, 34, 0.3);
   }
   .play-triangle {
     width: 0;
@@ -128,140 +148,3 @@ import { site, beginningLine, freeClassVideo } from "../../data/content.js";
     margin-left: 6px;
   }
 </style>
-
-<script>
-  const overTokens = [{ text: "Over the years, I discovered the reason" }];
-  const desireTokens = [
-    { text: "The very desire that has brought you all this" },
-    { br: true },
-    { text: "pain", tag: "strong" },
-    { text: "," },
-    { br: true },
-    { text: "shame", tag: "strong" },
-    { text: "," },
-    { br: true },
-    { text: "and " },
-    { text: "dissatisfaction", tag: "strong" },
-    { text: "—" },
-  ];
-  const forceTokens = [
-    { text: "at its " },
-    { text: "core", tag: "em" },
-    { br: true },
-    { text: "is the very force trying to lead you towards " },
-    { text: "everything your heart needs", big: "1.35em" },
-    { br: true },
-    { text: "to become your true,", big: "1.35em" },
-    { br: true },
-    { text: "beautiful, and holy self.", big: "1.6875em" },
-  ];
-
-  function tokenTotalLength(tokens: { text?: string }[]) {
-    return tokens.reduce((sum, t) => sum + (t.text ? t.text.length : 0), 0);
-  }
-
-  function renderTokens(
-    container: HTMLElement,
-    tokens: { text?: string; br?: boolean; tag?: string; big?: string }[],
-    count: number
-  ) {
-    container.innerHTML = "";
-    let remaining = count;
-    let stopped = false;
-    tokens.forEach((tok) => {
-      if (stopped) return;
-      if (tok.br) {
-        container.appendChild(document.createElement("br"));
-        return;
-      }
-      const text = tok.text ?? "";
-      const len = text.length;
-      if (remaining <= 0) {
-        stopped = true;
-        return;
-      }
-      const shown = remaining >= len ? text : text.slice(0, remaining);
-      remaining -= Math.min(remaining, len);
-      if (remaining <= 0 && shown.length < len) stopped = true;
-      let node: HTMLElement | Text;
-      if (tok.tag) {
-        node = document.createElement(tok.tag);
-        node.textContent = shown;
-      } else if (tok.big) {
-        node = document.createElement("span");
-        (node as HTMLElement).style.fontSize = tok.big;
-        node.textContent = shown;
-      } else {
-        node = document.createTextNode(shown);
-      }
-      container.appendChild(node);
-    });
-  }
-
-  function typeTokens(
-    container: HTMLElement,
-    tokens: { text?: string }[],
-    onDone: () => void
-  ) {
-    const total = tokenTotalLength(tokens);
-    let count = 0;
-    function step() {
-      count += 1;
-      renderTokens(container, tokens, count);
-      if (count < total) {
-        setTimeout(step, 70);
-      } else {
-        onDone();
-      }
-    }
-    step();
-  }
-
-  function initReveal() {
-    const triggerEl = document.querySelector<HTMLElement>("[data-reveal-trigger]");
-    const overEl = document.querySelector<HTMLElement>("[data-reveal-over]");
-    const desireEl = document.querySelector<HTMLElement>("[data-reveal-desire]");
-    const forceEl = document.querySelector<HTMLElement>("[data-reveal-force]");
-    const beginningEl = document.querySelector<HTMLElement>("[data-reveal-beginning]");
-    if (!triggerEl || !overEl || !desireEl || !forceEl || !beginningEl) return;
-
-    let hasPassed = false;
-    let started = false;
-
-    function runChain() {
-      typeTokens(overEl!, overTokens, () => {
-        setTimeout(() => {
-          typeTokens(desireEl!, desireTokens, () => {
-            setTimeout(() => {
-              typeTokens(forceEl!, forceTokens, () => {
-                setTimeout(() => {
-                  beginningEl!.style.opacity = "1";
-                }, 500);
-              });
-            }, 500);
-          });
-        }, 500);
-      });
-    }
-
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (!entries[0].isIntersecting) {
-          hasPassed = true;
-        } else if (hasPassed && !started) {
-          started = true;
-          observer.disconnect();
-          setTimeout(runChain, 1200);
-        }
-      },
-      { threshold: 0 }
-    );
-    observer.observe(triggerEl);
-  }
-
-  if (document.readyState === "loading") {
-    document.addEventListener("DOMContentLoaded", initReveal);
-  } else {
-    initReveal();
-  }
-</script>

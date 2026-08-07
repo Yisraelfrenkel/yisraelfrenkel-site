@@ -1,61 +1,64 @@
 ---
-import { tikkunTransition, tikkunImage, livingJourney, courseCta, site } from "../../data/content.js";
+import {
+  tikkunTransition,
+  tikkunImage,
+  torahNarrative,
+  torahHebrewQuote,
+  torahEnglishIntro,
+  torahEnglishQuote,
+  torahPosedQuestion,
+  torahClosing,
+  livingJourney,
+} from "../../data/content.js";
 ---
 
-<section class="tikkun-transition">
-  <p>{tikkunTransition}</p>
-</section>
+<div class="bhd-tint-2">
+  <section class="tikkun-transition">
+    <p>{tikkunTransition}</p>
+  </section>
 
-<section class="tikkun-image">
-  <img src={tikkunImage} alt="Tikkun HaBris — Mevushat LaBrit" />
-</section>
+  <section class="tikkun-image">
+    <img src={tikkunImage} alt="Tikkun HaBris — Mevushat LaBrit" />
+  </section>
 
-<section class="torah-narrative">
-  <p>Our story begins with the first man and woman.</p>
-  <p>Adam and Chava hid from one another in shame.</p>
-  <p>With Avraham, something changed.</p>
-  <p>Hashem commanded him to remove the ערלה—the barrier that stood between him and Sarah—so that their relationship could become a complete expression of love, holiness, and יחוד.</p>
-  <p>Years later, when Avraham sent Eliezer to find a wife for Yitzchak, he told him:</p>
-  <p class="hebrew-quote">"שים נא ידך תחת ירכי."</p>
-  <p>In other words:</p>
-  <p class="quote">"Take your oath while holding the place where I entered the Bris."</p>
-  <p class="posed-question">Why wasn't Avraham embarrassed?</p>
-  <p>Because he no longer experienced that place through the shame of Adam.</p>
-  <p>He experienced it as the place through which he entered a Bris with Sarah and with Hashem—the place where יחוד became possible.</p>
-  <p>The very place that Adam experienced as a source of shame became, for Avraham, the sign of his covenant with Sarah and with Hashem.</p>
-  <p>This is the journey of Tikkun HaBris: not removing desire, but removing whatever prevents our deepest desires from becoming a source of love, יחוד, and holiness.</p>
-</section>
+  <section class="torah-narrative">
+    {torahNarrative.map((p) => <p>{p}</p>)}
+    <p class="hebrew-quote">“{torahHebrewQuote}”</p>
+    <p>{torahEnglishIntro}</p>
+    <p class="quote">“{torahEnglishQuote}”</p>
+    <p class="posed-question">{torahPosedQuestion}</p>
+    {torahClosing.map((p) => <p>{p}</p>)}
+  </section>
 
-<section class="living-journey">
-  <h2>{livingJourney.heading}</h2>
-  {livingJourney.paragraphs.map((p) => <p>{p}</p>)}
-</section>
-
-<section class="course-cta">
-  <div class="rule" style={`background:${site.accentColor}`}></div>
-  <a href={site.signupUrl} class="cta-button" style={`background:${site.accentColor}`}>{courseCta.label}</a>
-</section>
+  <section class="living-journey">
+    <h2>{livingJourney.heading}</h2>
+    {livingJourney.paragraphs.map((p) => <p>{p}</p>)}
+  </section>
+</div>
 
 <style>
+  .bhd-tint-2 {
+    background: var(--bhd-parchment-2);
+    width: 100%;
+  }
   .tikkun-transition {
     max-width: 900px;
     margin: 0 auto;
-    padding: calc(var(--bhd-inner-space) * 0.6) 32px 0;
-  }
-  .tikkun-transition p {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 21px;
-    font-style: italic;
-    line-height: 1.7;
-    letter-spacing: 0.01em;
-    color: oklch(40% 0.012 75);
-    margin: 0;
+    padding: calc(var(--bhd-hero-pad) * 0.5) 32px 0;
     text-align: center;
   }
+  .tikkun-transition p {
+    font-family: var(--bhd-serif);
+    font-size: calc(var(--bhd-h1) * 0.85);
+    font-style: italic;
+    line-height: 1.3;
+    color: var(--bhd-accent);
+    margin: 0;
+  }
   .tikkun-image {
-    max-width: 1400px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: var(--bhd-hero-space) 40px;
+    padding: var(--bhd-hero-pad) 24px 0;
     text-align: center;
   }
   .tikkun-image img {
@@ -63,88 +66,59 @@ import { tikkunTransition, tikkunImage, livingJourney, courseCta, site } from ".
     height: auto;
     display: block;
     margin: 0 auto;
-    border-radius: 16px;
   }
   .torah-narrative {
-    max-width: 780px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: 0 32px 0;
+    padding: calc(var(--bhd-body) * var(--bhd-body-lh)) 24px 0;
     text-align: left;
   }
   .torah-narrative p {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 19px;
-    line-height: 1.85;
-    letter-spacing: 0.005em;
-    color: oklch(28% 0.012 75);
-    margin: 0 0 22px;
+    font-family: var(--bhd-sans);
+    font-size: var(--bhd-body);
+    line-height: var(--bhd-body-lh);
+    margin: 0 0 var(--bhd-para-gap);
+    color: var(--bhd-text);
   }
-  .torah-narrative .hebrew-quote {
-    font-size: 21px;
-    font-style: italic;
-    line-height: 1.7;
-    text-align: center;
-    direction: rtl;
-  }
+  .torah-narrative .hebrew-quote,
   .torah-narrative .quote {
-    font-size: 21px;
+    font-family: var(--bhd-serif);
+    font-size: var(--bhd-quote);
     font-style: italic;
-    line-height: 1.7;
+    line-height: 1.6;
+    color: var(--bhd-accent);
     text-align: center;
   }
   .torah-narrative .posed-question {
-    font-size: 23px;
-    font-weight: 500;
-    line-height: 1.6;
+    font-family: var(--bhd-serif);
+    font-size: var(--bhd-h3);
+    font-weight: 600;
+    line-height: 1.4;
     text-align: center;
-    color: oklch(22% 0.012 75);
+    color: var(--bhd-text);
   }
   .living-journey {
-    max-width: 780px;
+    max-width: 1300px;
     margin: 0 auto;
-    padding: var(--bhd-section-space) 32px 0;
+    padding: var(--bhd-section-pad) 24px calc(var(--bhd-body) * 2 * var(--bhd-body-lh));
     text-align: left;
   }
   .living-journey h2 {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 28px;
-    font-weight: 500;
+    font-family: var(--bhd-serif);
+    font-size: var(--bhd-h2);
+    font-weight: 600;
     text-align: center;
-    letter-spacing: 0.01em;
-    margin: 0 0 var(--bhd-section-space);
-    color: oklch(22% 0.012 75);
+    margin: 0 0 var(--bhd-section-pad);
+    color: var(--bhd-text);
   }
   .living-journey p {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 19px;
-    line-height: 1.85;
-    letter-spacing: 0.005em;
-    color: oklch(28% 0.012 75);
-    margin: 0 0 22px;
+    font-family: var(--bhd-sans);
+    font-size: var(--bhd-body);
+    line-height: var(--bhd-body-lh);
+    margin: 0 0 var(--bhd-para-gap);
+    color: var(--bhd-text);
   }
   .living-journey p:last-child {
     margin-bottom: 0;
-  }
-  .course-cta {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: var(--bhd-hero-space) 32px;
-    text-align: center;
-  }
-  .rule {
-    width: 48px;
-    height: 1px;
-    margin: 0 auto var(--bhd-section-space);
-  }
-  .cta-button {
-    display: inline-block;
-    padding: 18px 40px;
-    color: white;
-    font-family: "Inter", system-ui, sans-serif;
-    font-size: 17px;
-    font-weight: 500;
-    letter-spacing: 0.01em;
-    text-decoration: none;
-    border-radius: 10px;
   }
 </style>

@@ -1,13 +1,19 @@
 ---
-import { testimonials, videoTestimonials } from "../../data/content.js";
+import { site, courseCta, testimonials, videoTestimonials } from "../../data/content.js";
 ---
+
+<section class="course-cta">
+  <a href={site.signupUrl} class="cta-link" target="_blank" rel="noopener noreferrer">
+    {courseCta.label}
+  </a>
+</section>
 
 <section class="testimonials">
   <div class="eyebrow">Others who have walked this path</div>
 
   {testimonials.map((t) => (
     <blockquote>
-      <p class="quote">"{t.quote}"</p>
+      <p class="quote">“{t.quote}”</p>
       <p class="name">{t.name}</p>
     </blockquote>
   ))}
@@ -26,40 +32,65 @@ import { testimonials, videoTestimonials } from "../../data/content.js";
 </section>
 
 <style>
-  .testimonials {
-    max-width: 960px;
+  .course-cta {
+    max-width: 900px;
     margin: 0 auto;
-    padding: 0 32px var(--bhd-hero-space);
+    padding: calc(var(--bhd-body) * var(--bhd-body-lh)) 32px var(--bhd-hero-pad);
+    text-align: center;
+  }
+  .cta-link {
+    display: inline-block;
+    padding: 17px 38px;
+    background: var(--bhd-parchment);
+    border: 1px solid var(--bhd-accent);
+    color: var(--bhd-text);
+    font-family: var(--bhd-sans);
+    font-size: 17px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.35s ease, border-color 0.35s ease;
+  }
+  .cta-link:hover {
+    background: var(--bhd-parchment-2);
+    border-color: var(--bhd-text);
+  }
+  .testimonials {
+    max-width: 1000px;
+    margin: 0 auto;
+    padding: 0 32px var(--bhd-hero-pad);
   }
   .eyebrow {
-    font-family: "Inter", system-ui, sans-serif;
-    font-size: 13px;
+    font-family: var(--bhd-sans);
+    font-size: 17px;
     letter-spacing: 0.1em;
     text-transform: uppercase;
-    color: oklch(48% 0.012 75);
+    color: rgba(79, 52, 34, 0.7);
     text-align: center;
-    margin-bottom: var(--bhd-section-space);
+    margin-bottom: var(--bhd-section-pad);
   }
   blockquote {
-    margin: var(--bhd-section-space) 0 0;
+    margin: var(--bhd-section-pad) auto 0;
     padding: 0;
+    max-width: 62ch;
   }
   blockquote:first-of-type {
     margin-top: 0;
   }
   .quote {
-    font-family: "Newsreader", Georgia, serif;
-    font-size: 19px;
-    line-height: 1.75;
+    font-family: var(--bhd-serif);
+    font-size: var(--bhd-quote);
     font-style: italic;
-    color: oklch(22% 0.012 75);
+    line-height: 1.6;
+    color: var(--bhd-accent);
     margin: 0 0 16px;
   }
   .name {
-    font-family: "Inter", system-ui, sans-serif;
+    font-family: var(--bhd-sans);
     font-size: 14px;
     letter-spacing: 0.04em;
-    color: oklch(45% 0.012 75);
+    color: rgba(79, 52, 34, 0.7);
     margin: 0;
   }
   .video-row {
@@ -67,17 +98,17 @@ import { testimonials, videoTestimonials } from "../../data/content.js";
     flex-wrap: wrap;
     justify-content: center;
     gap: 24px;
-    margin: var(--bhd-section-space) 0 0;
+    margin: var(--bhd-section-pad) 0 0;
   }
   .video-embed {
     flex: 1 1 260px;
-    max-width: 440px;
+    max-width: 320px;
     aspect-ratio: 16 / 9;
   }
   .video-embed iframe {
     width: 100%;
     height: 100%;
     border: 0;
-    border-radius: 16px;
+    border-radius: 4px;
   }
 </style>
