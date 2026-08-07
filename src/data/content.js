@@ -231,8 +231,16 @@ export const about = {
   heading: ["Understanding Humanity", "Through the Eyes of the Torah"],
   metaDescription:
     "Rav Yisrael Frenkel on a life spent understanding humanity through the eyes of the Torah — and why Torah and psychology are not two disciplines to be combined, but two windows looking at the same human reality.",
-  portraitMain: "/images/opening-story-photo.jpg",
-  portraitTeaching: "/images/start-here-hero.jpg",
+  // Per docs/photography-bible.md's "Homepage / About" picks: photo-119
+  // (vineyard, arms crossed, golden hour) is "the canonical headshot —
+  // the face people should learn to recognize across every page." Not
+  // a shul/amud portrait — the bible explicitly warns those read as
+  // "the website of a rabbi" register he asked to avoid as a default.
+  portraitMain: "/images/yisrael-vineyard-portrait.jpg",
+  // photo-072 (home study desk, mid-write, sefarim, plants, morning
+  // light): "says 'come in, let's think together' without a word of
+  // copy. Wisdom and trust, before anything is explained."
+  portraitTeaching: "/images/yisrael-study-desk.jpg",
   blocks: [
     {
       type: "intro",

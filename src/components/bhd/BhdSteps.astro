@@ -166,6 +166,18 @@ import { stepsIntro, steps, stepsDownload } from "../../data/content.js";
     color: var(--bhd-parchment);
   }
 
+  /* On narrow screens the card's own padding was squeezing the label onto
+     two lines. Give the content back its width. */
+  @media (max-width: 520px) {
+    .download-card {
+      padding: 22px 18px 26px;
+    }
+    .download-link {
+      font-size: 14px;
+      padding: 12px 22px;
+    }
+  }
+
   @media (prefers-reduced-motion: reduce) {
     .download-preview,
     .download-link {
