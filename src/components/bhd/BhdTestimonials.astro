@@ -1,11 +1,16 @@
 ---
-import { site, courseCta, testimonials, videoTestimonials } from "../../data/content.js";
+import { site, courseCta, personalSessionCta, testimonials, videoTestimonials } from "../../data/content.js";
 ---
 
 <section class="course-cta">
-  <a href={site.signupUrl} class="cta-link" target="_blank" rel="noopener noreferrer">
-    {courseCta.label}
-  </a>
+  <div class="cta-row">
+    <a href={site.signupUrl} class="cta-link" target="_blank" rel="noopener noreferrer">
+      {courseCta.label}
+    </a>
+    <a href={site.personalSessionUrl} class="cta-link" target="_blank" rel="noopener noreferrer">
+      {personalSessionCta.label}
+    </a>
+  </div>
 </section>
 
 <section class="testimonials">
@@ -37,6 +42,13 @@ import { site, courseCta, testimonials, videoTestimonials } from "../../data/con
     margin: 0 auto;
     padding: calc(var(--bhd-body) * var(--bhd-body-lh)) 32px var(--bhd-hero-pad);
     text-align: center;
+  }
+  .cta-row {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 16px;
+    flex-wrap: wrap;
   }
   .cta-link {
     display: inline-block;

@@ -4,6 +4,7 @@ export const site = {
     "The Beauty of Human Desire — a free class from Rav Yisrael Frenkel on why good people keep falling, and what their deepest desire is actually reaching for.",
   // The two links that power the whole funnel:
   signupUrl: "https://tally.so/r/7RY1QR",
+  personalSessionUrl: "https://tally.so/r/jarqkJ",
   whatsappUrl: "https://chat.whatsapp.com/Ee1YH3IRM06LZ9WB80N73Q",
   // Direct personal contact:
   personalWhatsappUrl: "https://wa.me/972587613153",
@@ -38,7 +39,7 @@ export const invitations = [
   {
     title: "Book a Personal Session",
     description: "A private conversation to explore your unique journey.",
-    href: site.personalWhatsappUrl,
+    href: site.personalSessionUrl,
   },
   {
     title: "Join a Chaburah",
@@ -139,6 +140,10 @@ export const livingJourney = {
 
 export const courseCta = {
   label: "Join the Next Chaburah",
+};
+
+export const personalSessionCta = {
+  label: "Book a Personal Session",
 };
 
 export const testimonials = [
