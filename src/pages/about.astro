@@ -1,0 +1,224 @@
+---
+import Layout from "../layouts/Layout.astro";
+import {
+  site,
+  aboutHero,
+  aboutPortraitMain,
+  aboutPortraitTeaching,
+  aboutEssayPartOne,
+  aboutEssayPartTwo,
+  aboutPullQuote,
+  aboutEssayPartThree,
+  invitations,
+} from "../data/content.js";
+import Footer from "../components/Footer.astro";
+import WhatsAppFloat from "../components/WhatsAppFloat.astro";
+---
+
+<Layout
+  title={`About Yisrael — ${site.title}`}
+  description={site.description}
+>
+  <main class="about-page">
+    <section class="hero">
+      <div class="eyebrow">{aboutHero.eyebrow}</div>
+      <h1>
+        {aboutHero.heading[0]}<br />
+        {aboutHero.heading[1]}
+      </h1>
+    </section>
+
+    <section class="portrait">
+      <img src={aboutPortraitMain} alt="Portrait of Rav Yisrael Frenkel" />
+    </section>
+
+    {aboutEssayPartOne.map((group) => (
+      <section class="essay">
+        {group.map((p) => <p>{p}</p>)}
+      </section>
+    ))}
+
+    <section class="photo-wide">
+      <img src={aboutPortraitTeaching} alt="Rav Yisrael Frenkel teaching" />
+    </section>
+
+    {aboutEssayPartTwo.map((group) => (
+      <section class="essay">
+        {group.map((p) => <p>{p}</p>)}
+      </section>
+    ))}
+
+    <section class="pull-quote">
+      <p>
+        “{aboutPullQuote[0]}<br />
+        {aboutPullQuote[1]}<br />
+        {aboutPullQuote[2]}<br />
+        {aboutPullQuote[3]}<br />
+        {aboutPullQuote[4]}”
+      </p>
+    </section>
+
+    {aboutEssayPartThree.map((group) => (
+      <section class="essay">
+        {group.map((p) => <p>{p}</p>)}
+      </section>
+    ))}
+
+    <section class="invitations">
+      <div class="row">
+        {invitations.map((card) => (
+          <a href={card.href} class="invitation" target="_blank" rel="noopener noreferrer">
+            <div class="invitation-title">{card.title}</div>
+            <div class="invitation-desc">{card.description}</div>
+          </a>
+        ))}
+      </div>
+    </section>
+  </main>
+  <Footer />
+  <WhatsAppFloat />
+</Layout>
+
+<style>
+  .about-page {
+    --ab-parchment: #f8f3ea;
+    --ab-parchment-2: #f3eee4;
+    --ab-text: #4f3422;
+    --ab-accent: #a4704f;
+    --ab-serif: "Cormorant Garamond", serif;
+    --ab-sans: "Inter", system-ui, sans-serif;
+    background: var(--ab-parchment);
+    color: var(--ab-text);
+    width: 100%;
+    overflow-x: hidden;
+  }
+  .hero {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 104px 32px 12px;
+    text-align: center;
+  }
+  .eyebrow {
+    font-family: var(--ab-sans);
+    font-size: 13px;
+    letter-spacing: 0.16em;
+    text-transform: uppercase;
+    color: rgba(79, 52, 34, 0.55);
+    margin-bottom: 24px;
+  }
+  .hero h1 {
+    font-family: var(--ab-serif);
+    font-size: 44px;
+    font-weight: 500;
+    font-style: italic;
+    line-height: 1.3;
+    margin: 0;
+    color: var(--ab-text);
+  }
+  .portrait {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 56px 32px 88px;
+  }
+  .portrait img {
+    width: 38%;
+    min-width: 260px;
+    aspect-ratio: 4 / 5;
+    object-fit: cover;
+    display: block;
+    margin: 0 auto;
+    border-radius: 4px;
+  }
+  .essay {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 48px 88px;
+    text-align: left;
+  }
+  .essay p {
+    font-family: var(--ab-sans);
+    font-size: 18px;
+    line-height: 1.65;
+    margin: 0 0 27px;
+    color: var(--ab-text);
+  }
+  .essay p:last-child {
+    margin-bottom: 0;
+  }
+  .photo-wide {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 32px 96px;
+  }
+  .photo-wide img {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    object-fit: cover;
+    display: block;
+    border-radius: 4px;
+  }
+  .pull-quote {
+    max-width: 780px;
+    margin: 0 auto;
+    padding: 40px 32px 104px;
+    text-align: center;
+  }
+  .pull-quote p {
+    font-family: var(--ab-serif);
+    font-size: 36px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.45;
+    color: var(--ab-accent);
+    margin: 0;
+  }
+  .invitations {
+    max-width: 640px;
+    margin: 0 auto;
+    padding: 0 32px 64px;
+    text-align: center;
+  }
+  .row {
+    display: flex;
+    flex-direction: row;
+    gap: 20px;
+    align-items: stretch;
+    justify-content: center;
+    flex-wrap: wrap;
+  }
+  .invitation {
+    display: block;
+    flex: 1 1 240px;
+    max-width: 280px;
+    padding: 34px 38px;
+    background: var(--ab-parchment);
+    border: 1px solid rgba(79, 52, 34, 0.25);
+    border-radius: 8px;
+    text-decoration: none;
+    transition: background 0.5s ease, border-color 0.5s ease;
+    text-align: left;
+  }
+  .invitation:hover {
+    background: var(--ab-parchment-2);
+    border-color: var(--ab-accent);
+  }
+  .invitation:first-child {
+    border-color: var(--ab-accent);
+  }
+  .invitation:first-child:hover {
+    border-color: var(--ab-text);
+  }
+  .invitation-title {
+    font-family: var(--ab-serif);
+    font-size: 20px;
+    font-weight: 600;
+    color: var(--ab-text);
+    margin-bottom: 8px;
+  }
+  .invitation-desc {
+    font-family: var(--ab-sans);
+    font-size: 14px;
+    line-height: 1.5;
+    color: rgba(79, 52, 34, 0.7);
+  }
+</style>

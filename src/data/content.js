@@ -196,3 +196,158 @@ export const torahClosing = [
   "The very place that Adam experienced as a source of shame became, for Avraham, the sign of his covenant with Sarah and with Hashem.",
   "This is the journey of Tikkun HaBris: not removing desire, but removing whatever prevents our deepest desires from becoming a source of love, יחוד, and holiness.",
 ];
+
+// ---------------------------------------------------------------
+// "About Yisrael" — companion page to Beauty of Human Desire.
+// Content and structure per design_handoff_about_yisrael (2026-08-07).
+// High-fidelity — treat copy as final, not indicative.
+// ---------------------------------------------------------------
+
+export const aboutHero = {
+  eyebrow: "About Yisrael",
+  heading: ["Understanding Humanity", "Through the Eyes of the Torah"],
+};
+
+export const aboutPortraitMain = "/images/opening-story-photo.jpg";
+export const aboutPortraitTeaching = "/images/start-here-hero.jpg";
+
+export const aboutEssayPartOne = [
+  [
+    "Since the age of seventeen, I have devoted my life to understanding humanity through the eyes of the Torah—not only what the Torah asks of us, but why; not only what a mitzvah requires, but how it transforms the human being and deepens our relationship with Hashem.",
+    "From the very beginning of my Torah learning, I found myself drawn to the inner purpose behind every mitzvah and every area of Torah. I wanted to understand not only what Hashem commands, but how His Torah shapes the human soul, heals the human heart, and enables a person to build a deeper relationship with Him.",
+    "That question has guided every stage of my life.",
+  ],
+  [
+    "Over the years I studied in many of Israel’s leading yeshivos and kollelim, served on the Beis Din of Rabbi Vind, contributed to the Oz VeHadar Shulchan Aruch HaMevoar project, taught full-time in Yeshiva Gedolah, served as a Ram in Yeshivas Mir where I led an international Yiddish Chaburah, continued teaching in Yeshivat Bat Ayin, and later founded my own yeshiva where I served as Rosh Yeshiva. Today I have the privilege of serving as the rabbi of Kehilat Chaverim in Jerusalem.",
+  ],
+  [
+    "At the same time, my journey never remained confined to the Beis Midrash.",
+    "While learning full-time in kollel, I led an Orthodox adaptation of the Call of the Shofar emotional growth workshops and facilitated therapeutic groups for more than two years. While serving as a Ram in yeshiva, I was also working with marriages, sexuality, trauma, addiction, and emotional healing.",
+    "For me, these were never two separate worlds.",
+    "They were one continuous journey.",
+  ],
+];
+
+export const aboutEssayPartTwo = [
+  [
+    "Alongside my years of Torah learning and teaching, I devoted myself to the in-depth study of contemporary approaches to trauma, addiction, emotional healing, and human development, including Internal Family Systems (IFS), coaching methodologies, and other therapeutic models. My goal was never simply to collect techniques, but to understand the deeper principles that make healing possible and to see how those principles illuminate—and are illuminated by—the wisdom of the Torah.",
+    "Over the years I have had the privilege of working with individuals and couples facing some of life’s deepest struggles, including marriage and intimacy, sexuality and desire, addiction, sexual trauma, war trauma, emotional trauma, religious trauma, anxiety, depression, and spiritual disconnection.",
+  ],
+  [
+    "What has always fascinated me is not simply solving individual problems, but discovering the deeper principles that give rise to them.",
+    "In Torah, I have always been drawn to the klalim—the fundamental principles that give meaning to countless seemingly unrelated pratim. The deeper we understand those foundations, the more every individual detail begins to make sense.",
+    "I approach the human being in exactly the same way.",
+    "Rather than seeing marriage, addiction, trauma, sexuality, anxiety, or faith as isolated problems, I seek to understand the deeper structures that give rise to them. When those foundations become clear, healing often reaches places that remain inaccessible when we focus only on individual symptoms.",
+  ],
+];
+
+export const aboutPullQuote = [
+  "The Torah taught me",
+  "how to understand the human being,",
+  "and the human experience",
+  "continually deepened",
+  "my understanding of the Torah.",
+];
+
+export const aboutEssayPartThree = [
+  [
+    "In both, I have always searched for the klalim—the deeper principles that make every prat meaningful.",
+  ],
+  [
+    "I do not see Torah and psychology as two disciplines that need to be combined.",
+    "They are two windows looking at the same human reality.",
+    "The Torah offers the deepest understanding of what it means to be human, and genuine healing begins when we learn to understand ourselves through that lens.",
+  ],
+  [
+    "Whether through private guidance, marriage counseling, Chaburot, teaching, writing, or public lectures, my goal remains the same: to help people understand themselves through the eyes of the Torah, so they can build a deeper relationship with themselves, with those they love, and ultimately with Hashem.",
+  ],
+];
+
+// ---------------------------------------------------------------
+// "About Yisrael" — the trust page. Reached after someone has already
+// met the ideas, not before. Copy is final and approved (2026-08-07):
+// treat it as finished prose. Edit wording here, never in the .astro.
+//
+// Block types, which drive the typography on /about:
+//   "p"     — body paragraph
+//   "line"  — a standalone sentence given its own breathing room
+//   "turn"  — the hinge of the whole piece (the two-windows passage)
+//   "close" — the final statement of purpose
+// ---------------------------------------------------------------
+
+export const about = {
+  title: "About Yisrael",
+  subtitle: "Understanding Humanity Through the Eyes of the Torah",
+  metaDescription:
+    "Rav Yisrael Frenkel on a life spent understanding humanity through the eyes of the Torah — and why Torah and psychology are not two disciplines to be combined, but two windows looking at the same human reality.",
+  blocks: [
+    {
+      type: "p",
+      text: "Since the age of seventeen, I have devoted my life to understanding humanity through the eyes of the Torah—not only what the Torah asks of us, but why; not only what a mitzvah requires, but how it transforms the human being and deepens our relationship with Hashem.",
+    },
+    {
+      type: "p",
+      text: "From the very beginning of my Torah learning, I found myself drawn to the inner purpose behind every mitzvah and every area of Torah. I wanted to understand not only what Hashem commands, but how His Torah shapes the human soul, heals the human heart, and enables a person to build a deeper relationship with Him.",
+    },
+    { type: "line", text: "That question has guided every stage of my life." },
+    {
+      type: "p",
+      text: "Over the years I studied in many of Israel’s leading yeshivos and kollelim, served on the Beis Din of Rabbi Vind, contributed to the Oz VeHadar Shulchan Aruch HaMevoar project, taught full-time in Yeshiva Gedolah, served as a Ram in Yeshivas Mir where I led an international Yiddish Chaburah, continued teaching in Yeshivat Bat Ayin, and later founded my own yeshiva where I served as Rosh Yeshiva. Today I have the privilege of serving as the rabbi of Kehilat Chaverim in Jerusalem.",
+    },
+    {
+      type: "p",
+      text: "At the same time, my journey never remained confined to the Beis Midrash.",
+    },
+    {
+      type: "p",
+      text: "While learning full-time in kollel, I led an Orthodox adaptation of the Call of the Shofar emotional growth workshops and facilitated therapeutic groups for more than two years. While serving as a Ram in yeshiva, I was also working with marriages, sexuality, trauma, addiction, and emotional healing.",
+    },
+    { type: "line", text: "For me, these were never two separate worlds." },
+    { type: "line", text: "They were one continuous journey." },
+    {
+      type: "p",
+      text: "Alongside my years of Torah learning and teaching, I devoted myself to the in-depth study of contemporary approaches to trauma, addiction, emotional healing, and human development, including Internal Family Systems (IFS), coaching methodologies, and other therapeutic models. My goal was never simply to learn techniques, but to understand the deeper principles that make healing possible and to see how those principles illuminate—and are illuminated by—the wisdom of the Torah.",
+    },
+    {
+      type: "p",
+      text: "Over the years I have had the privilege of working with individuals and couples facing some of life’s deepest struggles, including marriage and intimacy, sexuality and desire, addiction, sexual trauma, war trauma, emotional trauma, religious trauma, anxiety, depression, and spiritual disconnection.",
+    },
+    {
+      type: "p",
+      text: "What has always fascinated me is not simply solving individual problems, but discovering the deeper principles that give rise to them.",
+    },
+    {
+      type: "p",
+      text: "In Torah, I have always been drawn to the klalim—the fundamental principles that give meaning to countless seemingly unrelated pratim. The deeper we understand those foundations, the more every individual detail begins to make sense.",
+    },
+    {
+      type: "line",
+      text: "I approach the human being in exactly the same way.",
+    },
+    {
+      type: "p",
+      text: "Rather than seeing marriage, addiction, trauma, sexuality, anxiety, or faith as isolated problems, I seek to understand the deeper structures that give rise to them. When those foundations become clear, healing often reaches places that remain inaccessible when we focus only on individual symptoms.",
+    },
+    {
+      type: "p",
+      text: "The Torah taught me how to understand the human being, and the human experience continually deepened my understanding of the Torah. In both, I have always searched for the klalim—the deeper principles that make every prat meaningful.",
+    },
+    {
+      type: "turn",
+      lead: "I do not see Torah and psychology as two disciplines that need to be combined.",
+      emphasis: "They are two windows looking at the same human reality.",
+    },
+    {
+      type: "p",
+      text: "The Torah offers the deepest understanding of what it means to be human, and genuine healing begins when we learn to understand ourselves through that lens.",
+    },
+    {
+      type: "p",
+      text: "Whether through private guidance, marriage counseling, Chaburot, teaching, writing, or public lectures, my goal remains the same:",
+    },
+    {
+      type: "close",
+      text: "To help people understand themselves through the eyes of the Torah, so they can build a deeper relationship with themselves, with those they love, and ultimately with Hashem.",
+    },
+  ],
+};
