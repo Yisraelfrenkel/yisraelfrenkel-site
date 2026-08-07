@@ -2,7 +2,7 @@
 import { stepsIntro, steps } from "../../data/content.js";
 ---
 
-<section class="steps-intro">
+<section class="steps-intro" id="continue">
   {stepsIntro.map((line) => <p>{line}</p>)}
 </section>
 
@@ -34,6 +34,7 @@ import { stepsIntro, steps } from "../../data/content.js";
     max-width: 1300px;
     margin: 0 auto;
     padding: 0 24px var(--bhd-section-pad);
+    scroll-margin-top: 32px;
     text-align: center;
   }
   .steps-intro p {

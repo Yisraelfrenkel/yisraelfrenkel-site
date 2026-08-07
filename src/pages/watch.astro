@@ -1,0 +1,132 @@
+---
+import Layout from "../layouts/Layout.astro";
+import { site, freeClassVideo } from "../data/content.js";
+---
+
+<Layout
+  title={`The Free Class — ${site.title}`}
+  description={site.description}
+>
+  <main class="watch-page">
+    <section class="watch-hero">
+      <h1>The Free Class</h1>
+      <p>
+        If you can, set aside one uninterrupted hour. The final portion is
+        questions and answers, so you can stop there if you need to.
+      </p>
+    </section>
+
+    <section class="player-wrap">
+      <div class="player-frame">
+        <div id="player"></div>
+      </div>
+      <p class="status" id="watch-status">
+        When the class ends, you'll be brought back automatically.
+      </p>
+      <a href={freeClassVideo.returnUrl} class="manual-link">Continue the Journey now →</a>
+    </section>
+  </main>
+</Layout>
+
+<style>
+  .watch-page {
+    --wp-parchment: #f8f3ea;
+    --wp-text: #4f3422;
+    --wp-accent: #a4704f;
+    background: var(--wp-parchment);
+    color: var(--wp-text);
+    min-height: 100vh;
+    width: 100%;
+  }
+  .watch-hero {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 72px 24px 32px;
+    text-align: center;
+  }
+  .watch-hero h1 {
+    font-family: "Cormorant Garamond", serif;
+    font-size: 42px;
+    font-weight: 600;
+    margin: 0 0 16px;
+    color: var(--wp-text);
+  }
+  .watch-hero p {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(79, 52, 34, 0.75);
+    margin: 0;
+  }
+  .player-wrap {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 0 24px 96px;
+    text-align: center;
+  }
+  .player-frame {
+    width: 100%;
+    aspect-ratio: 16 / 9;
+    border-radius: 8px;
+    overflow: hidden;
+    background: #000;
+  }
+  .player-frame :global(iframe) {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+  .status {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 14px;
+    color: rgba(79, 52, 34, 0.6);
+    margin: 20px 0 0;
+  }
+  .manual-link {
+    display: inline-block;
+    margin-top: 20px;
+    padding: 14px 28px;
+    background: var(--wp-parchment);
+    border: 1px solid var(--wp-accent);
+    color: var(--wp-text);
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 15px;
+    font-weight: 500;
+    text-decoration: none;
+    border-radius: 6px;
+    transition: background 0.35s ease, border-color 0.35s ease;
+  }
+  .manual-link:hover {
+    background: #f3eee4;
+    border-color: var(--wp-text);
+  }
+</style>
+
+<script define:vars={{ videoId: freeClassVideo.id, returnUrl: freeClassVideo.returnUrl }}>
+  const statusEl = document.getElementById("watch-status");
+
+  function goBack() {
+    if (statusEl) statusEl.textContent = "Thank you for watching — taking you to the next step…";
+    setTimeout(() => {
+      window.location.href = returnUrl;
+    }, 1500);
+  }
+
+  function onPlayerStateChange(event) {
+    if (window.YT && event.data === window.YT.PlayerState.ENDED) {
+      goBack();
+    }
+  }
+
+  window.onYouTubeIframeAPIReady = function () {
+    new window.YT.Player("player", {
+      videoId,
+      playerVars: { rel: 0 },
+      events: { onStateChange: onPlayerStateChange },
+    });
+  };
+
+  const tag = document.createElement("script");
+  tag.src = "https://www.youtube.com/iframe_api";
+  document.head.appendChild(tag);
+</script>

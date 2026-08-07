@@ -66,3 +66,11 @@ import WhatsAppFloat from "../components/WhatsAppFloat.astro";
     width: 100%;
   }
 </style>
+
+<script>
+  if (window.location.hash === "#continue") {
+    window.addEventListener("load", () => {
+      document.getElementById("continue")?.scrollIntoView({ block: "start" });
+    });
+  }
+</script>

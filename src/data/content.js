@@ -51,11 +51,15 @@ export const beginningLine =
   "This class is the beginning of seeing that for yourself.";
 
 export const freeClassVideo = {
+  id: "jqa55Zmn-yY",
   thumbnail: "https://img.youtube.com/vi/jqa55Zmn-yY/maxresdefault.jpg",
   // Gated: visitors fill out this Tally form first; Tally's own
   // "on submit" redirect (configured in the Tally dashboard, not here)
-  // is what sends them on to the YouTube video afterward.
+  // is what sends them to /watch afterward, where the class plays and
+  // automatically returns them here when it ends.
   href: "https://tally.so/r/685gZo",
+  // Where /watch sends visitors back to once the video ends.
+  returnUrl: "/beauty-of-human-desire#continue",
 };
 
 export const stepsIntro = [
