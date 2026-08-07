@@ -9,7 +9,6 @@ import { site, freeClassVideo } from "../data/content.js";
 >
   <main class="watch-page">
     <section class="watch-hero">
-      <h1>The Free Class</h1>
       <p>
         If you can, set aside one uninterrupted hour. The final portion is
         questions and answers, so you can stop there if you need to.
@@ -20,9 +19,7 @@ import { site, freeClassVideo } from "../data/content.js";
       <div class="player-frame">
         <div id="player"></div>
       </div>
-      <p class="status" id="watch-status">
-        When the class ends, you'll be brought back automatically.
-      </p>
+      <p class="status" id="watch-status"></p>
       <a href={freeClassVideo.returnUrl} class="manual-link">Continue the Journey now →</a>
     </section>
   </main>
@@ -43,13 +40,6 @@ import { site, freeClassVideo } from "../data/content.js";
     margin: 0 auto;
     padding: 72px 24px 32px;
     text-align: center;
-  }
-  .watch-hero h1 {
-    font-family: "Cormorant Garamond", serif;
-    font-size: 42px;
-    font-weight: 600;
-    margin: 0 0 16px;
-    color: var(--wp-text);
   }
   .watch-hero p {
     font-family: "Inter", system-ui, sans-serif;
