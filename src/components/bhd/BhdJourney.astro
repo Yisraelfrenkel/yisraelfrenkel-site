@@ -15,6 +15,7 @@ const { expect, experience, investment } = journeyInvite;
     <p class="lead">{journeyInvite.lead}</p>
     <div class="intro">
       {journeyInvite.intro.map((p) => <p>{p}</p>)}
+      <p class="naming">{journeyInvite.naming}</p>
       <p class="emphasis">{journeyInvite.introEmphasis}</p>
     </div>
   </div>
@@ -176,6 +177,10 @@ const { expect, experience, investment } = journeyInvite;
     line-height: 1.8;
     color: var(--bhd-text);
     margin: 44px 0 0;
+  }
+  /* the naming moment gets its own beat before the closing line */
+  .intro .naming {
+    margin-top: 56px;
   }
   /* centred pull-line, matching .torah-narrative's quote treatment */
   .intro .emphasis {

@@ -169,6 +169,11 @@ export const journeyInvite = {
     "Through deep Torah learning, guided exercises, personal practices, and the support of the Chaburah, these ideas gradually become more than beautiful concepts—they become a new way of living.",
     "Each Chaburah is intentionally kept small because transformation happens most deeply in genuine relationships. People become known, heard, challenged, encouraged, and supported as they walk this path together.",
   ],
+  // Placed last in the introduction on purpose: the reader has just come off
+  // the Avraham section and the Mevushat LaBrit painting, so the name lands
+  // on something they are already holding.
+  naming:
+    "This is why the Chaburah is called Or HaBris—the light of the Bris. Avraham was never asked to remove his desire, only what stood in its way, and what had been hidden there all along was finally revealed. That is the work we do together: establishing a true Bris with ourselves, so that we can build a true Bris with our wives, and ultimately with Hashem.",
   introEmphasis:
     "The Torah is learned together, but perhaps even more importantly, the work of becoming the people Hashem created us to be is done together.",
 
