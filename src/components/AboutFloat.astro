@@ -1,0 +1,31 @@
+---
+---
+
+<a href="/about" class="about-float">About Yisrael</a>
+
+<style>
+  .about-float {
+    position: fixed;
+    top: clamp(1rem, 3vw, 1.5rem);
+    left: clamp(1rem, 3vw, 2rem);
+    z-index: 30;
+    padding: 10px 18px;
+    background: rgba(248, 243, 234, 0.9);
+    backdrop-filter: blur(4px);
+    border: 1px solid rgba(79, 52, 34, 0.25);
+    border-radius: 999px;
+    font-family: var(--bhd-sans, "Inter", system-ui, sans-serif);
+    font-size: 12px;
+    font-weight: 500;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    text-decoration: none;
+    color: var(--bhd-accent, #a4704f);
+    box-shadow: 0 2px 10px rgba(79, 52, 34, 0.1);
+    transition: background 0.3s ease, border-color 0.3s ease;
+  }
+  .about-float:hover {
+    background: var(--bhd-parchment-2, #f3eee4);
+    border-color: var(--bhd-accent, #a4704f);
+  }
+</style>

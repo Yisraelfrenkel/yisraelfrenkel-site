@@ -5,7 +5,11 @@ const onAboutPage = Astro.url.pathname.startsWith("/about");
 ---
 
 <footer class="site-footer">
-  {!onAboutPage && <a href="/about" class="about-link">About Yisrael</a>}
+  {!onAboutPage && (
+    <a href="/about" class="about-button">
+      About Yisrael <span aria-hidden="true">→</span>
+    </a>
+  )}
   <p>&copy; {year} {site.title}</p>
 </footer>
 
@@ -16,17 +20,27 @@ const onAboutPage = Astro.url.pathname.startsWith("/about");
     padding: 0 32px var(--bhd-hero-pad, 104px);
     text-align: center;
   }
-  .about-link {
-    display: inline-block;
+  .about-button {
+    display: inline-flex;
+    align-items: center;
+    gap: 10px;
+    padding: 16px 34px;
+    background: var(--bhd-accent, #a4704f);
+    color: var(--bhd-parchment, #f8f3ea);
     font-family: var(--bhd-sans, "Inter", system-ui, sans-serif);
-    font-size: 13px;
-    letter-spacing: 0.04em;
-    color: var(--bhd-accent, #a4704f);
+    font-size: 16px;
+    font-weight: 600;
+    letter-spacing: 0.02em;
     text-decoration: none;
-    margin-bottom: 14px;
+    border-radius: 999px;
+    box-shadow: 0 6px 20px rgba(79, 52, 34, 0.22);
+    transition: transform 0.2s ease, box-shadow 0.2s ease, background 0.2s ease;
+    margin-bottom: 32px;
   }
-  .about-link:hover {
-    opacity: 0.75;
+  .about-button:hover {
+    background: var(--bhd-text, #4f3422);
+    transform: translateY(-2px);
+    box-shadow: 0 10px 26px rgba(79, 52, 34, 0.3);
   }
   .site-footer p {
     font-family: var(--bhd-sans, "Inter", system-ui, sans-serif);
