@@ -174,12 +174,10 @@ export const journeyInvite = {
   // on something they are already holding.
   naming:
     "This is why the Chaburah is called Or HaBris—the light of the Bris. Avraham was never asked to remove his desire, only what stood in its way, and what had been hidden there all along was finally revealed.",
-  // Closes the paragraph in italic copper, carrying the accent that the
-  // removed "Week by week" line used to hold.
+  // The closing beat of the introduction, set centred in serif italic
+  // copper — the graphical moment that ends this movement.
   namingClose:
     "That is the work we do together: establishing a true Bris with ourselves, so that we can build a true Bris with our wives, and ultimately with Hashem.",
-  introEmphasis:
-    "The Torah is learned together, but perhaps even more importantly, the work of becoming the people Hashem created us to be is done together.",
 
   expect: {
     heading: "Inside the Chaburah",

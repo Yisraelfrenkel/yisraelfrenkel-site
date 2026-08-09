@@ -15,11 +15,8 @@ const { expect, experience, investment } = journeyInvite;
     <p class="lead">{journeyInvite.lead}</p>
     <div class="intro">
       {journeyInvite.intro.map((p) => <p>{p}</p>)}
-      <p class="naming">
-        {journeyInvite.naming}{" "}
-        <em class="naming-close">{journeyInvite.namingClose}</em>
-      </p>
-      <p class="emphasis">{journeyInvite.introEmphasis}</p>
+      <p class="naming">{journeyInvite.naming}</p>
+      <p class="emphasis">{journeyInvite.namingClose}</p>
     </div>
   </div>
 
@@ -182,11 +179,6 @@ const { expect, experience, investment } = journeyInvite;
   /* the naming moment gets its own beat before the closing line */
   .intro .naming {
     margin-top: 56px;
-  }
-  /* carries the copper accent the removed "Week by week" line used to hold */
-  .naming-close {
-    font-style: italic;
-    color: var(--bhd-accent);
   }
   /* centred pull-line, matching .torah-narrative's quote treatment */
   .intro .emphasis {
