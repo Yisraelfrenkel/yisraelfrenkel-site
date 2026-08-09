@@ -69,6 +69,27 @@ import AboutFloat from "../components/AboutFloat.astro";
     background: var(--bhd-parchment-3);
     width: 100%;
   }
+
+  /* Phones were being served the desktop type scale and the desktop
+     vertical rhythm, which is what made the page feel endless. Every
+     size on this page derives from these tokens, so scaling them here
+     scales the whole page proportionally. */
+  @media (max-width: 640px) {
+    .bhd-page {
+      --bhd-h1: 29px;
+      --bhd-h2: 24px;
+      --bhd-h3: 19px;
+      --bhd-body: 17px;
+      --bhd-body-lh: 1.6;
+      /* The display lines multiply these by up to 2.7×, so they have to
+         come down hard or a single sentence fills the whole screen. */
+      --bhd-quote: 17px;
+      --bhd-quote-lg: 17px;
+      --bhd-para-gap: 1.3em;
+      --bhd-hero-pad: 56px;
+      --bhd-section-pad: 44px;
+    }
+  }
 </style>
 
 <script>

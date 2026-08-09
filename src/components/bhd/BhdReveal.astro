@@ -109,6 +109,20 @@ import { beginningLine, freeClassVideo, writtenVersion } from "../../data/conten
   .big-2 {
     font-size: 1.6em;
   }
+  /* These two are nested, so their em sizes compound off .force-line.
+     On a phone that produced a 65px line; scaled down here rather than
+     by shrinking --bhd-h2, which real headings also use. */
+  @media (max-width: 640px) {
+    .force-line {
+      font-size: 22px;
+    }
+    .big-1 {
+      font-size: 1.22em;
+    }
+    .big-2 {
+      font-size: 1.4em;
+    }
+  }
   .beginning {
     max-width: 1300px;
     margin: 0 auto;

@@ -497,25 +497,71 @@ const [introBlock, floatP, lineUnderPhoto, ...restBlocks] = about.blocks;
     }
   }
 
+  /* Phone: the serif display sizes and the 48px rhythm were built for a
+     desktop column. Scaled down so the page reads at arm's length
+     instead of turning into endless scrolling. */
   @media (max-width: 640px) {
     .hero {
-      padding-top: 88px;
+      padding-top: 72px;
     }
     .hero h1 {
-      font-size: 44px;
+      /* small enough that "Understanding Humanity" holds one line */
+      font-size: 31px;
+    }
+    .intro {
+      padding: 0 24px;
     }
     .intro p {
-      font-size: 22px;
+      font-size: 19px;
     }
     .portrait-float {
       width: 220px;
       max-width: 60%;
     }
+    .essay-open {
+      padding: 0 24px 12px;
+    }
     .essay-open p {
       text-align: left;
     }
+    .float-p {
+      font-size: 18px;
+    }
+    .essay-p {
+      font-size: 17px;
+      padding: 0 24px;
+      margin-bottom: 22px;
+    }
+    .essay-line {
+      font-size: 20px;
+      margin: 34px auto;
+      padding: 0 24px;
+    }
+    .credentials,
+    .rabbeim {
+      margin: 34px auto;
+      padding: 0 24px;
+    }
+    .credentials-lead,
+    .rabbeim-lead {
+      font-size: 20px;
+    }
+    .credentials-item,
+    .rabbeim-item {
+      font-size: 16px;
+    }
+    .credentials-closing {
+      font-size: 17px;
+    }
+    .rabbeim-closing {
+      font-size: 18px;
+      margin: 28px 0 36px;
+    }
     .pull-quote p {
-      font-size: 32px;
+      font-size: 26px;
+    }
+    .close {
+      font-size: 19px;
     }
   }
 </style>
