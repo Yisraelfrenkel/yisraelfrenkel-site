@@ -176,14 +176,17 @@ const [introBlock, floatP, lineUnderPhoto, ...restBlocks] = about.blocks;
     aspect-ratio: 4 / 5;
     object-fit: cover;
     display: block;
-    margin: 4px 0 32px 44px;
+    margin: 0 0 32px 44px;
     border-radius: 4px;
   }
   .float-p {
     font-family: var(--ab-sans);
     font-size: 18px;
     line-height: 1.65;
-    margin: 10px 0 27px;
+    /* Starts a bit into the photo's height (not flush with its top) so
+       the paragraph's natural end sits closer to the photo's bottom,
+       instead of leaving a tall gap of empty parchment beneath it. */
+    margin: 44px 0 27px;
     color: var(--ab-text);
   }
   .clearfix {
