@@ -4,11 +4,12 @@ import { site, about, invitations } from "../data/content.js";
 import Footer from "../components/Footer.astro";
 import WhatsAppFloat from "../components/WhatsAppFloat.astro";
 
-// blocks[0] is the "intro" entrance line. blocks[1] and blocks[2] (a "p"
-// and a "line") are the two paragraphs that flow beside the floated
-// portrait. Everything from blocks[3] on (starting with "credentials")
-// renders in the normal narrow reading column.
-const [introBlock, floatP, floatLine, ...restBlocks] = about.blocks;
+// blocks[0] is the "intro" entrance line. blocks[1] (a "p") is the
+// paragraph that flows beside the floated portrait. blocks[2] (a "line")
+// renders on its own beneath the photo, once the float clears. Everything
+// from blocks[3] on (starting with "credentials") renders in the normal
+// narrow reading column.
+const [introBlock, floatP, lineUnderPhoto, ...restBlocks] = about.blocks;
 ---
 
 <Layout
@@ -30,10 +31,11 @@ const [introBlock, floatP, floatLine, ...restBlocks] = about.blocks;
 
     <section class="essay-open">
       <img class="portrait-float" src={about.portraitMain} alt="Portrait of Rav Yisrael Frenkel" />
-      <p>{floatP.text}</p>
-      <p>{floatLine.text}</p>
+      <p class="float-p">{floatP.text}</p>
       <div class="clearfix"></div>
     </section>
+
+    <p class="line-under-photo">{lineUnderPhoto.text}</p>
 
     {restBlocks.map((block) => (
       <>
@@ -174,23 +176,35 @@ const [introBlock, floatP, floatLine, ...restBlocks] = about.blocks;
     aspect-ratio: 4 / 5;
     object-fit: cover;
     display: block;
-    margin: 6px 0 32px 44px;
+    margin: 4px 0 32px 44px;
     border-radius: 4px;
   }
-  .essay-open p {
+  .float-p {
     font-family: var(--ab-sans);
     font-size: 18px;
     line-height: 1.65;
-    margin: 0 0 27px;
+    margin: 10px 0 27px;
     color: var(--ab-text);
   }
   .clearfix {
     clear: both;
   }
+  .line-under-photo {
+    max-width: 700px;
+    margin: 0 auto 12px;
+    padding: 0 32px;
+    font-family: var(--ab-serif);
+    font-size: 30px;
+    font-style: italic;
+    font-weight: 500;
+    line-height: 1.4;
+    color: var(--ab-accent);
+    text-align: center;
+  }
 
   /* ---------- Standard narrow reading column ---------- */
   .essay-p {
-    max-width: 950px;
+    max-width: 1300px;
     margin: 0 auto 27px;
     padding: 0 32px;
     font-family: var(--ab-sans);
@@ -214,7 +228,7 @@ const [introBlock, floatP, floatLine, ...restBlocks] = about.blocks;
 
   /* ---------- Credentials: broken visually, not bulleted ---------- */
   .credentials {
-    max-width: 950px;
+    max-width: 1300px;
     margin: 44px auto;
     padding: 0 32px;
   }
