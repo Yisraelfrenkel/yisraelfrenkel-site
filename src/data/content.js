@@ -331,13 +331,12 @@ export const about = {
         "Served on the Beis Din of Rabbi Vind for hilchos ribis",
         "Helped write and edit Talelei Tohar on hilchos nida, and Talelei Shevi’i on hilchos shabbos",
         "Wrote sections of the Oz VeHadar Shulchan Aruch HaMevoar on hilchos nida",
-        "Taught full-time in Yeshiva Gedolah",
         "Served as a Ram in Yeshivas Mir, where I led an international Yiddish Chaburah",
         "Continued teaching in Yeshivat Bat Ayin",
         "And later founded my own yeshiva, where I served as Rosh Yeshiva",
       ],
       closing:
-        "Today I have the privilege of serving as the rabbi of Kehilat Chaverim in Jerusalem.",
+        "Today I have the privilege of serving as the Rabbi of Kehilat Chaverim in Jerusalem.",
     },
     {
       type: "p",
