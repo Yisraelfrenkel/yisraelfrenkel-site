@@ -464,8 +464,8 @@ export const about = {
       // The page should end on what he's spent his life giving away, not
       // only what he's learned — mid-write at the whiteboard, not posed.
       type: "photo",
-      src: "/images/yisrael-teaching-whiteboard.jpg",
-      alt: "Rav Yisrael Frenkel teaching at the whiteboard",
+      src: "/images/yisrael-teaching-conversation.jpg",
+      alt: "Rav Yisrael Frenkel mid-explanation, seforim behind him",
     },
   ],
 };
