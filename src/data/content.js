@@ -163,9 +163,10 @@ export const journeyInvite = {
   title: "Walk the Journey Together",
   // One centred sentence, then the body returns to the left-aligned
   // teaching voice used everywhere else on the page.
-  lead: "For nearly a decade, I have had the privilege of leading men through this journey in small Chaburot, where we explore the Torah together, practice its principles through guided exercises, and learn how to translate understanding into lasting transformation.",
+  lead: "For nearly a decade, I have had the privilege of leading men through this journey in small Chaburot.",
   intro: [
-    "Over time, these ideas become more than beautiful concepts—they become a new way of living.",
+    "Together, we explore the many different expressions of human desire through the eyes of the Torah. Week by week, we examine the deeper longings beneath our desires, asking what each one is truly seeking, whether the paths we naturally pursue can ever satisfy it, and how the Torah guides us toward the deeper fulfillment for which those desires were created. From sexuality and relationships to the longing for love, significance, beauty, and belonging, we gradually learn to distinguish between the desires that merely promise fulfillment and those that truly lead us toward it.",
+    "Through deep Torah learning, guided exercises, personal practices, and the support of the Chaburah, these ideas gradually become more than beautiful concepts—they become a new way of living.",
     "Each Chaburah is intentionally kept small because transformation happens most deeply in genuine relationships. People become known, heard, challenged, encouraged, and supported as they walk this path together.",
   ],
   introEmphasis:
@@ -327,7 +328,7 @@ export const about = {
       lead: "Over the years I have:",
       items: [
         "Studied in many of Israel’s leading yeshivos and kollelim",
-        "Served on the Beis Din of Rabbi Vind",
+        "Served on the Beis Din of Rabbi Vind for hilchos ribis",
         "Helped write and edit Talelei Tohar on hilchos nida, and Talelei Shevi’i on hilchos shabbos",
         "Wrote sections of the Oz VeHadar Shulchan Aruch HaMevoar on hilchos nida",
         "Taught full-time in Yeshiva Gedolah",
