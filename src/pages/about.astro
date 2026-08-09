@@ -53,7 +53,7 @@ const [introBlock, floatP, floatLine, ...restBlocks] = about.blocks;
 
         {block.type === "photo" && (
           <div class="photo-wide">
-            <img src={about.portraitTeaching} alt="Rav Yisrael Frenkel learning at his desk" />
+            <img src={block.src} alt={block.alt} />
           </div>
         )}
 
@@ -162,7 +162,7 @@ const [introBlock, floatP, floatLine, ...restBlocks] = about.blocks;
 
   /* ---------- Opening flow: portrait floats beside the first lines ---------- */
   .essay-open {
-    max-width: 860px;
+    max-width: 970px;
     margin: 0 auto;
     padding: 0 32px 12px;
     text-align: left;
@@ -190,7 +190,7 @@ const [introBlock, floatP, floatLine, ...restBlocks] = about.blocks;
 
   /* ---------- Standard narrow reading column ---------- */
   .essay-p {
-    max-width: 840px;
+    max-width: 950px;
     margin: 0 auto 27px;
     padding: 0 32px;
     font-family: var(--ab-sans);
@@ -214,7 +214,7 @@ const [introBlock, floatP, floatLine, ...restBlocks] = about.blocks;
 
   /* ---------- Credentials: broken visually, not bulleted ---------- */
   .credentials {
-    max-width: 840px;
+    max-width: 950px;
     margin: 44px auto;
     padding: 0 32px;
   }
@@ -283,14 +283,14 @@ const [introBlock, floatP, floatLine, ...restBlocks] = about.blocks;
 
   /* ---------- The pull quote: the moment that stops people ---------- */
   .pull-quote {
-    max-width: 900px;
+    max-width: 1040px;
     margin: 0 auto;
-    padding: 24px 32px 96px;
+    padding: 24px 24px 96px;
     text-align: center;
   }
   .quote-mark {
     font-family: var(--ab-serif);
-    font-size: 110px;
+    font-size: 130px;
     line-height: 0.5;
     color: var(--ab-accent);
     opacity: 0.5;
@@ -298,10 +298,10 @@ const [introBlock, floatP, floatLine, ...restBlocks] = about.blocks;
   }
   .pull-quote p {
     font-family: var(--ab-serif);
-    font-size: 46px;
+    font-size: 54px;
     font-style: italic;
     font-weight: 500;
-    line-height: 1.42;
+    line-height: 1.38;
     color: var(--ab-accent);
     margin: 0;
   }
@@ -366,7 +366,7 @@ const [introBlock, floatP, floatLine, ...restBlocks] = about.blocks;
     padding: 34px 38px;
     background: var(--ab-parchment);
     border: 1px solid rgba(79, 52, 34, 0.25);
-    border-radius: 8px;
+    border-radius: 15px;
     text-decoration: none;
     transition: background 0.5s ease, border-color 0.5s ease;
     text-align: left;

@@ -218,7 +218,8 @@ export const torahClosing = [
 //   "p"           — body paragraph
 //   "line"        — a standalone sentence given its own breathing room
 //   "credentials" — the yeshivos/kollelim bio, broken into visual lines
-//   "photo"       — the mid-page candid teaching photo
+//   "photo"       — a photo break ({src, alt}); used mid-page and once
+//                   more at the close
 //   "quote"       — the enormous centered pull quote
 //   "turn"        — the hinge of the whole piece (the two-windows passage)
 //   "close"       — the final statement of purpose
@@ -231,16 +232,12 @@ export const about = {
   heading: ["Understanding Humanity", "Through the Eyes of the Torah"],
   metaDescription:
     "Rav Yisrael Frenkel on a life spent understanding humanity through the eyes of the Torah — and why Torah and psychology are not two disciplines to be combined, but two windows looking at the same human reality.",
-  // Per docs/photography-bible.md's "Homepage / About" picks: photo-119
-  // (vineyard, arms crossed, golden hour) is "the canonical headshot —
-  // the face people should learn to recognize across every page." Not
-  // a shul/amud portrait — the bible explicitly warns those read as
-  // "the website of a rabbi" register he asked to avoid as a default.
-  portraitMain: "/images/yisrael-vineyard-portrait.jpg",
-  // photo-072 (home study desk, mid-write, sefarim, plants, morning
-  // light): "says 'come in, let's think together' without a word of
-  // copy. Wisdom and trust, before anything is explained."
-  portraitTeaching: "/images/yisrael-study-desk.jpg",
+  // Overrides the photography bible's vineyard pick per Yisrael + chat's
+  // 2026-08-09 review: the vineyard photo reads as "rabbi in nature,"
+  // while this page's thesis is "this is how my mind was formed." The
+  // Aron Kodesh portrait — direct eye contact, years of Torah in the
+  // background — supports that directly. Shirt/kippah already corrected.
+  portraitMain: "/images/opening-story-photo.jpg",
   blocks: [
     {
       type: "intro",
@@ -276,7 +273,6 @@ export const about = {
     },
     { type: "line", text: "For me, these were never two separate worlds." },
     { type: "line", text: "They were one continuous journey." },
-    { type: "photo" },
     {
       type: "p",
       text: "Alongside my years of Torah learning and teaching, I devoted myself to the in-depth study of contemporary approaches to trauma, addiction, emotional healing, and human development, including Internal Family Systems (IFS), coaching methodologies, and other therapeutic models. My goal was never simply to learn techniques, but to understand the deeper principles that make healing possible and to see how those principles illuminate—and are illuminated by—the wisdom of the Torah.",
@@ -284,6 +280,14 @@ export const about = {
     {
       type: "p",
       text: "Over the years I have had the privilege of working with individuals and couples facing some of life’s deepest struggles, including marriage and intimacy, sexuality and desire, addiction, sexual trauma, war trauma, emotional trauma, religious trauma, anxiety, depression, and spiritual disconnection.",
+    },
+    {
+      // Placed here, not after "one continuous journey," because this is
+      // the hinge from biography into philosophy — the bookshelf becomes
+      // symbolic right as the "what fascinates me" reflection begins.
+      type: "photo",
+      src: "/images/yisrael-study-desk.jpg",
+      alt: "Rav Yisrael Frenkel learning at his desk",
     },
     {
       type: "p",
@@ -331,6 +335,13 @@ export const about = {
     {
       type: "close",
       text: "To help people understand themselves through the eyes of the Torah, so they can build a deeper relationship with themselves, with those they love, and ultimately with Hashem.",
+    },
+    {
+      // The page should end on what he's spent his life giving away, not
+      // only what he's learned — mid-write at the whiteboard, not posed.
+      type: "photo",
+      src: "/images/yisrael-teaching-whiteboard.jpg",
+      alt: "Rav Yisrael Frenkel teaching at the whiteboard",
     },
   ],
 };
