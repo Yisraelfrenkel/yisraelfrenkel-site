@@ -1,9 +1,11 @@
 ---
 import { site } from "../data/content.js";
 const year = new Date().getFullYear();
+const onAboutPage = Astro.url.pathname.startsWith("/about");
 ---
 
 <footer class="site-footer">
+  {!onAboutPage && <a href="/about" class="about-link">About Yisrael</a>}
   <p>&copy; {year} {site.title}</p>
 </footer>
 
@@ -13,6 +15,18 @@ const year = new Date().getFullYear();
     margin: 0 auto;
     padding: 0 32px var(--bhd-hero-pad, 104px);
     text-align: center;
+  }
+  .about-link {
+    display: inline-block;
+    font-family: var(--bhd-sans, "Inter", system-ui, sans-serif);
+    font-size: 13px;
+    letter-spacing: 0.04em;
+    color: var(--bhd-accent, #a4704f);
+    text-decoration: none;
+    margin-bottom: 14px;
+  }
+  .about-link:hover {
+    opacity: 0.75;
   }
   .site-footer p {
     font-family: var(--bhd-sans, "Inter", system-ui, sans-serif);
