@@ -53,6 +53,18 @@ const [introBlock, floatP, lineUnderPhoto, ...restBlocks] = about.blocks;
           </div>
         )}
 
+        {block.type === "rabbeim" && (
+          <div class="rabbeim">
+            <p class="rabbeim-lead">{block.lead}</p>
+            {block.items.map((r) => (
+              <p class="rabbeim-item">
+                <span class="rabbeim-name">{r.name}</span>{r.text}
+              </p>
+            ))}
+            <p class="rabbeim-closing">{block.closing}</p>
+          </div>
+        )}
+
         {block.type === "photo" && (
           <div class="photo-wide">
             <img src={block.src} alt={block.alt} />
@@ -163,33 +175,41 @@ const [introBlock, floatP, lineUnderPhoto, ...restBlocks] = about.blocks;
   }
 
   /* ---------- Opening flow: portrait floats beside the first lines ---------- */
+  /* Two columns rather than a float: the paragraph is short and the photo
+     is tall, so floating left a hole above the text and squeezed it into
+     a five-word measure. A grid lets the text sit centred against the
+     photo at a readable line length. */
   .essay-open {
-    max-width: 970px;
+    /* matches .essay-p so the paragraph's left edge lines up with the
+       body text above and below it */
+    max-width: 1300px;
     margin: 0 auto;
-    /* The 1px top padding isn't decorative — without it, the floated
-       paragraph's margin-top collapses straight through this container
-       instead of pushing the paragraph down inside it. */
-    padding: 1px 32px 12px;
+    padding: 0 32px 12px;
     text-align: left;
+    display: grid;
+    grid-template-columns: 1fr 380px;
+    column-gap: 48px;
+    align-items: center;
   }
   .portrait-float {
-    float: right;
-    width: 380px;
-    max-width: 44%;
+    grid-column: 2;
+    grid-row: 1;
+    width: 100%;
     aspect-ratio: 4 / 5;
     object-fit: cover;
     display: block;
-    margin: 0 0 32px 44px;
+    margin: 0;
     border-radius: 4px;
   }
   .float-p {
+    grid-column: 1;
+    grid-row: 1;
+    /* capped so the measure stays readable even though the column is wide */
+    max-width: 640px;
     font-family: var(--ab-sans);
-    font-size: 22px;
-    line-height: 1.6;
-    /* Starts well into the photo's height (not flush with its top) so
-       the paragraph's natural end sits closer to the photo's bottom,
-       instead of leaving a tall gap of empty parchment beneath it. */
-    margin: 130px 0 27px;
+    font-size: 21px;
+    line-height: 1.65;
+    margin: 0;
     color: var(--ab-text);
   }
   .clearfix {
@@ -265,6 +285,47 @@ const [introBlock, floatP, lineUnderPhoto, ...restBlocks] = about.blocks;
     line-height: 1.65;
     color: var(--ab-text);
     margin: 24px 0 0;
+  }
+
+  /* ---------- Rabbeim ---------- */
+  /* Same reading column as the credentials, but set as prose rather than
+     a list — each line is a sentence about what was received, not an entry. */
+  .rabbeim {
+    max-width: 1300px;
+    margin: 44px auto;
+    padding: 0 32px;
+  }
+  .rabbeim-lead {
+    font-family: var(--ab-serif);
+    font-style: italic;
+    font-size: 25px;
+    color: var(--ab-text);
+    margin: 0 0 22px;
+  }
+  .rabbeim-item {
+    max-width: 780px;
+    font-family: var(--ab-sans);
+    font-size: 17px;
+    line-height: 1.7;
+    color: rgba(79, 52, 34, 0.85);
+    margin: 0 0 20px;
+  }
+  .rabbeim-item:last-of-type {
+    margin-bottom: 0;
+  }
+  .rabbeim-name {
+    color: var(--ab-text);
+    font-weight: 600;
+  }
+  .rabbeim-closing {
+    font-family: var(--ab-serif);
+    font-style: italic;
+    font-size: 21px;
+    line-height: 1.5;
+    color: var(--ab-accent);
+    text-align: center;
+    margin: 40px 0 48px;
+    text-wrap: pretty;
   }
 
   /* ---------- The one visual moment ---------- */
@@ -415,6 +476,27 @@ const [introBlock, floatP, lineUnderPhoto, ...restBlocks] = about.blocks;
     color: rgba(79, 52, 34, 0.7);
   }
 
+  /* Below this the two columns get too tight for a comfortable measure,
+     so the photo goes back above the paragraph. */
+  @media (max-width: 880px) {
+    .essay-open {
+      grid-template-columns: 1fr;
+      row-gap: 28px;
+    }
+    .portrait-float {
+      grid-column: 1;
+      grid-row: 1;
+      width: 320px;
+      max-width: 70%;
+      justify-self: center;
+    }
+    .float-p {
+      grid-column: 1;
+      grid-row: 2;
+      font-size: 20px;
+    }
+  }
+
   @media (max-width: 640px) {
     .hero {
       padding-top: 88px;
@@ -426,10 +508,8 @@ const [introBlock, floatP, lineUnderPhoto, ...restBlocks] = about.blocks;
       font-size: 22px;
     }
     .portrait-float {
-      float: none;
       width: 220px;
       max-width: 60%;
-      margin: 0 auto 24px;
     }
     .essay-open p {
       text-align: left;

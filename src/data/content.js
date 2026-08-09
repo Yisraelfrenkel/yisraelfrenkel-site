@@ -327,6 +327,16 @@ export const about = {
       text: "From the very beginning of my Torah learning, I found myself drawn to the inner purpose behind every mitzvah and every area of Torah. I wanted to understand not only what Hashem commands, but how His Torah shapes the human soul, heals the human heart, and enables a person to build a deeper relationship with Him.",
     },
     { type: "line", text: "That question has guided every stage of my life." },
+    // Where the question came from. Placed before the credentials so the
+    // list below reads as a story rather than a CV.
+    {
+      type: "p",
+      text: "I grew up in a chassidish family in America—New York, Denver, and Baltimore—while learning, all along, in litvish yeshivos. Our home was deeply influenced by Rav Shlomo Twerski of Denver: a life fully involved in the world, and all of it avodas Hashem. At seventeen I left for Israel to learn in yeshiva, and I have been here since.",
+    },
+    {
+      type: "line",
+      text: "I was always moving between two ways of seeing, and I never accepted that they were separate.",
+    },
     {
       type: "credentials",
       lead: "Over the years I have:",
@@ -341,6 +351,41 @@ export const about = {
       ],
       closing:
         "Today I have the privilege of serving as the Rabbi of Kehilat Chaverim in Jerusalem.",
+    },
+    // The teachers behind the list above. Ordered as the page's own
+    // argument runs: how to think, then halacha, then the home, then
+    // marriage and the body, then Am Yisrael, then pnimiyus.
+    {
+      type: "rabbeim",
+      lead: "My rabbeim:",
+      items: [
+        {
+          name: "Rav Tzvi Kushelevsky",
+          text: ", with whom I learned for six years, taught me how to think—how to take an idea apart until its structure shows.",
+        },
+        {
+          name: "Rav Yaakov Friedman",
+          text: " was my rebbe in Gemara, and Rav Tal Duer was my rebbe in halacha.",
+        },
+        {
+          name: "Rav Moshe Aharon Shochetovitz’s",
+          text: " Binyan HaBayis shaped how I first understood what a home is meant to be, early in my own marriage.",
+        },
+        {
+          name: "Rav David Shacharai",
+          text: ", in the Old City, taught me what marriage is actually for—the meaning of each of its mitzvos, how intimacy is expressed through them, the significance of zera, and what a woman is, what she needs, and what makes yichud in halacha.",
+        },
+        {
+          name: "Rav Uri Sherki",
+          text: " shaped my understanding of Am Yisrael and Eretz Yisrael.",
+        },
+        {
+          name: "Rav Reuven Sasson",
+          text: ", my rebbe today, opened pnimiyus haTorah to me, and much of how I understand the human being comes from what I learned with him.",
+        },
+      ],
+      closing:
+        "Each of them gave me a different window. Together they became one way of seeing.",
     },
     {
       type: "p",
