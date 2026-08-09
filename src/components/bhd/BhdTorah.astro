@@ -8,7 +8,6 @@ import {
   torahEnglishQuote,
   torahPosedQuestion,
   torahClosing,
-  livingJourney,
 } from "../../data/content.js";
 ---
 
@@ -28,11 +27,6 @@ import {
     <p class="quote">“{torahEnglishQuote}”</p>
     <p class="posed-question">{torahPosedQuestion}</p>
     {torahClosing.map((p) => <p>{p}</p>)}
-  </section>
-
-  <section class="living-journey">
-    <h2>{livingJourney.heading}</h2>
-    {livingJourney.paragraphs.map((p) => <p>{p}</p>)}
   </section>
 </div>
 
@@ -97,28 +91,7 @@ import {
     text-align: center;
     color: var(--bhd-text);
   }
-  .living-journey {
-    max-width: 1300px;
-    margin: 0 auto;
-    padding: var(--bhd-section-pad) 24px calc(var(--bhd-body) * 2 * var(--bhd-body-lh));
-    text-align: left;
-  }
-  .living-journey h2 {
-    font-family: var(--bhd-serif);
-    font-size: var(--bhd-h2);
-    font-weight: 600;
-    text-align: center;
-    margin: 0 0 var(--bhd-section-pad);
-    color: var(--bhd-text);
-  }
-  .living-journey p {
-    font-family: var(--bhd-sans);
-    font-size: var(--bhd-body);
-    line-height: var(--bhd-body-lh);
-    margin: 0 0 var(--bhd-para-gap);
-    color: var(--bhd-text);
-  }
-  .living-journey p:last-child {
-    margin-bottom: 0;
+  .torah-narrative p:last-of-type {
+    margin-bottom: calc(var(--bhd-body) * 2 * var(--bhd-body-lh));
   }
 </style>

@@ -1,5 +1,5 @@
 ---
-import { beginningLine, freeClassVideo } from "../../data/content.js";
+import { beginningLine, freeClassVideo, writtenVersion } from "../../data/content.js";
 ---
 
 <section class="reveal-intro">
@@ -34,7 +34,33 @@ import { beginningLine, freeClassVideo } from "../../data/content.js";
       </div>
     </div>
   </a>
+
+  <p class="written-option">
+    <span class="written-prompt">{writtenVersion.prompt}</span>
+    <a
+      href={writtenVersion.href}
+      class="written-link"
+      data-written-version
+      target="_blank"
+      rel="noopener noreferrer"
+    >{writtenVersion.label} &rarr;</a>
+  </p>
 </section>
+
+<script define:vars={{ intentKey: writtenVersion.intentKey }}>
+  // Remember that this visitor came for the written version. Tally's
+  // post-submit redirect sends everyone to /watch, which reads this flag
+  // and starts the download instead of just playing the class.
+  document.querySelectorAll("[data-written-version]").forEach((link) => {
+    link.addEventListener("click", () => {
+      try {
+        localStorage.setItem(intentKey, "1");
+      } catch (e) {
+        /* private mode — they can still download from /watch manually */
+      }
+    });
+  });
+</script>
 
 <style>
   .reveal-intro {
@@ -146,5 +172,30 @@ import { beginningLine, freeClassVideo } from "../../data/content.js";
     border-bottom: 14px solid transparent;
     border-left: 22px solid white;
     margin-left: 6px;
+  }
+  .written-option {
+    max-width: 560px;
+    margin: 22px auto 0;
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 15px;
+    line-height: 1.7;
+    color: rgba(79, 52, 34, 0.7);
+  }
+  .written-prompt {
+    display: block;
+    font-style: italic;
+    margin-bottom: 4px;
+  }
+  .written-link {
+    color: var(--bhd-accent);
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(164, 112, 79, 0.4);
+    padding-bottom: 1px;
+    transition: color 0.3s ease, border-color 0.3s ease;
+  }
+  .written-link:hover {
+    color: var(--bhd-text);
+    border-bottom-color: var(--bhd-text);
   }
 </style>

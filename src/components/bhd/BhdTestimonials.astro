@@ -1,17 +1,10 @@
 ---
-import { site, courseCta, personalSessionCta, testimonials, videoTestimonials } from "../../data/content.js";
+import { testimonials, videoTestimonials } from "../../data/content.js";
 ---
 
-<section class="course-cta">
-  <div class="cta-row">
-    <a href={site.signupUrl} class="cta-link" target="_blank" rel="noopener noreferrer">
-      {courseCta.label}
-    </a>
-    <a href={site.personalSessionUrl} class="cta-link" target="_blank" rel="noopener noreferrer">
-      {personalSessionCta.label}
-    </a>
-  </div>
-</section>
+{/* The Join / Book buttons that used to sit here now live at the end of
+    BhdJourney, which is the page's arrival point. Repeating them a few
+    hundred pixels apart read as a duplicate. */}
 
 <section class="testimonials">
   <div class="eyebrow">Others who have walked this path</div>
@@ -37,41 +30,10 @@ import { site, courseCta, personalSessionCta, testimonials, videoTestimonials } 
 </section>
 
 <style>
-  .course-cta {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: calc(var(--bhd-body) * var(--bhd-body-lh)) 32px var(--bhd-hero-pad);
-    text-align: center;
-  }
-  .cta-row {
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    gap: 16px;
-    flex-wrap: wrap;
-  }
-  .cta-link {
-    display: inline-block;
-    padding: 17px 38px;
-    background: var(--bhd-parchment);
-    border: 1px solid var(--bhd-accent);
-    color: var(--bhd-text);
-    font-family: var(--bhd-sans);
-    font-size: 17px;
-    font-weight: 500;
-    letter-spacing: 0.02em;
-    text-decoration: none;
-    border-radius: 6px;
-    transition: background 0.35s ease, border-color 0.35s ease;
-  }
-  .cta-link:hover {
-    background: var(--bhd-parchment-2);
-    border-color: var(--bhd-text);
-  }
   .testimonials {
     max-width: 1000px;
     margin: 0 auto;
-    padding: 0 32px var(--bhd-hero-pad);
+    padding: var(--bhd-hero-pad) 32px var(--bhd-hero-pad);
   }
   .eyebrow {
     font-family: var(--bhd-sans);

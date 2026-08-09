@@ -63,6 +63,21 @@ export const freeClassVideo = {
   returnUrl: "/beauty-of-human-desire#continue",
 };
 
+// The written version of the class, offered underneath the video.
+// It goes through the SAME Tally form as the video, so people still sign up.
+// Because Tally's post-submit redirect is a single fixed URL (/watch), the
+// site records the visitor's choice in localStorage before handing off to
+// Tally; /watch reads it on the way back and starts the download.
+export const writtenVersion = {
+  prompt: "Don't want to watch the class?",
+  label: "Read it instead — download the written version",
+  href: freeClassVideo.href,
+  file: "/the-beauty-of-human-desire.pdf",
+  filename: "The Beauty of Human Desire.pdf",
+  // localStorage key shared between the link and /watch
+  intentKey: "bhd-wants-written-version",
+};
+
 export const stepsIntro = [
   "Discovering this truth is only the beginning. The greater challenge is learning to live it.",
   "The journey unfolds through five stages, each building naturally upon the one before it.",
@@ -140,13 +155,72 @@ export const stepsDownload = {
 export const tikkunTransition = "This is the Torah’s story of Tikkun HaBris.";
 export const tikkunImage = "/images/painting-tikkun-habris.jpeg";
 
-export const livingJourney = {
-  heading: "Living the Journey",
-  paragraphs: [
-    "For the past nine years, I have been guiding men through this journey in small Chaburot, meeting weekly over a five-week course where these ideas become lived experience rather than beautiful concepts.",
-    "Each Chaburah is intentionally kept small so that every person is truly known, heard, challenged, and supported as he learns to walk this path together with others.",
-    "This journey is called Or HaBris because it teaches us how to establish a true Bris with ourselves, so that we can build a true Bris with our wives, and ultimately with Hashem.",
+// The closing invitation at the end of the page. Five movements:
+// invitation → what it is → emotional conclusion → investment → decision.
+// The price sits after the conclusion on purpose: the reader first answers
+// "is this for me?", and only then asks "what does it cost?".
+export const journeyInvite = {
+  title: "Walk the Journey Together",
+  // One centred sentence, then the body returns to the left-aligned
+  // teaching voice used everywhere else on the page.
+  lead: "For nearly a decade, I have had the privilege of leading men through this journey in small Chaburot, where we explore the Torah together, practice its principles through guided exercises, and learn how to translate understanding into lasting transformation.",
+  intro: [
+    "Over time, these ideas become more than beautiful concepts—they become a new way of living.",
+    "Each Chaburah is intentionally kept small because transformation happens most deeply in genuine relationships. People become known, heard, challenged, encouraged, and supported as they walk this path together.",
   ],
+  introEmphasis:
+    "The Torah is learned together, but perhaps even more importantly, the work of becoming the people Hashem created us to be is done together.",
+
+  expect: {
+    heading: "Inside the Chaburah",
+    body: "Each Chaburah meets weekly over five sessions, with each meeting building upon the last as we gradually develop a new understanding of ourselves and the path toward lasting growth.",
+    // Ties the offer back to the promise the whole page has been making.
+    reconnect:
+      "Week by week, we continue learning how every human desire can become another step toward Hashem rather than another source of shame.",
+    listHeading: "Each Chaburah Includes",
+    items: [
+      "Live 90-minute Zoom Chaburah",
+      "Deep Torah learning",
+      "Guided experiential exercises",
+      "Personal practices throughout the week",
+      "Optional Chavrusa exercises",
+      "Lifetime access to every recording",
+      "Complimentary private session after the Chaburah",
+    ],
+  },
+
+  experience: {
+    heading: "The Experience",
+    // Set as a pull quote — these two lines carry the whole column.
+    pullQuote: "This is not a course to consume.\nIt is a process to experience.",
+    // Deliberately short paragraphs — the eye is meant to rest between them.
+    paragraphs: [
+      "No one is ever expected to share.",
+      "Many simply listen, and find that the words are already describing something they have carried for years.",
+      "Real transformation is rarely loud. It happens quietly, in the company of people walking the same path.",
+    ],
+  },
+
+  closing:
+    "This Chaburah is not the end of the journey. It is the beginning of a lifelong path of growth.",
+
+  // Stands on its own between the closing sentence and the price.
+  image: "/images/chaburah-in-person.jpg",
+  imageAlt:
+    "Rav Yisrael Frenkel teaching an in-person Or HaBris Chaburah around the table.",
+
+  investment: {
+    heading: "Joining the Chaburah",
+    // Read before the number, so the number lands as an answer.
+    note: "A one-time investment for the complete five-week journey.",
+    price: "$399",
+    includes: [
+      "Five live Chaburah sessions",
+      "Lifetime access to all recordings",
+      "Guided exercises and practices",
+      "Complimentary private session",
+    ],
+  },
 };
 
 export const courseCta = {

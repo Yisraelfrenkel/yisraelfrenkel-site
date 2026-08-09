@@ -1,0 +1,483 @@
+---
+import { site, journeyInvite, courseCta, personalSessionCta } from "../../data/content.js";
+const { expect, experience, investment } = journeyInvite;
+---
+
+<section class="journey">
+  {/* 1 — Invitation */}
+  <div class="invitation reveal">
+    <div class="ornament" aria-hidden="true">
+      <span class="rule"></span>
+      <span class="diamond"></span>
+      <span class="rule"></span>
+    </div>
+    <h2>{journeyInvite.title}</h2>
+    <p class="lead">{journeyInvite.lead}</p>
+    <div class="intro">
+      {journeyInvite.intro.map((p) => <p>{p}</p>)}
+      <p class="emphasis">{journeyInvite.introEmphasis}</p>
+    </div>
+  </div>
+
+  {/* 2 — What to expect / the experience */}
+  <div class="columns">
+    <div class="col-expect reveal">
+      <h3>{expect.heading}</h3>
+      <p class="col-body">{expect.body}</p>
+      <p class="list-heading">{expect.listHeading}</p>
+      <ul class="includes">
+        {expect.items.map((item) => (
+          <li>
+            <span class="tick" aria-hidden="true">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+                <polyline points="4 12.5 9.5 18 20 6.5"></polyline>
+              </svg>
+            </span>
+            <span>{item}</span>
+          </li>
+        ))}
+      </ul>
+    </div>
+
+    <div class="col-experience reveal">
+      <h3>{experience.heading}</h3>
+      <p class="pull-quote">{experience.pullQuote}</p>
+      <div class="experience-text">
+        {experience.paragraphs.map((p) => <p>{p}</p>)}
+      </div>
+    </div>
+  </div>
+
+  {/* Spans both columns — the line that ties the Chaburah back to the page */}
+  <p class="reconnect reveal">{expect.reconnect}</p>
+
+  {/* 3 — Final statement */}
+  <div class="closing reveal">
+    <p>{journeyInvite.closing}</p>
+  </div>
+
+  {/* The Chaburah itself, given its own moment before the number */}
+  <figure class="community reveal">
+    <img src={journeyInvite.image} alt={journeyInvite.imageAlt} loading="lazy" width="1040" height="694" />
+  </figure>
+
+  {/* 4 — Investment. Deliberately after the emotional conclusion. */}
+  <div class="investment reveal">
+    <h3>{investment.heading}</h3>
+    <p class="price-note">{investment.note}</p>
+    <p class="price">{investment.price}</p>
+    <ul class="price-includes">
+      {investment.includes.map((item) => (
+        <li>
+          <span class="tick" aria-hidden="true">
+            <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round">
+              <polyline points="4 12.5 9.5 18 20 6.5"></polyline>
+            </svg>
+          </span>
+          <span>{item}</span>
+        </li>
+      ))}
+    </ul>
+  </div>
+
+  {/* 5 — Decision */}
+  <div class="cta reveal">
+    <a class="btn btn-primary" href={site.signupUrl} target="_blank" rel="noopener noreferrer">
+      {courseCta.label}
+    </a>
+    <a class="btn btn-secondary" href={site.personalSessionUrl} target="_blank" rel="noopener noreferrer">
+      {personalSessionCta.label}
+    </a>
+  </div>
+</section>
+
+<style>
+  .journey {
+    --lj-gold: #f4d25b;
+    background: var(--bhd-parchment);
+    width: 100%;
+    padding: calc(var(--bhd-hero-pad) * 1.35) 24px var(--bhd-hero-pad);
+  }
+
+  /* the reveal distance the brief asks for, on the site's own mechanism */
+  .journey :global(.reveal) {
+    transform: translateY(20px);
+  }
+  .journey :global(.reveal.is-visible) {
+    transform: none;
+  }
+
+  /* ---------- 1. Invitation ---------- */
+  .invitation {
+    max-width: 900px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .ornament {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-bottom: 34px;
+  }
+  .ornament .rule {
+    display: block;
+    width: 92px;
+    height: 1px;
+    background: linear-gradient(
+      to right,
+      rgba(244, 210, 91, 0),
+      rgba(244, 210, 91, 0.85)
+    );
+  }
+  .ornament .rule:last-child {
+    background: linear-gradient(
+      to left,
+      rgba(244, 210, 91, 0),
+      rgba(244, 210, 91, 0.85)
+    );
+  }
+  .ornament .diamond {
+    width: 7px;
+    height: 7px;
+    transform: rotate(45deg);
+    background: var(--lj-gold);
+  }
+
+  .invitation h2 {
+    font-family: var(--bhd-serif);
+    font-size: 64px;
+    font-weight: 500;
+    line-height: 1.12;
+    color: var(--bhd-text);
+    margin: 0;
+  }
+  /* the one centred sentence that carries over from the title */
+  .lead {
+    max-width: 760px;
+    margin: 56px auto 0;
+    font-family: var(--bhd-sans);
+    font-size: var(--bhd-body);
+    line-height: 1.8;
+    color: var(--bhd-text);
+    text-wrap: pretty;
+  }
+  /* body returns to the left-aligned teaching voice used page-wide.
+     Spacing here is deliberately close to double — this movement is
+     meant to feel contemplative, not stacked. */
+  .intro {
+    max-width: 760px;
+    margin: 0 auto;
+    text-align: left;
+  }
+  .intro p {
+    font-family: var(--bhd-sans);
+    font-size: var(--bhd-body);
+    line-height: 1.8;
+    color: var(--bhd-text);
+    margin: 44px 0 0;
+  }
+  /* centred pull-line, matching .torah-narrative's quote treatment */
+  .intro .emphasis {
+    font-family: var(--bhd-serif);
+    font-style: italic;
+    font-size: var(--bhd-quote);
+    line-height: 1.6;
+    color: var(--bhd-accent);
+    text-align: center;
+    margin: 56px 0 0;
+    text-wrap: pretty;
+  }
+
+  /* ---------- 2. Two columns ---------- */
+  .columns {
+    max-width: 1200px;
+    margin: 70px auto 0;
+    display: grid;
+    grid-template-columns: 55fr 45fr;
+    gap: 70px;
+    align-items: start;
+  }
+  .columns h3 {
+    font-family: var(--bhd-serif);
+    font-size: 36px;
+    font-weight: 500;
+    line-height: 1.2;
+    color: var(--bhd-text);
+    margin: 0 0 22px;
+  }
+  .col-body {
+    font-family: var(--bhd-sans);
+    font-size: var(--bhd-body);
+    line-height: var(--bhd-body-lh);
+    color: var(--bhd-text);
+    margin: 0 0 1.5em;
+  }
+  /* the line that ties the Chaburah back to the rest of the page —
+     spans both columns so neither one has to carry it */
+  .reconnect {
+    max-width: 820px;
+    margin: 74px auto 0;
+    font-family: var(--bhd-serif);
+    font-style: italic;
+    font-size: var(--bhd-quote);
+    line-height: 1.6;
+    color: var(--bhd-accent);
+    text-align: center;
+    text-wrap: pretty;
+  }
+  .list-heading {
+    font-family: var(--bhd-sans);
+    font-size: 13px;
+    font-weight: 600;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: rgba(79, 52, 34, 0.62);
+    margin: 0 0 22px;
+  }
+  .includes {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .includes li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-family: var(--bhd-sans);
+    font-size: var(--bhd-body);
+    line-height: 1.5;
+    color: var(--bhd-text);
+    margin-bottom: 18px;
+  }
+  .includes li:last-child {
+    margin-bottom: 0;
+  }
+  .tick {
+    flex: 0 0 auto;
+    width: 22px;
+    height: 22px;
+    margin-top: 3px;
+    border-radius: 50%;
+    background: rgba(244, 210, 91, 0.26);
+    color: var(--bhd-accent);
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+  }
+  .tick svg {
+    width: 12px;
+    height: 12px;
+    display: block;
+  }
+
+  /* the two lines that carry the right column */
+  .pull-quote {
+    font-family: var(--bhd-serif);
+    font-size: 30px;
+    font-weight: 500;
+    line-height: 1.35;
+    color: var(--bhd-text);
+    margin: 0 0 48px;
+    white-space: pre-line;
+  }
+  /* a touch more air than the left column, so the two land level */
+  .experience-text p {
+    font-family: var(--bhd-sans);
+    font-size: var(--bhd-body);
+    line-height: var(--bhd-body-lh);
+    color: var(--bhd-text);
+    margin: 0 0 2.35em;
+  }
+  .experience-text p:last-child {
+    margin-bottom: 0;
+  }
+  .experience-text p:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ---------- 3. Final statement ---------- */
+  .closing {
+    max-width: 700px;
+    margin: 0 auto;
+    padding: 110px 0 0;
+    text-align: center;
+  }
+
+  /* the Chaburah, standing on its own between the sentence and the price */
+  .community {
+    max-width: 760px;
+    margin: 76px auto 0;
+    padding: 0;
+  }
+  .community img {
+    display: block;
+    width: 100%;
+    height: auto;
+    border-radius: 12px;
+    box-shadow: 0 12px 34px rgba(79, 52, 34, 0.14);
+  }
+  .closing p {
+    font-family: var(--bhd-serif);
+    font-size: 40px;
+    font-weight: 500;
+    line-height: 1.32;
+    color: var(--bhd-text);
+    margin: 0;
+    text-wrap: balance; /* keeps "growth." from stranding on its own line */
+  }
+
+  /* ---------- 4. Investment ---------- */
+  .investment {
+    max-width: 620px;
+    margin: 0 auto;
+    padding-top: 76px;
+    text-align: center;
+  }
+  .investment h3 {
+    font-family: var(--bhd-serif);
+    font-size: 26px;
+    font-weight: 500;
+    letter-spacing: 0.01em;
+    color: var(--bhd-text);
+    margin: 0;
+  }
+  .price-note {
+    font-family: var(--bhd-sans);
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(79, 52, 34, 0.78);
+    margin: 16px auto 0;
+    max-width: 540px;
+    text-wrap: balance;
+  }
+  .price {
+    font-family: var(--bhd-serif);
+    font-size: 68px;
+    font-weight: 500;
+    line-height: 1.05;
+    color: var(--bhd-accent);
+    margin: 12px 0 0;
+  }
+  .price-includes {
+    list-style: none;
+    margin: 34px 0 0;
+    padding: 0;
+    display: inline-block;
+    text-align: left;
+  }
+  .price-includes li {
+    display: flex;
+    align-items: flex-start;
+    gap: 14px;
+    font-family: var(--bhd-sans);
+    font-size: 16px;
+    line-height: 1.5;
+    color: var(--bhd-text);
+    margin-bottom: 14px;
+  }
+  .price-includes li:last-child {
+    margin-bottom: 0;
+  }
+
+  /* ---------- 5. Call to action ---------- */
+  .cta {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 24px;
+    flex-wrap: wrap;
+    margin-top: 46px;
+  }
+  .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    height: 56px;
+    padding: 0 34px;
+    border-radius: 18px;
+    font-family: var(--bhd-sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    transition: background 0.35s ease, border-color 0.35s ease,
+      color 0.35s ease, box-shadow 0.35s ease;
+  }
+  .btn-primary {
+    background: var(--bhd-accent);
+    border: 1px solid var(--bhd-accent);
+    color: #fdfaf5;
+    box-shadow: 0 6px 18px rgba(164, 112, 79, 0.24);
+  }
+  .btn-primary:hover {
+    background: #96633f;
+    border-color: #96633f;
+    box-shadow: 0 8px 22px rgba(164, 112, 79, 0.32);
+  }
+  .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--bhd-accent);
+    color: var(--bhd-accent);
+  }
+  .btn-secondary:hover {
+    background: var(--bhd-parchment-2);
+    border-color: var(--bhd-text);
+    color: var(--bhd-text);
+  }
+
+  /* ---------- responsive ---------- */
+  @media (max-width: 900px) {
+    .journey {
+      padding: var(--bhd-section-pad) 24px calc(var(--bhd-section-pad) * 0.8);
+    }
+    .invitation h2 {
+      font-size: 42px;
+    }
+    .lead {
+      margin-top: 38px;
+    }
+    .intro p {
+      margin-top: 32px;
+    }
+    .intro .emphasis {
+      margin-top: 40px;
+    }
+    .columns {
+      grid-template-columns: 1fr;
+      gap: 56px;
+      margin-top: 56px;
+    }
+    .columns h3 {
+      font-size: 30px;
+    }
+    .pull-quote {
+      font-size: 25px;
+    }
+    .reconnect {
+      margin-top: 52px;
+    }
+    .closing {
+      padding-top: 72px;
+    }
+    .community {
+      margin-top: 52px;
+    }
+    .closing p {
+      font-size: 30px;
+    }
+    .investment {
+      padding-top: 60px;
+    }
+    .price {
+      font-size: 54px;
+    }
+    .cta {
+      margin-top: 40px;
+    }
+    .btn {
+      width: 100%;
+      max-width: 340px;
+    }
+  }
+</style>

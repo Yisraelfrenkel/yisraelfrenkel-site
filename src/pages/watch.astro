@@ -1,6 +1,6 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { site, freeClassVideo } from "../data/content.js";
+import { site, freeClassVideo, writtenVersion } from "../data/content.js";
 ---
 
 <Layout
@@ -8,11 +8,13 @@ import { site, freeClassVideo } from "../data/content.js";
   description={site.description}
 >
   <main class="watch-page">
-    <section class="watch-hero">
+    <section class="download-panel" id="download-panel" hidden>
+      <h1>Your written version is downloading</h1>
       <p>
-        If you can, set aside one uninterrupted hour. The final portion is
-        questions and answers, so you can stop there if you need to.
+        If it didn't start automatically, you can
+        <a href={writtenVersion.file} download={writtenVersion.filename}>download it here</a>.
       </p>
+      <p class="download-sub" id="download-status"></p>
     </section>
 
     <section class="player-wrap">
@@ -20,7 +22,13 @@ import { site, freeClassVideo } from "../data/content.js";
         <div id="player"></div>
       </div>
       <p class="status" id="watch-status"></p>
-      <a href={freeClassVideo.returnUrl} class="manual-link">Continue the Journey now →</a>
+      <a href={freeClassVideo.returnUrl} class="manual-link">← Return to the main page</a>
+      <p class="written-fallback">
+        Prefer to read it?
+        <a href={writtenVersion.file} download={writtenVersion.filename}>
+          Download the written version (PDF)
+        </a>
+      </p>
     </section>
   </main>
 </Layout>
@@ -35,24 +43,15 @@ import { site, freeClassVideo } from "../data/content.js";
     min-height: 100vh;
     width: 100%;
   }
-  .watch-hero {
-    max-width: 900px;
-    margin: 0 auto;
-    padding: 72px 24px 32px;
-    text-align: center;
-  }
-  .watch-hero p {
-    font-family: "Inter", system-ui, sans-serif;
-    font-size: 16px;
-    line-height: 1.6;
-    color: rgba(79, 52, 34, 0.75);
-    margin: 0;
-  }
   .player-wrap {
     max-width: 900px;
     margin: 0 auto;
-    padding: 0 24px 96px;
+    padding: 72px 24px 96px;
     text-align: center;
+  }
+  /* when the download panel is showing, it supplies the top spacing */
+  .download-panel:not([hidden]) + .player-wrap {
+    padding-top: 32px;
   }
   .player-frame {
     width: 100%;
@@ -72,6 +71,35 @@ import { site, freeClassVideo } from "../data/content.js";
     color: rgba(79, 52, 34, 0.6);
     margin: 20px 0 0;
   }
+  .download-panel {
+    max-width: 900px;
+    margin: 0 auto;
+    padding: 72px 24px 8px;
+    text-align: center;
+    font-family: "Inter", system-ui, sans-serif;
+  }
+  .download-panel h1 {
+    font-family: var(--bhd-serif, Georgia, serif);
+    font-size: 30px;
+    font-weight: 500;
+    margin: 0 0 12px;
+    color: var(--wp-text);
+  }
+  .download-panel p {
+    font-size: 16px;
+    line-height: 1.6;
+    color: rgba(79, 52, 34, 0.75);
+    margin: 0 0 6px;
+  }
+  .download-panel .download-sub {
+    font-style: italic;
+    color: rgba(79, 52, 34, 0.55);
+    margin-top: 14px;
+  }
+  .download-panel a {
+    color: var(--wp-accent);
+    font-weight: 500;
+  }
   .manual-link {
     display: inline-block;
     margin-top: 20px;
@@ -90,10 +118,66 @@ import { site, freeClassVideo } from "../data/content.js";
     background: #f3eee4;
     border-color: var(--wp-text);
   }
+  .written-fallback {
+    font-family: "Inter", system-ui, sans-serif;
+    font-size: 14px;
+    color: rgba(79, 52, 34, 0.6);
+    margin: 24px 0 0;
+  }
+  .written-fallback a {
+    color: var(--wp-accent);
+    font-weight: 500;
+    text-decoration: none;
+    border-bottom: 1px solid rgba(164, 112, 79, 0.4);
+  }
+  .written-fallback a:hover {
+    color: var(--wp-text);
+    border-bottom-color: var(--wp-text);
+  }
 </style>
 
-<script define:vars={{ videoId: freeClassVideo.id, returnUrl: freeClassVideo.returnUrl }}>
+<script
+  define:vars={{
+    videoId: freeClassVideo.id,
+    returnUrl: freeClassVideo.returnUrl,
+    intentKey: writtenVersion.intentKey,
+    pdfUrl: writtenVersion.file,
+    pdfName: writtenVersion.filename,
+  }}
+>
   const statusEl = document.getElementById("watch-status");
+
+  // Someone who asked for the written version filled out the same Tally form,
+  // which redirects everyone here. The flag was set before they left the site.
+  (function deliverWrittenVersion() {
+    let wanted = false;
+    try {
+      wanted = localStorage.getItem(intentKey) === "1";
+      if (wanted) localStorage.removeItem(intentKey);
+    } catch (e) {
+      return;
+    }
+    if (!wanted) return;
+
+    const panel = document.getElementById("download-panel");
+    if (panel) panel.hidden = false;
+
+    const a = document.createElement("a");
+    a.href = pdfUrl;
+    a.download = pdfName;
+    document.body.appendChild(a);
+    a.click();
+    a.remove();
+
+    // The download is handled by the browser and keeps going once we leave,
+    // so send them back to the main page on their own. The delay gives the
+    // download time to appear and lets them read the message first.
+    const dlStatus = document.getElementById("download-status");
+    if (dlStatus) dlStatus.textContent = "Taking you back to the main page…";
+    setTimeout(() => {
+      window.location.href = returnUrl;
+    }, 4000);
+  })();
 
   function goBack() {
     if (statusEl) statusEl.textContent = "Thank you for watching — taking you to the next step…";
