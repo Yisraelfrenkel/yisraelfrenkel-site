@@ -173,16 +173,17 @@ export const journeyInvite = {
   // the Avraham section and the Mevushat LaBrit painting, so the name lands
   // on something they are already holding.
   naming:
-    "This is why the Chaburah is called Or HaBris—the light of the Bris. Avraham was never asked to remove his desire, only what stood in its way, and what had been hidden there all along was finally revealed. That is the work we do together: establishing a true Bris with ourselves, so that we can build a true Bris with our wives, and ultimately with Hashem.",
+    "This is why the Chaburah is called Or HaBris—the light of the Bris. Avraham was never asked to remove his desire, only what stood in its way, and what had been hidden there all along was finally revealed.",
+  // Closes the paragraph in italic copper, carrying the accent that the
+  // removed "Week by week" line used to hold.
+  namingClose:
+    "That is the work we do together: establishing a true Bris with ourselves, so that we can build a true Bris with our wives, and ultimately with Hashem.",
   introEmphasis:
     "The Torah is learned together, but perhaps even more importantly, the work of becoming the people Hashem created us to be is done together.",
 
   expect: {
     heading: "Inside the Chaburah",
     body: "Each Chaburah meets weekly over five sessions, with each meeting building upon the last as we gradually develop a new understanding of ourselves and the path toward lasting growth.",
-    // Ties the offer back to the promise the whole page has been making.
-    reconnect:
-      "Week by week, we continue learning how every human desire can become another step toward Hashem rather than another source of shame.",
     listHeading: "Each Chaburah Includes",
     items: [
       "Live 90-minute Zoom Chaburah",
@@ -218,7 +219,7 @@ export const journeyInvite = {
   investment: {
     heading: "Joining the Chaburah",
     // Read before the number, so the number lands as an answer.
-    note: "A one-time investment for the complete five-week journey.",
+    note: "A one-time investment for the complete five-week Or HaBris journey.",
     price: "$399",
     includes: [
       "Five live Chaburah sessions",

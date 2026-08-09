@@ -15,7 +15,10 @@ const { expect, experience, investment } = journeyInvite;
     <p class="lead">{journeyInvite.lead}</p>
     <div class="intro">
       {journeyInvite.intro.map((p) => <p>{p}</p>)}
-      <p class="naming">{journeyInvite.naming}</p>
+      <p class="naming">
+        {journeyInvite.naming}{" "}
+        <em class="naming-close">{journeyInvite.namingClose}</em>
+      </p>
       <p class="emphasis">{journeyInvite.introEmphasis}</p>
     </div>
   </div>
@@ -49,8 +52,6 @@ const { expect, experience, investment } = journeyInvite;
     </div>
   </div>
 
-  {/* Spans both columns — the line that ties the Chaburah back to the page */}
-  <p class="reconnect reveal">{expect.reconnect}</p>
 
   {/* 3 — Final statement */}
   <div class="closing reveal">
@@ -182,6 +183,11 @@ const { expect, experience, investment } = journeyInvite;
   .intro .naming {
     margin-top: 56px;
   }
+  /* carries the copper accent the removed "Week by week" line used to hold */
+  .naming-close {
+    font-style: italic;
+    color: var(--bhd-accent);
+  }
   /* centred pull-line, matching .torah-narrative's quote treatment */
   .intro .emphasis {
     font-family: var(--bhd-serif);
@@ -217,19 +223,6 @@ const { expect, experience, investment } = journeyInvite;
     line-height: var(--bhd-body-lh);
     color: var(--bhd-text);
     margin: 0 0 1.5em;
-  }
-  /* the line that ties the Chaburah back to the rest of the page —
-     spans both columns so neither one has to carry it */
-  .reconnect {
-    max-width: 820px;
-    margin: 74px auto 0;
-    font-family: var(--bhd-serif);
-    font-style: italic;
-    font-size: var(--bhd-quote);
-    line-height: 1.6;
-    color: var(--bhd-accent);
-    text-align: center;
-    text-wrap: pretty;
   }
   .list-heading {
     font-family: var(--bhd-sans);
@@ -458,9 +451,6 @@ const { expect, experience, investment } = journeyInvite;
     }
     .pull-quote {
       font-size: 25px;
-    }
-    .reconnect {
-      margin-top: 52px;
     }
     .closing {
       padding-top: 72px;
