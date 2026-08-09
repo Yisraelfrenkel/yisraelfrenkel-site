@@ -166,7 +166,10 @@ const [introBlock, floatP, lineUnderPhoto, ...restBlocks] = about.blocks;
   .essay-open {
     max-width: 970px;
     margin: 0 auto;
-    padding: 0 32px 12px;
+    /* The 1px top padding isn't decorative — without it, the floated
+       paragraph's margin-top collapses straight through this container
+       instead of pushing the paragraph down inside it. */
+    padding: 1px 32px 12px;
     text-align: left;
   }
   .portrait-float {
@@ -183,10 +186,10 @@ const [introBlock, floatP, lineUnderPhoto, ...restBlocks] = about.blocks;
     font-family: var(--ab-sans);
     font-size: 18px;
     line-height: 1.65;
-    /* Starts a bit into the photo's height (not flush with its top) so
+    /* Starts well into the photo's height (not flush with its top) so
        the paragraph's natural end sits closer to the photo's bottom,
        instead of leaving a tall gap of empty parchment beneath it. */
-    margin: 44px 0 27px;
+    margin: 130px 0 27px;
     color: var(--ab-text);
   }
   .clearfix {
@@ -238,7 +241,7 @@ const [introBlock, floatP, lineUnderPhoto, ...restBlocks] = about.blocks;
   .credentials-lead {
     font-family: var(--ab-serif);
     font-style: italic;
-    font-size: 20px;
+    font-size: 25px;
     color: var(--ab-text);
     margin: 0 0 18px;
   }
