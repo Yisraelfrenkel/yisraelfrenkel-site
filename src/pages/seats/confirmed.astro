@@ -1,0 +1,32 @@
+---
+import SeatsLayout from "../../layouts/SeatsLayout.astro";
+import { config } from "../../data/seating.js";
+---
+
+<SeatsLayout title="You're seated" subtitle={`${config.shulName} · ${config.season}`}>
+  <div class="card" style="text-align:center">
+    <p style="font-family:var(--font-display);font-size:1.6rem;margin:0.5rem 0 0.25rem" id="seat-line">
+      &nbsp;
+    </p>
+    <p class="muted" id="name-line" style="margin:0 0 1.5rem">&nbsp;</p>
+    <p style="font-size:0.95rem;line-height:1.6;margin:0 0 1.5rem">
+      Take a screenshot of this. Your name is now on the chart for everyone to
+      see, so nobody can take the seat from under you.
+    </p>
+    <a class="btn btn--ghost" href="/seats/">See the full chart</a>
+  </div>
+</SeatsLayout>
+
+<script>
+  const raw = sessionStorage.getItem("seat");
+  const seatLine = document.getElementById("seat-line");
+  const nameLine = document.getElementById("name-line");
+  if (raw) {
+    const seat = JSON.parse(raw);
+    seatLine.textContent = `${seat.section === "men" ? "Men" : "Women"} — seat ${seat.number}`;
+    nameLine.textContent = seat.name;
+  } else {
+    seatLine.textContent = "Seat confirmed";
+    nameLine.textContent = "Open the chart to find your name.";
+  }
+</script>

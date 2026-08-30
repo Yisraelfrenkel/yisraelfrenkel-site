@@ -1,0 +1,37 @@
+---
+import SeatsLayout from "../../layouts/SeatsLayout.astro";
+import SeatMap from "../../components/seats/SeatMap.astro";
+import { config } from "../../data/seating.js";
+---
+
+<SeatsLayout
+  title={`${config.shulName} — Seating`}
+  subtitle={`${config.season} · ${config.priceLabel}`}
+>
+  <div class="card" style="margin-bottom:2rem;text-align:center">
+    <p style="margin:0 0 1rem;font-size:0.95rem;line-height:1.6">
+      Green seats are still open. Grey ones are taken.<br />
+      <strong>Pay first</strong> — the sign-up link comes with your receipt,
+      and that link is what lets you put your name on a seat.
+    </p>
+    <a class="btn" href={config.paymentUrl} rel="noopener">Pay &amp; reserve a seat</a>
+    <p class="muted" style="margin:0.9rem 0 0">
+      Already paid? Use the link on your receipt.
+    </p>
+  </div>
+
+  <SeatMap mode="view" />
+
+  <p class="muted" style="margin-top:1.5rem;text-align:center">
+    This page updates itself. Pull down to refresh if you've just paid.
+  </p>
+</SeatsLayout>
+
+<script>
+  import { refreshSeats } from "../../scripts/seats-client.js";
+  refreshSeats();
+  setInterval(refreshSeats, 15000);
+  document.addEventListener("visibilitychange", () => {
+    if (!document.hidden) refreshSeats();
+  });
+</script>

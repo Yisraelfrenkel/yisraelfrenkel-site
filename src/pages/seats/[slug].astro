@@ -1,0 +1,146 @@
+---
+import SeatsLayout from "../../layouts/SeatsLayout.astro";
+import SeatMap from "../../components/seats/SeatMap.astro";
+import { config } from "../../data/seating.js";
+
+export function getStaticPaths() {
+  const slug = config.claimPath.replace(/^\/seats\//, "").replace(/\/$/, "");
+  return [{ params: { slug } }];
+}
+---
+
+<SeatsLayout
+  title="Choose your seat"
+  subtitle={`${config.shulName} · ${config.season}`}
+>
+  <form class="card" id="claim-form" style="margin-bottom:2rem">
+    <div class="field">
+      <label for="receipt">Cardcom confirmation number</label>
+      <input
+        type="text"
+        id="receipt"
+        name="receipt"
+        required
+        autocomplete="off"
+        inputmode="numeric"
+        placeholder="From your payment receipt"
+      />
+      <p class="muted" style="margin:0.35rem 0 0">
+        It's on the receipt Cardcom emailed you. Each number seats one person.
+      </p>
+    </div>
+
+    <div class="field">
+      <label for="name">Name as it should appear on the chart</label>
+      <input type="text" id="name" name="name" required maxlength="40" placeholder="e.g. R' Moshe Cohen" />
+    </div>
+
+    <div class="field">
+      <label for="phone">Phone (so the gabbai can reach you)</label>
+      <input type="tel" id="phone" name="phone" required maxlength="24" placeholder="05X-XXX-XXXX" />
+    </div>
+
+    <div class="field" style="margin-bottom:0.5rem">
+      <label>Seat</label>
+      <p id="chosen" class="muted" style="margin:0">
+        Tap an open seat on the chart below.
+      </p>
+    </div>
+
+    <button class="btn" type="submit" id="submit" disabled style="width:100%;margin-top:0.75rem">
+      Take this seat
+    </button>
+    <p class="err" id="error" hidden></p>
+  </form>
+
+  <SeatMap mode="pick" />
+
+  <p class="muted" style="margin-top:1.5rem;text-align:center">
+    Seats are first come, first served. A seat is yours the moment it turns gold.
+  </p>
+</SeatsLayout>
+
+<script>
+  import { refreshSeats, paintSeats, fetchSeats } from "../../scripts/seats-client.js";
+
+  const form = document.getElementById("claim-form");
+  const chosenEl = document.getElementById("chosen");
+  const submitEl = document.getElementById("submit");
+  const errorEl = document.getElementById("error");
+  let chosen = null;
+
+  function selectSeat(el) {
+    if (el.dataset.status === "taken") return;
+    for (const s of document.querySelectorAll(".seat[aria-pressed='true']")) {
+      s.setAttribute("aria-pressed", "false");
+    }
+    el.setAttribute("aria-pressed", "true");
+    chosen = el.dataset.seat;
+    const section = el.dataset.section === "men" ? "Men" : "Women";
+    const num = el.querySelector(".seat-num").textContent;
+    chosenEl.textContent = `${section} — seat ${num}`;
+    chosenEl.classList.remove("muted");
+    submitEl.disabled = false;
+  }
+
+  document.querySelector(".room").addEventListener("click", (e) => {
+    const el = e.target.closest(".seat");
+    if (el) selectSeat(el);
+  });
+
+  function clearChoiceIfGone() {
+    if (!chosen) return;
+    const el = document.querySelector(`.seat[data-seat="${chosen}"]`);
+    if (el && el.dataset.status === "taken") {
+      chosen = null;
+      submitEl.disabled = true;
+      chosenEl.textContent = "That seat was just taken — please choose another.";
+      chosenEl.classList.add("muted");
+    } else if (el) {
+      el.setAttribute("aria-pressed", "true");
+    }
+  }
+
+  async function refresh() {
+    try {
+      paintSeats(await fetchSeats());
+      clearChoiceIfGone();
+    } catch {}
+  }
+
+  refresh();
+  setInterval(refresh, 12000);
+
+  form.addEventListener("submit", async (e) => {
+    e.preventDefault();
+    errorEl.hidden = true;
+    submitEl.disabled = true;
+    submitEl.textContent = "Saving…";
+
+    const body = {
+      seatId: chosen,
+      receipt: form.receipt.value.trim(),
+      name: form.name.value.trim(),
+      phone: form.phone.value.trim(),
+    };
+
+    try {
+      const res = await fetch("/api/claim", {
+        method: "POST",
+        headers: { "content-type": "application/json" },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+      if (!res.ok) throw new Error(data.error || "Something went wrong.");
+
+      sessionStorage.setItem("seat", JSON.stringify(data.seat));
+      location.href = "/seats/confirmed/";
+    } catch (err) {
+      errorEl.textContent = err.message;
+      errorEl.hidden = false;
+      submitEl.disabled = false;
+      submitEl.textContent = "Take this seat";
+      refresh();
+    }
+  });
+</script>

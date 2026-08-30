@@ -1,0 +1,285 @@
+---
+import { grid, fixtures, menSeats, womenSeats, menBlocks, womenBlocks } from "../../data/seating.js";
+
+export interface Props {
+  /** "view" = read-only chart. "pick" = seats are clickable buttons. */
+  mode?: "view" | "pick";
+}
+const { mode = "view" } = Astro.props;
+
+const sections = [
+  { key: "men", title: "Men", rows: grid.menRows, seats: menSeats, blocks: menBlocks, fixtures: fixtures.men },
+  { key: "women", title: "Women — Ezras Nashim", rows: grid.womenRows, seats: womenSeats, blocks: womenBlocks, fixtures: fixtures.women },
+];
+---
+
+<div class="room" data-mode={mode}>
+  {sections.map((s, i) => (
+    <>
+      {i === 1 && (
+        <div class="mechitza"><span>Mechitza</span></div>
+      )}
+      <section class="sect" aria-label={s.title}>
+        <header class="sect-head">
+          <h3>{s.title}</h3>
+          <p class="tally" data-tally={s.key}>&nbsp;</p>
+        </header>
+
+        <div
+          class="plan"
+          style={`--cols:${grid.cols}; --rows:${s.rows};`}
+        >
+          {s.fixtures.map((f) => (
+            <div
+              class={`fixture fixture--${f.kind}`}
+              style={`grid-column:${f.col} / span ${f.cols}; grid-row:${f.row} / span ${f.rows};`}
+            >
+              <span>{f.label}</span>
+            </div>
+          ))}
+
+          {s.blocks.map((b) => (
+            <div
+              class="block-outline"
+              style={`grid-column:${b.col} / span ${b.cols}; grid-row:${b.row} / span ${b.rows};`}
+              aria-hidden="true"
+            ></div>
+          ))}
+
+          {s.seats.map((seat) => (
+            <button
+              type="button"
+              class="seat"
+              data-seat={seat.id}
+              data-section={seat.section}
+              disabled={mode === "view"}
+              style={`grid-column:${seat.col} / span ${seat.w}; grid-row:${seat.row};`}
+              title={`${s.title} · seat ${seat.number} · ${seat.blockLabel}`}
+            >
+              <span class="seat-num">{seat.number}</span>
+              <span class="seat-name" data-name></span>
+            </button>
+          ))}
+        </div>
+      </section>
+    </>
+  ))}
+</div>
+
+<style>
+  .room {
+    --seat-open: #eef3e6;
+    --seat-open-line: #9bab7c;
+    --seat-taken: #ded5c4;
+    --seat-taken-ink: #7b7061;
+    --seat-mine: #a6822e;
+    display: flex;
+    flex-direction: column;
+    gap: 0;
+  }
+
+  .sect-head {
+    display: flex;
+    align-items: baseline;
+    justify-content: space-between;
+    gap: 1rem;
+    margin: 0 0 0.5rem;
+  }
+  .sect-head h3 {
+    font-family: var(--font-display, serif);
+    font-size: 1.05rem;
+    letter-spacing: 0.08em;
+    text-transform: uppercase;
+    margin: 0;
+  }
+  .tally {
+    margin: 0;
+    font-family: var(--font-ui, sans-serif);
+    font-size: 0.8rem;
+    color: var(--ink-soft, #6b6055);
+    font-variant-numeric: tabular-nums;
+  }
+
+  .plan {
+    display: grid;
+    grid-template-columns: repeat(var(--cols), minmax(0, 1fr));
+    grid-template-rows: repeat(var(--rows), minmax(30px, auto));
+    gap: 3px;
+    padding: 10px;
+    background: #fdfaf2;
+    border: 1px solid var(--line, rgba(43, 36, 32, 0.12));
+    border-radius: 4px;
+  }
+  .sect + .sect .plan,
+  .sect .plan {
+    /* keep both sections visually one room */
+  }
+
+  /* ---- seats ---- */
+  .seat {
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 1px;
+    min-height: 30px;
+    padding: 2px;
+    border: 1px solid var(--seat-open-line);
+    border-radius: 3px;
+    background: var(--seat-open);
+    color: var(--ink, #2b2420);
+    font-family: var(--font-ui, sans-serif);
+    line-height: 1.1;
+    cursor: default;
+    overflow: hidden;
+    transition: transform 0.12s ease, box-shadow 0.12s ease;
+  }
+  .seat-num {
+    font-size: 0.72rem;
+    font-weight: 600;
+    font-variant-numeric: tabular-nums;
+  }
+  .seat-name {
+    font-size: 0.54rem;
+    max-width: 100%;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+    color: var(--seat-taken-ink);
+  }
+  .seat-name:empty {
+    display: none;
+  }
+
+  .seat[data-status="taken"] {
+    background: var(--seat-taken);
+    border-color: #c3b69f;
+    color: var(--seat-taken-ink);
+  }
+  .seat[data-status="taken"] .seat-num {
+    opacity: 0.65;
+  }
+
+  .room[data-mode="pick"] .seat:not([data-status="taken"]) {
+    cursor: pointer;
+  }
+  .room[data-mode="pick"] .seat:not([data-status="taken"]):hover {
+    transform: translateY(-1px);
+    box-shadow: 0 3px 10px rgba(43, 36, 32, 0.18);
+  }
+  .room[data-mode="pick"] .seat[data-status="taken"] {
+    cursor: not-allowed;
+  }
+  .seat[aria-pressed="true"] {
+    background: var(--seat-mine);
+    border-color: #7d621f;
+    color: #fff;
+  }
+  .seat[aria-pressed="true"] .seat-name {
+    color: rgba(255, 255, 255, 0.85);
+  }
+
+  /* ---- fixtures ---- */
+  .fixture {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border-radius: 3px;
+    font-family: var(--font-ui, sans-serif);
+    font-size: 0.6rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+    text-align: center;
+    color: var(--ink-soft, #6b6055);
+    background: repeating-linear-gradient(
+      45deg,
+      rgba(43, 36, 32, 0.035),
+      rgba(43, 36, 32, 0.035) 4px,
+      transparent 4px,
+      transparent 8px
+    );
+    border: 1px dashed rgba(43, 36, 32, 0.28);
+    padding: 2px;
+  }
+  .fixture--aron {
+    background: var(--gold-soft, rgba(166, 130, 46, 0.14));
+    border: 1px solid var(--gold, #a6822e);
+    color: var(--gold, #a6822e);
+    font-weight: 600;
+  }
+  .fixture--bima {
+    background: rgba(43, 36, 32, 0.05);
+    border-style: solid;
+  }
+  .fixture--door {
+    border-style: solid;
+    border-color: transparent;
+    border-bottom: 2px solid var(--ink-soft, #6b6055);
+    background: none;
+  }
+
+  /* The faint tray each table/bench sits on, so the groupings in the room
+     read at a glance even though the seats themselves carry the numbers. */
+  .block-outline {
+    margin: -3px;
+    border: 1px solid rgba(43, 36, 32, 0.16);
+    border-radius: 5px;
+    background: rgba(43, 36, 32, 0.022);
+    pointer-events: none;
+  }
+
+  /* ---- mechitza ---- */
+  .mechitza {
+    display: flex;
+    align-items: center;
+    gap: 0.75rem;
+    margin: 1.25rem 0;
+    color: var(--ink-soft, #6b6055);
+    font-family: var(--font-ui, sans-serif);
+    font-size: 0.62rem;
+    letter-spacing: 0.24em;
+    text-transform: uppercase;
+  }
+  .mechitza::before,
+  .mechitza::after {
+    content: "";
+    flex: 1;
+    height: 0;
+    border-top: 3px double var(--stone-deep, #b9a374);
+  }
+
+  .sect + .mechitza {
+    margin-top: 1.25rem;
+  }
+  .mechitza + .sect {
+    margin-top: 0;
+  }
+  .sect {
+    margin-bottom: 0;
+  }
+  .sect:first-of-type {
+    margin-bottom: 0;
+  }
+
+  @media (max-width: 640px) {
+    .plan {
+      gap: 2px;
+      padding: 6px;
+      grid-template-rows: repeat(var(--rows), minmax(24px, auto));
+    }
+    .seat {
+      min-height: 24px;
+    }
+    .seat-num {
+      font-size: 0.6rem;
+    }
+    .seat-name {
+      display: none;
+    }
+    .fixture {
+      font-size: 0.48rem;
+      letter-spacing: 0.04em;
+    }
+  }
+</style>
