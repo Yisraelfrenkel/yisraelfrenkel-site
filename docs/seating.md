@@ -1,6 +1,6 @@
 # Shul seating — how it works and how to run it
 
-Three pages, one database, no spreadsheets and no chasing people in WhatsApp.
+Three pages, no spreadsheets, and no chasing people in WhatsApp.
 
 | Page | Who sees it | What it does |
 | --- | --- | --- |
@@ -36,29 +36,28 @@ because the confirmation number is the actual ticket.
 
 ## Setting it up
 
-Run this from the project folder:
+**There is nothing to set up.** Publishing the site is the whole of it.
+
+The seating data lives in a Durable Object, which Cloudflare creates from
+`worker/index.js` the moment the site deploys — no database to create, no id to
+paste, no secret to set. If the site publishes from GitHub, pushing is enough.
+If it publishes by hand, it's the same command as always:
 
 ```bash
-bash scripts/setup-seating.sh
-```
-
-It logs you into Cloudflare, creates the database, writes its id into
-`wrangler.toml`, creates the tables, asks for an admin password and deploys.
-Safe to re-run — it skips whatever is already done. Two prompts: a browser
-window for the Cloudflare login, and the admin password (what unlocks
-`/seats/admin/`).
-
-<details>
-<summary>The same thing by hand, if the script fails</summary>
-
-```bash
-npx wrangler login
-npx wrangler d1 create shul-seating      # paste the id into wrangler.toml
-npx wrangler d1 execute shul-seating --remote --file=./schema.sql
-npx wrangler secret put ADMIN_TOKEN      # type a password
 npm run build && npx wrangler deploy
 ```
-</details>
+
+### The one thing to do immediately after it's live
+
+Open **`/seats/admin/`** and choose a password. The chart has no password until
+someone sets one, and the first visitor is who sets it. Nothing links to that
+page and it's excluded from search engines, so in practice you have as long as
+you need — but do it before you post the chart link to WhatsApp, and write the
+password down.
+
+(If you'd rather manage the password in the Cloudflare dashboard instead, add a
+secret called `ADMIN_TOKEN` to the Worker — set, it overrides the one chosen on
+the page.)
 
 ### Then, in this order
 

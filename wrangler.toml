@@ -6,10 +6,13 @@ compatibility_date = "2026-01-01"
 directory = "./dist"
 binding = "ASSETS"
 
-# Seating chart storage. Create it once with:
-#   npx wrangler d1 create shul-seating
-# then paste the database_id it prints in below.
-[[d1_databases]]
-binding = "DB"
-database_name = "shul-seating"
-database_id = "REPLACE_WITH_D1_DATABASE_ID"
+# The seating chart's storage. A Durable Object is created by deploying this
+# file, so there is nothing to set up in the Cloudflare dashboard and no
+# database id to paste in here.
+[[durable_objects.bindings]]
+name = "SEATING"
+class_name = "Seating"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Seating"]
