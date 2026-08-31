@@ -54,8 +54,11 @@ export const config = {
   // Change this string any time to invalidate the old link.
   claimPath: "/seats/claim-5787-kesser",
 
-  contactName: "REPLACE — gabbai name",
-  contactWhatsapp: "https://wa.me/972000000000",
+  // Shown in the footer of every page. Whoever is named here is who people
+  // message when the system can't help them — a refused confirmation number, a
+  // seat they need moving. Without it they message nobody and just turn up.
+  contactName: "Daniel Avrek",
+  contactWhatsapp: "https://wa.me/972547142375",
 
   // Callouts shown above the chart, colour-matched to their section. Set a
   // section to "" (or delete the line) to drop its note.
