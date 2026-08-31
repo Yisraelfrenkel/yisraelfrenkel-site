@@ -43,6 +43,8 @@ priceLabel                // e.g. "₪180 per seat"
 claimPath                 // the secret sign-up path — change it to something
                           // only you know before you go live
 contactName, contactWhatsapp
+sectionNotes              // a message shown above the chart for the men's or
+                          // women's section — set one to "" to drop it
 ```
 
 ### 2. Create the database

@@ -1,5 +1,7 @@
 ---
-import { grid, fixtures, placedBlocks, allSeats } from "../../data/seating.js";
+import { grid, fixtures, placedBlocks, allSeats, config } from "../../data/seating.js";
+
+const notes = Object.entries(config.sectionNotes ?? {}).filter(([, text]) => text);
 
 export interface Props {
   /** "view" = read-only chart. "pick" = seats are clickable buttons. */
@@ -13,6 +15,13 @@ const { mode = "view" } = Astro.props;
     <span class="tally tally--men"><b>Men</b> <span data-tally="men">&nbsp;</span></span>
     <span class="tally tally--women"><b>Women</b> <span data-tally="women">&nbsp;</span></span>
   </div>
+
+  {notes.map(([section, text]) => (
+    <p class={`note note--${section}`}>
+      <b>{section === "men" ? "Men" : "Women"}</b>
+      {text}
+    </p>
+  ))}
 
   <div class="plan-scroll">
     <div class="plan" style={`--cols:${grid.cols}; --rows:${grid.rows};`}>
@@ -105,6 +114,43 @@ const { mode = "view" } = Astro.props;
   .tally--women::before {
     background: var(--women);
     border-color: var(--women);
+  }
+
+  /* ---- section callout ---- */
+  .note {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: baseline;
+    gap: 0.5rem;
+    margin: 0 0 0.75rem;
+    padding: 0.6rem 0.8rem;
+    border-left: 3px solid var(--ink-soft, #6b6055);
+    border-radius: 0 4px 4px 0;
+    background: rgba(43, 36, 32, 0.04);
+    font-family: var(--font-ui, sans-serif);
+    font-size: 0.8rem;
+    line-height: 1.5;
+    color: var(--ink, #2b2420);
+  }
+  .note b {
+    flex: none;
+    font-size: 0.68rem;
+    letter-spacing: 0.1em;
+    text-transform: uppercase;
+  }
+  .note--men {
+    border-left-color: var(--men);
+    background: var(--men-fill);
+  }
+  .note--men b {
+    color: var(--men);
+  }
+  .note--women {
+    border-left-color: var(--women);
+    background: var(--women-fill);
+  }
+  .note--women b {
+    color: var(--women);
   }
 
   /* ---- the room ---- */

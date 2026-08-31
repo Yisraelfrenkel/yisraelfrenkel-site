@@ -43,6 +43,15 @@ export const config = {
 
   contactName: "REPLACE — gabbai name",
   contactWhatsapp: "https://wa.me/972000000000",
+
+  // Callouts shown above the chart, colour-matched to their section. Set a
+  // section to "" (or delete the line) to drop its note.
+  sectionNotes: {
+    men: "",
+    women:
+      "The tables will all be taken out to make room for more seats, so there " +
+      "will be more places than the chart shows.",
+  },
 };
 
 /* The grid the whole room is drawn on. */
