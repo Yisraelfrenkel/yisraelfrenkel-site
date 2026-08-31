@@ -5,7 +5,7 @@ Three pages, one database, no spreadsheets and no chasing people in WhatsApp.
 | Page | Who sees it | What it does |
 | --- | --- | --- |
 | `/seats/` | **The WhatsApp group.** This is the link you send. | The chart, live. Green = open, grey = taken, with names. One button: pay. |
-| `/seats/claim-5787-kesser/` | Only people who have paid. | Same chart, but seats are tappable. Enter your Cardcom confirmation number + name, tap a seat, done. |
+| `/seats/claim-5787-kesser/` | Only people who have paid. | Same chart, but seats are tappable. Enter your Cardcom confirmation number + name, tap a seat, done. Paid ₪300? It walks you through both seats. |
 | `/seats/admin/` | Only you. | Place the names you've already promised, edit or free any seat, download the list as CSV. |
 
 None of these are linked from the rest of the site, none appear in the nav or
@@ -19,10 +19,13 @@ folder. Nobody browsing yisraelfrenkel.com will stumble into them.
 1. You post the `/seats/` link to the WhatsApp group.
 2. Someone taps **Pay & reserve a seat** → Cardcom.
 3. Cardcom's thank-you page (and receipt email) gives them the sign-up link.
-4. They open it, type the confirmation number off their receipt, pick a seat,
-   and their name lands on the chart for the whole group to see.
-5. Nobody can take a seat that's grey. Nobody can sign up without a
-   confirmation number. One confirmation number seats one person.
+4. They open it, type the confirmation number off their receipt, say whether
+   they paid ₪200 or ₪300, pick a seat, and their name lands on the chart for
+   the whole group to see.
+5. On ₪300 they're taken straight back to pick the second seat, with the
+   confirmation number already filled in.
+6. Nobody can take a seat that's grey. Nobody can sign up without a
+   confirmation number, and a number only covers the seats it paid for.
 
 That last point is what makes this work without you approving anything: the
 sign-up link *will* get forwarded around the group, and it doesn't matter,
@@ -38,8 +41,10 @@ Open `src/data/seating.js` and replace everything marked `REPLACE`:
 
 ```js
 shulName, season          // the heading
-paymentUrl                // your Cardcom link
-priceLabel                // e.g. "₪180 per seat"
+pricing                   // { currency: "₪", one: 200, two: 300 }
+paymentUrl                // Cardcom link for ₪200
+paymentUrlTwo             // Cardcom link for ₪300 — same link is fine if your
+                          // Cardcom page lets the payer choose the amount
 claimPath                 // the secret sign-up path — change it to something
                           // only you know before you go live
 contactName, contactWhatsapp
@@ -141,9 +146,10 @@ After any change: `npm run build && npx wrangler deploy`.
 ## Running it during the season
 
 - **Watch it fill up** — `/seats/` shows the tally live.
-- **Someone paid twice / needs moving** — `/seats/admin/`, free the old seat
-  (their confirmation number goes back into play automatically), then either
-  place them yourself or let them re-pick.
+- **Someone paid twice / needs moving** — `/seats/admin/`, free the old seat.
+  That hands exactly one seat back to their confirmation number, so a ₪300
+  payer who moves one of their two keeps the other. Then place them yourself
+  or let them re-pick.
 - **Print the list for the gabbai** — `/seats/admin/` → **Download list (CSV)**,
   opens in Excel.
 - **Kill the sign-up link** — change `claimPath` in `seating.js` and redeploy.
@@ -154,9 +160,12 @@ After any change: `npm run build && npx wrangler deploy`.
 ## What this deliberately does not do
 
 - **It doesn't verify with Cardcom.** It trusts that a confirmation number
-  someone types is real, and only enforces that each one is used once. If you
-  ever want real verification, Cardcom's API can confirm a transaction —
-  that's a change to `/api/claim` in `worker/index.js` and nothing else.
+  someone types is real, and enforces only that each one is used no more times
+  than it paid for. Which price a person picks on the form is on their word
+  too — the CSV export has a `seats_on_receipt` column so you can eyeball the
+  pair claims against the ₪300 payments in Cardcom. If you ever want real
+  verification, Cardcom's API can confirm a transaction and its amount — that's
+  a change to `/api/claim` in `worker/index.js` and nothing else.
 - **It doesn't hold seats while someone thinks.** A seat is taken the instant
   the button is pressed, not before. At 55 seats that is the right trade.
 - **It doesn't take payment itself.** Cardcom does. No card details ever touch

@@ -80,11 +80,23 @@ async function route(request, env, url) {
     if (name.length < 2) return json({ error: "Enter your name." }, 400);
     if (phone.length < 7) return json({ error: "Enter a phone number." }, 400);
 
-    // The receipt is the ticket: one confirmation number, one seat. Claiming it
-    // before the seat means two people racing with the same number can't both
-    // get in, however fast they tap.
+    // A pair payment covers two seats, so a confirmation number carries an
+    // allowance rather than being spent outright. Someone who bought the pair
+    // and only said "one seat" the first time can come back for the second, so
+    // the allowance is raised, never lowered.
+    const wanted = body.seats === 2 ? 2 : 1;
+    await env.DB.prepare(
+      "INSERT INTO receipts (receipt, seats_allowed, seats_used, created_at) " +
+        "VALUES (?, ?, 0, datetime('now')) " +
+        "ON CONFLICT(receipt) DO UPDATE SET seats_allowed = MAX(seats_allowed, excluded.seats_allowed)"
+    )
+      .bind(receipt, wanted)
+      .run();
+
+    // Spending the allowance before touching the seat means two people racing
+    // with the same number can't both get in, however fast they tap.
     const ticket = await env.DB.prepare(
-      "INSERT INTO receipts (receipt, created_at) VALUES (?, datetime('now')) ON CONFLICT(receipt) DO NOTHING"
+      "UPDATE receipts SET seats_used = seats_used + 1 WHERE receipt = ? AND seats_used < seats_allowed"
     )
       .bind(receipt)
       .run();
@@ -93,7 +105,8 @@ async function route(request, env, url) {
       return json(
         {
           error:
-            "That confirmation number has already been used. If this is a mistake, message the gabbai.",
+            "That confirmation number has already been used for every seat it covers. " +
+            "If this is a mistake, message the gabbai.",
         },
         409
       );
@@ -107,14 +120,25 @@ async function route(request, env, url) {
       .run();
 
     if (taken.meta.changes === 0) {
-      // Somebody beat them to it by a hair — hand the receipt back so they can
-      // try again on another seat.
-      await env.DB.prepare("DELETE FROM receipts WHERE receipt = ?").bind(receipt).run();
+      // Somebody beat them to it by a hair — give the allowance back so they
+      // can try again on another seat.
+      await env.DB.prepare(
+        "UPDATE receipts SET seats_used = seats_used - 1 WHERE receipt = ?"
+      )
+        .bind(receipt)
+        .run();
       return json({ error: "Someone just took that seat. Please pick another." }, 409);
     }
 
+    const left = await env.DB.prepare(
+      "SELECT seats_allowed - seats_used AS remaining FROM receipts WHERE receipt = ?"
+    )
+      .bind(receipt)
+      .first();
+
     return json({
       seat: { id: seatId, section: seat.section, number: seat.number, name },
+      remaining: left?.remaining ?? 0,
     });
   }
 
@@ -126,8 +150,10 @@ async function route(request, env, url) {
 
     if (path === "/api/admin/export") {
       const { results } = await env.DB.prepare(
-        "SELECT section, number, name, phone, receipt, note, claimed_at FROM claims " +
-          "ORDER BY section DESC, number ASC"
+        "SELECT c.section, c.number, c.name, c.phone, c.receipt, " +
+          "COALESCE(r.seats_allowed, 0) AS paid_for, c.note, c.claimed_at " +
+          "FROM claims c LEFT JOIN receipts r ON r.receipt = c.receipt " +
+          "ORDER BY c.section DESC, c.number ASC"
       ).all();
       return json({ rows: results });
     }
@@ -143,11 +169,17 @@ async function route(request, env, url) {
           .bind(seatId)
           .first();
         const statements = [env.DB.prepare("DELETE FROM claims WHERE id = ?").bind(seatId)];
-        // Freeing a seat gives the buyer their confirmation number back, so the
-        // gabbai can move somebody without burning their payment.
+        // Freeing a seat hands one seat of the allowance back, so the gabbai can
+        // move somebody without burning their payment — and on a pair payment it
+        // returns only the seat freed, not both.
         if (row && row.receipt) {
           statements.push(
-            env.DB.prepare("DELETE FROM receipts WHERE receipt = ?").bind(row.receipt)
+            env.DB.prepare(
+              "UPDATE receipts SET seats_used = MAX(seats_used - 1, 0) WHERE receipt = ?"
+            ).bind(row.receipt),
+            env.DB.prepare("DELETE FROM receipts WHERE receipt = ? AND seats_used = 0").bind(
+              row.receipt
+            )
           );
         }
         await env.DB.batch(statements);

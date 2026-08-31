@@ -1,12 +1,12 @@
 ---
 import SeatsLayout from "../../layouts/SeatsLayout.astro";
 import SeatMap from "../../components/seats/SeatMap.astro";
-import { config } from "../../data/seating.js";
+import { config, priceOne, priceTwo, priceSummary } from "../../data/seating.js";
 ---
 
 <SeatsLayout
   title={`${config.shulName} — Seating`}
-  subtitle={`${config.season} · ${config.priceLabel}`}
+  subtitle={`${config.season} · ${priceSummary}`}
 >
   <div class="card" style="margin-bottom:2rem;text-align:center">
     <p style="margin:0 0 1rem;font-size:0.95rem;line-height:1.6">
@@ -14,9 +14,13 @@ import { config } from "../../data/seating.js";
       <strong>Pay first</strong> — the sign-up link comes with your receipt,
       and that link is what lets you put your name on a seat.
     </p>
-    <a class="btn" href={config.paymentUrl} rel="noopener">Pay &amp; reserve a seat</a>
+    <div style="display:flex;gap:0.6rem;flex-wrap:wrap;justify-content:center">
+      <a class="btn" href={config.paymentUrl} rel="noopener">{priceOne}</a>
+      <a class="btn btn--ghost" href={config.paymentUrlTwo} rel="noopener">{priceTwo}</a>
+    </div>
     <p class="muted" style="margin:0.9rem 0 0">
-      Already paid? Use the link on your receipt.
+      Paying for two lets you choose both seats. Already paid? Use the link on
+      your receipt.
     </p>
   </div>
 

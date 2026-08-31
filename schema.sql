@@ -12,9 +12,13 @@ CREATE TABLE IF NOT EXISTS claims (
   claimed_at TEXT NOT NULL
 );
 
--- One Cardcom confirmation number buys one seat. The UNIQUE key here is what
--- stops the sign-up link being forwarded around the WhatsApp group.
+-- One Cardcom confirmation number, one payment. seats_allowed is 1 for a
+-- single seat and 2 for the pair price; seats_used counts what has been taken
+-- against it. This is what stops the sign-up link being forwarded around the
+-- WhatsApp group and used by people who never paid.
 CREATE TABLE IF NOT EXISTS receipts (
-  receipt    TEXT PRIMARY KEY,
-  created_at TEXT NOT NULL
+  receipt       TEXT PRIMARY KEY,
+  seats_allowed INTEGER NOT NULL DEFAULT 1,
+  seats_used    INTEGER NOT NULL DEFAULT 0,
+  created_at    TEXT NOT NULL
 );

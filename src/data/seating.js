@@ -31,10 +31,15 @@ export const config = {
   shulName: "Beis Medrash",
   season: "Yamim Noraim 5787",
 
-  // The Cardcom payment link. People are sent here first; the sign-up link is
-  // what they receive after paying.
+  // What a seat costs. `two` is the price of a pair — one payment covering two
+  // seats, so one confirmation number is allowed to claim two.
+  pricing: { currency: "₪", one: 200, two: 300 },
+
+  // The Cardcom payment links. People are sent here first; the sign-up link is
+  // what they receive after paying. If your Cardcom page lets the payer choose
+  // the amount, put the same link in both.
   paymentUrl: "https://secure.cardcom.solutions/REPLACE_WITH_YOUR_LINK",
-  priceLabel: "₪REPLACE per seat",
+  paymentUrlTwo: "https://secure.cardcom.solutions/REPLACE_WITH_YOUR_LINK",
 
   // The private sign-up page. Anyone with this link can take a seat, so it
   // belongs only on the Cardcom receipt / thank-you page — never in WhatsApp.
@@ -53,6 +58,12 @@ export const config = {
       "will be more places than the chart shows.",
   },
 };
+
+/* Price wording, so it reads the same everywhere it appears. */
+const { currency: cur, one, two } = config.pricing;
+export const priceOne = `One seat — ${cur}${one}`;
+export const priceTwo = `Two seats — ${cur}${two}`;
+export const priceSummary = `${cur}${one} a seat · ${cur}${two} for two`;
 
 /* The grid the whole room is drawn on. */
 export const grid = { cols: 48, rows: 12 };

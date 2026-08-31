@@ -13,7 +13,14 @@ import { config } from "../../data/seating.js";
       Take a screenshot of this. Your name is now on the chart for everyone to
       see, so nobody can take the seat from under you.
     </p>
-    <a class="btn btn--ghost" href="/seats/">See the full chart</a>
+    <p id="more" hidden style="margin:0 0 1.25rem;font-size:0.95rem;line-height:1.6">
+      <strong>You have one more seat on this payment.</strong><br />
+      Choose it now — your confirmation number is already filled in.
+    </p>
+    <div style="display:flex;gap:0.6rem;flex-wrap:wrap;justify-content:center">
+      <a class="btn" id="second" hidden href={config.claimPath + "/"}>Choose your second seat</a>
+      <a class="btn btn--ghost" href="/seats/">See the full chart</a>
+    </div>
   </div>
 </SeatsLayout>
 
@@ -25,6 +32,10 @@ import { config } from "../../data/seating.js";
     const seat = JSON.parse(raw);
     seatLine.textContent = `${seat.section === "men" ? "Men" : "Women"} — seat ${seat.number}`;
     nameLine.textContent = seat.name;
+    if (Number(sessionStorage.getItem("seatsRemaining")) > 0) {
+      document.getElementById("more").hidden = false;
+      document.getElementById("second").hidden = false;
+    }
   } else {
     seatLine.textContent = "Seat confirmed";
     nameLine.textContent = "Open the chart to find your name.";

@@ -171,9 +171,9 @@ import { config } from "../../data/seating.js";
   $("export").addEventListener("click", async () => {
     const rows = await api("/api/admin/export");
     const csv = [
-      "section,seat,name,phone,receipt,note,claimed_at",
+      "section,seat,name,phone,receipt,seats_on_receipt,note,claimed_at",
       ...rows.rows.map((r) =>
-        [r.section, r.number, r.name, r.phone, r.receipt, r.note, r.claimed_at]
+        [r.section, r.number, r.name, r.phone, r.receipt, r.paid_for, r.note, r.claimed_at]
           .map((v) => `"${String(v ?? "").replace(/"/g, '""')}"`)
           .join(",")
       ),

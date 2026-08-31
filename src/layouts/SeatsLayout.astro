@@ -38,6 +38,9 @@ const { title, subtitle } = Astro.props;
         --font-ui: "Inter", -apple-system, sans-serif;
       }
       * { box-sizing: border-box; }
+      /* Author rules like `.btn { display: inline-flex }` outrank the browser's
+         own `[hidden] { display: none }`, so hidden elements would show. */
+      [hidden] { display: none !important; }
       body {
         margin: 0;
         background: var(--paper);

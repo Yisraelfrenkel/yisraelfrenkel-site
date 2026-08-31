@@ -1,7 +1,7 @@
 ---
 import SeatsLayout from "../../layouts/SeatsLayout.astro";
 import SeatMap from "../../components/seats/SeatMap.astro";
-import { config } from "../../data/seating.js";
+import { config, priceOne, priceTwo } from "../../data/seating.js";
 
 export function getStaticPaths() {
   const slug = config.claimPath.replace(/^\/seats\//, "").replace(/\/$/, "");
@@ -26,7 +26,24 @@ export function getStaticPaths() {
         placeholder="From your payment receipt"
       />
       <p class="muted" style="margin:0.35rem 0 0">
-        It's on the receipt Cardcom emailed you. Each number seats one person.
+        It's on the receipt Cardcom emailed you.
+      </p>
+    </div>
+
+    <div class="field">
+      <label>What did you pay for?</label>
+      <div class="choices">
+        <label class="choice">
+          <input type="radio" name="seats" value="1" checked />
+          <span>{priceOne}</span>
+        </label>
+        <label class="choice">
+          <input type="radio" name="seats" value="2" />
+          <span>{priceTwo}</span>
+        </label>
+      </div>
+      <p class="muted" style="margin:0.35rem 0 0">
+        Paying for two lets you take a second seat with the same number.
       </p>
     </div>
 
@@ -58,6 +75,31 @@ export function getStaticPaths() {
   <p class="muted" style="margin-top:1.5rem;text-align:center">
     Seats are first come, first served. A seat is yours the moment it turns gold.
   </p>
+  <style>
+    .choices {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 0.5rem;
+    }
+    .choice {
+      display: flex;
+      align-items: center;
+      gap: 0.45rem;
+      flex: 1 1 160px;
+      margin: 0;
+      padding: 0.6rem 0.75rem;
+      border: 1px solid var(--line);
+      border-radius: 5px;
+      background: #fff;
+      font-size: 0.88rem;
+      font-weight: 500;
+      cursor: pointer;
+    }
+    .choice:has(input:checked) {
+      border-color: var(--gold);
+      background: var(--gold-soft);
+    }
+  </style>
 </SeatsLayout>
 
 <script>
@@ -108,6 +150,14 @@ export function getStaticPaths() {
     } catch {}
   }
 
+  // Coming back for the second seat of a pair payment: don't make them dig the
+  // confirmation number out of their email again.
+  const carried = sessionStorage.getItem("receipt");
+  if (carried) {
+    form.receipt.value = carried;
+    form.querySelector("input[name='seats'][value='2']").checked = true;
+  }
+
   refresh();
   setInterval(refresh, 12000);
 
@@ -122,6 +172,7 @@ export function getStaticPaths() {
       receipt: form.receipt.value.trim(),
       name: form.name.value.trim(),
       phone: form.phone.value.trim(),
+      seats: Number(form.querySelector("input[name='seats']:checked").value),
     };
 
     try {
@@ -134,6 +185,9 @@ export function getStaticPaths() {
       if (!res.ok) throw new Error(data.error || "Something went wrong.");
 
       sessionStorage.setItem("seat", JSON.stringify(data.seat));
+      sessionStorage.setItem("seatsRemaining", String(data.remaining ?? 0));
+      // Carry the number over so a pair payment doesn't have to retype it.
+      sessionStorage.setItem("receipt", data.remaining > 0 ? body.receipt : "");
       location.href = "/seats/confirmed/";
     } catch (err) {
       errorEl.textContent = err.message;
