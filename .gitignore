@@ -3,3 +3,5 @@ dist/
 .astro/
 src/env.d.ts
 .DS_Store
+.wrangler/
+.dev.vars

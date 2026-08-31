@@ -1,5 +1,15 @@
 name = "yisraelfrenkel-site"
+main = "worker/index.js"
 compatibility_date = "2026-01-01"
 
 [assets]
 directory = "./dist"
+binding = "ASSETS"
+
+# Seating chart storage. Create it once with:
+#   npx wrangler d1 create shul-seating
+# then paste the database_id it prints in below.
+[[d1_databases]]
+binding = "DB"
+database_name = "shul-seating"
+database_id = "REPLACE_WITH_D1_DATABASE_ID"
