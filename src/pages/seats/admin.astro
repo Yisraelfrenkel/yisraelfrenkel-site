@@ -4,7 +4,7 @@ import SeatMap from "../../components/seats/SeatMap.astro";
 import { config } from "../../data/seating.js";
 ---
 
-<SeatsLayout title="Gabbai" subtitle={`${config.shulName} · ${config.season}`}>
+<SeatsLayout title={config.shulName} subtitle={`Seating · ${config.season}`}>
   <div class="card" id="gate" hidden style="max-width:440px;margin:0 auto">
     <p id="gate-intro" class="muted" style="margin:0 0 1rem"></p>
     <div class="field">
