@@ -61,6 +61,10 @@ export const fixtures = [
   { label: "Bima", col: 19, row: 3, cols: 7, rows: 4, kind: "bima" },
   { label: "Seforim", col: 1, row: 4, cols: 4, rows: 3, kind: "books" },
   { label: "Wall", col: 5, row: 4, cols: 7, rows: 3, kind: "shelf" },
+  // The two side walls. A "wall-v" draws a solid line down the RIGHT edge of
+  // its column, so put it in the column immediately left of what it encloses.
+  { label: "Wall", col: 5, row: 1, cols: 1, rows: 3, kind: "wall-v" },
+  { label: "Wall", col: 4, row: 9, cols: 1, rows: 4, kind: "wall-v" },
   { label: "Bathroom", col: 1, row: 9, cols: 3, rows: 3, kind: "room" },
   { label: "Mechitza", col: 34, row: 2, cols: 1, rows: 11, kind: "mechitza" },
 ];
