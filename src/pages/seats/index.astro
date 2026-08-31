@@ -8,20 +8,35 @@ import { config, priceOne, priceTwo, priceSummary } from "../../data/seating.js"
   title={`${config.shulName} — Seating`}
   subtitle={`${config.season} · ${priceSummary}`}
 >
-  <div class="card" style="margin-bottom:2rem;text-align:center">
-    <p style="margin:0 0 1rem;font-size:0.95rem;line-height:1.6">
-      Green seats are still open. Grey ones are taken.<br />
-      <strong>Pay first</strong> — the sign-up link comes with your receipt,
-      and that link is what lets you put your name on a seat.
+  <div class="card" style="margin-bottom:2rem">
+    <p style="margin:0 0 1.5rem;text-align:center;font-size:0.95rem;line-height:1.6">
+      Green seats are still open. Grey ones are taken.
     </p>
-    <div style="display:flex;gap:0.6rem;flex-wrap:wrap;justify-content:center">
-      <a class="btn" href={config.paymentUrl} rel="noopener">{priceOne}</a>
-      <a class="btn btn--ghost" href={config.paymentUrlTwo} rel="noopener">{priceTwo}</a>
-    </div>
-    <p class="muted" style="margin:0.9rem 0 0">
-      Paying for two lets you choose both seats. Already paid? Use the link on
-      your receipt.
-    </p>
+
+    <ol class="steps">
+      <li>
+        <h2>Pay</h2>
+        <p class="muted">
+          {priceOne}, or {priceTwo.toLowerCase()}. Choose the amount on the
+          Cardcom page. Keep the receipt — you'll need the confirmation number.
+        </p>
+        <a class="btn" href={config.paymentUrl} rel="noopener">Pay on Cardcom</a>
+      </li>
+      <li>
+        <h2>Choose your seat</h2>
+        <p class="muted">
+          Type the confirmation number from your receipt, then tap the seat you
+          want. Paid for two? It walks you through both.
+        </p>
+        {config.claimLinkPublic ? (
+          <a class="btn btn--ghost" href={config.claimPath + "/"}>Choose your seat</a>
+        ) : (
+          <p class="muted" style="margin:0">
+            The link for this arrives with your receipt.
+          </p>
+        )}
+      </li>
+    </ol>
   </div>
 
   <SeatMap mode="view" />
@@ -29,6 +44,52 @@ import { config, priceOne, priceTwo, priceSummary } from "../../data/seating.js"
   <p class="muted" style="margin-top:1.5rem;text-align:center">
     This page updates itself. Pull down to refresh if you've just paid.
   </p>
+  <style>
+    .steps {
+      counter-reset: step;
+      list-style: none;
+      display: grid;
+      gap: 1.25rem;
+      margin: 0;
+      padding: 0;
+    }
+    @media (min-width: 620px) {
+      .steps {
+        grid-template-columns: 1fr 1fr;
+        gap: 1.75rem;
+      }
+    }
+    .steps li {
+      position: relative;
+      padding-left: 2.4rem;
+    }
+    .steps li::before {
+      counter-increment: step;
+      content: counter(step);
+      position: absolute;
+      left: 0;
+      top: 0;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      width: 1.75rem;
+      height: 1.75rem;
+      border-radius: 50%;
+      background: var(--gold-soft);
+      color: var(--gold);
+      font-size: 0.85rem;
+      font-weight: 600;
+    }
+    .steps h2 {
+      margin: 0.15rem 0 0.4rem;
+      font-family: var(--font-display);
+      font-size: 1.05rem;
+    }
+    .steps p {
+      margin: 0 0 0.9rem;
+      line-height: 1.55;
+    }
+  </style>
 </SeatsLayout>
 
 <script>

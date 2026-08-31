@@ -35,11 +35,19 @@ export const config = {
   // seats, so one confirmation number is allowed to claim two.
   pricing: { currency: "₪", one: 200, two: 300 },
 
-  // The Cardcom payment links. People are sent here first; the sign-up link is
-  // what they receive after paying. If your Cardcom page lets the payer choose
-  // the amount, put the same link in both.
-  paymentUrl: "https://secure.cardcom.solutions/REPLACE_WITH_YOUR_LINK",
-  paymentUrlTwo: "https://secure.cardcom.solutions/REPLACE_WITH_YOUR_LINK",
+  // The Cardcom page. It offers both amounts, so one link covers everyone.
+  paymentUrl:
+    "https://secure.cardcom.solutions/EA/EA5/650uMayQ2U6t7U3FkvWqg/PaymentSP",
+
+  // Show the "choose your seat" step on the public page.
+  //
+  // true  — anyone with the chart link can reach the sign-up form. They still
+  //         need a confirmation number, and each number covers only the seats
+  //         it paid for. Nothing to configure in Cardcom.
+  // false — the sign-up page is reachable only by its secret address, so it
+  //         has to be handed out by Cardcom after payment. Flip this once
+  //         you've set "כתובת להפניה בהצלחה" in Cardcom (see docs/seating.md).
+  claimLinkPublic: true,
 
   // The private sign-up page. Anyone with this link can take a seat, so it
   // belongs only on the Cardcom receipt / thank-you page — never in WhatsApp.
@@ -54,8 +62,8 @@ export const config = {
   sectionNotes: {
     men: "",
     women:
-      "The tables will all be taken out to make room for more seats, so there " +
-      "will be more places than the chart shows.",
+      "The tables here are being taken out to fit more seats in. The chart " +
+      "already shows the room the way it will be set up.",
   },
 };
 
@@ -91,6 +99,9 @@ export const fixtures = [
 
 /* ---------------------------------------------------------------------------
    SEATS — men 1–34, women 1–21, numbered as in the sketch.
+
+   The women's side is drawn with its tables already taken out, which is why
+   there are more chairs there than the room holds today.
 --------------------------------------------------------------------------- */
 export const blocks = [
   /* ---- MEN — left of the mechitza ---- */
@@ -112,17 +123,17 @@ export const blocks = [
   { id: "m-11-14", section: "men", label: "Table", col: 25, row: 9, w: 3, numbers: [[11, 12], [13, 14]] },
 
   /* ---- WOMEN — right of the mechitza ---- */
-  { id: "w-1-4", section: "women", label: "Table", col: 35, row: 5, numbers: [[1, 2], [3, 4]] },
+  { id: "w-1-4", section: "women", label: "Chairs", col: 35, row: 5, numbers: [[1, 2], [3, 4]] },
   { id: "w-5", section: "women", label: "Single chair", col: 39, row: 5, numbers: [[5]] },
   // Chair 6 and the table beyond it sit across the aisle. The gap runs down
   // columns 41-42, lining up with the one between 16 and 17 in the row below.
   { id: "w-6", section: "women", label: "Single chair", col: 43, row: 5, numbers: [[6]] },
-  { id: "w-7-10", section: "women", label: "Table", col: 45, row: 5, numbers: [[7, 8], [9, 10]] },
-  { id: "w-12-15", section: "women", label: "Table", col: 35, row: 9, numbers: [[12, 13], [14, 15]] },
+  { id: "w-7-10", section: "women", label: "Chairs", col: 45, row: 5, numbers: [[7, 8], [9, 10]] },
+  { id: "w-12-15", section: "women", label: "Chairs", col: 35, row: 9, numbers: [[12, 13], [14, 15]] },
   { id: "w-16", section: "women", label: "Single chair", col: 39, row: 9, numbers: [[16]] },
   { id: "w-11", section: "women", label: "Single chair", col: 41, row: 11, numbers: [[11]] },
   { id: "w-17", section: "women", label: "Single chair", col: 43, row: 9, numbers: [[17]] },
-  { id: "w-18-21", section: "women", label: "Table", col: 45, row: 9, numbers: [[18, 19], [20, 21]] },
+  { id: "w-18-21", section: "women", label: "Chairs", col: 45, row: 9, numbers: [[18, 19], [20, 21]] },
 ];
 
 /* ---------------------------------------------------------------------------

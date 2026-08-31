@@ -4,7 +4,7 @@ Three pages, one database, no spreadsheets and no chasing people in WhatsApp.
 
 | Page | Who sees it | What it does |
 | --- | --- | --- |
-| `/seats/` | **The WhatsApp group.** This is the link you send. | The chart, live. Green = open, grey = taken, with names. One button: pay. |
+| `/seats/` | **The WhatsApp group.** This is the link you send. | The chart, live. Green = open, grey = taken, with names. Two steps: pay, then choose a seat. |
 | `/seats/claim-5787-kesser/` | Only people who have paid. | Same chart, but seats are tappable. Enter your Cardcom confirmation number + name, tap a seat, done. Paid ₪300? It walks you through both seats. |
 | `/seats/admin/` | Only you. | Place the names you've already promised, edit or free any seat, download the list as CSV. |
 
@@ -18,8 +18,9 @@ folder. Nobody browsing yisraelfrenkel.com will stumble into them.
 
 1. You post the `/seats/` link to the WhatsApp group.
 2. Someone taps **Pay & reserve a seat** → Cardcom.
-3. Cardcom's thank-you page (and receipt email) gives them the sign-up link.
-4. They open it, type the confirmation number off their receipt, say whether
+3. They come back to the chart and tap **Choose your seat** (or, if you set up
+   the Cardcom redirect, they land on it automatically).
+4. They type the confirmation number off their receipt, say whether
    they paid ₪200 or ₪300, pick a seat, and their name lands on the chart for
    the whole group to see.
 5. On ₪300 they're taken straight back to pick the second seat, with the
@@ -41,13 +42,12 @@ Open `src/data/seating.js` and replace everything marked `REPLACE`:
 
 ```js
 shulName, season          // the heading
-pricing                   // { currency: "₪", one: 200, two: 300 }
-paymentUrl                // Cardcom link for ₪200
-paymentUrlTwo             // Cardcom link for ₪300 — same link is fine if your
-                          // Cardcom page lets the payer choose the amount
-claimPath                 // the secret sign-up path — change it to something
-                          // only you know before you go live
-contactName, contactWhatsapp
+pricing                   // { currency: "₪", one: 200, two: 300 }   ✅ set
+paymentUrl                // your Cardcom page                      ✅ set
+claimLinkPublic           // see "How people reach the sign-up page" below
+claimPath                 // the sign-up path — change it to something only
+                          // you know before you go live
+contactName, contactWhatsapp                                        ⬅ still needed
 sectionNotes              // a message shown above the chart for the men's or
                           // women's section — set one to "" to drop it
 ```
@@ -78,17 +78,51 @@ Type a password when it asks. That's what unlocks `/seats/admin/`.
 npm run build && npx wrangler deploy
 ```
 
-### 5. Point Cardcom at the sign-up link
+## How people reach the sign-up page
 
-In your Cardcom payment page settings, set the **success / thank-you page** to
-your sign-up URL:
+Two ways. **The site is set up for the first one and needs nothing from
+Cardcom** — the second is a tightening you can do later.
 
-```
-https://yisraelfrenkel.com/seats/claim-5787-kesser/
-```
+### A — the sign-up step is on the public page (how it's set now)
 
-Also paste that URL into the receipt email text, so people who close the tab
-can still get in. This is the whole integration — no API keys, no webhook.
+`claimLinkPublic: true` in `seating.js`. The chart link you post to WhatsApp
+shows two numbered steps: **Pay on Cardcom**, then **Choose your seat**.
+
+Anyone with the chart link can open the sign-up form — but they still have to
+type a confirmation number, and each number only covers the seats it paid for.
+So the honest gate is the number, not the secrecy of the link. Nothing to
+configure, nothing to go wrong on the night.
+
+### B — Cardcom hands out the link after payment
+
+Tighter: the sign-up page is reachable only by its own address, and only
+people who actually finished a payment ever see it.
+
+1. In Cardcom, open your payment landing page (דף נחיתה לתשלום) → its general
+   settings.
+2. Find **כתובת להפניה בהצלחה** — "success redirect URL". This is the page the
+   payer lands on after a successful charge. Set it to:
+
+   ```
+   https://yisraelfrenkel.com/seats/claim-5787-kesser/
+   ```
+
+   Cardcom also has a per-item version, **הפניה ייחודית בהצלחה** ("unique
+   success redirect"), if you'd rather set it on each amount separately. Either
+   works — the same address for both amounts is fine.
+3. Set `claimLinkPublic: false` in `seating.js`, then rebuild and deploy. Step 2
+   on the public page changes to "the link for this arrives with your receipt".
+
+Worth knowing before you switch: if the redirect isn't set correctly, a payer
+lands on Cardcom's own default thank-you page and has **no way to reach the
+sign-up form** — they'll message you instead. So test one real payment
+end-to-end before flipping `claimLinkPublic` to `false`, and paste the sign-up
+address into your Cardcom receipt email text as well, for anyone who closes the
+tab before the redirect.
+
+Cardcom's own guides:
+[payment landing page settings](https://support.cardcom.solutions/hc/he/articles/360002662654),
+[unique success redirect](https://support.cardcom.solutions/hc/he/articles/360008721294).
 
 ---
 
