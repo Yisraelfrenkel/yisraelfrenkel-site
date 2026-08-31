@@ -94,8 +94,10 @@ export const blocks = [
   /* ---- WOMEN — right of the mechitza ---- */
   { id: "w-1-4", section: "women", label: "Table", col: 35, row: 5, numbers: [[1, 2], [3, 4]] },
   { id: "w-5", section: "women", label: "Single chair", col: 39, row: 5, numbers: [[5]] },
-  { id: "w-6", section: "women", label: "Single chair", col: 41, row: 5, numbers: [[6]] },
-  { id: "w-7-10", section: "women", label: "Table", col: 43, row: 5, numbers: [[7, 8], [9, 10]] },
+  // Chair 6 and the table beyond it sit across the aisle. The gap runs down
+  // columns 41-42, lining up with the one between 16 and 17 in the row below.
+  { id: "w-6", section: "women", label: "Single chair", col: 43, row: 5, numbers: [[6]] },
+  { id: "w-7-10", section: "women", label: "Table", col: 45, row: 5, numbers: [[7, 8], [9, 10]] },
   { id: "w-12-15", section: "women", label: "Table", col: 35, row: 9, numbers: [[12, 13], [14, 15]] },
   { id: "w-16", section: "women", label: "Single chair", col: 39, row: 9, numbers: [[16]] },
   { id: "w-11", section: "women", label: "Single chair", col: 41, row: 11, numbers: [[11]] },
