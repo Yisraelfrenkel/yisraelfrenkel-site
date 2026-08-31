@@ -28,7 +28,7 @@
 --------------------------------------------------------------------------- */
 
 export const config = {
-  shulName: "Beis Medrash",
+  shulName: "Kehilat Chaverim",
   season: "Yamim Noraim 5787",
 
   // What a seat costs. `two` is the price of a pair — one payment covering two
