@@ -34,49 +34,53 @@ because the confirmation number is the actual ticket.
 
 ---
 
-## Setting it up (once, about 20 minutes)
+## Setting it up
 
-### 1. Fill in your details
-
-Open `src/data/seating.js` and replace everything marked `REPLACE`:
-
-```js
-shulName, season          // the heading
-pricing                   // { currency: "₪", one: 200, two: 300 }   ✅ set
-paymentUrl                // your Cardcom page                      ✅ set
-claimLinkPublic           // see "How people reach the sign-up page" below
-claimPath                 // the sign-up path — change it to something only
-                          // you know before you go live
-contactName, contactWhatsapp                                        ⬅ still needed
-sectionNotes              // a message shown above the chart for the men's or
-                          // women's section — set one to "" to drop it
-```
-
-### 2. Create the database
+Run this from the project folder:
 
 ```bash
-npx wrangler d1 create shul-seating
+bash scripts/setup-seating.sh
 ```
 
-Paste the `database_id` it prints into `wrangler.toml`, then create the tables:
+It logs you into Cloudflare, creates the database, writes its id into
+`wrangler.toml`, creates the tables, asks for an admin password and deploys.
+Safe to re-run — it skips whatever is already done. Two prompts: a browser
+window for the Cloudflare login, and the admin password (what unlocks
+`/seats/admin/`).
+
+<details>
+<summary>The same thing by hand, if the script fails</summary>
 
 ```bash
+npx wrangler login
+npx wrangler d1 create shul-seating      # paste the id into wrangler.toml
 npx wrangler d1 execute shul-seating --remote --file=./schema.sql
-```
-
-### 3. Set your admin password
-
-```bash
-npx wrangler secret put ADMIN_TOKEN
-```
-
-Type a password when it asks. That's what unlocks `/seats/admin/`.
-
-### 4. Deploy
-
-```bash
+npx wrangler secret put ADMIN_TOKEN      # type a password
 npm run build && npx wrangler deploy
 ```
+</details>
+
+### Then, in this order
+
+1. **Place the seats you've promised** — `/seats/admin/`, tap a seat, type the
+   name, save.
+2. **Pay ₪200 yourself** and go through the whole flow. This is the step worth
+   not skipping: it's the only way to see what Cardcom's confirmation number
+   actually looks like on a real receipt. If it isn't obvious to a payer, fix
+   the wording on the form before fifty people find out for you.
+3. **Free your test seat** in `/seats/admin/`.
+4. **Post the link.** Something like:
+
+   > 🕍 *Kehilat Chaverim — seats for the Yamim Noraim*
+   >
+   > Seats are now open, first come first served:
+   > https://yisraelfrenkel.com/seats/
+   >
+   > ₪200 a seat, ₪300 for two. Pay on the page, then come back and tap the
+   > seat you want — your name goes straight onto the chart so everyone can
+   > see what's left.
+   >
+   > Any problem, message Daniel Avrek.
 
 ## How people reach the sign-up page
 
