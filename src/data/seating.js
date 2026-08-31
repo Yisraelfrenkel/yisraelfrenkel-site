@@ -1,29 +1,30 @@
 /* ---------------------------------------------------------------------------
    SEATING CHART — the one file you edit.
 
-   The room is drawn on a single grid, laid out the way your sketch is: the
-   mechitza runs vertically down the right-hand side, men to the left of it,
-   women to the right.
+   The room is one grid, laid out like your sketch: the mechitza runs
+   vertically, men to the left of it, women to the right.
 
    HOW A BLOCK WORKS
-   Every table, bench and single chair is one line below.
+   Every table, bench and single chair is one line, and it carries its own
+   seat numbers exactly as you wrote them:
 
-     col / row    where its top-left corner sits (1 = far left / very top)
-     cols / rows  how many grid cells wide and tall it is
-     seats        how many seats are in it
+     { id: "m-16-19", section: "men", label: "Table", col: 19, row: 13,
+       numbers: [[16, 17], [18, 19]] }
 
-   Seats fill the block left→right, then top→bottom — same as the numbers in
-   your sketch. Everything else on the site (the picture, the numbering, the
-   sign-up list, the database) is generated from this file.
+     numbers   the seats, drawn row by row, left to right — the picture of the
+               table. `null` leaves a gap where a chair was pulled out.
+     col/row   where the block's top-left corner sits (1 = far left / very top)
+     w         how many grid columns wide each seat is (default 2). Bigger =
+               a wider chair on the plan; it changes nothing else.
 
-   SEAT NUMBERING
-   Blocks are numbered in the order they appear in the array: men 1..N, women
-   1..N, each starting at 1. The order below runs top-to-bottom, left-to-right,
-   so a number is easy to find while standing in the room.
+   The numbers here ARE the seat numbers people book. Renumbering a seat here
+   renames it everywhere — the picture, the sign-up list and the database key.
+   So before you publish, set them however you like; after the link goes out,
+   leave them alone or people's seats will move under them.
 
-   >>> Once you've sent the link out, DON'T reorder or resize blocks. <<<
-   The numbers would shift under people who already signed up. Before you
-   publish, change whatever you like.
+   Every number must be unique within its section. If you duplicate one or skip
+   one, the build stops and tells you which — it won't quietly ship a broken
+   chart.
 --------------------------------------------------------------------------- */
 
 export const config = {
@@ -45,76 +46,120 @@ export const config = {
 };
 
 /* The grid the whole room is drawn on. */
-export const grid = { cols: 42, rows: 22 };
+export const grid = { cols: 48, rows: 12 };
 
 /* ---------------------------------------------------------------------------
-   FIXTURES — everything that isn't a seat. Purely for orientation; move them
-   around freely, they carry no numbers.
+   FIXTURES — everything that isn't a seat. Move them freely; they carry no
+   numbers and nobody books them.
 --------------------------------------------------------------------------- */
 export const fixtures = [
-  { label: "Chamber", col: 18, row: 1, cols: 4, rows: 2, kind: "room" },
-  { label: "Door", col: 26, row: 1, cols: 5, rows: 1, kind: "door-h" },
-  { label: "Bathroom", col: 37, row: 1, cols: 4, rows: 2, kind: "room" },
-  { label: "Wall · Siddurim", col: 24, row: 3, cols: 11, rows: 2, kind: "shelf" },
-  { label: "Door", col: 41, row: 5, cols: 2, rows: 3, kind: "door-v" },
-  { label: "Wall", col: 2, row: 7, cols: 5, rows: 3, kind: "shelf" },
-  { label: "Bima", col: 14, row: 6, cols: 6, rows: 4, kind: "bima" },
-  { label: "Mechitza", col: 30, row: 11, cols: 1, rows: 11, kind: "mechitza" },
-  { label: "Seforim", col: 2, row: 21, cols: 26, rows: 1, kind: "books" },
+  { label: "Chazan", col: 23, row: 1, cols: 3, rows: 1, kind: "room" },
+  { label: "Door", col: 28, row: 1, cols: 6, rows: 1, kind: "door-h" },
+  { label: "Bathroom", col: 41, row: 1, cols: 4, rows: 1, kind: "room" },
+  { label: "Wall · Siddurim", col: 29, row: 2, cols: 10, rows: 2, kind: "shelf" },
+  { label: "Door", col: 47, row: 3, cols: 2, rows: 2, kind: "door-v" },
+  { label: "Bima", col: 19, row: 3, cols: 7, rows: 4, kind: "bima" },
+  { label: "Seforim", col: 1, row: 4, cols: 4, rows: 3, kind: "books" },
+  { label: "Wall", col: 5, row: 4, cols: 7, rows: 3, kind: "shelf" },
+  { label: "Bathroom", col: 1, row: 9, cols: 3, rows: 3, kind: "room" },
+  { label: "Mechitza", col: 34, row: 2, cols: 1, rows: 11, kind: "mechitza" },
 ];
 
 /* ---------------------------------------------------------------------------
-   SEATS. `section` decides which side of the mechitza a block belongs to and
-   which numbering run it joins.
+   SEATS — men 1–34, women 1–21, numbered as in the sketch.
 --------------------------------------------------------------------------- */
 export const blocks = [
   /* ---- MEN — left of the mechitza ---- */
-  { id: "m-top", section: "men", label: "Top wall row", col: 4, row: 3, cols: 8, rows: 1, seats: 4 },
-  { id: "m-siddur", section: "men", label: "By the siddurim", col: 23, row: 4, cols: 2, rows: 1, seats: 1 },
-  { id: "m-wall", section: "men", label: "Wall bench", col: 2, row: 10, cols: 4, rows: 1, seats: 2 },
-  { id: "m-middle", section: "men", label: "Middle row", col: 8, row: 8, cols: 4, rows: 1, seats: 2 },
-  { id: "m-mech-a", section: "men", label: "At the mechitza", col: 28, row: 6, cols: 2, rows: 2, seats: 2 },
-  { id: "m-bima", section: "men", label: "At the bima", col: 20, row: 10, cols: 2, rows: 1, seats: 1 },
-  { id: "m-half", section: "men", label: "Shtenders", col: 3, row: 15, cols: 2, rows: 2, seats: 2 },
-  { id: "m-t1", section: "men", label: "Table 1 (5′)", col: 7, row: 15, cols: 4, rows: 2, seats: 4 },
-  { id: "m-t2", section: "men", label: "Table 2 (5′)", col: 14, row: 15, cols: 4, rows: 2, seats: 4 },
-  { id: "m-t3", section: "men", label: "Table 3 (5′)", col: 21, row: 15, cols: 4, rows: 2, seats: 4 },
-  { id: "m-mech-b", section: "men", label: "At the mechitza", col: 28, row: 20, cols: 2, rows: 1, seats: 1 },
+  { id: "m-front", section: "men", label: "Front bench", col: 6, row: 1, numbers: [[1, 2, 3, 4, 5]] },
+  { id: "m-6", section: "men", label: "By the bima", col: 27, row: 3, numbers: [[6]] },
+  { id: "m-7", section: "men", label: "By the bima", col: 26, row: 6, numbers: [[7]] },
+  { id: "m-8-9", section: "men", label: "At the mechitza", col: 31, row: 5, w: 3, numbers: [[8], [9]] },
+  { id: "m-10", section: "men", label: "At the mechitza", col: 32, row: 11, numbers: [[10]] },
+  { id: "m-33-34", section: "men", label: "Along the wall", col: 12, row: 5, w: 3, numbers: [[33, 34]] },
+  { id: "m-28-29", section: "men", label: "By the seforim", col: 1, row: 7, numbers: [[28, 29]] },
+  { id: "m-30-31", section: "men", label: "Under the wall", col: 5, row: 7, numbers: [[30, 31]] },
+  { id: "m-32", section: "men", label: "Under the wall", col: 9, row: 8, numbers: [[32]] },
+  { id: "m-20", section: "men", label: "Single chair", col: 17, row: 8, numbers: [[20]] },
+  { id: "m-15", section: "men", label: "Single chair", col: 23, row: 8, numbers: [[15]] },
+  { id: "m-27", section: "men", label: "Single chair", col: 5, row: 9, numbers: [[27]] },
+  { id: "m-25-26", section: "men", label: "Back table", col: 7, row: 10, numbers: [[25, 26]] },
+  { id: "m-21-24", section: "men", label: "Table", col: 12, row: 9, w: 3, numbers: [[21, 22], [23, 24]] },
+  { id: "m-16-19", section: "men", label: "Table", col: 19, row: 9, w: 3, numbers: [[16, 17], [18, 19]] },
+  { id: "m-11-14", section: "men", label: "Table", col: 25, row: 9, w: 3, numbers: [[11, 12], [13, 14]] },
 
   /* ---- WOMEN — right of the mechitza ---- */
-  { id: "w-t1", section: "women", label: "Table 1 (5′)", col: 31, row: 6, cols: 4, rows: 2, seats: 4 },
-  { id: "w-t2", section: "women", label: "Table 2", col: 38, row: 6, cols: 4, rows: 2, seats: 4 },
-  { id: "w-single-a", section: "women", label: "Single chair", col: 36, row: 12, cols: 2, rows: 1, seats: 1 },
-  { id: "w-t3", section: "women", label: "Table 3 (5′)", col: 31, row: 15, cols: 4, rows: 2, seats: 4 },
-  { id: "w-t4", section: "women", label: "Table 4 (5½′)", col: 38, row: 16, cols: 4, rows: 2, seats: 4 },
-  { id: "w-single-b", section: "women", label: "Single chair", col: 36, row: 20, cols: 2, rows: 1, seats: 1 },
+  { id: "w-1-4", section: "women", label: "Table", col: 35, row: 5, numbers: [[1, 2], [3, 4]] },
+  { id: "w-5", section: "women", label: "Single chair", col: 39, row: 5, numbers: [[5]] },
+  { id: "w-6", section: "women", label: "Single chair", col: 41, row: 5, numbers: [[6]] },
+  { id: "w-7-10", section: "women", label: "Table", col: 43, row: 5, numbers: [[7, 8], [9, 10]] },
+  { id: "w-12-15", section: "women", label: "Table", col: 35, row: 9, numbers: [[12, 13], [14, 15]] },
+  { id: "w-16", section: "women", label: "Single chair", col: 39, row: 9, numbers: [[16]] },
+  { id: "w-11", section: "women", label: "Single chair", col: 41, row: 11, numbers: [[11]] },
+  { id: "w-17", section: "women", label: "Single chair", col: 43, row: 9, numbers: [[17]] },
+  { id: "w-18-21", section: "women", label: "Table", col: 45, row: 9, numbers: [[18, 19], [20, 21]] },
 ];
 
 /* ---------------------------------------------------------------------------
    Derived — don't edit below this line.
 --------------------------------------------------------------------------- */
+const DEFAULT_W = 2;
+
+/* Each block's footprint on the grid, so the plan can draw the table it sits on. */
+export const placedBlocks = blocks.map((b) => {
+  const w = b.w ?? DEFAULT_W;
+  return {
+    ...b,
+    w,
+    cols: Math.max(...b.numbers.map((r) => r.length)) * w,
+    rows: b.numbers.length,
+  };
+});
+
 function expand(section, prefix) {
   const seats = [];
-  let n = 0;
-  for (const block of blocks.filter((b) => b.section === section)) {
-    const perRow = Math.ceil(block.seats / block.rows);
-    for (let i = 0; i < block.seats; i++) {
-      n += 1;
-      seats.push({
-        id: `${prefix}${n}`,
-        number: n,
-        section,
-        blockId: block.id,
-        blockLabel: block.label,
-        col: block.col + (i % perRow) * (block.cols / perRow),
-        row: block.row + Math.floor(i / perRow),
-        w: block.cols / perRow,
+  for (const block of placedBlocks.filter((b) => b.section === section)) {
+    block.numbers.forEach((line, r) => {
+      line.forEach((number, c) => {
+        if (number == null) return;
+        seats.push({
+          id: `${prefix}${number}`,
+          number,
+          section,
+          blockId: block.id,
+          blockLabel: block.label,
+          col: block.col + c * block.w,
+          row: block.row + r,
+          w: block.w,
+        });
       });
+    });
+  }
+  return seats.sort((a, b) => a.number - b.number);
+}
+
+/* A duplicated or missing number would hand two people the same seat, or hide
+   one nobody can book. Fail the build rather than ship either. */
+function audit(seats, section) {
+  const seen = new Set();
+  for (const s of seats) {
+    if (seen.has(s.number)) {
+      throw new Error(`seating.js: ${section} seat ${s.number} is listed twice`);
     }
+    seen.add(s.number);
+  }
+  const missing = [];
+  for (let n = 1; n <= seats.length; n++) {
+    if (!seen.has(n)) missing.push(n);
+  }
+  if (missing.length) {
+    throw new Error(
+      `seating.js: ${section} numbering has gaps — ${missing.join(", ")} missing ` +
+        `from a run of ${seats.length} seats`
+    );
   }
   return seats;
 }
 
-export const menSeats = expand("men", "M");
-export const womenSeats = expand("women", "W");
+export const menSeats = audit(expand("men", "M"), "men");
+export const womenSeats = audit(expand("women", "W"), "women");
 export const allSeats = [...menSeats, ...womenSeats];

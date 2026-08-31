@@ -1,5 +1,5 @@
 ---
-import { grid, fixtures, blocks, allSeats } from "../../data/seating.js";
+import { grid, fixtures, placedBlocks, allSeats } from "../../data/seating.js";
 
 export interface Props {
   /** "view" = read-only chart. "pick" = seats are clickable buttons. */
@@ -25,7 +25,7 @@ const { mode = "view" } = Astro.props;
         </div>
       ))}
 
-      {blocks.map((b) => (
+      {placedBlocks.map((b) => (
         <div
           class={`tray tray--${b.section}`}
           style={`grid-column:${b.col} / span ${b.cols}; grid-row:${b.row} / span ${b.rows};`}
@@ -225,9 +225,9 @@ const { mode = "view" } = Astro.props;
      even though the seats themselves carry the numbers. */
   .tray {
     margin: -3px;
-    border: 1px solid rgba(43, 36, 32, 0.16);
+    border: 1px solid rgba(43, 36, 32, 0.24);
     border-radius: 5px;
-    background: rgba(43, 36, 32, 0.022);
+    background: rgba(43, 36, 32, 0.035);
     pointer-events: none;
   }
 

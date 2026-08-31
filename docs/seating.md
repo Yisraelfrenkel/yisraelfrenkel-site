@@ -100,26 +100,36 @@ whatever. Notes never appear on the public chart.
 
 The picture is generated entirely from `src/data/seating.js`. The room is one
 grid, laid out like your sketch: the mechitza runs vertically, men to the left
-of it, women to the right. Each table, bench or single chair is one line:
+of it, women to the right. Every table, bench and single chair is one line, and
+it carries its own seat numbers exactly as you wrote them:
 
 ```js
-{ id: "m-t1", section: "men", label: "Table 1 (5′)", col: 7, row: 15, cols: 4, rows: 2, seats: 4 },
+{ id: "m-16-19", section: "men", label: "Table", col: 19, row: 9,
+  numbers: [[16, 17], [18, 19]] },
 ```
 
-- `section` — `"men"` or `"women"`; decides the colour and which numbering run
-  the block joins
-- `col` / `row` — where the top-left corner sits on the grid (1 = far left / top)
-- `cols` / `rows` — how wide and tall the block is
-- `seats` — how many seats in it, filling left→right then top→bottom
+- `numbers` — the seats, drawn row by row, left to right. It's a little picture
+  of the table. `null` leaves a gap where a chair was pulled out.
+- `section` — `"men"` or `"women"`; sets the colour and which numbering run it
+  joins
+- `col` / `row` — where the block's top-left corner sits (1 = far left / top)
+- `w` — how many grid columns wide each seat is (default 2). Purely how wide
+  the chair looks on the plan.
 
-Seats are numbered in the order the blocks appear in the array — currently men
-1–27, women 1–18, running top-to-bottom and left-to-right so a number is easy
-to find while standing in the room. **Once you've sent the link out, don't
-reorder or resize blocks** — the numbers would shift under people who've
-already signed up.
+To move a table, change `col`/`row`. To renumber a seat, change the number —
+it renames it everywhere at once: the picture, the sign-up list and the
+database key.
 
-The `fixtures` list above the blocks holds the bima, chamber, wall and siddurim
-shelves, doors, bathroom, seforim and the mechitza itself. Those carry no
+**The build refuses to ship a broken chart.** If you duplicate a seat number or
+leave a gap in a run, `npm run build` stops and names the offending number
+rather than letting two people book the same chair.
+
+Currently **men 1–34, women 1–21** — 55 seats, straight off your sketch.
+**Once you've sent the link out, don't renumber anything** — people's seats
+would move under them.
+
+The `fixtures` list above the blocks holds the bima, chazan, wall and siddurim
+shelves, seforim, doors, bathrooms and the mechitza itself. Those carry no
 numbers — move them freely.
 
 After any change: `npm run build && npx wrangler deploy`.
@@ -146,27 +156,6 @@ After any change: `npm run build && npx wrangler deploy`.
   ever want real verification, Cardcom's API can confirm a transaction —
   that's a change to `/api/claim` in `worker/index.js` and nothing else.
 - **It doesn't hold seats while someone thinks.** A seat is taken the instant
-  the button is pressed, not before. At 45 seats that is the right trade.
+  the button is pressed, not before. At 55 seats that is the right trade.
 - **It doesn't take payment itself.** Cardcom does. No card details ever touch
   this site.
-
----
-
-## Things I read off your sketch that you should check
-
-The chart mirrors your second sketch. A few cells I couldn't read with
-certainty — check these against the room and correct them in
-`src/data/seating.js`:
-
-| In the sketch | What I built | Check |
-| --- | --- | --- |
-| Top row `1 · 2 · 4 · Shtigh ½` | 4 seats ("Top wall row") | Is the last one a real seat or a shtender? Is `4` meant to be `3`? |
-| `Fiddle Rev` | "Middle row", 2 seats | I read this as *Middle Row*. Rename it if it's something else. |
-| The `½ / ½` column | "Shtenders", 2 seats | Two half-places, or one seat? |
-| `5½ · 2 / 3 · 5` (women, far right) | Table 4, 4 seats | The numbers didn't run 1–4 — how many seats is it really? |
-| `Chamber` | A fixture, no seats | Correct? |
-| `S` and `5'` marks | Ignored | I took these as table lengths in feet, not seat counts. |
-
-Totals as built: **men 27, women 18**. Your first sketch said 33 and 22, so
-either the plan changed or something above is under-counted — worth a look
-before you publish.
