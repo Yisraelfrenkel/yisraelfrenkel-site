@@ -227,10 +227,32 @@ export class Seating extends DurableObject {
 export class Seudah extends DurableObject {
   constructor(ctx, env) {
     super(ctx, env);
-    ctx.storage.sql.exec(`CREATE TABLE IF NOT EXISTS signups (
+    const sql = ctx.storage.sql;
+    sql.exec(`CREATE TABLE IF NOT EXISTS signups (
       id INTEGER PRIMARY KEY AUTOINCREMENT,
       name TEXT NOT NULL, seats INTEGER NOT NULL,
-      contact TEXT NOT NULL DEFAULT '', created_at TEXT NOT NULL)`);
+      contact TEXT NOT NULL DEFAULT '', code TEXT NOT NULL DEFAULT '',
+      created_at TEXT NOT NULL)`);
+
+    // The table shipped before cancel codes existed, so an already-deployed
+    // object needs the column adding rather than creating.
+    const columns = sql.exec("PRAGMA table_info(signups)").toArray();
+    if (!columns.some((c) => c.name === "code")) {
+      sql.exec("ALTER TABLE signups ADD COLUMN code TEXT NOT NULL DEFAULT ''");
+    }
+  }
+
+  /* A short code, in an alphabet with no 0/O or 1/I, so it survives being
+     read off a screen and typed on a phone. */
+  #newCode() {
+    const alphabet = "ACDEFGHJKLMNPQRTUVWXY3456789";
+    for (let tries = 0; tries < 40; tries++) {
+      const code = [...crypto.getRandomValues(new Uint8Array(6))]
+        .map((n) => alphabet[n % alphabet.length])
+        .join("");
+      if (!this.#rows("SELECT id FROM signups WHERE code = ?", code).length) return code;
+    }
+    return null;
   }
 
   #rows(query, ...bind) {
@@ -273,14 +295,36 @@ export class Seudah extends DurableObject {
       };
     }
 
+    const code = this.#newCode();
+    if (!code) {
+      return { error: "Couldn't save that — please try again.", status: 500 };
+    }
+
     this.#rows(
-      "INSERT INTO signups (name, seats, contact, created_at) VALUES (?, ?, ?, datetime('now'))",
+      "INSERT INTO signups (name, seats, contact, code, created_at) " +
+        "VALUES (?, ?, ?, ?, datetime('now'))",
       name,
       seats,
-      contact
+      contact,
+      code
     );
 
-    return { ok: true, ...this.state() };
+    const id = this.#rows("SELECT id FROM signups WHERE code = ?", code)[0].id;
+    return { ok: true, code, id, ...this.state() };
+  }
+
+  /* Cancelling your own place. The code is the proof it's yours — without it
+     one tap from a stranger could take somebody else off the list. */
+  cancel(code) {
+    const row = this.#rows("SELECT id, name, seats FROM signups WHERE code = ?", code)[0];
+    if (!row) {
+      return {
+        error: "That code doesn't match a reservation. Check it and try again.",
+        status: 404,
+      };
+    }
+    this.#rows("DELETE FROM signups WHERE code = ?", code);
+    return { ok: true, cancelled: { name: row.name, seats: row.seats }, ...this.state() };
   }
 
   /* ---- run by whoever holds the site password ---- */
@@ -288,7 +332,7 @@ export class Seudah extends DurableObject {
   listAll() {
     return {
       rows: this.#rows(
-        "SELECT id, name, seats, contact, created_at FROM signups ORDER BY id ASC"
+        "SELECT id, name, seats, contact, code, created_at FROM signups ORDER BY id ASC"
       ),
     };
   }
@@ -381,6 +425,12 @@ async function route(request, env, url, room, meal) {
     }
 
     return reply(await meal.signUp({ name, seats, contact }));
+  }
+
+  if (path === "/api/seudah/cancel" && request.method === "POST") {
+    const code = clean(body.code, 12).toUpperCase().replace(/[^A-Z0-9]/g, "");
+    if (code.length < 4) return json({ error: "Enter your cancellation code." }, 400);
+    return reply(await meal.cancel(code));
   }
 
   /* ---- gabbai ---- */

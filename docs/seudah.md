@@ -53,6 +53,14 @@ page has a password.
 **Download list (CSV)** gives you name, places, contact and time signed up, for
 the kitchen and the table plan.
 
+## This is not the davening seating
+
+Different thing entirely. The seats sold at `/seats/` are places for davening;
+the room is rearranged for the meal, so the seudah page is only a head count —
+no seat numbers, no map. The page says so near the top, in `notSeatingLine`.
+
+The seudah list appears on `/seats/admin/` purely so one password covers both.
+
 ## Worth knowing
 
 - **Anyone can sign up under any name.** There is no login and no payment, so
@@ -61,9 +69,15 @@ the kitchen and the table plan.
   name is visible to everybody.
 - **Someone can sign up twice** — by accident, usually. You'll see it in the
   admin list; remove the duplicate and the places come back.
-- **A cancellation needs to reach you.** The page has no way for someone to
-  remove themselves, deliberately: it would be one tap from a stranger wiping
-  out somebody's place. They message Daniel, you remove it.
+- **People cancel themselves.** On signing up they get a six-character code,
+  shown on screen and remembered by their phone. "Cancel my reservation" frees
+  their places at once, and the code works from any phone if they've switched
+  devices. You don't get called about it.
+- **The code is what makes that safe.** Without it, one tap from a stranger
+  could take somebody off the list. A wrong code cancels nothing.
+- **When it's full, nobody is told to phone anyone.** The page says places open
+  up when people cancel and it's worth checking back — which is now true,
+  because cancelling is self-service.
 
 ## The WhatsApp message
 
@@ -78,5 +92,9 @@ the kitchen and the table plan.
 > **Only 50 places, and sign-up is required.** Add your name here:
 > https://yisraelfrenkel.com/seudah/
 >
-> The page shows how many places are left and who's already coming.
+> The page shows how many places are left and who's already coming. If you
+> sign up and then can't make it, you can cancel yourself on the same page —
+> it frees your place for someone else straight away.
+>
+> (This is for the meal only — nothing to do with seats for davening.)
 > Men and women welcome.

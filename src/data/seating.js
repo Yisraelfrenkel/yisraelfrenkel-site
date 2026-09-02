@@ -57,7 +57,7 @@ export const config = {
   // Shown in the footer of every page. Whoever is named here is who people
   // message when the system can't help them — a refused confirmation number, a
   // seat they need moving. Without it they message nobody and just turn up.
-  contactName: "Daniel Avrek",
+  contactName: "Daniel Averick",
   contactWhatsapp: "https://wa.me/972547142375",
 
   // Callouts shown above the chart, colour-matched to their section. Set a

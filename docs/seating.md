@@ -79,7 +79,7 @@ the page.)
    > seat you want — your name goes straight onto the chart so everyone can
    > see what's left.
    >
-   > Any problem, message Daniel Avrek.
+   > Any problem, message Daniel Averick.
 
 ## How people reach the sign-up page
 
