@@ -13,6 +13,14 @@ binding = "ASSETS"
 name = "SEATING"
 class_name = "Seating"
 
+[[durable_objects.bindings]]
+name = "SEUDAH"
+class_name = "Seudah"
+
 [[migrations]]
 tag = "v1"
 new_sqlite_classes = ["Seating"]
+
+[[migrations]]
+tag = "v2"
+new_sqlite_classes = ["Seudah"]

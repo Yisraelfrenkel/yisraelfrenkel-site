@@ -15,6 +15,7 @@
 
 import { DurableObject } from "cloudflare:workers";
 import { allSeats } from "../src/data/seating.js";
+import { seudah as EVENT } from "../src/data/seudah.js";
 
 const SEATS = new Map(allSeats.map((s) => [s.id, s]));
 
@@ -218,15 +219,97 @@ export class Seating extends DurableObject {
   }
 }
 
+/* ---------------------------------------------------------------------------
+   The Rosh Hashanah seudah sign-up. A separate object from the seating chart,
+   with the same property that matters: it handles one request at a time, so
+   the 50-place cap cannot be overshot by two people submitting at once.
+--------------------------------------------------------------------------- */
+export class Seudah extends DurableObject {
+  constructor(ctx, env) {
+    super(ctx, env);
+    ctx.storage.sql.exec(`CREATE TABLE IF NOT EXISTS signups (
+      id INTEGER PRIMARY KEY AUTOINCREMENT,
+      name TEXT NOT NULL, seats INTEGER NOT NULL,
+      contact TEXT NOT NULL DEFAULT '', created_at TEXT NOT NULL)`);
+  }
+
+  #rows(query, ...bind) {
+    return this.ctx.storage.sql.exec(query, ...bind).toArray();
+  }
+
+  #reserved() {
+    return this.#rows("SELECT COALESCE(SUM(seats), 0) AS n FROM signups")[0].n;
+  }
+
+  /* The public view. Contact details are deliberately not included — the guest
+     list is shown to everyone, phone numbers are not. */
+  state() {
+    const reserved = this.#reserved();
+    return {
+      capacity: EVENT.capacity,
+      reserved,
+      remaining: Math.max(EVENT.capacity - reserved, 0),
+      closed: reserved >= EVENT.capacity,
+      guests: this.#rows(
+        "SELECT id, name, seats FROM signups ORDER BY id ASC"
+      ),
+    };
+  }
+
+  signUp({ name, seats, contact }) {
+    const reserved = this.#reserved();
+    const remaining = EVENT.capacity - reserved;
+
+    if (remaining <= 0) {
+      return { error: "The seudah is full — all 50 places are taken.", status: 409 };
+    }
+    if (seats > remaining) {
+      return {
+        error:
+          remaining === 1
+            ? "Only 1 place is left, so that many won't fit. Try 1, or message the gabbai."
+            : `Only ${remaining} places are left, so that many won't fit. Try ${remaining} or fewer.`,
+        status: 409,
+      };
+    }
+
+    this.#rows(
+      "INSERT INTO signups (name, seats, contact, created_at) VALUES (?, ?, ?, datetime('now'))",
+      name,
+      seats,
+      contact
+    );
+
+    return { ok: true, ...this.state() };
+  }
+
+  /* ---- run by whoever holds the site password ---- */
+
+  listAll() {
+    return {
+      rows: this.#rows(
+        "SELECT id, name, seats, contact, created_at FROM signups ORDER BY id ASC"
+      ),
+    };
+  }
+
+  remove(id) {
+    this.#rows("DELETE FROM signups WHERE id = ?", id);
+    return { ok: true, ...this.state() };
+  }
+}
+
 export default {
   async fetch(request, env) {
     const url = new URL(request.url);
     if (!url.pathname.startsWith("/api/")) return env.ASSETS.fetch(request);
 
     try {
-      // One chart, so one object. Everything is serialised through it.
+      // One chart and one seudah, so one object each. Everything is
+      // serialised through them.
       const room = env.SEATING.get(env.SEATING.idFromName("main"));
-      return await route(request, env, url, room);
+      const meal = env.SEUDAH.get(env.SEUDAH.idFromName("main"));
+      return await route(request, env, url, room, meal);
     } catch {
       return json({ error: "Server error. Try again in a moment." }, 500);
     }
@@ -236,7 +319,7 @@ export default {
 const reply = (result) =>
   result.error ? json({ error: result.error }, result.status ?? 400) : json(result);
 
-async function route(request, env, url, room) {
+async function route(request, env, url, room, meal) {
   const path = url.pathname;
   const body =
     request.method === "POST" ? await request.json().catch(() => ({})) : {};
@@ -272,6 +355,34 @@ async function route(request, env, url, room) {
     );
   }
 
+  /* ---- the seudah ---- */
+  if (path === "/api/seudah" && request.method === "GET") {
+    return json(await meal.state());
+  }
+
+  if (path === "/api/seudah/signup" && request.method === "POST") {
+    const name = clean(body.name, 40);
+    const contact = clean(body.contact, 60);
+    const seats = Number(body.seats);
+
+    if (name.length < 2) return json({ error: "Please enter your name." }, 400);
+    if (!Number.isInteger(seats) || seats < 1) {
+      return json({ error: "How many places do you need?" }, 400);
+    }
+    if (seats > EVENT.maxPerSignup) {
+      return json(
+        {
+          error:
+            `${EVENT.maxPerSignup} places is the most you can book at once. ` +
+            "For a larger group, message the gabbai.",
+        },
+        400
+      );
+    }
+
+    return reply(await meal.signUp({ name, seats, contact }));
+  }
+
   /* ---- gabbai ---- */
   if (path === "/api/admin/status" && request.method === "GET") {
     return json(await room.needsSetup());
@@ -287,6 +398,16 @@ async function route(request, env, url, room) {
 
     if (path === "/api/admin/ping") return json({ ok: true });
     if (path === "/api/admin/export") return json(await room.exportRows());
+
+    // The seudah list, and taking someone off it — a duplicate, or somebody
+    // who cancels. Without this a wrong entry would hold places to the end.
+    if (path === "/api/admin/seudah") return json(await meal.listAll());
+
+    if (path === "/api/admin/seudah/remove" && request.method === "POST") {
+      const id = Number(body.id);
+      if (!Number.isInteger(id)) return json({ error: "Which entry?" }, 400);
+      return json(await meal.remove(id));
+    }
 
     if (path === "/api/admin/seat" && request.method === "POST") {
       const seatId = clean(body.seatId, 8);

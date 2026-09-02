@@ -30,6 +30,19 @@ import { config } from "../../data/seating.js";
 
     <SeatMap mode="pick" />
 
+    <section class="card" style="margin-top:2rem">
+      <h2 style="font-family:var(--font-display);font-size:1.2rem;margin:0 0 0.5rem">
+        Rosh Hashanah seudah
+      </h2>
+      <p class="muted" id="seudah-count" style="margin:0 0 1rem">&nbsp;</p>
+      <div style="display:flex;gap:0.5rem;flex-wrap:wrap;margin-bottom:1rem">
+        <button class="btn btn--ghost" id="seudah-refresh">Refresh</button>
+        <button class="btn btn--ghost" id="seudah-export">Download list (CSV)</button>
+      </div>
+      <ol id="seudah-list" style="margin:0;padding:0;list-style:none"></ol>
+      <p class="err" id="seudah-error" hidden></p>
+    </section>
+
     <div class="card" id="editor" hidden style="position:sticky;bottom:1rem;margin-top:1.5rem;box-shadow:0 8px 30px rgba(43,36,32,0.18)">
       <p style="margin:0 0 0.75rem;font-weight:600" id="editor-title"></p>
       <div class="field">
@@ -86,6 +99,7 @@ import { config } from "../../data/seating.js";
     $("gate").hidden = true;
     $("panel").hidden = false;
     await load();
+    await loadSeudah();
   }
 
   async function unlock() {
@@ -205,6 +219,93 @@ import { config } from "../../data/seating.js";
 
   $("ed-cancel").addEventListener("click", () => ($("editor").hidden = true));
   $("reload").addEventListener("click", () => load().then(() => flash("Refreshed.")));
+
+  /* ---- the seudah list ---- */
+  let seudahRows = [];
+
+  function renderSeudah() {
+    const list = $("seudah-list");
+    list.replaceChildren();
+    const total = seudahRows.reduce((n, r) => n + r.seats, 0);
+    $("seudah-count").textContent = seudahRows.length
+      ? `${total} of 50 places · ${seudahRows.length} ${seudahRows.length === 1 ? "entry" : "entries"}`
+      : "Nobody has signed up yet.";
+
+    for (const r of seudahRows) {
+      const li = document.createElement("li");
+      li.style.cssText =
+        "display:flex;align-items:center;justify-content:space-between;gap:0.75rem;" +
+        "padding:0.6rem 0;border-top:1px solid var(--line);font-size:0.9rem";
+
+      const who = document.createElement("div");
+      const name = document.createElement("strong");
+      name.textContent = r.name;
+      who.append(name);
+      // The contact is why this page is password-protected — it is never on
+      // the public list.
+      if (r.contact) {
+        const c = document.createElement("div");
+        c.className = "muted";
+        c.textContent = r.contact;
+        who.append(c);
+      }
+
+      const right = document.createElement("div");
+      right.style.cssText = "display:flex;align-items:center;gap:0.6rem;flex:none";
+      const seats = document.createElement("span");
+      seats.textContent = r.seats === 1 ? "1 place" : `${r.seats} places`;
+      const del = document.createElement("button");
+      del.className = "btn btn--ghost";
+      del.style.cssText = "padding:0.3rem 0.7rem;font-size:0.78rem";
+      del.textContent = "Remove";
+      del.addEventListener("click", async () => {
+        if (!confirm(`Remove ${r.name} (${r.seats})? Their places go back into the pot.`)) return;
+        try {
+          await api("/api/admin/seudah/remove", {
+            method: "POST",
+            body: JSON.stringify({ id: r.id }),
+          });
+          await loadSeudah();
+          flash("Removed.");
+        } catch (err) {
+          $("seudah-error").textContent = err.message;
+          $("seudah-error").hidden = false;
+        }
+      });
+      right.append(seats, del);
+      li.append(who, right);
+      list.append(li);
+    }
+  }
+
+  async function loadSeudah() {
+    try {
+      seudahRows = (await api("/api/admin/seudah")).rows;
+      renderSeudah();
+    } catch (err) {
+      $("seudah-error").textContent = err.message;
+      $("seudah-error").hidden = false;
+    }
+  }
+
+  $("seudah-refresh").addEventListener("click", () => loadSeudah().then(() => flash("Refreshed.")));
+
+  $("seudah-export").addEventListener("click", () => {
+    const csv = [
+      "name,places,contact,signed_up_at",
+      ...seudahRows.map((r) =>
+        [r.name, r.seats, r.contact, r.created_at]
+          .map((v) => `"${String(v ?? "").replace(/"/g, '""')}"`)
+          .join(",")
+      ),
+    ].join("\n");
+    const url = URL.createObjectURL(new Blob([csv], { type: "text/csv" }));
+    const a = document.createElement("a");
+    a.href = url;
+    a.download = "seudah.csv";
+    a.click();
+    URL.revokeObjectURL(url);
+  });
 
   $("export").addEventListener("click", async () => {
     const rows = await api("/api/admin/export");
