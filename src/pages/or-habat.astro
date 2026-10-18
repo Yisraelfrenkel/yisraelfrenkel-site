@@ -1,0 +1,678 @@
+---
+import Layout from "../layouts/Layout.astro";
+import Footer from "../components/Footer.astro";
+import { site } from "../data/content.js";
+import { ohb, problem, frame, classes, format, investment, why, who, faq } from "../data/or-habat.js";
+
+const mailtoHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(ohb.email)}`;
+---
+
+<Layout
+  title={`${ohb.title} — ${site.title}`}
+  description="A six-class Torah course for girls before and during shidduchim, with Rav Yisrael Frenkel: what you deserve, what you bring, how to date, and how to recognize a good man and how he grows. First class free, in Yerushalayim."
+>
+  <main class="ohb">
+    {/* ---------- Hero ---------- */}
+    <section class="hero">
+      <img class="wordmark" src={ohb.wordmark} alt="Yisrael Frenkel" />
+      <p class="eyebrow">{ohb.eyebrow}</p>
+      <h1>{ohb.title}</h1>
+      <p class="subtitle">{ohb.subtitle}</p>
+      <div class="cta">
+        <a class="btn btn-primary" href={ohb.reserveUrl} target="_blank" rel="noopener noreferrer">{ohb.cta.primary}</a>
+        <a class="btn btn-secondary" href={ohb.askUrl} target="_blank" rel="noopener noreferrer">{ohb.cta.secondary}</a>
+      </div>
+    </section>
+
+    {/* ---------- Next class ---------- */}
+    <section class="next reveal">
+      <div class="card">
+        <p class="label">{ohb.nextClass.label}</p>
+        <p class="when">{ohb.nextClass.when}</p>
+        <p class="where">{ohb.nextClass.where}</p>
+        <p class="note">{ohb.nextClass.note}</p>
+        <p class="zoom">{ohb.nextClass.zoom} <a href={ohb.notifyUrl} target="_blank" rel="noopener noreferrer">{ohb.cta.notify} →</a></p>
+      </div>
+    </section>
+
+    {/* ---------- The problem ---------- */}
+    <section class="prose reveal">
+      <h2>{problem.heading}</h2>
+      {problem.paragraphs.map((p) => <p>{p}</p>)}
+      <p class="pull">{problem.pull}</p>
+    </section>
+
+    {/* ---------- The frame ---------- */}
+    <section class="prose tint reveal">
+      <h2>{frame.heading}</h2>
+      {frame.paragraphs.map((p) => <p>{p}</p>)}
+    </section>
+
+    {/* ---------- The six classes ---------- */}
+    <section class="classes" id="classes">
+      <div class="classes-head reveal">
+        <p class="eyebrow">The six classes</p>
+        <h2>One class for each step of the way.</h2>
+        <p class="lead">From before the first date to the chuppah. Each class is one stage, and each one answers the question you are actually asking at that stage.</p>
+      </div>
+      <ol class="class-list">
+        {classes.map((c) => (
+          <li class="class reveal">
+            <div class="class-num" aria-hidden="true">{c.n}</div>
+            <div class="class-body">
+              <p class="stage">{c.stage}{c.free && <span class="free">First class · free</span>}</p>
+              <h3>{c.title}</h3>
+              <p class="question">“{c.question}”</p>
+              <ul>
+                {c.points.map((pt) => <li>{pt}</li>)}
+              </ul>
+            </div>
+          </li>
+        ))}
+      </ol>
+    </section>
+
+    {/* ---------- Format ---------- */}
+    <section class="format tint reveal">
+      <h2>{format.heading}</h2>
+      <dl>
+        {format.items.map((it) => (
+          <div class="row">
+            <dt>{it.k}</dt>
+            <dd>{it.v}</dd>
+          </div>
+        ))}
+      </dl>
+    </section>
+
+    {/* ---------- Investment ---------- */}
+    <section class="investment reveal" id="join">
+      <h2>{investment.heading}</h2>
+      <p class="note">{investment.note}</p>
+      <div class="tiers">
+        {investment.tiers.map((t) => (
+          <div class="tier">
+            <p class="tier-where">{t.where}</p>
+            <p class="tier-price">{t.early}</p>
+            <p class="tier-label">{investment.earlyLabel}</p>
+            <p class="tier-late">{t.late} {investment.lateLabel.toLowerCase()}</p>
+            <p class="tier-unit">{t.unit}</p>
+          </div>
+        ))}
+      </div>
+      <p class="closing">{investment.closing}</p>
+      <div class="cta">
+        <a class="btn btn-primary" href={ohb.reserveUrl} target="_blank" rel="noopener noreferrer">{ohb.cta.primary}</a>
+        <a class="btn btn-secondary" href={ohb.notifyUrl} target="_blank" rel="noopener noreferrer">{ohb.cta.notify}</a>
+      </div>
+    </section>
+
+    {/* ---------- Why I teach this ---------- */}
+    <section class="why tint reveal">
+      <div class="why-grid">
+        <figure>
+          <img src={why.image} alt={why.imageAlt} loading="lazy" />
+        </figure>
+        <div class="why-text">
+          <h2>{why.heading}</h2>
+          {why.paragraphs.map((p) => <p>{p}</p>)}
+          <p class="signature">{why.signature}</p>
+        </div>
+      </div>
+    </section>
+
+    {/* ---------- Who it is for + FAQ ---------- */}
+    <section class="who reveal">
+      <div class="who-grid">
+        <div>
+          <h2>{who.heading}</h2>
+          <ul class="who-list">
+            {who.items.map((it) => <li>{it}</li>)}
+          </ul>
+        </div>
+        <div>
+          <h2>Questions girls ask</h2>
+          {faq.map((f) => (
+            <details>
+              <summary>{f.q}</summary>
+              <p>{f.a}</p>
+            </details>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {/* ---------- Contact ---------- */}
+    <section class="contact reveal">
+      <p class="eyebrow">Have a question? Write to me. I answer every message myself.</p>
+      <div class="cta">
+        <a class="btn btn-secondary" href={ohb.askUrl} target="_blank" rel="noopener noreferrer">WhatsApp me</a>
+        <a class="btn btn-secondary" href={mailtoHref} target="_blank" rel="noopener noreferrer">Email me</a>
+      </div>
+    </section>
+
+    <Footer />
+  </main>
+</Layout>
+
+<style is:global>
+  .ohb {
+    --p-h1: 56px;
+    --p-h2: 36px;
+    --p-h3: 26px;
+    --p-body: 18px;
+    --p-lh: 1.7;
+    --p-pad: 96px;
+    --p-section: 80px;
+
+    --parchment: #f8f3ea;
+    --parchment-2: #f3eee4;
+    --parchment-3: #fcfaf6;
+    --text: #4f3422;
+    --accent: #a4704f;
+    --accent-deep: #96633f;
+    --muted: rgba(79, 52, 34, 0.66);
+    --rule: rgba(79, 52, 34, 0.14);
+
+    --serif: "Cormorant Garamond", serif;
+    --sans: "Inter", system-ui, sans-serif;
+
+    background: var(--parchment);
+    color: var(--text);
+    width: 100%;
+    overflow-x: hidden;
+    font-family: var(--sans);
+  }
+  .ohb .reveal {
+    opacity: 0;
+    transform: translateY(18px);
+    transition: opacity 0.7s ease, transform 0.7s ease;
+  }
+  .ohb .reveal.is-visible {
+    opacity: 1;
+    transform: none;
+  }
+  .ohb section {
+    padding: var(--p-section) 24px;
+  }
+  .ohb .tint {
+    background: var(--parchment-2);
+  }
+  .ohb h1, .ohb h2, .ohb h3 {
+    font-family: var(--serif);
+    color: var(--text);
+    font-weight: 600;
+    line-height: 1.12;
+    margin: 0;
+  }
+  .ohb h2 {
+    font-size: var(--p-h2);
+    margin-bottom: 28px;
+  }
+  .ohb h3 {
+    font-size: var(--p-h3);
+  }
+  .ohb p {
+    margin: 0;
+  }
+  .ohb .eyebrow {
+    font-family: var(--sans);
+    font-size: 13px;
+    letter-spacing: 0.12em;
+    text-transform: uppercase;
+    color: var(--muted);
+    margin: 0 0 18px;
+  }
+
+  /* buttons */
+  .ohb .cta {
+    display: flex;
+    justify-content: center;
+    gap: 16px;
+    flex-wrap: wrap;
+    margin-top: 36px;
+  }
+  .ohb .btn {
+    display: inline-flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 54px;
+    padding: 0 30px;
+    border-radius: 16px;
+    font-family: var(--sans);
+    font-size: 15px;
+    font-weight: 500;
+    letter-spacing: 0.02em;
+    text-decoration: none;
+    text-align: center;
+    transition: background 0.3s ease, border-color 0.3s ease, color 0.3s ease, box-shadow 0.3s ease;
+  }
+  .ohb .btn-primary {
+    background: var(--accent);
+    border: 1px solid var(--accent);
+    color: #fdfaf5;
+    box-shadow: 0 6px 18px rgba(164, 112, 79, 0.24);
+  }
+  .ohb .btn-primary:hover {
+    background: var(--accent-deep);
+    border-color: var(--accent-deep);
+  }
+  .ohb .btn-secondary {
+    background: transparent;
+    border: 1px solid var(--accent);
+    color: var(--accent);
+  }
+  .ohb .btn-secondary:hover {
+    background: var(--parchment-2);
+    border-color: var(--text);
+    color: var(--text);
+  }
+
+  /* hero */
+  .ohb .hero {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: var(--p-pad) 24px 56px;
+    text-align: center;
+  }
+  .ohb .hero .wordmark {
+    max-width: 300px;
+    width: 55%;
+    height: auto;
+    margin: 0 auto 44px;
+  }
+  .ohb .hero h1 {
+    font-size: var(--p-h1);
+    margin: 0 0 16px;
+    text-wrap: balance;
+  }
+  .ohb .hero .subtitle {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: calc(var(--p-h2) * 0.9);
+    color: rgba(79, 52, 34, 0.6);
+    line-height: 1.35;
+  }
+
+  /* next class card */
+  .ohb .next {
+    padding-top: 0;
+    padding-bottom: 72px;
+  }
+  .ohb .card {
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 34px 36px;
+    background: var(--parchment-3);
+    border: 1px solid var(--rule);
+    border-radius: 18px;
+    text-align: center;
+    box-shadow: 0 10px 30px rgba(79, 52, 34, 0.08);
+  }
+  .ohb .card .label {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--accent);
+    font-weight: 600;
+    margin-bottom: 10px;
+  }
+  .ohb .card .when {
+    font-family: var(--serif);
+    font-size: 30px;
+    font-weight: 600;
+    line-height: 1.2;
+  }
+  .ohb .card .where {
+    font-size: 17px;
+    margin-top: 8px;
+  }
+  .ohb .card .note {
+    font-size: 15px;
+    color: var(--muted);
+    margin-top: 14px;
+    line-height: 1.6;
+  }
+  .ohb .card .zoom {
+    font-size: 15px;
+    margin-top: 18px;
+    padding-top: 18px;
+    border-top: 1px solid var(--rule);
+    line-height: 1.6;
+  }
+  .ohb .card .zoom a {
+    color: var(--accent);
+    font-weight: 500;
+    text-decoration: none;
+    white-space: nowrap;
+  }
+
+  /* prose sections */
+  .ohb .prose {
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  .ohb .tint.prose,
+  .ohb .tint {
+    max-width: none;
+  }
+  .ohb .tint > * {
+    max-width: 720px;
+    margin-left: auto;
+    margin-right: auto;
+  }
+  .ohb .prose p {
+    font-size: var(--p-body);
+    line-height: var(--p-lh);
+    margin-bottom: 1.3em;
+  }
+  .ohb .prose p:last-child {
+    margin-bottom: 0;
+  }
+  .ohb .prose .pull {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 27px;
+    line-height: 1.45;
+    color: var(--accent);
+    text-align: center;
+    margin-top: 40px;
+    text-wrap: pretty;
+  }
+
+  /* classes */
+  .ohb .classes {
+    max-width: 920px;
+    margin: 0 auto;
+  }
+  .ohb .classes-head {
+    text-align: center;
+    max-width: 720px;
+    margin: 0 auto 48px;
+  }
+  .ohb .classes-head .lead {
+    font-size: var(--p-body);
+    line-height: var(--p-lh);
+    color: var(--muted);
+  }
+  .ohb .class-list {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+  }
+  .ohb .class {
+    display: grid;
+    grid-template-columns: 72px 1fr;
+    gap: 24px;
+    padding: 36px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .ohb .class:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+  .ohb .class-num {
+    font-family: var(--serif);
+    font-size: 54px;
+    font-weight: 600;
+    line-height: 1;
+    color: var(--accent);
+    opacity: 0.85;
+  }
+  .ohb .stage {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+    margin-bottom: 10px;
+    display: flex;
+    gap: 12px;
+    align-items: center;
+    flex-wrap: wrap;
+  }
+  .ohb .free {
+    display: inline-block;
+    background: var(--accent);
+    color: #fdfaf5;
+    padding: 3px 10px;
+    border-radius: 999px;
+    letter-spacing: 0.1em;
+    font-size: 11px;
+  }
+  .ohb .question {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 21px;
+    color: var(--accent);
+    margin: 8px 0 16px;
+  }
+  .ohb .class ul {
+    margin: 0;
+    padding-left: 20px;
+  }
+  .ohb .class li {
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 8px;
+  }
+
+  /* format */
+  .ohb .format h2 {
+    text-align: center;
+  }
+  .ohb .format dl {
+    margin: 0 auto;
+    max-width: 720px;
+  }
+  .ohb .format .row {
+    display: grid;
+    grid-template-columns: 170px 1fr;
+    gap: 20px;
+    padding: 18px 0;
+    border-top: 1px solid var(--rule);
+  }
+  .ohb .format .row:last-child {
+    border-bottom: 1px solid var(--rule);
+  }
+  .ohb .format dt {
+    font-family: var(--serif);
+    font-size: 22px;
+    font-weight: 600;
+  }
+  .ohb .format dd {
+    margin: 0;
+    font-size: 17px;
+    line-height: 1.6;
+  }
+
+  /* investment */
+  .ohb .investment {
+    max-width: 860px;
+    margin: 0 auto;
+    text-align: center;
+  }
+  .ohb .investment .note {
+    font-size: var(--p-body);
+    color: var(--muted);
+  }
+  .ohb .tiers {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 24px;
+    margin-top: 36px;
+  }
+  .ohb .tier {
+    background: var(--parchment-3);
+    border: 1px solid var(--rule);
+    border-radius: 18px;
+    padding: 30px 24px;
+  }
+  .ohb .tier-where {
+    font-size: 12px;
+    letter-spacing: 0.14em;
+    text-transform: uppercase;
+    color: var(--muted);
+    font-weight: 600;
+  }
+  .ohb .tier-price {
+    font-family: var(--serif);
+    font-size: 58px;
+    font-weight: 600;
+    line-height: 1.05;
+    color: var(--accent);
+    margin-top: 10px;
+  }
+  .ohb .tier-label {
+    font-size: 14px;
+    margin-top: 6px;
+  }
+  .ohb .tier-late {
+    font-size: 14px;
+    color: var(--muted);
+    margin-top: 10px;
+  }
+  .ohb .tier-unit {
+    font-size: 13px;
+    color: var(--muted);
+    margin-top: 4px;
+  }
+  .ohb .investment .closing {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 21px;
+    color: var(--text);
+    margin-top: 32px;
+  }
+
+  /* why */
+  .ohb .why-grid {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 2fr 3fr;
+    gap: 56px;
+    align-items: center;
+  }
+  .ohb .why figure {
+    margin: 0;
+  }
+  .ohb .why img {
+    width: 100%;
+    height: auto;
+    border-radius: 14px;
+    box-shadow: 0 12px 34px rgba(79, 52, 34, 0.14);
+  }
+  .ohb .why-text p {
+    font-size: var(--p-body);
+    line-height: var(--p-lh);
+    margin-bottom: 1.2em;
+  }
+  .ohb .signature {
+    font-family: var(--serif);
+    font-style: italic;
+    font-size: 22px;
+    color: var(--accent);
+  }
+
+  /* who + faq */
+  .ohb .who-grid {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 64px;
+  }
+  .ohb .who-list {
+    margin: 0;
+    padding-left: 20px;
+  }
+  .ohb .who-list li {
+    font-size: 17px;
+    line-height: 1.6;
+    margin-bottom: 12px;
+  }
+  .ohb details {
+    border-top: 1px solid var(--rule);
+    padding: 14px 0;
+  }
+  .ohb details:last-of-type {
+    border-bottom: 1px solid var(--rule);
+  }
+  .ohb summary {
+    cursor: pointer;
+    font-family: var(--serif);
+    font-size: 21px;
+    font-weight: 600;
+    list-style: none;
+  }
+  .ohb summary::-webkit-details-marker {
+    display: none;
+  }
+  .ohb summary::after {
+    content: "+";
+    float: right;
+    color: var(--accent);
+  }
+  .ohb details[open] summary::after {
+    content: "–";
+  }
+  .ohb details p {
+    font-size: 16px;
+    line-height: 1.6;
+    margin-top: 10px;
+    color: var(--text);
+  }
+
+  /* contact */
+  .ohb .contact {
+    text-align: center;
+    padding-bottom: 40px;
+  }
+  .ohb .contact .cta {
+    margin-top: 0;
+  }
+
+  @media (max-width: 760px) {
+    .ohb {
+      --p-h1: 34px;
+      --p-h2: 27px;
+      --p-h3: 22px;
+      --p-body: 17px;
+      --p-pad: 56px;
+      --p-section: 52px;
+    }
+    .ohb .card {
+      padding: 26px 22px;
+    }
+    .ohb .card .when {
+      font-size: 24px;
+    }
+    .ohb .class {
+      grid-template-columns: 44px 1fr;
+      gap: 16px;
+      padding: 28px 0;
+    }
+    .ohb .class-num {
+      font-size: 36px;
+    }
+    .ohb .format .row {
+      grid-template-columns: 1fr;
+      gap: 6px;
+    }
+    .ohb .tiers,
+    .ohb .why-grid,
+    .ohb .who-grid {
+      grid-template-columns: 1fr;
+    }
+    .ohb .why-grid {
+      gap: 28px;
+    }
+    .ohb .tier-price {
+      font-size: 46px;
+    }
+    .ohb .btn {
+      width: 100%;
+      max-width: 360px;
+    }
+  }
+</style>
