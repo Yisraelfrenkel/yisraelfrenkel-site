@@ -40,8 +40,8 @@ export const ohb = {
   nextClass: {
     label: "Next free first class",
     when: "Tuesday, October 27, 2026 · 7:30 PM",
-    where: "Kehilat Chaverim · 14 Eliyahu Salman St., Nachlaot, Yerushalayim",
-    note: "In person. For girls before and during shidduchim. No sign-up needed to come; reserving a seat helps us set the room.",
+    where: "Nachlaot, Yerushalayim · the address is sent when you reserve",
+    note: "In person, for girls before and during shidduchim. Reserve a seat and you'll get the address, a reminder the day before, and a message from me afterward.",
     zoom: "Chutz la'aretz: the same course opens on Zoom a few weeks later.",
   },
 };
