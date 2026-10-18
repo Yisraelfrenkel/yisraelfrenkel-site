@@ -22,9 +22,8 @@ export const ohb = {
   // Until a dedicated Tally form exists, every "reserve" button opens a
   // WhatsApp chat with the message already written. Swap these two URLs
   // for the form link when it is ready and nothing else changes.
-  reserveUrl: whatsapp(
-    "Hi Rav Frenkel, I'd like to reserve a seat for the free first class of The Love You're Meant to Build on Tuesday, October 27."
-  ),
+  // Tally form "The Love You're Meant to Build · Reserve a seat" (created 2026-10-18).
+  reserveUrl: "https://tally.so/r/xVxEKk",
   notifyUrl: whatsapp(
     "Hi Rav Frenkel, please let me know when The Love You're Meant to Build opens on Zoom for chutz la'aretz."
   ),
