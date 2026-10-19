@@ -102,7 +102,8 @@ const mailtoHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURICom
       </div>
       <p class="closing">{investment.closing}</p>
       <div class="cta">
-        <a class="btn btn-primary" href={ohb.reserveUrl} target="_blank" rel="noopener noreferrer">{ohb.cta.primary}</a>
+        <a class="btn btn-primary" href={ohb.joinUrl} target="_blank" rel="noopener noreferrer">{ohb.cta.join}</a>
+        <a class="btn btn-secondary" href={ohb.reserveUrl} target="_blank" rel="noopener noreferrer">{ohb.cta.primary}</a>
         <a class="btn btn-secondary" href={ohb.notifyUrl} target="_blank" rel="noopener noreferrer">{ohb.cta.notify}</a>
       </div>
     </section>

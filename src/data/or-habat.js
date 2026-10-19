@@ -24,6 +24,8 @@ export const ohb = {
   // for the form link when it is ready and nothing else changes.
   // Tally form "The Love You're Meant to Build · Reserve a seat" (created 2026-10-18).
   reserveUrl: "https://tally.so/r/xVxEKk",
+  // CardCom payment page (Kehilat Chaverim), one link for the whole course.
+  joinUrl: "https://secure.cardcom.solutions/EA/EA5/xN7Ukz08fEeQdQvuFH4l9w",
   notifyUrl: whatsapp(
     "Hi Rav Frenkel, please let me know when The Love You're Meant to Build opens on Zoom for chutz la'aretz."
   ),
@@ -34,6 +36,7 @@ export const ohb = {
     primary: "Reserve a seat · first class free",
     secondary: "Ask me a question",
     notify: "Tell me when the Zoom course opens",
+    join: "Join the course · 150 ₪ until Oct 28",
   },
 
   nextClass: {
