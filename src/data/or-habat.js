@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// "The Love You're Meant to Build" — the girls' pre-dating course.
+// "The Love You're Meant to Build" — the young women's pre-dating course.
 // Working name: Or HaBat (אור הבת). All copy for /or-habat lives here;
 // the page file only lays it out. Source of truth for the class list is
 // the vault note "Girls Marriage Course / Syllabus - draft 3".
@@ -13,7 +13,7 @@ const whatsapp = (text) =>
 export const ohb = {
   slug: "/or-habat",
   wordmark: "/images/yisrael-frenkel-wordmark.png",
-  eyebrow: "A six-class Torah course for girls, before and during shidduchim",
+  eyebrow: "A six-class Torah course for young women, before and during shidduchim",
   title: "The Love You're Meant to Build",
   subtitle: "It begins long before you start dating.",
   hebrewName: "אור הבת",
@@ -43,26 +43,26 @@ export const ohb = {
     label: "Next free first class",
     when: "Tuesday, October 27, 2026 · 7:30 PM",
     where: "Nachlaot, Yerushalayim · the address is sent when you reserve",
-    note: "In person, for girls before and during shidduchim. Reserve a seat and you'll get the address, a reminder the day before, and a message from me afterward.",
+    note: "In person, for young women before and during shidduchim. Reserve a seat and you'll get the address, a reminder the day before, and a message from me afterward.",
     zoom: "Chutz la'aretz: the same course opens on Zoom a few weeks later.",
   },
 };
 
 export const problem = {
-  heading: "Nobody sits a girl down and teaches her this.",
+  heading: "Nobody sits a young woman down and teaches her this.",
   paragraphs: [
     "You were taught how to be a good wife. You were told to be a kind, giving person, to build your husband, to make a home. All of that is true.",
-    "But almost nobody tells a girl what a husband owes her. Nobody reads her the ketubah before she stands under the chuppah and hears it read for the first time. Nobody explains that when a man says harei at mekudeshet li, \"you are mine,\" the Torah means \"you are my responsibility\" before it means anything else.",
-    "And so girls go out knowing how to give, and not knowing what they are allowed to expect. They say yes because everyone says to. They tolerate what they shouldn't, because nobody told them it was a red flag. Or they say no to a good boy, because nobody told them how a good man grows.",
+    "But almost nobody tells a young woman what a husband owes her. Nobody reads her the ketubah before she stands under the chuppah and hears it read for the first time. Nobody explains that when a man says harei at mekudeshet li, \"you are mine,\" the Torah means \"you are my responsibility\" before it means anything else.",
+    "And so young women go out knowing how to give, and not knowing what they are allowed to expect. They say yes because everyone says to. They tolerate what they shouldn't, because nobody told them it was a red flag. Or they say no to a good boy, because nobody told them how a good man grows.",
   ],
-  pull: "A girl who knows what she deserves will never again confuse being wanted with being used.",
+  pull: "A young woman who knows what she deserves will never again confuse being wanted with being used.",
 };
 
 export const frame = {
   heading: "Dating is not a test. It is how a relationship gets built.",
   paragraphs: [
     "This course does not hand you a checklist and send you out to grade boys against it. Most boys do not show up as finished husband material, and you are not looking for one who does.",
-    "You are learning what you need for a full relationship, how to say it, and what to watch for when you do: does he step into it, does he grow into it, does he care? That is how a man grows. A girl names what she needs and believes in him, and he becomes the man who meets it.",
+    "You are learning what you need for a full relationship, how to say it, and what to watch for when you do: does he step into it, does he grow into it, does he care? That is how a man grows. A young woman names what she needs and believes in him, and he becomes the man who meets it.",
     "The red flags are the exceptions, the few things that are not growth gaps but stop signs. You will learn those too.",
   ],
 };
@@ -148,7 +148,7 @@ export const format = {
   items: [
     { k: "One hour", v: "Rav Frenkel teaches. One class a week, six weeks." },
     { k: "Fifteen minutes", v: "Questions, anything you want to ask." },
-    { k: "Then he leaves", v: "A woman holds the room: the girls talk through what came up, for as long as they want. Never required, always welcome." },
+    { k: "Then he leaves", v: "A woman holds the room: the young women talk through what came up, for as long as they want. Never required, always welcome." },
     { k: "Yerushalayim", v: "The circle is led by Sharona Noy." },
     { k: "Chutz la'aretz", v: "On Zoom, with circles led by women in Lakewood and on Long Island." },
   ],
@@ -163,7 +163,7 @@ export const investment = {
   ],
   earlyLabel: "Sign up the night of the first class",
   lateLabel: "Sign up afterward",
-  closing: "If the price is the only thing keeping you away, write to me. No girl is turned away.",
+  closing: "If the price is the only thing keeping you away, write to me. No one is turned away.",
 };
 
 export const why = {
@@ -172,8 +172,8 @@ export const why = {
   imageAlt: "Rav Yisrael Frenkel in conversation",
   paragraphs: [
     "For more than twenty years I have sat with couples, with chassanim, and with women carrying the pain of marriages that didn't work. Not bad people. Not bad marriages. Two people who were never shown how a husband and a wife actually fit together.",
-    "Most of what goes wrong was visible before the engagement. Not because anyone was hiding it, but because the girl had never been taught what she was looking at, or that she was allowed to need anything at all.",
-    "The Torah teaches it in detail. It is in the ketubah, in the words of kiddushin, in the halachos every chassan learns and no kallah is told. I teach it to girls because it is theirs.",
+    "Most of what goes wrong was visible before the engagement. Not because anyone was hiding it, but because the young woman had never been taught what she was looking at, or that she was allowed to need anything at all.",
+    "The Torah teaches it in detail. It is in the ketubah, in the words of kiddushin, in the halachos every chassan learns and no kallah is told. I teach it to young women because it is theirs.",
   ],
   signature: "Rav Yisrael Frenkel",
 };
@@ -181,9 +181,9 @@ export const why = {
 export const who = {
   heading: "Who it is for",
   items: [
-    "Girls before shidduchim, who want to walk in knowing what they are looking for.",
-    "Girls in shidduchim, who are being told to \"just go out again\" and want to know what they are looking at.",
-    "Girls who are engaged, and want the last stretch to the chuppah to be theirs.",
+    "Young women before shidduchim, who want to walk in knowing what they are looking for.",
+    "Young women in shidduchim, who are being told to \"just go out again\" and want to know what they are looking at.",
+    "Young women who are engaged, and want the last stretch to the chuppah to be theirs.",
     "Mothers: this is the course you wish someone had given you. Send it to her.",
   ],
 };
@@ -191,7 +191,7 @@ export const who = {
 export const faq = [
   {
     q: "Do I have to talk in the circle?",
-    a: "No. Many girls just listen the first week. The circle is there for whoever wants it.",
+    a: "No. Many just listen the first week. The circle is there for whoever wants it.",
   },
   {
     q: "Is this a kallah class?",
