@@ -1,5 +1,5 @@
 // ---------------------------------------------------------------
-// "Ask Rav Frenkel" — the question box on /or-habat, and the answers
+// "Ask anything" — the question box on /orhaisha, and the answers
 // that stay on the page.
 //
 // HOW TO ADD AN ANSWER
@@ -17,16 +17,16 @@
 // ---------------------------------------------------------------
 
 export const ask = {
-  heading: "Ask Rav Frenkel",
+  heading: "Ask anything.",
   intro:
-    "Something a class raised. Something you are in the middle of right now. Something nobody ever answered for you. Ask it here, with no name.",
-  note: "I read and answer every question myself. The answers that would help other young women stay on this page, for as long as the course exists. If you'd rather be answered privately, leave your WhatsApp number or email in the form.",
+    "No question is too small, too strange, or too personal. Every question a young woman carries into this is a real one, and it deserves a real answer. Ask it here, in your own words, with no name.",
+  note: "I answer every question myself, and the answers are posted right here, for everyone, for good. Come back whenever you like: to read what others have asked, and to ask what you have been carrying. If you'd rather be answered privately, leave your WhatsApp number or email in the form.",
   // Tally form "Ask Rav Frenkel" (created 2026-10-25). Form id Gex8Qk.
   formUrl: "https://tally.so/r/Gex8Qk",
   embedUrl:
     "https://tally.so/embed/Gex8Qk?alignLeft=1&hideTitle=1&transparentBackground=1&dynamicHeight=1",
-  answeredHeading: "Questions already answered",
-  empty: "The first answers will appear here after the first class.",
+  answeredHeading: "What young women have asked",
+  empty: "The first questions and answers appear here after the first class. Yours can be among them.",
 };
 
 // Newest first. See HOW TO ADD AN ANSWER above.

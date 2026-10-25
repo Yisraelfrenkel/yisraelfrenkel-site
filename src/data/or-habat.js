@@ -1,6 +1,6 @@
 // ---------------------------------------------------------------
 // "The Love You're Meant to Build" — the young women's pre-dating course.
-// Working name: Or HaBat (אור הבת). All copy for /or-habat lives here;
+// Working name: Or HaBat (אור הבת). All copy for /orhaisha lives here;
 // the page file only lays it out. Source of truth for the class list is
 // the vault note "Girls Marriage Course / Syllabus - draft 3".
 // ---------------------------------------------------------------
@@ -11,7 +11,7 @@ const whatsapp = (text) =>
   `https://wa.me/972587613153?text=${encodeURIComponent(text)}`;
 
 export const ohb = {
-  slug: "/or-habat",
+  slug: "/orhaisha",
   wordmark: "/images/yisrael-frenkel-wordmark.png",
   eyebrow: "A six-class Torah course for young women, before and during shidduchim",
   title: "The Love You're Meant to Build",
@@ -34,7 +34,7 @@ export const ohb = {
 
   cta: {
     primary: "Reserve a seat · first class free",
-    secondary: "Ask me a question",
+    secondary: "Ask anything",
     notify: "Tell me when the Zoom course opens",
     join: "Join the course · 150 ₪ until Oct 28",
   },
