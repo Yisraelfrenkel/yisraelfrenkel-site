@@ -1,0 +1,37 @@
+---
+// Sticky top bar for the homepage and the under-construction pages.
+import { site } from "../data/content.js";
+import { homeNav, homeHero } from "../data/home.js";
+---
+
+<header class="site-header">
+  <div class="wrap nav">
+    <a class="wordmark" href="/" aria-label="Yisrael Frenkel, home">
+      <img src="/images/yisrael-frenkel-wordmark.png" alt="Yisrael Frenkel" width="774" height="167" />
+    </a>
+    <nav class="desktop-nav" aria-label="Main">
+      {homeNav.map((l) => <a href={l.href}>{l.label}</a>)}
+    </nav>
+    <div class="nav-book">
+      <a class="btn small" href={site.personalSessionUrl}>{homeHero.book}</a>
+    </div>
+    <details class="mobile-menu">
+      <summary>Menu</summary>
+      <nav aria-label="Main">
+        {homeNav.map((l) => <a href={l.href}>{l.label}</a>)}
+        <a href={site.personalSessionUrl}>{homeHero.book}</a>
+        <a href={site.personalWhatsappUrl}>WhatsApp</a>
+        <a href={`mailto:${site.email}`}>Email</a>
+      </nav>
+    </details>
+  </div>
+</header>
+
+<script>
+  document.querySelectorAll(".mobile-menu a").forEach((link) =>
+    link.addEventListener("click", () => {
+      const d = link.closest("details");
+      if (d) d.open = false;
+    })
+  );
+</script>

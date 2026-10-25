@@ -3,3 +3,8 @@ dist/
 .astro/
 src/env.d.ts
 .DS_Store
+
+# design scratch (kept locally)
+codex-homepage/
+.taste-skill/
+.claude/

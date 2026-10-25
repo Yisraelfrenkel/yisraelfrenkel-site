@@ -1,53 +1,166 @@
 ---
 import Layout from "../layouts/Layout.astro";
-import { site } from "../data/content.js";
+import HomeHeader from "../components/HomeHeader.astro";
+import "../styles/home.css";
+import { site, testimonials } from "../data/content.js";
+import {
+  homeHero,
+  homeNav,
+  belief,
+  topicsIntro,
+  doors,
+  pullQuote,
+  voices,
+  homeClose,
+  footerLine,
+} from "../data/home.js";
+
+const book = site.personalSessionUrl;
+const wa = site.personalWhatsappUrl;
+const mail = `mailto:${site.email}`;
+const href = (t) => t.href ?? `/topics/${t.slug}`;
+const words = ["one", "two", "three", "four"];
+const year = new Date().getFullYear();
 ---
 
-<Layout title={site.title} description={site.description}>
-  <main class="placeholder">
-    <div class="placeholder-inner">
-      <img src="/images/logo.png" alt={site.title} class="logo" />
-      <h1>The main site is still being built.</h1>
-      <p class="placeholder-sub">
-        In the meantime, start here —
-        <a href="/beauty-of-human-desire">The Beauty of Human Desire</a>.
-      </p>
-    </div>
-  </main>
-</Layout>
+<Layout
+  title="Rav Yisrael Frenkel — Torah and psychology, one human being"
+  description="Torah teaching and private guidance with Rav Yisrael Frenkel—marriage, desire, healing, faith and Torah."
+  bodyClass="home"
+>
+  <a class="skip" href="#main">Skip to content</a>
+  <HomeHeader />
 
-<style>
-  .placeholder {
-    min-height: 100vh;
-    display: flex;
-    align-items: center;
-    justify-content: center;
-    padding: 2rem;
-    background: var(--paper);
-  }
-  .placeholder-inner {
-    max-width: 32rem;
-    text-align: center;
-  }
-  .logo {
-    height: 40px;
-    width: auto;
-    margin: 0 auto;
-  }
-  h1 {
-    font-family: var(--font-display);
-    font-size: clamp(1.6rem, 4vw, 2.3rem);
-    margin-top: 0.75rem;
-    color: var(--ink);
-  }
-  .placeholder-sub {
-    margin-top: 1.25rem;
-    font-family: var(--font-body);
-    font-size: 1.05rem;
-    color: var(--ink-soft);
-  }
-  .placeholder-sub a {
-    color: var(--gold);
-    text-decoration: underline;
-  }
-</style>
+  <main id="main">
+    <section class="hero">
+      <div class="hero-glow"></div>
+      <div class="wrap hero-grid">
+        <div class="hero-copy">
+          <p class="kicker">{homeHero.kicker}</p>
+          <h1>{homeHero.title}<br /><em>{homeHero.titleEm}</em></h1>
+          <p class="hero-lead">{homeHero.lead}</p>
+          <div class="actions">
+            <a class="btn" href={book}>{homeHero.book} <b>↗</b></a>
+            <a class="btn ghost" href="#topics">{homeHero.explore} ↓</a>
+          </div>
+          <div class="contact-line">
+            {homeHero.writeFirst} <a href={wa}>WhatsApp</a> or <a href={mail}>email</a>.
+          </div>
+        </div>
+        <figure class="hero-photo">
+          <img src={homeHero.photo} alt={homeHero.photoAlt} width="1200" height="1800" fetchpriority="high" />
+        </figure>
+      </div>
+      <div class="wrap trust">
+        {homeHero.trust.map((t) => (
+          <div><strong>{t.big}</strong><span>{t.small}</span></div>
+        ))}
+      </div>
+    </section>
+
+    <section class="belief">
+      <div class="wrap">
+        <p class="kicker gold">{belief.kicker}</p>
+        <h2>{belief.title} <em>{belief.titleEm}</em></h2>
+        <p>{belief.text}</p>
+      </div>
+    </section>
+
+    <section class="topics-intro" id="topics">
+      <div class="wrap centered">
+        <p class="kicker">{topicsIntro.kicker}</p>
+        <h2>{topicsIntro.title}<br /><em>{topicsIntro.titleEm}</em></h2>
+        <p>{topicsIntro.text}</p>
+        <div class="path">
+          {doors.map((d, i) => (
+            <a href={`#${d.id}`}><i>{i + 1}</i><span><small>{d.verb}</small>{d.name}</span></a>
+          ))}
+        </div>
+      </div>
+    </section>
+
+    {doors.map((d, i) => (
+      <>
+      <section class={`door${d.tone ? ` ${d.tone}` : ""}`} id={d.id}>
+        <div class={`wrap door-grid${d.reverse ? " reverse" : ""}`}>
+          <figure class="door-image">
+            <img src={d.image} alt={d.imageAlt} width="1200" height="900" />
+          </figure>
+          <div class="door-content">
+            <p class="door-no">Door {words[i]}</p>
+            <h2>{d.titleStart}{d.titleEm && <><br /><em>{d.titleEm}</em></>}</h2>
+            <p class="door-lead">{d.lead}</p>
+            <div class="topics">
+              {d.topics.map((t) => (
+                <a href={href(t)} class={t.href ? "is-open" : ""}>
+                  <span>
+                    <b>{t.title}</b>
+                    {t.subtitle && <i>{t.subtitle}</i>}
+                    <small>{t.text}</small>
+                  </span>
+                  <strong><span>{t.tag}</span><b aria-hidden="true">↗</b></strong>
+                </a>
+              ))}
+            </div>
+          </div>
+        </div>
+        {d.ctaLine && (
+          <div class="wrap mini-cta">
+            <p>{d.ctaLine}</p>
+            <div class="booking">
+              <a class="btn" href={book}>{homeHero.book}</a>
+              <span><a href={wa}>WhatsApp</a> or <a href={mail}>email</a></span>
+            </div>
+          </div>
+        )}
+      </section>
+      {i === 1 && (
+        <section class="pull-quote">
+          <div class="wrap quote-card">
+            <p>“{pullQuote.before}<em>{pullQuote.em}</em>”</p>
+            <span>— {pullQuote.name}</span>
+          </div>
+        </section>
+      )}
+      </>
+    ))}
+
+    <section class="voices">
+      <div class="wrap">
+        <div>
+          <p class="kicker">{voices.kicker}</p>
+          <h2>{voices.title}<br /><em>{voices.titleEm}</em></h2>
+        </div>
+        <blockquote>“{testimonials[1].quote}”<cite>— {testimonials[1].name}</cite></blockquote>
+      </div>
+    </section>
+
+    <section class="final-cta">
+      <div class="wrap">
+        <h2>{homeClose.title}<br />{homeClose.title2}</h2>
+        <p>{homeClose.lead}</p>
+        <div class="booking center">
+          <a class="btn light" href={book}>{homeClose.book} ↗</a>
+          <span><a href={wa}>WhatsApp</a> or <a href={mail}>email</a></span>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer>
+    <div class="wrap">
+      <div>
+        <img src="/images/yisrael-frenkel-wordmark.png" alt="Yisrael Frenkel" width="774" height="167" />
+        <p>{footerLine}</p>
+      </div>
+      <nav>
+        {homeNav.map((l) => <a href={l.href}>{l.label}</a>)}
+      </nav>
+      <div>
+        <a href={wa}>WhatsApp</a>
+        <a href={mail}>{site.email}</a>
+        <span>© {year} {site.title}</span>
+      </div>
+    </div>
+  </footer>
+</Layout>

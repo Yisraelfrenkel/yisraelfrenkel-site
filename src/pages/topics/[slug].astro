@@ -1,0 +1,110 @@
+---
+import Layout from "../../layouts/Layout.astro";
+import HomeHeader from "../../components/HomeHeader.astro";
+import "../../styles/home.css";
+import { site } from "../../data/content.js";
+import { construction, constructionTopics } from "../../data/home.js";
+
+export function getStaticPaths() {
+  return constructionTopics.map((t) => ({ params: { slug: t.slug }, props: { topic: t } }));
+}
+
+const { topic } = Astro.props;
+const year = new Date().getFullYear();
+---
+
+<Layout
+  title={`${topic.title} — Rav Yisrael Frenkel`}
+  description={`${topic.title}: ${topic.text} This page is under construction.`}
+  bodyClass="home construction-page"
+>
+  <a class="skip" href="#main">Skip to content</a>
+  <HomeHeader />
+
+  <main id="main">
+    <div class="construction-banner">{construction.banner}</div>
+
+    <section class="topic-hero">
+      <div>
+        <p class="topic-limb">{topic.door}</p>
+        <h1>{topic.title}</h1>
+        {topic.subtitle && <p class="topic-description"><i>{topic.subtitle}</i></p>}
+        <p class="topic-description">{topic.text}</p>
+      </div>
+      <svg viewBox="0 0 300 260" aria-hidden="true">
+        <path d="M150 260c0-69 7-112-1-161M149 119c-48-22-78-62-92-109M149 154c54-21 87-65 102-121M149 98c19-35 31-64 33-96M112 75c-15-1-29 3-40 13M205 74c17-2 32 2 45 12" />
+        <circle cx="55" cy="8" r="4" /><circle cx="183" cy="4" r="4" /><circle cx="252" cy="31" r="4" />
+      </svg>
+    </section>
+
+    <section class="interest-form">
+      <div class="form-intro">
+        <p class="form-number">{construction.formKicker}</p>
+        <h2>{construction.formTitle}</h2>
+        <p>{construction.lead}</p>
+      </div>
+      <form id="interest-form" data-topic={topic.title} data-whatsapp={site.personalWhatsappUrl} data-email={site.email}>
+        <label for="name">{construction.nameLabel}</label>
+        <input id="name" name="name" type="text" placeholder={construction.namePlaceholder} required autocomplete="given-name" />
+        <fieldset>
+          <legend>{construction.choiceLegend}</legend>
+          <label class="choice"><input type="radio" name="interest" value="notify" checked /><span>{construction.choiceNotify}</span></label>
+          <label class="choice"><input type="radio" name="interest" value="session" /><span>{construction.choiceSession}</span></label>
+        </fieldset>
+        <div class="submit-pair">
+          <button class="btn" type="submit" data-method="whatsapp">{construction.submit} <span aria-hidden="true">↗</span></button>
+          <button class="btn outline" type="submit" data-method="email">{construction.submitEmail} <span aria-hidden="true">↗</span></button>
+        </div>
+        <p class="form-note">{construction.note}</p>
+        <noscript>
+          <p class="form-note">
+            JavaScript is off. <a href={site.personalWhatsappUrl}>Write to Yisrael on WhatsApp</a> or email
+            <a href={`mailto:${site.email}`}>{site.email}</a>.
+          </p>
+        </noscript>
+      </form>
+    </section>
+
+    <section class="topic-links">
+      <a href={site.personalSessionUrl}>{construction.sessionLink} <span aria-hidden="true">↗</span></a>
+      <p>{construction.noWhatsApp} <a href={`mailto:${site.email}`}>{construction.emailLink}</a></p>
+      <a href="/#topics">← {construction.back}</a>
+    </section>
+  </main>
+
+  <footer>
+    <div class="footer-brand">
+      <img src="/images/yisrael-frenkel-wordmark.png" alt="Yisrael Frenkel" width="774" height="167" />
+    </div>
+    <div class="footer-contact">
+      <a href={site.personalWhatsappUrl}>WhatsApp</a>
+      <a href={`mailto:${site.email}`}>{site.email}</a>
+      <span>© {year} {site.title}</span>
+    </div>
+  </footer>
+</Layout>
+
+<script>
+  const form = document.getElementById("interest-form") as HTMLFormElement | null;
+  if (form) {
+    let method = "whatsapp";
+    form.querySelectorAll<HTMLButtonElement>("button[data-method]").forEach((b) =>
+      b.addEventListener("click", () => (method = b.dataset.method || "whatsapp"))
+    );
+    form.addEventListener("submit", (e) => {
+      e.preventDefault();
+      const name = (form.elements.namedItem("name") as HTMLInputElement).value.trim();
+      if (!name) return;
+      const topic = form.dataset.topic || "";
+      const wantsSession = (form.elements.namedItem("interest") as RadioNodeList).value === "session";
+      const choice = wantsSession
+        ? "I'd like a private session on this topic."
+        : "I'm interested in this topic. Send it to me when it's completed.";
+      const message = `Hello Rav Frenkel, my name is ${name}. Regarding ${topic}: ${choice}`;
+      location.href =
+        method === "email"
+          ? `mailto:${form.dataset.email}?subject=${encodeURIComponent(topic)}&body=${encodeURIComponent(message)}`
+          : `${form.dataset.whatsapp}?text=${encodeURIComponent(message)}`;
+    });
+  }
+</script>
