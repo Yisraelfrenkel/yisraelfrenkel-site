@@ -1,0 +1,832 @@
+---
+import { seudah as e } from "../../data/seudah.js";
+---
+
+<!doctype html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <meta name="robots" content="noindex, nofollow" />
+    <title>{e.title} — {e.shulName}</title>
+    <meta
+      name="description"
+      content={`${e.kicker} at ${e.shulName}, ${e.dayLabel} ${e.dateLabel}, ${e.time}. ${e.costLine}.`}
+    />
+    <meta property="og:title" content={`${e.title} — ${e.shulName}`} />
+    <meta
+      property="og:description"
+      content={`${e.dayLabel} ${e.dateLabel} · ${e.time} · ${e.address}. ${e.costLine}.`}
+    />
+    <link rel="icon" href="data:," />
+    <link rel="preconnect" href="https://fonts.googleapis.com" />
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+    <link
+      href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:ital,wght@0,500;0,600;0,700;1,500&family=Inter:wght@400;500;600;700&display=swap"
+      rel="stylesheet"
+    />
+    <style is:global>
+      :root {
+        --cream: #f7f2e6;
+        --cream-deep: #efe7d4;
+        --navy: #17284a;
+        --navy-soft: #2c4270;
+        --wine: #8b1626;
+        --wine-soft: #a83043;
+        --gold: #b8912f;
+        --gold-bright: #d9b455;
+        --ink-soft: #6a5f4e;
+        --line: rgba(23, 40, 74, 0.14);
+        --display: "Cormorant Garamond", Georgia, serif;
+        --ui: "Inter", -apple-system, BlinkMacSystemFont, sans-serif;
+      }
+      * { box-sizing: border-box; }
+      [hidden] { display: none !important; }
+      body {
+        margin: 0;
+        background: var(--cream);
+        color: var(--navy);
+        font-family: var(--ui);
+        -webkit-font-smoothing: antialiased;
+      }
+    </style>
+  </head>
+
+  <body>
+    <main class="page">
+      <!-- ---------- masthead ---------- -->
+      <header class="mast">
+        <p class="motto" lang="he">{e.motto}</p>
+        <p class="shul-he" lang="he">{e.shulNameHe}</p>
+        <h1 class="shul">{e.shulName}</h1>
+        <p class="addr">
+          <a href={e.mapsUrl} target="_blank" rel="noopener">{e.address}</a>
+        </p>
+      </header>
+
+      <div class="rule"><span></span></div>
+
+      <!-- ---------- the event ---------- -->
+      <section class="hero">
+        <p class="hero-kicker">Rosh Hashanah · First Night</p>
+        <h2 class="hero-title">Seudah</h2>
+        <p class="hero-sub">{e.kicker}</p>
+      </section>
+
+      <ul class="facts">
+        <li>
+          <span class="fact-label">When</span>
+          <strong>{e.dayLabel}</strong>
+          <span>{e.dateLabel}</span>
+          <span class="he" lang="he">{e.dateHe}</span>
+        </li>
+        <li>
+          <span class="fact-label">Time</span>
+          <strong class="big">{e.time}</strong>
+        </li>
+        <li>
+          <span class="fact-label">Where</span>
+          <strong>{e.venue}</strong>
+          <span>{e.address}</span>
+        </li>
+      </ul>
+
+      <div class="banner">
+        <p class="banner-cost">
+          <strong>{e.costLine}</strong>
+        </p>
+        <p class="banner-sponsor">
+          {e.sponsorPrefix} <strong>{e.sponsorName}</strong>,
+          <em>{e.sponsorDedication}</em>
+        </p>
+      </div>
+
+      {e.notSeatingLine && <p class="not-seating">{e.notSeatingLine}</p>}
+
+      <!-- ---------- places ---------- -->
+      <section class="places" aria-live="polite">
+        <div class="count">
+          <span class="count-big" data-reserved>—</span>
+          <span class="count-of">of {e.capacity} places reserved</span>
+        </div>
+        <div class="meter"><div class="meter-fill" data-fill style="width:0%"></div></div>
+        <p class="left" data-remaining>&nbsp;</p>
+      </section>
+
+      <!-- ---------- sign up ---------- -->
+      <section class="card" id="signup-card">
+        <h3 class="card-title">Reserve your place</h3>
+
+        <form id="form">
+          <div class="field">
+            <label for="name">Name</label>
+            <input type="text" id="name" name="name" maxlength="40" required
+              autocomplete="name" placeholder="How it should appear on the list" />
+          </div>
+
+          <div class="field">
+            <label for="seats">How many people?</label>
+            <select id="seats" name="seats"></select>
+          </div>
+
+          <div class="field">
+            <label for="contact">Phone or email <span class="opt">(optional)</span></label>
+            <input type="text" id="contact" name="contact" maxlength="60"
+              autocomplete="tel" placeholder="Only the gabbai sees this" />
+          </div>
+
+          <button class="btn" type="submit" id="submit">Reserve</button>
+          <p class="msg err" id="error" hidden></p>
+        </form>
+      </section>
+
+      <section class="card done" id="thanks" hidden>
+        <h3 class="card-title">You're on the list</h3>
+        <p id="thanks-line"></p>
+        <p class="muted">Your name is on the list below for everyone to see.</p>
+
+        <div class="code-box">
+          <span class="code-label">If you need to cancel, use this code</span>
+          <strong class="code" id="thanks-code">······</strong>
+          <span class="code-hint">
+            Screenshot it. This phone will remember it too.
+          </span>
+        </div>
+
+        <button class="btn btn--quiet" id="cancel-mine" type="button">
+          Cancel my reservation
+        </button>
+        <p class="msg err" id="cancel-error" hidden></p>
+      </section>
+
+      <section class="card full" id="full" hidden>
+        <h3 class="card-title">The seudah is full</h3>
+        <p>
+          All {e.capacity} places are taken. Places do open up when people
+          cancel, and this page shows it the moment they do — so it's worth
+          checking back.
+        </p>
+      </section>
+
+      <section class="card gone" id="gone" hidden>
+        <h3 class="card-title">Cancelled</h3>
+        <p id="gone-line"></p>
+        <p class="muted">Your places have gone back to the list.</p>
+      </section>
+
+      <!-- ---------- cancelling from another phone ---------- -->
+      <details class="cancel-else" id="cancel-else">
+        <summary>Signed up and can't come any more?</summary>
+        <p class="muted">
+          Enter the code you were given when you signed up. It frees your
+          places for someone else straight away — no need to message anyone.
+        </p>
+        <div class="cancel-row">
+          <input type="text" id="code-input" maxlength="8" autocomplete="off"
+            spellcheck="false" placeholder="e.g. K7M2QX" aria-label="Cancellation code" />
+          <button class="btn btn--quiet" type="button" id="code-submit">Cancel</button>
+        </div>
+        <p class="msg err" id="code-error" hidden></p>
+      </details>
+
+      <!-- ---------- who's coming ---------- -->
+      <section class="guests">
+        <h3 class="guests-title">
+          Who's coming <span class="guests-count" data-guest-count></span>
+        </h3>
+        <ol class="guest-list" data-guests>
+          <li class="guest empty">Loading…</li>
+        </ol>
+      </section>
+
+      <!-- ---------- close ---------- -->
+      <footer class="foot">
+        <p class="closing">{e.closingLine}</p>
+        <p class="welcome">{e.welcomeLine}</p>
+        <p class="contact">
+          Questions — <a href={e.contactWhatsapp}>{e.contactName}</a>
+        </p>
+      </footer>
+    </main>
+
+    <style>
+      .page {
+        max-width: 640px;
+        margin: 0 auto;
+        padding: 2rem 1.1rem 4rem;
+      }
+
+      /* ---- masthead ---- */
+      .mast { text-align: center; }
+      .motto {
+        margin: 0 0 0.9rem;
+        font-size: 0.95rem;
+        color: var(--gold);
+        font-family: var(--display);
+        font-weight: 600;
+      }
+      .shul-he {
+        margin: 0;
+        font-size: 1.6rem;
+        font-weight: 700;
+        color: var(--navy);
+        line-height: 1.2;
+      }
+      .shul {
+        margin: 0.1rem 0 0.4rem;
+        font-family: var(--display);
+        font-size: 2rem;
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        color: var(--navy);
+        line-height: 1.1;
+      }
+      .addr { margin: 0; font-size: 0.82rem; color: var(--ink-soft); }
+      .addr a { color: inherit; }
+
+      .rule {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        margin: 1.4rem 0;
+      }
+      .rule::before, .rule::after {
+        content: "";
+        flex: 1;
+        height: 1px;
+        background: linear-gradient(to right, transparent, var(--gold), transparent);
+      }
+      .rule span {
+        width: 7px; height: 7px; margin: 0 0.7rem;
+        transform: rotate(45deg);
+        background: var(--gold);
+      }
+
+      /* ---- hero ---- */
+      .hero { text-align: center; margin-bottom: 1.75rem; }
+      .hero-kicker {
+        margin: 0;
+        font-family: var(--display);
+        font-size: clamp(1.35rem, 6vw, 1.9rem);
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        text-transform: uppercase;
+        color: var(--wine);
+        line-height: 1.15;
+      }
+      .hero-title {
+        margin: 0.1rem 0 0.35rem;
+        font-family: var(--display);
+        font-size: clamp(3.2rem, 17vw, 5rem);
+        font-weight: 700;
+        letter-spacing: 0.01em;
+        text-transform: uppercase;
+        color: var(--wine);
+        line-height: 0.92;
+      }
+      .hero-sub {
+        margin: 0;
+        font-family: var(--display);
+        font-size: clamp(1rem, 4.5vw, 1.3rem);
+        font-weight: 600;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--navy);
+      }
+
+      /* ---- facts ---- */
+      .facts {
+        display: grid;
+        grid-template-columns: 1fr;
+        gap: 0.9rem;
+        margin: 0 0 1.5rem;
+        padding: 1.1rem 0;
+        list-style: none;
+        border-top: 1px solid var(--line);
+        border-bottom: 1px solid var(--line);
+        text-align: center;
+      }
+      @media (min-width: 520px) {
+        .facts { grid-template-columns: repeat(3, 1fr); gap: 0; }
+        .facts li + li { border-left: 1px solid var(--line); }
+      }
+      .facts li {
+        display: flex;
+        flex-direction: column;
+        gap: 0.15rem;
+        padding: 0 0.6rem;
+        font-size: 0.86rem;
+        color: var(--ink-soft);
+      }
+      .fact-label {
+        font-size: 0.62rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        text-transform: uppercase;
+        color: var(--gold);
+        margin-bottom: 0.15rem;
+      }
+      .facts strong { color: var(--navy); font-size: 0.98rem; font-weight: 600; }
+      .facts .big {
+        font-family: var(--display);
+        font-size: 1.7rem;
+        font-weight: 700;
+        color: var(--wine);
+        line-height: 1;
+      }
+      .facts .he { font-size: 0.9rem; color: var(--navy-soft); }
+
+      /* ---- sponsor banner ---- */
+      .banner {
+        margin: 0 0 1.75rem;
+        padding: 1rem 1.1rem;
+        border-radius: 6px;
+        background: var(--navy);
+        color: var(--cream);
+        text-align: center;
+      }
+      .banner-cost {
+        margin: 0 0 0.5rem;
+        font-size: 1rem;
+        letter-spacing: 0.03em;
+      }
+      .banner-cost strong { color: var(--gold-bright); }
+      .banner-sponsor {
+        margin: 0;
+        font-size: 0.8rem;
+        line-height: 1.55;
+        color: rgba(247, 242, 230, 0.82);
+      }
+      .banner-sponsor strong { color: #fff; }
+      .banner-sponsor em { color: var(--gold-bright); font-style: italic; }
+
+      .not-seating {
+        margin: -0.75rem 0 1.5rem;
+        padding: 0.7rem 0.9rem;
+        border-left: 3px solid var(--gold);
+        border-radius: 0 5px 5px 0;
+        background: var(--cream-deep);
+        font-size: 0.82rem;
+        line-height: 1.55;
+        color: var(--ink-soft);
+      }
+
+      /* ---- places meter ---- */
+      .places { margin-bottom: 1.5rem; text-align: center; }
+      .count {
+        display: flex;
+        align-items: baseline;
+        justify-content: center;
+        gap: 0.45rem;
+        margin-bottom: 0.6rem;
+      }
+      .count-big {
+        font-family: var(--display);
+        font-size: 2.6rem;
+        font-weight: 700;
+        line-height: 1;
+        color: var(--wine);
+        font-variant-numeric: tabular-nums;
+      }
+      .count-of { font-size: 0.88rem; color: var(--ink-soft); }
+      .meter {
+        height: 9px;
+        border-radius: 999px;
+        background: var(--cream-deep);
+        overflow: hidden;
+        box-shadow: inset 0 1px 2px rgba(23, 40, 74, 0.1);
+      }
+      .meter-fill {
+        height: 100%;
+        border-radius: 999px;
+        background: linear-gradient(90deg, var(--gold), var(--wine));
+        transition: width 0.45s ease;
+      }
+      .left {
+        margin: 0.6rem 0 0;
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--navy);
+      }
+      .left.low { color: var(--wine); }
+
+      /* ---- cards ---- */
+      .card {
+        margin-bottom: 1.75rem;
+        padding: 1.35rem 1.2rem;
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+      }
+      .card-title {
+        margin: 0 0 1rem;
+        font-family: var(--display);
+        font-size: 1.4rem;
+        font-weight: 700;
+        color: var(--navy);
+      }
+      .card.done { border-color: var(--gold); background: #fffdf6; }
+      .card.full { border-color: var(--wine-soft); background: #fdf6f6; }
+      .card p { margin: 0 0 0.6rem; font-size: 0.92rem; line-height: 1.6; }
+      .card p:last-child { margin-bottom: 0; }
+      .card a { color: var(--wine); font-weight: 600; }
+      .muted { color: var(--ink-soft); font-size: 0.84rem !important; }
+
+      .field { margin-bottom: 1rem; }
+      label {
+        display: block;
+        margin-bottom: 0.35rem;
+        font-size: 0.78rem;
+        font-weight: 600;
+        letter-spacing: 0.02em;
+        color: var(--navy);
+      }
+      .opt { font-weight: 400; color: var(--ink-soft); }
+      input, select {
+        width: 100%;
+        padding: 0.75rem 0.8rem;
+        font: inherit;
+        font-size: 1rem;
+        color: var(--navy);
+        background: #fff;
+        border: 1px solid var(--line);
+        border-radius: 5px;
+        appearance: none;
+      }
+      select {
+        background-image: linear-gradient(45deg, transparent 50%, var(--navy) 50%),
+          linear-gradient(135deg, var(--navy) 50%, transparent 50%);
+        background-position: calc(100% - 18px) 50%, calc(100% - 13px) 50%;
+        background-size: 5px 5px, 5px 5px;
+        background-repeat: no-repeat;
+      }
+      input:focus, select:focus {
+        outline: 2px solid var(--gold);
+        outline-offset: 1px;
+        border-color: var(--gold);
+      }
+      .btn {
+        width: 100%;
+        padding: 0.9rem 1.5rem;
+        border: none;
+        border-radius: 999px;
+        background: var(--wine);
+        color: #fff;
+        font: inherit;
+        font-size: 1rem;
+        font-weight: 600;
+        cursor: pointer;
+        transition: background 0.15s ease;
+      }
+      .btn:hover:not(:disabled) { background: var(--wine-soft); }
+      .btn:disabled { opacity: 0.5; cursor: not-allowed; }
+      .msg { margin: 0.7rem 0 0; font-size: 0.86rem; line-height: 1.5; }
+      .err { color: var(--wine); font-weight: 500; }
+
+      .btn--quiet {
+        margin-top: 0.9rem;
+        background: none;
+        color: var(--wine);
+        border: 1px solid var(--wine);
+      }
+      .btn--quiet:hover:not(:disabled) { background: var(--wine); color: #fff; }
+
+      .code-box {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
+        gap: 0.2rem;
+        margin: 1rem 0 0;
+        padding: 0.9rem;
+        border: 1px dashed var(--gold);
+        border-radius: 6px;
+        background: var(--cream);
+        text-align: center;
+      }
+      .code-label {
+        font-size: 0.7rem;
+        font-weight: 600;
+        letter-spacing: 0.12em;
+        text-transform: uppercase;
+        color: var(--ink-soft);
+      }
+      .code {
+        font-family: var(--ui);
+        font-size: 1.7rem;
+        font-weight: 700;
+        letter-spacing: 0.18em;
+        color: var(--wine);
+      }
+      .code-hint { font-size: 0.76rem; color: var(--ink-soft); }
+
+      .card.gone { border-color: var(--line); background: #fff; }
+
+      .cancel-else {
+        margin: -0.5rem 0 2rem;
+        padding: 0.85rem 1rem;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        background: #fff;
+      }
+      .cancel-else summary {
+        cursor: pointer;
+        font-size: 0.88rem;
+        font-weight: 600;
+        color: var(--navy);
+      }
+      .cancel-else p { margin: 0.75rem 0; font-size: 0.84rem; line-height: 1.55; }
+      .cancel-row { display: flex; gap: 0.5rem; }
+      .cancel-row input {
+        text-transform: uppercase;
+        letter-spacing: 0.14em;
+        font-weight: 600;
+      }
+      .cancel-row .btn { width: auto; flex: none; padding: 0.75rem 1.1rem; margin-top: 0; }
+
+      /* ---- guest list ---- */
+      .guests { margin-bottom: 2.5rem; }
+      .guests-title {
+        display: flex;
+        align-items: baseline;
+        justify-content: space-between;
+        gap: 0.75rem;
+        margin: 0 0 0.75rem;
+        font-family: var(--display);
+        font-size: 1.3rem;
+        font-weight: 700;
+        color: var(--navy);
+      }
+      .guests-count {
+        font-family: var(--ui);
+        font-size: 0.78rem;
+        font-weight: 500;
+        color: var(--ink-soft);
+        font-variant-numeric: tabular-nums;
+      }
+      .guest-list {
+        margin: 0;
+        padding: 0;
+        list-style: none;
+        border: 1px solid var(--line);
+        border-radius: 8px;
+        overflow: hidden;
+        background: #fff;
+      }
+      /* The rows are built by JavaScript, so they never carry Astro's scoping
+         attribute — these have to reach past it or the list renders unstyled. */
+      .guest-list :global(.guest) {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+        gap: 1rem;
+        padding: 0.7rem 0.9rem;
+        font-size: 0.92rem;
+      }
+      .guest-list :global(.guest + .guest) { border-top: 1px solid var(--line); }
+      .guest-list :global(.guest-name) { font-weight: 500; }
+      .guest-list :global(.guest-seats) {
+        flex: none;
+        padding: 0.15rem 0.55rem;
+        border-radius: 999px;
+        background: var(--cream-deep);
+        color: var(--ink-soft);
+        font-size: 0.74rem;
+        font-weight: 600;
+        font-variant-numeric: tabular-nums;
+        white-space: nowrap;
+      }
+      .guest-list :global(.guest.empty) { color: var(--ink-soft); }
+      .guest-list :global(.guest.mine) { background: #fffdf6; }
+      .guest-list :global(.guest.mine .guest-name) {
+        color: var(--wine);
+        font-weight: 700;
+      }
+
+      /* ---- foot ---- */
+      .foot { text-align: center; }
+      .closing {
+        margin: 0 0 0.5rem;
+        font-family: var(--display);
+        font-size: 1.15rem;
+        font-style: italic;
+        line-height: 1.5;
+        color: var(--wine);
+      }
+      .welcome {
+        margin: 0 0 1.25rem;
+        font-size: 0.72rem;
+        font-weight: 600;
+        letter-spacing: 0.2em;
+        text-transform: uppercase;
+        color: var(--navy);
+      }
+      .contact { margin: 0; font-size: 0.82rem; color: var(--ink-soft); }
+      .contact a { color: var(--wine); font-weight: 600; }
+    </style>
+
+    <script define:vars={{ CAP: e.capacity, MAX: e.maxPerSignup }}>
+      const $ = (id) => document.getElementById(id);
+      const form = $("form");
+      const STORE = "seudah-reservation";
+      let mine = null;   // the id of this phone's reservation, for highlighting
+      let myCode = null; // its cancel code
+
+      // This phone remembers its own reservation, so the person who signed up
+      // here can cancel without digging out the code. The code is still the
+      // real proof — it works from any other phone too.
+      try {
+        const saved = JSON.parse(localStorage.getItem(STORE) || "null");
+        if (saved && saved.code) {
+          mine = saved.id;
+          myCode = saved.code;
+        }
+      } catch {}
+
+      function remember(state) {
+        try {
+          if (state) localStorage.setItem(STORE, JSON.stringify(state));
+          else localStorage.removeItem(STORE);
+        } catch {}
+      }
+
+      // Fill the "how many" menu from the cap, so the two can't drift apart.
+      const seatsEl = $("seats");
+      for (let n = 1; n <= MAX; n++) {
+        const o = document.createElement("option");
+        o.value = String(n);
+        o.textContent = n === 1 ? "Just me — 1 place" : `${n} places`;
+        seatsEl.append(o);
+      }
+
+      function paint(state) {
+        // A reservation this phone made can vanish — cancelled elsewhere, or
+        // taken off by the gabbai. Don't keep claiming it.
+        if (mine && !state.guests.some((g) => g.id === mine)) {
+          mine = null;
+          myCode = null;
+          remember(null);
+          $("thanks").hidden = true;
+        }
+
+        const booked = Boolean(mine);
+        $("signup-card").hidden = state.closed || booked;
+        $("full").hidden = !state.closed || booked;
+        $("thanks").hidden = !booked;
+        $("cancel-else").hidden = booked;
+
+        document.querySelector("[data-reserved]").textContent = state.reserved;
+        document.querySelector("[data-fill]").style.width =
+          `${Math.min((state.reserved / CAP) * 100, 100)}%`;
+
+        const left = document.querySelector("[data-remaining]");
+        left.textContent = state.closed
+          ? "Fully booked"
+          : state.remaining === 1
+            ? "1 place left"
+            : `${state.remaining} places left`;
+        left.classList.toggle("low", state.remaining <= 5);
+
+        const count = document.querySelector("[data-guest-count]");
+        count.textContent = state.guests.length
+          ? `${state.guests.length} ${state.guests.length === 1 ? "family" : "families"}`
+          : "";
+
+        const list = document.querySelector("[data-guests]");
+        list.replaceChildren();
+        if (!state.guests.length) {
+          const li = document.createElement("li");
+          li.className = "guest empty";
+          li.textContent = "Nobody yet — be the first.";
+          list.append(li);
+          return;
+        }
+        for (const g of state.guests) {
+          const li = document.createElement("li");
+          li.className = g.id === mine ? "guest mine" : "guest";
+          const name = document.createElement("span");
+          name.className = "guest-name";
+          name.textContent = g.name;
+          const seats = document.createElement("span");
+          seats.className = "guest-seats";
+          seats.textContent = g.seats === 1 ? "1 place" : `${g.seats} places`;
+          li.append(name, seats);
+          list.append(li);
+        }
+      }
+
+      async function refresh() {
+        try {
+          paint(await (await fetch("/api/seudah", { cache: "no-store" })).json());
+        } catch {
+          /* offline — leave what's on screen */
+        }
+      }
+
+      // Restore the confirmation panel for someone returning to the page.
+      if (myCode) {
+        $("thanks-code").textContent = myCode;
+        $("thanks-line").textContent = "Your place is held.";
+      }
+
+      refresh();
+      setInterval(refresh, 20000);
+      document.addEventListener("visibilitychange", () => {
+        if (!document.hidden) refresh();
+      });
+
+      async function cancel(code, errorEl, button) {
+        errorEl.hidden = true;
+        button.disabled = true;
+        const label = button.textContent;
+        button.textContent = "Cancelling…";
+        try {
+          const res = await fetch("/api/seudah/cancel", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({ code }),
+          });
+          const state = await res.json();
+          if (!res.ok) throw new Error(state.error || "Something went wrong.");
+
+          mine = null;
+          myCode = null;
+          remember(null);
+          $("gone-line").textContent =
+            `${state.cancelled.name} — ${state.cancelled.seats === 1 ? "1 place" : state.cancelled.seats + " places"} freed up.`;
+          $("gone").hidden = false;
+          $("code-input").value = "";
+          $("cancel-else").open = false;
+          paint(state);
+          $("gone").scrollIntoView({ behavior: "smooth", block: "center" });
+        } catch (err) {
+          errorEl.textContent = err.message;
+          errorEl.hidden = false;
+        } finally {
+          button.disabled = false;
+          button.textContent = label;
+        }
+      }
+
+      $("cancel-mine").addEventListener("click", () => {
+        if (!myCode) return;
+        if (!confirm("Cancel your reservation? Your places go back to the list.")) return;
+        cancel(myCode, $("cancel-error"), $("cancel-mine"));
+      });
+
+      $("code-submit").addEventListener("click", () => {
+        const code = $("code-input").value.trim().toUpperCase();
+        if (!code) {
+          $("code-error").textContent = "Enter your cancellation code.";
+          $("code-error").hidden = false;
+          return;
+        }
+        cancel(code, $("code-error"), $("code-submit"));
+      });
+
+      $("code-input").addEventListener("keydown", (ev) => {
+        if (ev.key === "Enter") $("code-submit").click();
+      });
+
+      form.addEventListener("submit", async (ev) => {
+        ev.preventDefault();
+        $("error").hidden = true;
+        $("submit").disabled = true;
+        $("submit").textContent = "Reserving…";
+
+        const seats = Number(seatsEl.value);
+        try {
+          const res = await fetch("/api/seudah/signup", {
+            method: "POST",
+            headers: { "content-type": "application/json" },
+            body: JSON.stringify({
+              name: $("name").value.trim(),
+              seats,
+              contact: $("contact").value.trim(),
+            }),
+          });
+          const state = await res.json();
+          if (!res.ok) throw new Error(state.error || "Something went wrong.");
+
+          mine = state.id;
+          myCode = state.code;
+          remember({ id: state.id, code: state.code });
+
+          $("thanks-code").textContent = state.code;
+          $("thanks-line").textContent =
+            seats === 1
+              ? "One place is held for you."
+              : `${seats} places are held for you.`;
+          paint(state);
+          $("thanks").scrollIntoView({ behavior: "smooth", block: "center" });
+        } catch (err) {
+          $("error").textContent = err.message;
+          $("error").hidden = false;
+          refresh();
+        } finally {
+          $("submit").disabled = false;
+          $("submit").textContent = "Reserve";
+        }
+      });
+    </script>
+  </body>
+</html>

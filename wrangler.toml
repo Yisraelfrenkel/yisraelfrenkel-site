@@ -1,5 +1,26 @@
 name = "yisraelfrenkel-site"
+main = "worker/index.js"
 compatibility_date = "2026-01-01"
 
 [assets]
 directory = "./dist"
+binding = "ASSETS"
+
+# The seating chart's storage. A Durable Object is created by deploying this
+# file, so there is nothing to set up in the Cloudflare dashboard and no
+# database id to paste in here.
+[[durable_objects.bindings]]
+name = "SEATING"
+class_name = "Seating"
+
+[[durable_objects.bindings]]
+name = "SEUDAH"
+class_name = "Seudah"
+
+[[migrations]]
+tag = "v1"
+new_sqlite_classes = ["Seating"]
+
+[[migrations]]
+tag = "v2"
+new_sqlite_classes = ["Seudah"]

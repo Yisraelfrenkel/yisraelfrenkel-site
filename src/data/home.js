@@ -68,7 +68,7 @@ export const doors = [
         title: "For young women",
         subtitle: "The Love You're Meant to Build · אור הבת",
         text: "Six classes on building a marriage before you are in one. The first class is free.",
-        href: "/or-habat",
+        href: "/orhaisha",
         tag: "Open",
       },
       {
