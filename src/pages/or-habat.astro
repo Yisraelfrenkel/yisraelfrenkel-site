@@ -3,6 +3,7 @@ import Layout from "../layouts/Layout.astro";
 import Footer from "../components/Footer.astro";
 import { site } from "../data/content.js";
 import { ohb, problem, frame, classes, format, investment, why, who, faq } from "../data/or-habat.js";
+import { ask, answered } from "../data/or-habat-questions.js";
 
 const mailtoHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURIComponent(ohb.email)}`;
 ---
@@ -20,7 +21,7 @@ const mailtoHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURICom
       <p class="subtitle">{ohb.subtitle}</p>
       <div class="cta">
         <a class="btn btn-primary" href={ohb.reserveUrl} target="_blank" rel="noopener noreferrer">{ohb.cta.primary}</a>
-        <a class="btn btn-secondary" href={ohb.askUrl} target="_blank" rel="noopener noreferrer">{ohb.cta.secondary}</a>
+        <a class="btn btn-secondary" href="#ask">{ohb.cta.secondary}</a>
       </div>
     </section>
 
@@ -143,9 +144,56 @@ const mailtoHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURICom
       </div>
     </section>
 
+    {/* ---------- Ask Rav Frenkel ---------- */}
+    <section class="ask tint reveal" id="ask">
+      <div class="ask-grid">
+        <div class="ask-intro">
+          <h2>{ask.heading}</h2>
+          <p>{ask.intro}</p>
+          <p class="ask-note">{ask.note}</p>
+        </div>
+        <div class="ask-form">
+          <iframe
+            data-tally-src={ask.embedUrl}
+            loading="lazy"
+            width="100%"
+            height="640"
+            frameborder="0"
+            marginheight="0"
+            marginwidth="0"
+            title="Ask Rav Frenkel"
+          ></iframe>
+          <p class="ask-fallback">
+            If the form doesn't load, <a href={ask.formUrl} target="_blank" rel="noopener noreferrer">open it here</a>.
+          </p>
+        </div>
+      </div>
+
+      <div class="answered">
+        <h3>{ask.answeredHeading}</h3>
+        {answered.length === 0 ? (
+          <p class="answered-empty">{ask.empty}</p>
+        ) : (
+          answered.map((item) => (
+            <details class="answer">
+              <summary>
+                <span class="answer-q">{item.q}</span>
+                {item.stage && <span class="answer-stage">{item.stage}</span>}
+              </summary>
+              <div class="answer-a">
+                {item.a.split("\n\n").map((para) => <p>{para}</p>)}
+                <p class="answer-sig">Rav Yisrael Frenkel</p>
+              </div>
+            </details>
+          ))
+        )}
+      </div>
+      <script is:inline async src="https://tally.so/widgets/embed.js"></script>
+    </section>
+
     {/* ---------- Contact ---------- */}
     <section class="contact reveal">
-      <p class="eyebrow">Have a question? Write to me. I answer every message myself.</p>
+      <p class="eyebrow">Something you'd rather say directly? Write to me. I answer every message myself.</p>
       <div class="cta">
         <a class="btn btn-secondary" href={ohb.askUrl} target="_blank" rel="noopener noreferrer">WhatsApp me</a>
         <a class="btn btn-secondary" href={mailtoHref} target="_blank" rel="noopener noreferrer">Email me</a>
@@ -624,6 +672,83 @@ const mailtoHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURICom
     color: var(--text);
   }
 
+  /* ask Rav Frenkel */
+  .ohb .ask-grid {
+    max-width: 1040px;
+    margin: 0 auto;
+    display: grid;
+    grid-template-columns: 5fr 6fr;
+    gap: 64px;
+    align-items: start;
+  }
+  .ohb .ask-intro p {
+    font-size: 17px;
+    line-height: 1.65;
+    margin-top: 16px;
+  }
+  .ohb .ask-note {
+    color: var(--muted, var(--text));
+    font-size: 16px;
+  }
+  .ohb .ask-form {
+    background: var(--parchment-3);
+    border: 1px solid var(--rule);
+    border-radius: 14px;
+    padding: 18px 20px 8px;
+  }
+  .ohb .ask-form iframe {
+    display: block;
+  }
+  .ohb .ask-fallback {
+    font-size: 14px;
+    text-align: center;
+    margin: 6px 0 8px;
+    color: var(--muted, var(--text));
+  }
+  .ohb .answered {
+    max-width: 1040px;
+    margin: 56px auto 0;
+  }
+  .ohb .answered h3 {
+    font-family: var(--serif);
+    font-size: var(--p-h3);
+    margin-bottom: 8px;
+  }
+  .ohb .answered-empty {
+    font-size: 16px;
+    color: var(--muted, var(--text));
+    border-top: 1px solid var(--rule);
+    padding-top: 14px;
+  }
+  .ohb .answer summary {
+    display: flex;
+    justify-content: space-between;
+    gap: 16px;
+    align-items: baseline;
+  }
+  .ohb .answer summary::after {
+    flex: none;
+  }
+  .ohb .answer-stage {
+    font-family: inherit;
+    font-size: 13px;
+    font-weight: 400;
+    letter-spacing: 0.04em;
+    text-transform: uppercase;
+    color: var(--accent);
+    white-space: nowrap;
+  }
+  .ohb .answer-a p {
+    font-size: 16px;
+    line-height: 1.65;
+    margin-top: 10px;
+  }
+  .ohb .answer-sig {
+    font-family: var(--serif);
+    font-style: italic;
+    color: var(--accent);
+  }
+
   /* contact */
   .ohb .contact {
     text-align: center;
@@ -662,8 +787,16 @@ const mailtoHref = `https://mail.google.com/mail/?view=cm&fs=1&to=${encodeURICom
     }
     .ohb .tiers,
     .ohb .why-grid,
-    .ohb .who-grid {
+    .ohb .who-grid,
+    .ohb .ask-grid {
       grid-template-columns: 1fr;
+    }
+    .ohb .ask-grid {
+      gap: 28px;
+    }
+    .ohb .answer summary {
+      flex-direction: column;
+      gap: 4px;
     }
     .ohb .why-grid {
       gap: 28px;
