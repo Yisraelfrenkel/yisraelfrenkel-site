@@ -14,8 +14,8 @@ export const homeHero = {
   titleEm: "one human being.",
   lead:
     "They are two windows onto the same human reality. I'm Rav Yisrael Frenkel, and for more than twenty years people have trusted me with what they can't say out loud to anyone else. This is where the ideas begin, and where you can begin to learn them with me.",
-  photo: "/images/yisrael-smiling-aron-kodesh.jpg",
-  photoAlt: "Rav Yisrael Frenkel smiling at the bimah in front of the Aron Kodesh",
+  photo: "/images/yisrael-blue-jacket.jpg",
+  photoAlt: "Rav Yisrael Frenkel smiling, in a dark jacket at a simcha",
   book: "Book a private session",
   explore: "Explore the topics",
   writeFirst: "Prefer to write first?",
