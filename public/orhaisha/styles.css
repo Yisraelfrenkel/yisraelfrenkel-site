@@ -13,3 +13,7 @@
 
 .handout{max-width:680px;margin:34px auto 0;text-align:center}.handout p{color:var(--muted);margin:0 0 16px}
 @media(max-width:560px){.handout .btn{width:100%;padding:0 18px}}
+
+/* floral ketubah: shown whole, no crop, no filter, no overlay */
+.hero-art{height:auto;aspect-ratio:2382/3369;background:transparent;box-shadow:none;border-radius:0}.hero-art img{object-fit:contain;filter:none;width:100%;height:auto}.hero-art:after{display:none}.hero-art a{display:block}
+@media(max-width:850px){.hero-art{height:auto}}@media(max-width:560px){.hero-art{height:auto;border-radius:0}}
