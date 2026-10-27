@@ -17,3 +17,6 @@
 /* floral ketubah: shown whole, no crop, no filter, no overlay */
 .hero-art{height:auto;aspect-ratio:2382/3369;background:transparent;box-shadow:none;border-radius:0}.hero-art img{object-fit:contain;filter:none;width:100%;height:auto}.hero-art:after{display:none}.hero-art a{display:block}
 @media(max-width:850px){.hero-art{height:auto}}@media(max-width:560px){.hero-art{height:auto;border-radius:0}}
+
+.hero-art{aspect-ratio:auto;width:100%;max-width:560px;margin:0 auto}.hero-art img{display:block;width:100%;height:auto}
+@media(max-width:560px){.hero-art{max-width:100%}}
