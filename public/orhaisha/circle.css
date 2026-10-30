@@ -1,0 +1,27 @@
+/* Extra styles for the circle pages abroad (/orhaisha/<circle>), on top of styles.css */
+.blank{background:#ffe9a8;color:#5a3d00;padding:0 .35em;border-radius:6px;font-style:normal;font-weight:600}
+.blank-note{margin:14px 0 0;font-size:13px}
+
+.hero-video{margin:0;justify-self:center;width:min(100%,360px)}
+.hero-video video{display:block;width:100%;aspect-ratio:9/16;border-radius:26px;background:var(--plum);box-shadow:var(--shadow);object-fit:cover}
+.hero-video figcaption{margin-top:14px;text-align:center;font-size:13px;color:var(--muted)}
+
+.schedule{text-align:center;margin:34px 0 0;font:500 20px/1.4 var(--serif)}
+
+.circle{background:var(--wash);padding:100px 0}
+.circle-grid{display:grid;grid-template-columns:340px 1fr;gap:70px;align-items:center;max-width:1000px}
+.circle figure{margin:0;aspect-ratio:4/5;border-radius:28px;overflow:hidden;box-shadow:var(--shadow);background:#fff}
+.circle figure img{width:100%;height:100%;object-fit:cover}
+.photo-blank{width:100%;height:100%;display:grid;place-items:center;background:repeating-linear-gradient(135deg,#fff,#fff 14px,#fbf1e8 14px,#fbf1e8 28px)}
+.circle h2{font-size:clamp(36px,4vw,52px);margin-bottom:18px}
+.circle p{color:var(--muted);max-width:560px}
+.circle .btn{margin-top:14px}
+
+@media(max-width:900px){
+  .circle-grid{grid-template-columns:1fr;gap:34px}
+  .circle figure{max-width:300px}
+  .hero-video{width:min(100%,320px)}
+}
+@media(max-width:560px){
+  .circle{padding:70px 0}
+}

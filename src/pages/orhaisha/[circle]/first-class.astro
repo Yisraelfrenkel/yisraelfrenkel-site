@@ -1,0 +1,11 @@
+---
+// The same circle page with Class 1 embedded, sent out after the first class: /orhaisha/<slug>/first-class
+import CirclePage from '../../../components/CirclePage.astro';
+import { circles } from '../../../data/circles.js';
+
+export function getStaticPaths() {
+  return circles.map((circle) => ({ params: { circle: circle.slug }, props: { circle } }));
+}
+const { circle } = Astro.props;
+---
+<CirclePage circle={circle} variant="first-class" />

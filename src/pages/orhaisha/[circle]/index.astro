@@ -1,0 +1,11 @@
+---
+// Teaser page for each circle abroad: /orhaisha/<slug>
+import CirclePage from '../../../components/CirclePage.astro';
+import { circles } from '../../../data/circles.js';
+
+export function getStaticPaths() {
+  return circles.map((circle) => ({ params: { circle: circle.slug }, props: { circle } }));
+}
+const { circle } = Astro.props;
+---
+<CirclePage circle={circle} variant="teaser" />
