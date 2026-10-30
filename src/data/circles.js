@@ -51,4 +51,18 @@ export const circles = [
     payLink: null,
     ready: false,
   },
+  {
+    // The whole course on Zoom, from anywhere. Also the central page that lists every circle:
+    // yisraelfrenkel.com/orhaisha/zoom
+    slug: 'zoom',
+    place: 'Zoom',
+    region: 'from anywhere',
+    online: true,
+    host: null,      // not named on the page: "one of our trained coaches"
+    photo: null,
+    about: null,
+    signupLink: null,
+    payLink: null,   // the Rav's own payment link for women joining on Zoom
+    ready: false,
+  },
 ];
