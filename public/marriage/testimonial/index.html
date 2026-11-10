@@ -7,7 +7,7 @@
   <meta name="description" content="Share a few words, or a short voice message, about Or HaYichud or your couples work with Rav Yisrael Frenkel.">
   <title>Your Testimonial — Rav Yisrael Frenkel</title>
   <meta property="og:title" content="What has it meant to you?">
-  <meta property="og:description" content="A few honest sentences or a short voice message. We'll tidy the grammar.">
+  <meta property="og:description" content="A few honest sentences, or a short voice message that we'll write out for you.">
   <meta property="og:image" content="https://yisraelfrenkel.com/images/yisrael-teaching-conversation.jpg">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -82,7 +82,7 @@
   <section class="t-hero"><div class="hero-glow"></div><div class="t-wrap">
     <p class="kicker" id="t-kicker">Or HaYichud · The marriage course</p>
     <h1><span id="t-h1">What has this course</span> <em>meant to you?</em></h1>
-    <p class="lead">A few honest sentences, or a short voice message, whichever is easier. Write on your own or together. Don't worry about grammar or wording. We'll tidy it up before anything is shared.</p>
+    <p class="lead">A few honest sentences, or a short voice message that we'll write out for you, whichever is easier. Write on your own or together. Don't worry about grammar or wording. We'll tidy it up before anything is shared.</p>
   </div></section>
 
   <section class="t-main"><div class="t-wrap">
@@ -128,14 +128,14 @@
             <input class="t-file" id="file" type="file" accept="audio/*">
           </div>
           <p class="voice-note" id="v-note">Up to 5 minutes. Your phone will ask once to use the microphone.</p>
+          <p class="voice-note">We'll write out what you say and put the written words on the website. Your recording is never played to anyone else.</p>
         </div>
       </div>
 
       <div class="t-step">
         <p class="t-label" style="font-size:19px">May we share it?</p>
         <label class="t-check" for="consent"><input id="consent" name="consent" type="checkbox"> Yes, you may quote my words on the website and to other couples <span id="t-consent">thinking about the course</span>, with the name I chose above.</label>
-        <label class="t-check" for="consent-voice" id="voice-consent-row" hidden><input id="consent-voice" name="consent-voice" type="checkbox"> You may also play my voice recording. <span style="color:var(--muted)">(Leave this unticked and your recording is heard only by the Rav.)</span></label>
-        <p class="t-hint">Leave it unticked if it's just for the Rav.</p>
+        <p class="t-hint">Leave it unticked if it's just for the Rav. A voice message is always written out first. Only the written words are shared, never the recording.</p>
       </div>
 
       <div class="hp" aria-hidden="true"><label for="website">Leave this empty</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
@@ -187,10 +187,7 @@
     var g = q.get("group"); if (g) group = (group + " - " + g).slice(0, 60);
   } catch (x) {}
 
-  function voiceConsent() { $("voice-consent-row").hidden = !audio; if (!audio) $("consent-voice").checked = false; }
-
   function show(state) {
-    setTimeout(voiceConsent, 0);
     $("v-idle").hidden = state !== "idle";
     $("v-rec").hidden = state !== "rec";
     $("v-done").hidden = state !== "done";
@@ -253,7 +250,6 @@
     if (f.size > MAX_BYTES) { this.value = ""; audio = null; showErr("That file is larger than 20 MB. Please choose a shorter voice note."); return; }
     audio = { blob: f, type: f.type || "audio/mpeg", seconds: 0, filename: f.name };
     err.hidden = true;
-    voiceConsent();
   });
 
   function showErr(msg) { err.textContent = msg; err.hidden = false; }
@@ -280,7 +276,7 @@
       anonymous: anon.checked,
       text: text,
       consent: $("consent").checked,
-      consentVoice: !!audio && $("consent-voice").checked,
+      consentVoice: false, // recordings are only written out, never played
       cohort: group,
       website: $("website").value
     };
