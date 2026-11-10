@@ -132,8 +132,10 @@
       </div>
 
       <div class="t-step">
-        <label class="t-check" for="consent"><input id="consent" name="consent" type="checkbox" checked> You may share this on the website and with other women thinking about the course, with the name I chose above.</label>
-        <p class="t-hint" style="padding-left:31px">Untick this if it's just for the Rav.</p>
+        <p class="t-label" style="font-size:19px">May we share it?</p>
+        <label class="t-check" for="consent"><input id="consent" name="consent" type="checkbox"> Yes, you may quote my words on the website and to other women thinking about the course, with the name I chose above.</label>
+        <label class="t-check" for="consent-voice" id="voice-consent-row" hidden><input id="consent-voice" name="consent-voice" type="checkbox"> You may also play my voice recording. <span style="color:var(--muted)">(Leave this unticked and your recording is heard only by the Rav.)</span></label>
+        <p class="t-hint">Leave it unticked if it's just for the Rav.</p>
       </div>
 
       <div class="hp" aria-hidden="true"><label for="website">Leave this empty</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
@@ -165,7 +167,14 @@
 
   anon.addEventListener("change", function () { nameEl.disabled = anon.checked; });
 
+  // Each group can get its own link: /orhaisha/testimonial/?group=Lakewood
+  var group = "Yerushalayim 1";
+  try { var g = new URLSearchParams(location.search).get("group"); if (g) group = g.slice(0, 60); } catch (x) {}
+
+  function voiceConsent() { $("voice-consent-row").hidden = !audio; if (!audio) $("consent-voice").checked = false; }
+
   function show(state) {
+    setTimeout(voiceConsent, 0);
     $("v-idle").hidden = state !== "idle";
     $("v-rec").hidden = state !== "rec";
     $("v-done").hidden = state !== "done";
@@ -228,6 +237,7 @@
     if (f.size > MAX_BYTES) { this.value = ""; audio = null; showErr("That file is larger than 20 MB. Please choose a shorter voice note."); return; }
     audio = { blob: f, type: f.type || "audio/mpeg", seconds: 0, filename: f.name };
     err.hidden = true;
+    voiceConsent();
   });
 
   function showErr(msg) { err.textContent = msg; err.hidden = false; }
@@ -254,7 +264,8 @@
       anonymous: anon.checked,
       text: text,
       consent: $("consent").checked,
-      cohort: "Yerushalayim 1",
+      consentVoice: !!audio && $("consent-voice").checked,
+      cohort: group,
       website: $("website").value
     };
     var ready = audio ? toBase64(audio.blob).then(function (b64) {
