@@ -1,0 +1,288 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1,viewport-fit=cover">
+  <meta name="robots" content="noindex,nofollow">
+  <meta name="description" content="Share a few words, or a short voice message, about The Love You're Meant to Build.">
+  <title>Your Testimonial — The Love You're Meant to Build</title>
+  <meta property="og:title" content="What has this course meant to you?">
+  <meta property="og:description" content="A few honest sentences or a short voice message. We'll tidy the grammar.">
+  <meta property="og:image" content="https://yisraelfrenkel.com/orhaisha/assets/course-preview-poster.jpg">
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Fraunces:ital,opsz,wght@0,9..144,400;0,9..144,500;0,9..144,600;1,9..144,400;1,9..144,500&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+  <link rel="stylesheet" href="/orhaisha/styles.css">
+  <style>
+    /* Testimonial page: the course page's warm white + apricot glow, one white card, plum thank-you */
+    :root { --rec: #c4492f; --ok: #3f7a52; --field: #fffdf9; }
+    body { min-height: 100vh; }
+    section.t-hero { position: relative; overflow: hidden; padding: 56px 0 26px; }
+    section.t-main { padding: 0 0 80px; }
+    .t-hero .hero-glow { inset: -40% -10% 0; }
+    .t-wrap { position: relative; width: min(720px, calc(100% - 40px)); margin-inline: auto; }
+    .t-hero h1 { font-size: clamp(40px, 6vw, 62px); line-height: 1.02; margin-bottom: 18px; text-wrap: balance; }
+    .t-hero h1 em { color: #a86a14; font-weight: 500; }
+    .t-hero .lead { font-size: 17px; margin: 0; }
+    .t-main { padding: 0 0 80px; }
+    .t-card { background: #fff; border: 1px solid var(--line); border-radius: 26px; padding: 34px 34px 30px; box-shadow: 0 18px 50px rgba(70,35,20,.08); display: grid; gap: 30px; }
+    .t-step { display: grid; gap: 10px; }
+    .t-label { font: 500 23px/1.2 var(--serif); margin: 0; letter-spacing: -.01em; }
+    .t-hint { margin: 0; color: var(--muted); font-size: 14px; }
+    .t-input, .t-text { width: 100%; font: 16px/1.55 var(--sans); color: var(--ink); background: var(--field); border: 1px solid #dcc9b6; border-radius: 14px; padding: 13px 15px; }
+    .t-text { min-height: 190px; resize: vertical; }
+    .t-input:focus, .t-text:focus { outline: 2px solid var(--coral); outline-offset: 1px; border-color: var(--coral); }
+    .t-input:disabled { opacity: .45; }
+    .t-check { display: flex; gap: 11px; align-items: flex-start; font-size: 15px; cursor: pointer; }
+    .t-check input { width: 20px; height: 20px; margin: 2px 0 0; accent-color: var(--coral); flex: none; }
+    .t-prompts { margin: 2px 0 4px; padding-left: 20px; color: var(--muted); font-size: 14px; }
+    .t-prompts li { padding: 2px 0; }
+    .t-or { display: flex; align-items: center; gap: 14px; color: var(--muted); font: italic 17px var(--serif); margin: 6px 0 2px; }
+    .t-or:before, .t-or:after { content: ""; flex: 1; height: 1px; background: var(--line); }
+    .voice { border: 1px dashed #d9b9a5; border-radius: 18px; padding: 18px; background: var(--wash); display: grid; gap: 12px; justify-items: start; }
+    .voice-btn { display: inline-flex; align-items: center; gap: 11px; min-height: 52px; padding: 0 22px; border-radius: 999px; border: 0; cursor: pointer; font: 600 15px var(--sans); background: var(--plum); color: #fff; }
+    .voice-btn:focus-visible, .send:focus-visible, .link-btn:focus-visible { outline: 3px solid var(--gold); outline-offset: 2px; }
+    .voice-btn .dot { width: 12px; height: 12px; border-radius: 50%; background: #ff8a70; }
+    .voice-btn.stop { background: var(--rec); }
+    .voice-btn.stop .dot { background: #fff; border-radius: 2px; }
+    .rec-line { display: flex; align-items: center; gap: 10px; font: 600 15px var(--sans); color: var(--rec); font-variant-numeric: tabular-nums; }
+    .rec-line .pulse { width: 10px; height: 10px; border-radius: 50%; background: var(--rec); animation: pulse 1.2s infinite; }
+    @keyframes pulse { 50% { opacity: .25; } }
+    @media (prefers-reduced-motion: reduce) { .rec-line .pulse { animation: none; } }
+    .voice audio { width: 100%; max-width: 100%; }
+    .voice-row { display: flex; flex-wrap: wrap; gap: 16px; }
+    .link-btn { background: none; border: 0; padding: 0; color: var(--coral2); font: 600 14px var(--sans); text-decoration: underline; text-underline-offset: 4px; cursor: pointer; }
+    .voice-note { margin: 0; font-size: 13px; color: var(--muted); }
+    .t-file { font-size: 14px; max-width: 100%; }
+    .err { margin: 0; color: #a3301b; font-size: 14px; font-weight: 500; }
+    .send { width: 100%; min-height: 58px; border: 0; cursor: pointer; font-family: var(--sans); }
+    .send[disabled] { opacity: .6; cursor: progress; transform: none; }
+    .small-print { margin: 0; text-align: center; font-size: 13px; color: var(--muted); }
+    .thanks { background: var(--plum); color: var(--cream); border-radius: 26px; padding: 44px 36px; text-align: center; box-shadow: var(--shadow); }
+    .thanks h2 { font-size: clamp(36px, 5vw, 52px); color: #fff; margin-bottom: 14px; }
+    .thanks h2 em { color: var(--gold); font-weight: 500; }
+    .thanks p { color: #dccdd5; max-width: 480px; margin: 0 auto 12px; }
+    .thanks .link-btn { color: var(--gold); margin-top: 8px; }
+    .hp { position: absolute; left: -9999px; width: 1px; height: 1px; overflow: hidden; }
+    @media (max-width: 560px) {
+      section.t-hero { padding: 36px 0 20px; }
+      section.t-main { padding: 0 0 56px; }
+      .t-card { padding: 24px 18px 22px; border-radius: 22px; gap: 26px; }
+      .t-label { font-size: 21px; }
+      .thanks { padding: 36px 22px; }
+    }
+  </style>
+</head>
+<body>
+<header class="site-header"><div class="wrap nav">
+  <a class="wordmark" href="https://yisraelfrenkel.com/orhaisha" aria-label="The Love You're Meant to Build"><img src="/orhaisha/assets/yisrael-frenkel-wordmark.png" alt="Yisrael Frenkel"></a>
+</div></header>
+
+<main id="main">
+  <section class="t-hero"><div class="hero-glow"></div><div class="t-wrap">
+    <p class="kicker">The Love You're Meant to Build · Yerushalayim</p>
+    <h1>What has this course <em>meant to you?</em></h1>
+    <p class="lead">A few honest sentences, or a short voice message, whichever is easier. Don't worry about grammar or wording. We'll tidy it up before anything is shared.</p>
+  </div></section>
+
+  <section class="t-main"><div class="t-wrap">
+    <form id="form" class="t-card" novalidate>
+      <div class="t-step">
+        <label class="t-label" for="name">Your name, as you'd like it to appear</label>
+        <p class="t-hint">Any version you like: Rivka, Rivka L., R. from Yerushalayim.</p>
+        <input class="t-input" id="name" name="name" type="text" maxlength="80" autocomplete="given-name" placeholder="Your name">
+        <label class="t-check" for="anon"><input id="anon" name="anon" type="checkbox"> Keep me anonymous</label>
+      </div>
+
+      <div class="t-step">
+        <label class="t-label" for="text">Your words</label>
+        <p class="t-hint">If it helps, start from one of these:</p>
+        <ul class="t-prompts">
+          <li>What did you walk in with, before the first class?</li>
+          <li>What has changed in how you see marriage, a husband, or yourself?</li>
+          <li>What would you tell a friend who is thinking of joining?</li>
+        </ul>
+        <textarea class="t-text" id="text" name="text" maxlength="8000" placeholder="Write as much or as little as you like…"></textarea>
+
+        <p class="t-or">or</p>
+
+        <div class="voice" id="voice">
+          <div id="v-idle">
+            <button type="button" class="voice-btn" id="rec-start"><span class="dot" aria-hidden="true"></span>Record a voice message</button>
+          </div>
+          <div id="v-rec" hidden>
+            <div class="voice-row" style="align-items:center">
+              <button type="button" class="voice-btn stop" id="rec-stop"><span class="dot" aria-hidden="true"></span>Stop</button>
+              <span class="rec-line" aria-live="polite"><span class="pulse" aria-hidden="true"></span><span id="rec-time">0:00</span></span>
+            </div>
+          </div>
+          <div id="v-done" hidden style="width:100%">
+            <audio id="playback" controls preload="metadata"></audio>
+            <div class="voice-row" style="margin-top:10px">
+              <button type="button" class="link-btn" id="rec-again">Record again</button>
+              <button type="button" class="link-btn" id="rec-remove">Remove</button>
+            </div>
+          </div>
+          <div id="v-upload" hidden style="width:100%">
+            <p class="voice-note" id="upload-why" style="margin-bottom:8px">Your phone didn't let this page use the microphone. You can choose a voice note you recorded instead.</p>
+            <input class="t-file" id="file" type="file" accept="audio/*">
+          </div>
+          <p class="voice-note" id="v-note">Up to 5 minutes. Your phone will ask once to use the microphone.</p>
+        </div>
+      </div>
+
+      <div class="t-step">
+        <label class="t-check" for="consent"><input id="consent" name="consent" type="checkbox" checked> You may share this on the website and with other women thinking about the course, with the name I chose above.</label>
+        <p class="t-hint" style="padding-left:31px">Untick this if it's just for the Rav.</p>
+      </div>
+
+      <div class="hp" aria-hidden="true"><label for="website">Leave this empty</label><input id="website" name="website" type="text" tabindex="-1" autocomplete="off"></div>
+
+      <p class="err" id="err" role="alert" hidden></p>
+      <button class="btn send" id="send" type="submit">Send my testimonial</button>
+      <p class="small-print">It goes only to Rav Frenkel. Nothing is shared unless you said yes above.</p>
+    </form>
+
+    <div class="thanks" id="thanks" hidden tabindex="-1">
+      <p class="kicker" style="color:var(--gold)">Received</p>
+      <h2>Thank you. <em>Truly.</em></h2>
+      <p>Your words will help the next young woman decide to come. If there's anything you'd like changed, just message the Rav.</p>
+      <button type="button" class="link-btn" id="another">Send another</button>
+    </div>
+  </div></section>
+</main>
+
+<script>
+(function () {
+  // The Google Apps Script web app that saves each testimonial to Rav Frenkel's Google Sheet and Drive.
+  var ENDPOINT = "https://script.google.com/macros/s/AKfycbwugda3X7acrXmoVNZdTTXzvtW9USt_9e2lENUoxGgpgz163GmnjxFWgr0aWJy_I4M6qA/exec";
+  var MAX_SECONDS = 300, MAX_BYTES = 20 * 1024 * 1024;
+
+  var $ = function (id) { return document.getElementById(id); };
+  var form = $("form"), nameEl = $("name"), anon = $("anon"), textEl = $("text"), err = $("err"), send = $("send");
+  var recorder = null, chunks = [], stream = null, timer = null, started = 0;
+  var audio = null; // { blob, type, seconds }
+
+  anon.addEventListener("change", function () { nameEl.disabled = anon.checked; });
+
+  function show(state) {
+    $("v-idle").hidden = state !== "idle";
+    $("v-rec").hidden = state !== "rec";
+    $("v-done").hidden = state !== "done";
+    $("v-note").hidden = state === "done" || state === "upload";
+  }
+  function fmt(s) { s = Math.floor(s); return Math.floor(s / 60) + ":" + String(s % 60).padStart(2, "0"); }
+  function fallback(msg) {
+    show("none");
+    $("v-upload").hidden = false;
+    if (msg) $("upload-why").textContent = msg;
+  }
+
+  if (!window.MediaRecorder || !navigator.mediaDevices || !navigator.mediaDevices.getUserMedia) {
+    fallback("Your browser can't record here. You can choose a voice note you recorded instead.");
+  }
+
+  function pickType() {
+    var types = ["audio/webm;codecs=opus", "audio/mp4", "audio/webm", "audio/ogg;codecs=opus"];
+    for (var i = 0; i < types.length; i++) { if (MediaRecorder.isTypeSupported && MediaRecorder.isTypeSupported(types[i])) return types[i]; }
+    return "";
+  }
+
+  $("rec-start").addEventListener("click", function () {
+    err.hidden = true;
+    navigator.mediaDevices.getUserMedia({ audio: true }).then(function (s) {
+      stream = s; chunks = [];
+      var type = pickType();
+      recorder = type ? new MediaRecorder(s, { mimeType: type }) : new MediaRecorder(s);
+      recorder.ondataavailable = function (e) { if (e.data && e.data.size) chunks.push(e.data); };
+      recorder.onstop = function () {
+        clearInterval(timer);
+        stream.getTracks().forEach(function (t) { t.stop(); });
+        var t = recorder.mimeType || type || "audio/webm";
+        var blob = new Blob(chunks, { type: t });
+        audio = { blob: blob, type: t, seconds: Math.round((Date.now() - started) / 1000) };
+        $("playback").src = URL.createObjectURL(blob);
+        show("done");
+      };
+      recorder.start(1000);
+      started = Date.now();
+      $("rec-time").textContent = "0:00";
+      timer = setInterval(function () {
+        var secs = (Date.now() - started) / 1000;
+        $("rec-time").textContent = fmt(secs) + " / 5:00";
+        if (secs >= MAX_SECONDS) recorder.stop();
+      }, 250);
+      show("rec");
+    }).catch(function () {
+      fallback("Your phone didn't let this page use the microphone. You can choose a voice note you recorded instead, or allow the microphone and reload the page.");
+    });
+  });
+  $("rec-stop").addEventListener("click", function () { if (recorder && recorder.state !== "inactive") recorder.stop(); });
+  function clearAudio() { audio = null; $("playback").removeAttribute("src"); show("idle"); }
+  $("rec-again").addEventListener("click", function () { clearAudio(); $("rec-start").click(); });
+  $("rec-remove").addEventListener("click", clearAudio);
+
+  $("file").addEventListener("change", function () {
+    var f = this.files && this.files[0];
+    if (!f) { audio = null; return; }
+    if (f.size > MAX_BYTES) { this.value = ""; audio = null; showErr("That file is larger than 20 MB. Please choose a shorter voice note."); return; }
+    audio = { blob: f, type: f.type || "audio/mpeg", seconds: 0, filename: f.name };
+    err.hidden = true;
+  });
+
+  function showErr(msg) { err.textContent = msg; err.hidden = false; }
+  function toBase64(blob) {
+    return new Promise(function (resolve, reject) {
+      var r = new FileReader();
+      r.onload = function () { resolve(String(r.result).split(",")[1] || ""); };
+      r.onerror = reject;
+      r.readAsDataURL(blob);
+    });
+  }
+
+  form.addEventListener("submit", function (e) {
+    e.preventDefault();
+    err.hidden = true;
+    if (recorder && recorder.state === "recording") { showErr("Tap Stop to finish your voice message first."); return; }
+    var text = textEl.value.trim();
+    if (!text && !audio) { showErr("Write a few words or record a voice message, then send."); return; }
+    if (audio && audio.blob.size > MAX_BYTES) { showErr("The voice message is too long. Please keep it under 5 minutes."); return; }
+
+    send.disabled = true; send.textContent = "Sending…";
+    var payload = {
+      name: anon.checked ? "" : nameEl.value.trim(),
+      anonymous: anon.checked,
+      text: text,
+      consent: $("consent").checked,
+      cohort: "Yerushalayim 1",
+      website: $("website").value
+    };
+    var ready = audio ? toBase64(audio.blob).then(function (b64) {
+      payload.audio = { data: b64, type: audio.type, seconds: audio.seconds, filename: audio.filename || "" };
+    }) : Promise.resolve();
+
+    ready.then(function () {
+      return fetch(ENDPOINT, { method: "POST", headers: { "Content-Type": "text/plain;charset=utf-8" }, body: JSON.stringify(payload) });
+    }).then(function (r) { return r.json(); }).then(function (res) {
+      if (!res || !res.ok) throw new Error((res && res.error) || "failed");
+      form.hidden = true;
+      $("thanks").hidden = false;
+      $("thanks").focus();
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }).catch(function () {
+      showErr("It didn't send. Check your internet connection and tap Send again. If it keeps failing, send it to the Rav on WhatsApp.");
+    }).then(function () {
+      send.disabled = false; send.textContent = "Send my testimonial";
+    });
+  });
+
+  $("another").addEventListener("click", function () {
+    form.reset(); nameEl.disabled = false; clearAudio(); $("file").value = "";
+    if (!$("v-upload").hidden) show("none");
+    $("thanks").hidden = true; form.hidden = false;
+    window.scrollTo({ top: 0, behavior: "smooth" });
+  });
+})();
+</script>
+</body>
+</html>
