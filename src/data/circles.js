@@ -22,7 +22,7 @@ export const circles = [
     slug: 'lakewood',
     place: 'Lakewood',
     region: 'New Jersey',
-    host: null,      // her name as she wants it on the page, e.g. "Mrs. Chana Levine"
+    host: 'Rifki Genuth', // her name as she wants it on the page
     photo: null,     // file in public/orhaisha/circles/, e.g. "/orhaisha/circles/lakewood.jpg"
     about: null,     // two or three sentences about her, in her own words if possible
     signupLink: null, // where she reserves a place at the free first class (a form), e.g. "https://tally.so/r/..."
@@ -33,7 +33,7 @@ export const circles = [
     slug: 'staten-island',
     place: 'Staten Island',
     region: 'New York',
-    host: null,
+    host: 'Sivan Winkler',
     photo: null,
     about: null,
     signupLink: null,
@@ -47,7 +47,7 @@ export const circles = [
     place: 'Zoom',
     region: 'from anywhere',
     online: true,
-    host: null,      // not named on the page: "one of our trained coaches"
+    host: 'Sharona Noy', // holds the Zoom breakout room for everyone joining from home
     photo: null,
     about: null,
     signupLink: null,
