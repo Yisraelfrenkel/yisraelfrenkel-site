@@ -41,17 +41,6 @@ export const circles = [
     ready: false,
   },
   {
-    slug: 'long-island',
-    place: 'Long Island',
-    region: 'New York',
-    host: null,
-    photo: null,
-    about: null,
-    signupLink: null,
-    payLink: null,
-    ready: false,
-  },
-  {
     // The whole course on Zoom, from anywhere. Also the central page that lists every circle:
     // yisraelfrenkel.com/orhaisha/zoom
     slug: 'zoom',
