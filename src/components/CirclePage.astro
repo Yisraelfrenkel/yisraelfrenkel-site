@@ -2,7 +2,7 @@
 // One page for one circle abroad. `variant` is "teaser" (preview video; the
 // button reserves a place at the free first class) or "first-class" (the
 // cohort's first class embedded, sent out after it; the button pays for Classes 2–6).
-import { course, circles } from '../data/circles.js';
+import { course, circles, testimonials } from '../data/circles.js';
 
 const { circle, variant = 'teaser' } = Astro.props;
 const firstClass = variant === 'first-class';
@@ -97,8 +97,13 @@ const url = `https://yisraelfrenkel.com/orhaisha/${circle.slug}${firstClass ? '/
 </div></section>
 
 <section class="voices"><div class="wrap"><div class="centered intro"><p class="kicker">From the Yerushalayim cohort</p><h2>In their words.</h2></div><div class="voices-grid">
-  <figure><mark class="blank">A testimonial from a young woman in Yerushalayim</mark></figure>
-  <figure><mark class="blank">A testimonial from a young woman in Yerushalayim</mark></figure>
+  {testimonials.map((t) => (
+    <figure class="voice">
+      <blockquote>{t.text.map((p) => <p>{p}</p>)}</blockquote>
+      <figcaption><strong>{t.name}</strong> · {t.from}</figcaption>
+    </figure>
+  ))}
+  {testimonials.length < 2 && <figure><mark class="blank">A testimonial from a young woman in Yerushalayim</mark></figure>}
   <figure><mark class="blank">A testimonial from a mother</mark></figure>
 </div></div></section>
 

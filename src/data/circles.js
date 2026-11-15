@@ -66,3 +66,19 @@ export const circles = [
     ready: false,
   },
 ];
+
+// Testimonials shown on every circle page ("In their words."), newest approved first.
+// They come from the testimonial page (yisraelfrenkel.com/orhaisha/testimonial), saved in the
+// Google Sheet "Testimonials - The Love You're Meant to Build". Only add one whose
+// "OK to quote her words" column says Yes. `name` is what she asked to be shown.
+export const testimonials = [
+  {
+    name: 'Yael',
+    from: 'Yerushalayim cohort',
+    text: [
+      'This course has given me so much insight into the roles of a man and a woman in marriage, what I deserve in a marriage, and what marriage truly represents from a Torah perspective. It has brought me so much clarity when it comes to dating and understanding what to look for in a future husband, but also what a healthy, fulfilling marriage should look like.',
+      'Learning about marriage through the lens of Torah has especially opened my eyes to the beauty and wisdom behind the laws of marriage. Rather than seeing them as restrictions that take away from pleasure, I now understand how they are designed to deepen intimacy, enhance pleasure, and protect the value, dignity, and uniqueness of a woman.',
+      'I feel that I walk away from this course with not only more knowledge but also a completely different perspective on marriage and a much clearer understanding of what I am looking for.',
+    ],
+  },
+];

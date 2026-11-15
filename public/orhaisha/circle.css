@@ -56,3 +56,14 @@
 .room-go{margin-top:8px;font-size:13px;font-weight:600;color:var(--coral2)}
 @media(max-width:900px){.rooms-grid{grid-template-columns:1fr 1fr}}
 @media(max-width:560px){.rooms-grid{grid-template-columns:1fr}.rooms{padding:70px 0}}
+
+/* A real testimonial: a full-width card with her words */
+.voices-grid:has(.voice){grid-template-columns:repeat(2,1fr);max-width:860px;margin-inline:auto}
+.voices-grid figure.voice{grid-column:1/-1;display:block;text-align:left;place-items:initial;max-width:860px;width:100%;justify-self:center;padding:46px 52px 40px;box-shadow:var(--shadow);font:inherit;position:relative}
+.voice blockquote{margin:0;font:400 21px/1.6 var(--serif);color:var(--ink,inherit)}
+.voice blockquote::before{content:"\201C";position:absolute;top:6px;left:22px;font:italic 72px/1 var(--serif);color:var(--gold,#c9a24a);opacity:.7}
+.voice blockquote p{margin:0 0 16px}
+.voice figcaption{margin-top:22px;font:500 13px/1.4 var(--sans,sans-serif);letter-spacing:.04em;color:var(--muted)}
+.voice figcaption strong{color:var(--coral2,var(--coral));font-weight:600}
+@media(max-width:900px){.voices-grid:has(.voice){grid-template-columns:1fr}}
+@media(max-width:560px){.voices-grid figure.voice{padding:38px 24px 30px}.voice blockquote{font-size:18px}.voice blockquote::before{left:12px;font-size:56px}}
