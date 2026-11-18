@@ -62,6 +62,21 @@ export const circles = [
 // "OK to quote her words" column says Yes. `name` is what she asked to be shown.
 export const testimonials = [
   {
+    name: 'Gabby',
+    from: 'Yerushalayim cohort',
+    text: [
+      'I walked into Rav Yisrael’s course with major skepticism about dating and marriage because of poor past experiences, yet with an open mind, because I had nothing to lose and everything to gain. Through his teachings and our timeless Torah wisdom, Rav Yisrael gave me the knowledge I need to date purposefully and build a healthy, loving, real marriage in the future.',
+      'To say I highly recommend this course would be an understatement. I think it should be a prerequisite to dating. Rav Yisrael is thorough and genuine. No black-and-white shenanigans, only real truth!',
+    ],
+  },
+  {
+    name: 'Eli D.',
+    from: 'Yerushalayim cohort',
+    text: [
+      'If you want a deep, intimate connection, with yourself and in your marriage, Rav Frenkel’s course helps you uncover your values and gives you practical tools to build a marriage where you both flourish.',
+    ],
+  },
+  {
     name: 'Yael',
     from: 'Yerushalayim cohort',
     text: [
