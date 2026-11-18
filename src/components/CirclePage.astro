@@ -142,7 +142,7 @@ const url = `https://yisraelfrenkel.com/orhaisha/${circle.slug}${firstClass ? '/
   <div>
     <p class="kicker">Your circle · {place}, {region}</p>
     <h2>{host ? <>The {place} circle, with {host}</> : <>The {place} circle, with <mark class="blank">her name</mark></>}</h2>
-    {about ? <p>{about}</p> : <p><mark class="blank">Two or three sentences about her, in her own words</mark></p>}
+    {about ? [].concat(about).map((para) => <p>{para}</p>) : <p><mark class="blank">Two or three sentences about her, in her own words</mark></p>}
     <p>Each week, after Rav Frenkel's class and the questions, {hostFirst || 'she'} holds the circle for the young women of {place}: a warm room to talk through what came up, for as long as you want.</p>
     <a class="btn" href={signUp}>{cta}</a>
   </div>

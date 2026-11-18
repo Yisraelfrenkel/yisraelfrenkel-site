@@ -22,9 +22,9 @@ export const circles = [
     slug: 'lakewood',
     place: 'Lakewood',
     region: 'New Jersey',
-    host: 'Rifki Genuth', // her name as she wants it on the page
+    host: 'Rivki Genuth', // her name as she wants it on the page
     photo: null,     // file in public/orhaisha/circles/, e.g. "/orhaisha/circles/lakewood.jpg"
-    about: null,     // two or three sentences about her, in her own words if possible
+    about: "Rivki Genuth is a trained marriage and intimacy coach. With two years of experience in relationship coaching, and twice that training in the mental health field, she brings the wisdom of a woman — and then a mother of adults — into her work. After years of discovering her purpose as a Jewish woman, she now shares what she’s learned, so that no young girl, no veteran married woman, and no couple should have to struggle with questions our beautiful Torah has always spoken about and answered.", // her own words, sent 2026-11-18
     signupLink: null, // where she reserves a place at the free first class (a form), e.g. "https://tally.so/r/..."
     payLink: null,   // her Stripe payment link for Classes 2–6, e.g. "https://buy.stripe.com/..."
     ready: false,
@@ -35,7 +35,10 @@ export const circles = [
     region: 'New York',
     host: 'Sivan Winkler',
     photo: null,
-    about: null,
+    about: [ // her own words, sent 2026-11-18 (one string per paragraph)
+      "Sivan Winkler is a life coach and devoted mother of four with a passion for helping women reconnect with themselves, recognize their worth, and find their own voice. Her own journey of healing and personal growth has inspired her to help others discover their inner strength and embrace who they truly are.",
+      "With her warm, compassionate, and intuitive approach, she creates a safe space where women feel seen, heard, and understood. She believes that a deeper connection with yourself, the Torah, and Hashem is the foundation for building confidence, self-trust, and healthy, meaningful relationships.",
+    ],
     signupLink: null,
     payLink: null,
     ready: false,
