@@ -51,7 +51,7 @@ export const circles = [
     region: 'from anywhere',
     online: true,
     host: 'Sharona Noy', // holds the Zoom breakout room for everyone joining from home
-    photo: null,
+    photo: '/orhaisha/circles/zoom.jpg', // sent 2026-11-19
     about: null,
     signupLink: null,
     payLink: null,   // the Rav's own payment link for women joining on Zoom
