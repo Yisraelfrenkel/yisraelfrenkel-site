@@ -136,16 +136,16 @@ const url = `https://yisraelfrenkel.com/orhaisha/${circle.slug}${firstClass ? '/
   {!online && <details><summary>Can I join from home instead?</summary><p>Yes. The whole course is also live on Zoom, with {coach} holding a breakout room afterwards. <a href={`/orhaisha/zoom${sub}/`}>Join on Zoom →</a></p></details>}
 </div></div></section>
 
-{!online && <section class="circle" id="circle"><div class="wrap circle-grid">
+<section class="circle" id="circle"><div class="wrap circle-grid">
   <figure>{photo ? <img src={photo} alt={host || `The ${place} circle host`}> : <div class="photo-blank"><mark class="blank">Her photo</mark></div>}</figure>
   <div>
-    <p class="kicker">Your circle · {place}, {region}</p>
-    <h2>{host ? <>The {place} circle, with {host}</> : <>The {place} circle, with <mark class="blank">her name</mark></>}</h2>
+    <p class="kicker">{online ? <>Your breakout room · on Zoom</> : <>Your circle · {place}, {region}</>}</p>
+    <h2>{online && host ? <>Your breakout room, with {host}</> : host ? <>The {place} circle, with {host}</> : <>The {place} circle, with <mark class="blank">her name</mark></>}</h2>
     {about ? [].concat(about).map((para) => <p>{para}</p>) : <p><mark class="blank">Two or three sentences about her, in her own words</mark></p>}
-    <p>Each week, after Rav Frenkel's class and the questions, {hostFirst || 'she'} holds the circle for the young women of {place}: a warm room to talk through what came up, for as long as you want.</p>
+    <p>{online ? <>Each week, after Rav Frenkel's class and the questions, {hostFirst || 'she'} holds a small breakout room on Zoom for everyone joining from home: a warm room to talk through what came up, for as long as you want.</> : <>Each week, after Rav Frenkel's class and the questions, {hostFirst || 'she'} holds the circle for the young women of {place}: a warm room to talk through what came up, for as long as you want.</>}</p>
     <a class="btn" href={signUp}>{cta}</a>
   </div>
-</div></section>}
+</div></section>
 
 <section class="rooms" id="circles"><div class="wrap"><div class="centered intro"><p class="kicker">{online ? 'Or join a circle near you' : <>One course, {homes.length + 1} rooms</>}</p><h2>{online ? 'Prefer a room together?' : 'Learning it together.'}</h2><p>The same class, at the same moment, in every room.</p></div>
   <div class="rooms-grid">
