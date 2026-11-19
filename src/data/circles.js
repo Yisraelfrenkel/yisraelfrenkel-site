@@ -23,7 +23,7 @@ export const circles = [
     place: 'Lakewood',
     region: 'New Jersey',
     host: 'Rivki Genuth', // her name as she wants it on the page
-    photo: null,     // file in public/orhaisha/circles/, e.g. "/orhaisha/circles/lakewood.jpg"
+    photo: '/orhaisha/circles/lakewood.jpg', // sent 2026-11-20
     about: "Rivki Genuth is a trained marriage and intimacy coach. With four years of training in the mental health field and two years coaching couples, she brings the wisdom of a woman and a mother of grown children into her work. After years of discovering her purpose as a Jewish woman, she now shares what she has learned, so that no young woman, no veteran married woman, and no couple should have to struggle with questions our beautiful Torah has always spoken about and answered.", // approved by her 2026-11-19 (our suggested rewrite)
     signupLink: null, // where she reserves a place at the free first class (a form), e.g. "https://tally.so/r/..."
     payLink: null,   // her Stripe payment link for Classes 2–6, e.g. "https://buy.stripe.com/..."
