@@ -35,9 +35,9 @@ export const circles = [
     region: 'New York',
     host: 'Sivan Winkler',
     photo: null,
-    about: [ // her own words, sent 2026-11-18 (one string per paragraph)
-      "Sivan Winkler is a life coach and devoted mother of four with a passion for helping women reconnect with themselves, recognize their worth, and find their own voice. Her own journey of healing and personal growth has inspired her to help others discover their inner strength and embrace who they truly are.",
-      "With her warm, compassionate, and intuitive approach, she creates a safe space where women feel seen, heard, and understood. She believes that a deeper connection with yourself, the Torah, and Hashem is the foundation for building confidence, self-trust, and healthy, meaningful relationships.",
+    about: [ // approved by her 2026-11-20 (our suggested rewrite; one string per paragraph)
+      "Sivan Winkler is a life coach and devoted mother of four, with a passion for helping women reconnect with themselves, recognize their worth, and find their own voice. Her own journey of healing and personal growth inspired her to help others discover their inner strength and embrace who they truly are.",
+      "Her approach is warm, compassionate and intuitive, and women feel seen, heard and understood with her. She believes that a deeper connection with ourselves, the Torah and Hashem is the foundation for confidence, self-trust and healthy, meaningful relationships. She hosts the Staten Island circle so that young women can bring that foundation with them into dating and marriage.",
     ],
     signupLink: null,
     payLink: null,
