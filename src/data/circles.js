@@ -25,7 +25,7 @@ export const circles = [
     host: 'Rivki Genuth', // her name as she wants it on the page
     photo: '/orhaisha/circles/lakewood.jpg', // sent 2026-11-20
     about: "Rivki Genuth is a trained marriage and intimacy coach. With four years of training in the mental health field and two years coaching couples, she brings the wisdom of a woman and a mother of grown children into her work. After years of discovering her purpose as a Jewish woman, she now shares what she has learned, so that no young woman, no veteran married woman, and no couple should have to struggle with questions our beautiful Torah has always spoken about and answered.", // approved by her 2026-11-19 (our suggested rewrite)
-    signupLink: null, // where she reserves a place at the free first class (a form), e.g. "https://tally.so/r/..."
+    signupLink: 'https://tally.so/r/rDOxZ5', // where she reserves a place at the free first class (a form), e.g. "https://tally.so/r/..."
     payLink: null,   // her Stripe payment link for Classes 2–6, e.g. "https://buy.stripe.com/..."
     ready: false,
   },
@@ -39,7 +39,7 @@ export const circles = [
       "Sivan Winkler is a life coach and devoted mother of four, with a passion for helping women reconnect with themselves, recognize their worth, and find their own voice. Her own journey of healing and personal growth inspired her to help others discover their inner strength and embrace who they truly are.",
       "Her approach is warm, compassionate and intuitive, and women feel seen, heard and understood with her. She believes that a deeper connection with ourselves, the Torah and Hashem is the foundation for confidence, self-trust and healthy, meaningful relationships. She hosts the Staten Island circle so that young women can bring that foundation with them into dating and marriage.",
     ],
-    signupLink: null,
+    signupLink: 'https://tally.so/r/Gep2ZQ',
     payLink: null,
     ready: false,
   },
@@ -53,7 +53,7 @@ export const circles = [
     host: 'Sharona Noy', // holds the Zoom breakout room for everyone joining from home
     photo: '/orhaisha/circles/zoom.jpg', // sent 2026-11-19
     about: "Sharona Noy is a marriage and intimacy coach, trained through the Torah Psychology School of Counseling and Coaching, an affiliate of the International Coaching Federation (ICF). She is also trained in Emotion Aid, an approach to emotional resilience, and believes deeply in the connection between mind and body. Her work is helping women and couples build meaningful, healthy and fulfilling relationships. She holds the Zoom breakout room so that every young woman joining from home has a place to reflect and talk through what came up in class.", // approved by her 2026-11-20 (our rewrite + her "reflect and")
-    signupLink: null,
+    signupLink: 'https://tally.so/r/q5G2y8',
     payLink: null,   // the Rav's own payment link for women joining on Zoom
     ready: false,
   },
