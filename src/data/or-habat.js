@@ -173,7 +173,7 @@ export const why = {
   paragraphs: [
     "For more than twenty years I have sat with couples, with chassanim, and with women carrying the pain of marriages that didn't work. Not bad people. Not bad marriages. Two people who were never shown how a husband and a wife actually fit together.",
     "Most of what goes wrong was visible before the engagement. Not because anyone was hiding it, but because the young woman had never been taught what she was looking at, or that she was allowed to need anything at all.",
-    "The Torah teaches it in detail. It is in the ketubah, in the words of kiddushin, in the halachos every chassan learns and no kallah is told. I teach it to young women because it is theirs.",
+    "The Torah teaches it in detail. It is in the ketubah, in the words of kiddushin, and in halachos that many chassanim and kallos never learn. I teach it to young women because it is theirs.",
   ],
   signature: "Rav Yisrael Frenkel",
 };
