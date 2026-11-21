@@ -126,3 +126,12 @@
 .why-torah strong{display:block;margin-top:10px;font:italic 500 22px/1.4 var(--serif);color:var(--coral2)}
 .why .signature{margin-top:28px}
 @media(max-width:560px){.why .why-lead{font-size:20px}.why-pull{font-size:22px}.why-torah strong{font-size:19px}}
+.why-grid:has(.why-photo){grid-template-columns:.95fr 1.2fr}
+.why figure.why-photo{height:auto;aspect-ratio:4/5}
+.why figure.why-photo img{object-position:35% 30%}
+@media(max-width:850px){.why-grid:has(.why-photo){grid-template-columns:1fr}.why figure.why-photo{max-width:420px;height:auto}}
+
+.why .why-body{font:400 20px/1.6 var(--serif);color:#3a302a;margin-top:18px}
+.why .why-body em{font-style:italic;color:var(--coral2)}
+.why-mark{background:linear-gradient(transparent 62%,rgba(233,162,59,.32) 62%);padding:0 2px}
+@media(max-width:560px){.why .why-body{font-size:18px}}
