@@ -57,7 +57,7 @@ const url = `https://yisraelfrenkel.com/orhaisha/${slug}${firstClass ? '/first-c
 <a class="skip" href="#main">Skip to content</a>
 <header class="site-header"><div class="wrap nav">
   <a class="wordmark" href="https://yisraelfrenkel.com" aria-label="Yisrael Frenkel home"><img src="/orhaisha/assets/yisrael-frenkel-wordmark.png" alt="Yisrael Frenkel"></a>
-  <nav class="desktop-nav" aria-label="Main navigation"><a href="#classes">The classes</a><a href="#how">How it works</a><a href="#price">Price</a>{general ? <a href="#circles">Choose your circle</a> : <a href="#circle">{hostFirst ? <>Meet {hostFirst}</> : 'Your circle'}</a>}</nav>
+  <nav class="desktop-nav" aria-label="Main navigation"><a href="#classes">The classes</a><a href="#testimonials">Testimonials</a><a href="#how">How it works</a><a href="#price">Price</a>{general ? <a href="#circles">Choose your circle</a> : <a href="#circle">{hostFirst ? <>Meet {hostFirst}</> : 'Your circle'}</a>}</nav>
   <a class="btn small nav-cta" href={signUp}>{general ? 'Choose' : firstClass ? 'Join' : 'Reserve'}</a>
 </div></header>
 
@@ -107,7 +107,7 @@ const url = `https://yisraelfrenkel.com/orhaisha/${slug}${firstClass ? '/first-c
   </div>
   {firstClass
     ? <figure class="hero-art"><img src="/orhaisha/assets/ketubah-floral.jpg" alt="Ashkenazic ketubah in Aramaic, framed by pink and ivory flowers with green foliage and gold accents." width="1400" height="1980" fetchpriority="high"></figure>
-    : <figure class="hero-video"><video src={`/orhaisha/assets/preview-${slug}.mp4`} poster="/orhaisha/assets/course-preview-poster.jpg" controls playsinline preload="metadata" aria-label="A short preview of the course"></video><figcaption>A taste of the course, from the first three classes</figcaption></figure>}
+    : <figure class="hero-video"><video src={`/orhaisha/assets/preview-${slug}.mp4`} poster="/orhaisha/assets/preview-poster-rav.jpg" controls playsinline preload="metadata" aria-label="A short preview of the course"></video><figcaption>A taste of the course, from the first three classes</figcaption></figure>}
 </div></section>
 
 {firstClass && (
@@ -140,7 +140,7 @@ const url = `https://yisraelfrenkel.com/orhaisha/${slug}${firstClass ? '/first-c
   </div>
 </div></section>
 
-<section class="voices"><div class="wrap"><div class="centered intro"><p class="kicker">Testimonials</p><h2>In their words.</h2></div><div class="voices-grid">
+<section class="voices" id="testimonials"><div class="wrap"><div class="centered intro"><p class="kicker">Testimonials</p><h2>In their words.</h2></div><div class="voices-grid">
   {testimonials.map((t) => (
     <figure class="voice">
       <blockquote>{t.text.map((p) => <p>{p}</p>)}</blockquote>
@@ -195,7 +195,7 @@ const url = `https://yisraelfrenkel.com/orhaisha/${slug}${firstClass ? '/first-c
   </div><p class="kind-note">If the price is the only thing keeping you away, write to me. No one is turned away.</p>
 </div></section>
 
-<section class="why"><div class="wrap why-grid"><figure><img src="/orhaisha/assets/yisrael-aron-kodesh-collar.jpg" alt="Rav Yisrael Frenkel in front of the Aron Kodesh"></figure><div><p class="kicker">Why I teach this</p><h2>The Torah teaches it in detail.</h2><p>For more than twenty years I have sat with couples, with chassanim, and with women carrying the pain of marriages that didn't work. Not bad people. Not bad marriages. Two people who were never shown how a husband and a wife actually fit together.</p><p>Most of what goes wrong was visible before the engagement. Not because anyone was hiding it, but because the young woman had never been taught what she was looking at, or that she was allowed to need anything at all.</p><p>The Torah teaches it in detail. It is in the ketubah, in the words of kiddushin, and in halachos that many chassanim and kallos never learn. I teach it to young women because it is theirs.</p><p class="signature">— Rav Yisrael Frenkel</p><a class="text-link" href="https://yisraelfrenkel.com/about">About Rav Frenkel →</a></div></div></section>
+<section class="why"><div class="wrap why-grid"><figure><img src="/orhaisha/assets/yisrael-aron-kodesh-collar.jpg" alt="Rav Yisrael Frenkel in front of the Aron Kodesh"></figure><div><p class="kicker">Why I teach this</p><h2>The Torah teaches it in detail.</h2><p class="why-lead">For more than twenty years I have sat with couples, with chassanim, and with women carrying the pain of marriages that didn't work.</p><blockquote class="why-pull"><span>Not bad people. Not bad marriages.</span> Two people who were never shown how a husband and a wife actually fit together.</blockquote><p>Most of what goes wrong was visible before the engagement. Not because anyone was hiding it, but because the young woman had never been taught what she was looking at, or that she was allowed to need anything at all.</p><p class="why-torah">It is in the ketubah, in the words of kiddushin, and in halachos that many chassanim and kallos never learn. <strong>I teach it to young women because it is theirs.</strong></p><p class="signature">— Rav Yisrael Frenkel</p><a class="text-link" href="https://yisraelfrenkel.com/about">About Rav Frenkel →</a></div></div></section>
 
 <section class="faq"><div class="wrap narrow"><div class="centered"><p class="kicker">Questions</p><h2>Before you come</h2></div><div class="faq-list">
   <details><summary>Do I have to talk in the circle?</summary><p>No. Many just listen the first week. The circle is there for whoever wants it.</p></details>
