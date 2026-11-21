@@ -25,7 +25,7 @@ const signUp = general ? '#circles' : (firstClass ? payLink : signupLink) || '#p
 const cta = general ? 'Choose your circle' : firstClass ? 'Join Classes 2–6' : 'Reserve your place at the first class';
 const hostFirst = host ? host.replace(/^(Mrs\.?|Ms\.?|Rebbetzin)\s+/i, '').split(' ')[0] : null;
 const circleName = general ? null : online ? 'the Zoom circle' : `the ${place} circle`;
-const title = `The Love You're Meant to Build · ${general ? 'Live from Yerushalayim' : online ? 'Live on Zoom' : place} — Rav Yisrael Frenkel`;
+const title = `The Love You're Meant to Build · ${general ? 'Live on Zoom' : online ? 'Live on Zoom' : place} — Rav Yisrael Frenkel`;
 const ogTitle = general ? `The Love You're Meant to Build · Rav Yisrael Frenkel` : online ? `The Love You're Meant to Build · Live on Zoom` : `The Love You're Meant to Build · ${place}`;
 const description = general
   ? `A six-class Torah course for young women before and during shidduchim, taught live on Zoom by Rav Yisrael Frenkel, with circles in ${homeNames} and on Zoom.`
@@ -78,12 +78,12 @@ const url = `https://yisraelfrenkel.com/orhaisha/${slug}${firstClass ? '/first-c
       <a class="btn" href={signUp}>{cta}</a>
       {general ? <a class="btn ghost" href="#classes">See the six classes</a> : <a class="btn ghost" href="#circle">{hostFirst ? <>Meet {hostFirst}</> : 'Meet your circle'}</a>}
     </div>
-    <p class="contact-line">{general
-      ? <>Taught live on Zoom by Rav Yisrael Frenkel from Yerushalayim, then a circle near you: in {homeNames}, or on Zoom.</>
+    <p class="format">{general
+      ? <>A live Zoom class with Rav Yisrael Frenkel, followed by a circle of women: in person in {homeNames}, or on Zoom. A place to process, internalize and share what the class brings up, from a woman's perspective.</>
       : online
-      ? <>Taught live on Zoom by Rav Yisrael Frenkel from Yerushalayim, then {hostFirst ? <>{hostFirst}'s</> : 'the'} circle on Zoom.</>
-      : <>Taught live on Zoom by Rav Yisrael Frenkel from Yerushalayim, then {hostFirst ? <>{hostFirst}'s</> : 'a'} circle in {place}.</>}</p>
-    {online && <p class="nearby">Live near {homes.map((c) => c.place).join(' or ')}? Join {homes.map((c, i) => <>{i ? ' or ' : ''}{firstName(c.host) ? <>{firstName(c.host)}'s circle in </> : 'the circle in '}<a href={`/orhaisha/${c.slug}${sub}/`}>{c.place}</a></>)}, in person.</p>}
+      ? <>A live Zoom class with Rav Yisrael Frenkel, followed by a circle on Zoom led by {host || coach}: a place to process, internalize and share what the class brings up, from a woman's perspective.</>
+      : <>A live Zoom class with Rav Yisrael Frenkel, followed by an in-person circle in {place} led by {host || 'a local host'}: a place to process, internalize and share what the class brings up, from a woman's perspective.</>}</p>
+    {online && <p class="nearby">Live near {homes.map((c) => c.place).join(' or ')}? Attend the same Zoom class together with a circle of women in person, and talk through what came up face to face. Led by {homes.map((c, i) => <>{i ? ' and ' : ''}{c.host || 'a local host'} in <a href={`/orhaisha/${c.slug}${sub}/`}>{c.place}</a></>)}.</p>}
   </div>
   {firstClass
     ? <figure class="hero-art"><img src="/orhaisha/assets/ketubah-floral.jpg" alt="Ashkenazic ketubah in Aramaic, framed by pink and ivory flowers with green foliage and gold accents." width="1400" height="1980" fetchpriority="high"></figure>
@@ -189,9 +189,9 @@ const url = `https://yisraelfrenkel.com/orhaisha/${slug}${firstClass ? '/first-c
   {!general && !online && <details><summary>Can I join from home instead?</summary><p>Yes. The whole course is also live on Zoom, with {coach} holding the Zoom circle afterwards. <a href={`/orhaisha/zoom${sub}/`}>Join on Zoom →</a></p></details>}
 </div></div></section>
 
-<section class="closing"><div class="wrap centered"><p class="kicker">{general ? 'Live from Yerushalayim' : online ? 'The Zoom circle' : <>The {place} circle</>}</p><h2>The love you're meant to build starts here.</h2><a class="btn light" href={signUp}>{cta}</a><p class="contact-line">Questions? <a href="https://wa.me/972587613153">WhatsApp</a> or <a href="mailto:Yisrael@YisraelFrenkel.com">email</a> Rav Frenkel.</p></div></section>
+<section class="closing"><div class="wrap centered"><p class="kicker">{general ? 'Live on Zoom' : online ? 'The Zoom circle' : <>The {place} circle</>}</p><h2>The love you're meant to build starts here.</h2><a class="btn light" href={signUp}>{cta}</a><p class="contact-line">Questions? <a href="https://wa.me/972587613153">WhatsApp</a> or <a href="mailto:Yisrael@YisraelFrenkel.com">email</a> Rav Frenkel.</p></div></section>
 </main>
 
-<footer><div class="wrap footer-grid"><div><img src="/orhaisha/assets/yisrael-frenkel-wordmark.png" alt="Yisrael Frenkel"><p>© 2026 Yisrael Frenkel<br>The Love You're Meant to Build</p></div><nav><a href="https://yisraelfrenkel.com">YisraelFrenkel.com</a><a href="https://yisraelfrenkel.com/about">About</a><a href="mailto:Yisrael@YisraelFrenkel.com">Email</a><a href="tel:+972587613153">+972-58-761-3153</a></nav><p class="credit">{general ? <>Live on Zoom from Yerushalayim, with circles in {homeNames} and on Zoom.</> : online ? <>Live on Zoom from Yerushalayim, wherever you are.</> : <>The {place} circle. The address is sent when you sign up.</>}</p></div></footer>
+<footer><div class="wrap footer-grid"><div><img src="/orhaisha/assets/yisrael-frenkel-wordmark.png" alt="Yisrael Frenkel"><p>© 2026 Yisrael Frenkel<br>The Love You're Meant to Build</p></div><nav><a href="https://yisraelfrenkel.com">YisraelFrenkel.com</a><a href="https://yisraelfrenkel.com/about">About</a><a href="mailto:Yisrael@YisraelFrenkel.com">Email</a><a href="tel:+972587613153">+972-58-761-3153</a></nav><p class="credit">{general ? <>Live on Zoom with Rav Yisrael Frenkel, with circles in {homeNames} and on Zoom.</> : online ? <>Live on Zoom with Rav Yisrael Frenkel, wherever you are.</> : <>The {place} circle. The address is sent when you sign up.</>}</p></div></footer>
 {firstClass && <script is:inline src="/orhaisha/script.js"></script>}
 </body></html>

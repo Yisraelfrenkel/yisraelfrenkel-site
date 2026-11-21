@@ -81,5 +81,7 @@
 .circle-alt{margin-top:22px;font-size:14px}
 .circle-alt a{color:var(--coral2);font-weight:600;text-underline-offset:4px}
 @media(max-width:560px){.invite{gap:12px;padding:8px 16px 8px 8px}.invite-photo{width:56px;height:56px}.invite-text strong{font-size:19px}}
-.nearby{margin-top:8px;font-size:13px;color:var(--muted)}
+.format{font-size:17px;line-height:1.55;color:var(--ink);margin-top:20px;max-width:620px}
+.nearby{font-size:16px;line-height:1.55;color:var(--ink);margin-top:14px;max-width:620px;padding:14px 18px;background:rgba(255,255,255,.65);border:1px solid var(--line);border-radius:14px}
 .nearby a{color:var(--coral2);font-weight:600;text-underline-offset:4px}
+@media (max-width:700px){.format{font-size:16px}.nearby{font-size:15px}}
