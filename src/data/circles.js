@@ -66,7 +66,6 @@ export const circles = [
 export const testimonials = [
   {
     name: 'Gabby',
-    from: 'Yerushalayim cohort',
     text: [
       'I walked into Rav Yisrael’s course with major skepticism about dating and marriage because of poor past experiences, yet with an open mind, because I had nothing to lose and everything to gain. Through his teachings and our timeless Torah wisdom, Rav Yisrael gave me the knowledge I need to date purposefully and build a healthy, loving, real marriage in the future.',
       'To say I highly recommend this course would be an understatement. I think it should be a prerequisite to dating. Rav Yisrael is thorough and genuine. No black-and-white shenanigans, only real truth!',
@@ -74,14 +73,12 @@ export const testimonials = [
   },
   {
     name: 'Eli D.',
-    from: 'Yerushalayim cohort',
     text: [
       'If you want a deep, intimate connection, with yourself and in your marriage, Rav Frenkel’s course helps you uncover your values and gives you practical tools to build a marriage where you both flourish.',
     ],
   },
   {
     name: 'Yael',
-    from: 'Yerushalayim cohort',
     text: [
       'This course has given me so much insight into the roles of a man and a woman in marriage, what I deserve in a marriage, and what marriage truly represents from a Torah perspective. It has brought me so much clarity when it comes to dating and understanding what to look for in a future husband, but also what a healthy, fulfilling marriage should look like.',
       'Learning about marriage through the lens of Torah has especially opened my eyes to the beauty and wisdom behind the laws of marriage. Rather than seeing them as restrictions that take away from pleasure, I now understand how they are designed to deepen intimacy, enhance pleasure, and protect the value, dignity, and uniqueness of a woman.',

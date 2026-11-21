@@ -120,14 +120,14 @@ const url = `https://yisraelfrenkel.com/orhaisha/${slug}${firstClass ? '/first-c
   </div>
 </div></section>
 
-<section class="voices"><div class="wrap"><div class="centered intro"><p class="kicker">From the Yerushalayim cohort</p><h2>In their words.</h2></div><div class="voices-grid">
+<section class="voices"><div class="wrap"><div class="centered intro"><p class="kicker">Testimonials</p><h2>In their words.</h2></div><div class="voices-grid">
   {testimonials.map((t) => (
     <figure class="voice">
       <blockquote>{t.text.map((p) => <p>{p}</p>)}</blockquote>
-      <figcaption><strong>{t.name}</strong> · {t.from}</figcaption>
+      <figcaption><strong>{t.name}</strong>{t.from && <> · {t.from}</>}</figcaption>
     </figure>
   ))}
-  {testimonials.length < 2 && <figure><mark class="blank">A testimonial from a young woman in Yerushalayim</mark></figure>}
+  {testimonials.length < 2 && <figure><mark class="blank">A testimonial from a young woman</mark></figure>}
 </div></div></section>
 
 <section class="how" id="how"><div class="wrap"><div class="centered intro"><p class="kicker">How a class works</p><h2>Teaching, questions, then a room of your own.</h2></div><div class="how-grid">
