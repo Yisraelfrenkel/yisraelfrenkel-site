@@ -119,9 +119,10 @@
 /* Why I teach this: a voice, not a block of text */
 .why h2{margin-bottom:26px}
 .why .why-lead{font:400 23px/1.5 var(--serif);color:var(--ink)}
-.why-pull{margin:30px 0;padding:4px 0 4px 26px;border-left:3px solid var(--gold);font:italic 400 27px/1.38 var(--serif);color:var(--ink)}
+.why-pull{margin:30px 0;padding:0;font:italic 400 27px/1.38 var(--serif);color:var(--ink)}
+.why-pull::before{content:"";display:block;width:48px;height:2px;background:var(--gold);margin-bottom:16px}
 .why-pull span{display:block;color:var(--coral2);font-weight:500}
 .why .why-torah{margin-top:22px;color:var(--ink)}
 .why-torah strong{display:block;margin-top:10px;font:italic 500 22px/1.4 var(--serif);color:var(--coral2)}
 .why .signature{margin-top:28px}
-@media(max-width:560px){.why .why-lead{font-size:20px}.why-pull{font-size:22px;padding-left:18px}.why-torah strong{font-size:19px}}
+@media(max-width:560px){.why .why-lead{font-size:20px}.why-pull{font-size:22px}.why-torah strong{font-size:19px}}
