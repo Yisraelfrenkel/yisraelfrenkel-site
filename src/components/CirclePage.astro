@@ -78,12 +78,32 @@ const url = `https://yisraelfrenkel.com/orhaisha/${slug}${firstClass ? '/first-c
       <a class="btn" href={signUp}>{cta}</a>
       {general ? <a class="btn ghost" href="#classes">See the six classes</a> : <a class="btn ghost" href="#circle">{hostFirst ? <>Meet {hostFirst}</> : 'Meet your circle'}</a>}
     </div>
-    <p class="format">{general
-      ? <>A live Zoom class with Rav Yisrael Frenkel, followed by a circle of women: in person in {homeNames}, or on Zoom. A place to process, internalize and share what the class brings up, from a woman's perspective.</>
-      : online
-      ? <>A live Zoom class with Rav Yisrael Frenkel, followed by a circle on Zoom led by {host || coach}: a place to process, internalize and share what the class brings up, from a woman's perspective.</>
-      : <>A live Zoom class with Rav Yisrael Frenkel, followed by an in-person circle in {place} led by {host || 'a local host'}: a place to process, internalize and share what the class brings up, from a woman's perspective.</>}</p>
-    {online && <p class="nearby">Live near {homes.map((c) => c.place).join(' or ')}? Attend the same Zoom class together with a circle of women in person, and talk through what came up face to face. Led by {homes.map((c, i) => <>{i ? ' and ' : ''}{c.host || 'a local host'} in <a href={`/orhaisha/${c.slug}${sub}/`}>{c.place}</a></>)}.</p>}
+    <div class="week" aria-label="How each week works">
+      <div class="week-step">
+        <span class="week-photo"><img src="/orhaisha/assets/rav-avatar.jpg" alt="" /></span>
+        <span class="week-text"><small>Live on Zoom</small><strong>The class, with Rav Yisrael Frenkel</strong></span>
+      </div>
+      <div class="week-step">
+        {general
+          ? <span class="week-photos">{circles.map((c) => <span class="week-photo">{c.photo ? <img src={c.photo} alt="" /> : <span class="photo-dot">{c.place[0]}</span>}</span>)}</span>
+          : <span class="week-photo">{photo ? <img src={photo} alt="" /> : <span class="photo-dot">{online ? 'Z' : place[0]}</span>}</span>}
+        <span class="week-text"><small>{general ? 'Right after' : online ? 'Right after, on Zoom' : <>Right after, in {place}</>}</small><strong>{general ? <>A circle of women, near you or on Zoom</> : <>The circle, with {host || coach}</>}</strong></span>
+      </div>
+      <p class="week-why">A place to process, internalize and share what the class brings up, from a woman's perspective.</p>
+    </div>
+    {online && (
+      <div class="nearby">
+        <p class="nearby-q">Live near {homes.map((c) => c.place).join(' or ')}?</p>
+        <p class="nearby-a">Hear the same class with a circle of women in person, and talk it through face to face.</p>
+        <div class="nearby-links">{homes.map((c) => (
+          <a href={`/orhaisha/${c.slug}${sub}/`}>
+            <span class="week-photo">{c.photo ? <img src={c.photo} alt="" /> : <span class="photo-dot">{c.place[0]}</span>}</span>
+            <span><strong>{c.place}</strong><small>led by {c.host || 'a local host'}</small></span>
+            <i aria-hidden="true">→</i>
+          </a>
+        ))}</div>
+      </div>
+    )}
   </div>
   {firstClass
     ? <figure class="hero-art"><img src="/orhaisha/assets/ketubah-floral.jpg" alt="Ashkenazic ketubah in Aramaic, framed by pink and ivory flowers with green foliage and gold accents." width="1400" height="1980" fetchpriority="high"></figure>
