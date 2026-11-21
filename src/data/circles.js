@@ -52,7 +52,7 @@ export const circles = [
     online: true,
     host: 'Sharona Noy', // holds the Zoom breakout room for everyone joining from home
     photo: '/orhaisha/circles/zoom.jpg', // sent 2026-11-19
-    about: "Sharona Noy is a marriage and intimacy coach, trained through the Torah Psychology School of Counseling and Coaching, an affiliate of the International Coaching Federation (ICF). She is also trained in Emotion Aid, an approach to emotional resilience, and believes deeply in the connection between mind and body. Her work is helping women and couples build meaningful, healthy and fulfilling relationships. She holds the Zoom breakout room so that every young woman joining from home has a place to reflect and talk through what came up in class.", // approved by her 2026-11-20 (our rewrite + her "reflect and")
+    about: "Sharona Noy is a marriage and intimacy coach, trained through the Torah Psychology School of Counseling and Coaching, an affiliate of the International Coaching Federation (ICF). She is also trained in Emotion Aid, an approach to emotional resilience, and believes deeply in the connection between mind and body. Her work is helping women and couples build meaningful, healthy and fulfilling relationships.", // approved by her 2026-11-20; its last sentence (about the circle) dropped 2026-11-21 at the Rav's request: the circle paragraph under the bio says it
     signupLink: 'https://tally.so/r/q5G2y8',
     payLink: null,   // the Rav's own payment link for women joining on Zoom
     ready: false,

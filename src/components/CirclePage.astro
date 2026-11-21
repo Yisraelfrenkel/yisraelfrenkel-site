@@ -16,6 +16,7 @@ const homes = circles.filter((c) => !c.online);
 // who holds the Zoom circle, named wherever a page mentions it
 const zoomHost = circles.find((c) => c.online)?.host;
 const coach = zoomHost || 'one of our trained coaches';
+const firstName = (h) => h ? h.replace(/^(Mrs.?|Ms.?|Rebbetzin)s+/i, '').split(' ')[0] : null;
 const homeNames = homes.map((c) => c.place).join(', ').replace(/, ([^,]*)$/, ' and $1');
 const sub = firstClass ? '/first-class' : '';
 const mainPage = `/orhaisha/join${sub}/`;
@@ -82,6 +83,7 @@ const url = `https://yisraelfrenkel.com/orhaisha/${slug}${firstClass ? '/first-c
       : online
       ? <>Taught live on Zoom by Rav Yisrael Frenkel from Yerushalayim, then {hostFirst ? <>{hostFirst}'s</> : 'the'} circle on Zoom.</>
       : <>Taught live on Zoom by Rav Yisrael Frenkel from Yerushalayim, then {hostFirst ? <>{hostFirst}'s</> : 'a'} circle in {place}.</>}</p>
+    {online && <p class="nearby">Live near {homes.map((c) => c.place).join(' or ')}? Join {homes.map((c, i) => <>{i ? ' or ' : ''}{firstName(c.host) ? <>{firstName(c.host)}'s circle in </> : 'the circle in '}<a href={`/orhaisha/${c.slug}${sub}/`}>{c.place}</a></>)}, in person.</p>}
   </div>
   {firstClass
     ? <figure class="hero-art"><img src="/orhaisha/assets/ketubah-floral.jpg" alt="Ashkenazic ketubah in Aramaic, framed by pink and ivory flowers with green foliage and gold accents." width="1400" height="1980" fetchpriority="high"></figure>
@@ -179,11 +181,9 @@ const url = `https://yisraelfrenkel.com/orhaisha/${slug}${firstClass ? '/first-c
     <p class="kicker">{online ? <>Your circle · Zoom, from anywhere</> : <>Your circle · {place}, {region}</>}</p>
     <h2>{host ? <>{online ? 'The Zoom circle' : <>The {place} circle</>}, with {host}</> : <>{online ? 'The Zoom circle' : <>The {place} circle</>}, with <mark class="blank">her name</mark></>}</h2>
     {about ? [].concat(about).map((para) => <p>{para}</p>) : <p><mark class="blank">Two or three sentences about her, in her own words</mark></p>}
-    <p>{online ? <>Each week, after Rav Frenkel's class and the questions, {hostFirst || 'she'} holds the circle on Zoom for the young women joining from home: a warm room to talk through what came up, for as long as you want.</> : <>Each week, after Rav Frenkel's class and the questions, {hostFirst || 'she'} holds the circle for the young women of {place}: a warm room to talk through what came up, for as long as you want.</>}</p>
+    <p>{online ? <>Each week, after Rav Frenkel's class and the questions, {hostFirst || 'she'} holds the circle on Zoom for the young women joining from home: a warm room to reflect and talk through what came up, for as long as you want.</> : <>Each week, after Rav Frenkel's class and the questions, {hostFirst || 'she'} holds the circle for the young women of {place}: a warm room to reflect and talk through what came up, for as long as you want.</>}</p>
     <a class="btn" href={signUp}>{cta}</a>
-    <p class="circle-alt">{online
-      ? <>Live near {homes.map((c) => c.place).join(' or ')}? You can also join a circle there in person. <a href={`${mainPage}#circles`}>See the circles →</a></>
-      : <>Can't make it to {place}? The whole course is also live on Zoom, with {coach}. <a href={`/orhaisha/zoom${sub}/`}>Join on Zoom →</a></>}</p>
+    {!online && <p class="circle-alt">Can't make it to {place}? The whole course is also live on Zoom, with {coach}. <a href={`/orhaisha/zoom${sub}/`}>Join on Zoom →</a></p>}
   </div>
 </div></section>
 )}
@@ -205,7 +205,7 @@ const url = `https://yisraelfrenkel.com/orhaisha/${slug}${firstClass ? '/first-c
   {general
     ? <details><summary>Which circle should I choose?</summary><p>The one closest to you. If there is no circle near you, or you would rather learn from home, join the Zoom circle with {coach}. Every circle hears the same class at the same moment. <a href="#circles">Choose your circle →</a></p></details>
     : online
-    ? <details><summary>Where does the Zoom circle meet?</summary><p>On Zoom, right after the class and the questions. The link is sent when you sign up. If you live near {homes.map((c) => c.place).join(' or ')}, you can also join a circle there in person. <a href={`${mainPage}#circles`}>See the circles →</a></p></details>
+    ? <details><summary>Where does the Zoom circle meet?</summary><p>On Zoom, right after the class and the questions. The link is sent when you sign up. If you live near {homes.map((c) => c.place).join(' or ')}, you can join {homes.map((c, i) => <>{i ? ' or ' : ''}{firstName(c.host) ? <>{firstName(c.host)}'s circle in </> : 'the circle in '}<a href={`/orhaisha/${c.slug}${sub}/`}>{c.place}</a></>)}, in person.</p></details>
     : <details><summary>Where does the {place} circle meet?</summary><p>In {host ? <>{host}'s</> : 'her'} home in {place}. The address is sent when you sign up.</p></details>}
   {!general && !online && <details><summary>Can I join from home instead?</summary><p>Yes. The whole course is also live on Zoom, with {coach} holding the Zoom circle afterwards. <a href={`/orhaisha/zoom${sub}/`}>Join on Zoom →</a></p></details>}
 </div></div></section>
