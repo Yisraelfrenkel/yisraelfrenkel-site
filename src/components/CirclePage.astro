@@ -101,27 +101,6 @@ const url = `https://yisraelfrenkel.com/orhaisha/${slug}${firstClass ? '/first-c
 
 <section class="stats"><div class="wrap"><p class="stats-line">After more than twenty years of working with couples and with young men and women: six classes to help young women make the right choice, and avoid the pain I have seen over the years.</p></div></section>
 
-<section class="journey"><div class="wrap narrow centered"><p class="kicker">From Yerushalayim to chutz la'aretz</p>
-  {general ? (
-    <>
-      <h2>It began in Yerushalayim. <em>Now it comes to you.</em></h2>
-      <p>This fall, The Love You're Meant to Build opened in person in Yerushalayim. Now the same six classes come to young women in chutz la'aretz: taught live by Rav Frenkel on Zoom, and held together by women in {homeNames} who open their homes to a circle, and, for everyone joining from home, a circle on Zoom held by {coach}.</p>
-      <p class="journey-line">One course. {homes.length + 1} circles. One group of young women learning it together.</p>
-    </>
-  ) : online ? (
-    <>
-      <h2>It began in Yerushalayim. <em>Now it comes to you.</em></h2>
-      <p>This fall, The Love You're Meant to Build opened in person in Yerushalayim. Now the same six classes come to young women wherever they are: taught live by Rav Frenkel on Zoom, and after each class, a circle on Zoom held by {host || coach}.</p>
-      <p class="journey-line">One course, taught from Yerushalayim. One circle of young women on Zoom, learning it together.</p>
-    </>
-  ) : (
-    <>
-      <h2>It began in Yerushalayim. <em>Now it comes to {place}.</em></h2>
-      <p>This fall, The Love You're Meant to Build opened in person in Yerushalayim. Now the same six classes come to young women in {place}: taught live by Rav Frenkel on Zoom, and after each class, a circle in {host ? <>{host}'s</> : <mark class="blank">her</mark>} home.</p>
-      <p class="journey-line">One course, taught from Yerushalayim. One circle of young women in {place}, learning it together.</p>
-    </>
-  )}
-</div></section>
 
 <section class="recognition"><div class="wrap narrow"><p class="kicker gold">The whole purpose of the ketubah</p><h2>A good wife is built on <em>what she is given.</em></h2>
   <p>Women are encouraged to be good wives: to be kind and giving, to build their husband, to make a home. All of this is true.</p>
