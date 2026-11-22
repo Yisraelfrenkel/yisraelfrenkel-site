@@ -135,3 +135,15 @@
 .why .why-body em{font-style:italic;color:var(--coral2)}
 .why-mark{background:linear-gradient(transparent 62%,rgba(233,162,59,.32) 62%);padding:0 2px}
 @media(max-width:560px){.why .why-body{font-size:18px}}
+
+/* 2026-11-22: three facts strip + For mothers */
+.stats .facts{text-align:left}
+.stats .facts + .stats-line{border-top:1px solid var(--line)}
+.mothers{background:var(--bg)}
+.mothers-card{max-width:760px;margin:0 auto;text-align:center;background:linear-gradient(150deg,#fff,var(--wash));border:1px solid var(--line);border-radius:30px;padding:52px 48px;box-shadow:var(--shadow)}
+.mothers-card h2{font-size:clamp(38px,4.4vw,56px)}
+.mothers-card h2 em{color:var(--coral2)}
+.mothers-card p:not(.kicker){font:400 20px/1.6 var(--serif);color:#3a302a;max-width:600px;margin:0 auto 28px}
+@media(max-width:560px){.mothers-card{padding:36px 22px;border-radius:22px}.mothers-card p:not(.kicker){font-size:18px}.mothers-card .btn{width:100%}}
+.stats .facts span{font-size:13.5px}
+@media(max-width:560px){.stats .facts span{float:none;display:block;margin-top:3px}}

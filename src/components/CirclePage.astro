@@ -119,7 +119,13 @@ const url = `https://yisraelfrenkel.com/orhaisha/${slug}${firstClass ? '/first-c
 </div></section>
 )}
 
-<section class="stats"><div class="wrap"><p class="stats-line">After more than twenty years of working with couples and with young men and women: six classes to help young women make the right choice, and avoid the pain I have seen over the years.</p></div></section>
+<section class="stats"><div class="wrap">
+  <div class="stats-grid facts" aria-label="The course at a glance">
+    <div><strong>Six classes</strong><span>one a week, live on Zoom</span></div>
+    <div><strong>The first class is free</strong><span>come and see if it is for you</span></div>
+    <div><strong>A circle of women</strong><span>{general ? 'near you or on Zoom, after each class' : online ? 'on Zoom, right after each class' : <>in {place}, right after each class</>}</span></div>
+  </div>
+  <p class="stats-line">After more than twenty years of working with couples and with young men and women: six classes to help young women make the right choice, and avoid the pain I have seen over the years.</p></div></section>
 
 
 <section class="recognition"><div class="wrap narrow"><p class="kicker gold">The whole purpose of the ketubah</p><h2>A good wife is built on <em>what she is given.</em></h2>
@@ -151,7 +157,7 @@ const url = `https://yisraelfrenkel.com/orhaisha/${slug}${firstClass ? '/first-c
 </div></div></section>
 
 <section class="how" id="how"><div class="wrap"><div class="centered intro"><p class="kicker">How a class works</p><h2>Teaching, questions, then a room of your own.</h2></div><div class="how-grid">
-  <article><b>60</b><h3>One hour</h3><p>{general ? 'Rav Frenkel teaches live on Zoom from Yerushalayim, on the screen in your circle.' : online ? 'Rav Frenkel teaches live on Zoom from Yerushalayim, on your screen at home.' : <>Rav Frenkel teaches live from Yerushalayim, on the screen in {host ? <>{host}'s</> : <mark class="blank">her</mark>} home.</>} One class a week, six weeks.</p></article>
+  <article><b>60</b><h3>One hour</h3><p>{general ? 'Rav Frenkel teaches live on Zoom, on the screen in your circle.' : online ? 'Rav Frenkel teaches live on Zoom, on your screen at home.' : <>Rav Frenkel teaches live on Zoom, on the screen in {host ? <>{host}'s</> : <mark class="blank">her</mark>} home.</>} One class a week, six weeks.</p></article>
   <article><b>15</b><h3>Fifteen minutes</h3><p>Questions, anything you want to ask.</p></article>
   <article><b>03</b><h3>Then the circle</h3><p>{general ? <>Your circle's host holds the room: in a home in {homeNames}, or on Zoom.</> : online ? <>{host || coach} holds the circle on Zoom.</> : <>{host ? host : <mark class="blank">Her name</mark>} holds the room in {place}.</>} Talk through what came up for as long as you want. Join if you'd like; no one has to speak.</p></article>
   </div>
@@ -188,6 +194,13 @@ const url = `https://yisraelfrenkel.com/orhaisha/${slug}${firstClass ? '/first-c
 )}
 
 <section class="for"><div class="wrap for-grid"><div><p class="kicker">Who it is for</p><h2>Wherever you are on the way to the chuppah.</h2></div><ul><li>Young women before shidduchim, who want to walk in knowing what they are looking for.</li><li>Young women in shidduchim, who are being told to “just go out again” and want to know what they are looking at.</li><li>Young women who are engaged, and want the last stretch to the chuppah to be theirs.</li><li>Mothers: this is the course you wish someone had given you. Send it to her.</li></ul></div></section>
+
+<section class="mothers" id="mothers"><div class="wrap"><div class="mothers-card">
+  <p class="kicker">For mothers</p>
+  <h2>Thinking of <em>your daughter?</em></h2>
+  <p>Maybe there are things you wish someone had told you before your own wedding. Send her this page. The first class is free, and she can decide for herself if it is for her.</p>
+  <a class="btn ghost" href={`https://wa.me/?text=${encodeURIComponent(`I thought of you when I saw this: The Love You're Meant to Build, a six-class course for young women with Rav Yisrael Frenkel. The first class is free. ${url}/`)}`} target="_blank" rel="noopener">Send it to her on WhatsApp</a>
+</div></div></section>
 
 <section class="price" id="price"><div class="wrap"><div class="centered intro"><p class="kicker">Six weeks</p><h2>Join the course.</h2></div><div class="price-grid">
   <article class={firstClass ? "" : "featured"}><small>The first class</small><div class="amount">Free</div><p>Come, listen, and see if it is for you.</p>{!firstClass && <a class="btn" href={signUp}>{cta}</a>}{!general && !firstClass && !signupLink && <p class="blank-note"><mark class="blank">{online ? 'The Zoom sign-up form link goes on this button' : 'Her sign-up form link goes on this button'}</mark></p>}</article>
