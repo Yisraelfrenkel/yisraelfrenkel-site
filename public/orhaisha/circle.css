@@ -147,3 +147,4 @@
 @media(max-width:560px){.mothers-card{padding:36px 22px;border-radius:22px}.mothers-card p:not(.kicker){font-size:18px}.mothers-card .btn{width:100%}}
 .stats .facts span{font-size:13.5px}
 @media(max-width:560px){.stats .facts span{float:none;display:block;margin-top:3px}}
+.why figure.why-photo img{object-position:50% 50%}
