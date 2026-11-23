@@ -148,3 +148,84 @@
 .stats .facts span{font-size:13.5px}
 @media(max-width:560px){.stats .facts span{float:none;display:block;margin-top:3px}}
 .why figure.why-photo img{object-position:50% 50%}
+
+/* 2026-11-23: the opener (three facts + the twenty years) on its own apricot field,
+   and "How a class works" as one evening on plum, so it no longer runs into the circle section. */
+section.opener{position:relative;overflow:hidden;padding:86px 0 96px;background:linear-gradient(180deg,#f8e1cf 0%,#f3d2bb 100%);border:0}
+section.opener:before{content:"";position:absolute;width:760px;height:760px;left:-260px;top:-420px;border-radius:50%;background:radial-gradient(circle,rgba(255,250,244,.85),transparent 66%)}
+section.opener .wrap{position:relative}
+.opener-facts{display:grid;grid-template-columns:repeat(3,1fr);border-top:1px solid rgba(173,63,42,.28);border-bottom:1px solid rgba(173,63,42,.28)}
+.fact{padding:34px 34px 38px;display:grid;align-content:start;gap:14px}
+.fact:first-child{padding-left:4px}
+.fact+.fact{border-left:1px solid rgba(173,63,42,.22)}
+.fig{display:flex;align-items:flex-end;height:84px;font:italic 400 84px/.9 var(--serif);letter-spacing:-.04em;color:var(--coral2)}
+.fact strong{display:block;font:500 28px/1.1 var(--serif);color:var(--ink);letter-spacing:-.015em}
+.fact .note{display:block;margin-top:6px;font-size:15.5px;line-height:1.45;color:#6a4f43}
+.faces img{width:78px;height:78px;border-radius:50%;object-fit:cover;object-position:50% 25%;border:3px solid #f6d9c6;box-shadow:0 8px 22px rgba(90,40,20,.18)}
+.faces img+img{margin-left:-20px}
+.opener-quote{margin:58px auto 0;max-width:1000px;display:grid;grid-template-columns:150px 1fr;column-gap:46px;align-items:center;background:var(--bg);border-radius:32px;padding:46px 56px 44px;box-shadow:0 30px 80px rgba(110,45,20,.16)}
+.opener-quote img{grid-row:1/3;width:150px;height:150px;border-radius:50%;object-fit:cover;object-position:50% 30%}
+.opener-quote blockquote{margin:0;position:relative}
+.opener-quote blockquote:before{content:"\201C";position:absolute;left:-6px;top:-62px;font:400 112px/1 var(--serif);color:var(--gold)}
+.opener-quote p{margin:0;font:400 clamp(22px,2.3vw,29px)/1.38 var(--serif);letter-spacing:-.01em;color:var(--ink)}
+.opener-quote em{font-style:italic;color:var(--coral2)}
+.opener-quote figcaption{margin-top:18px;font:700 11.5px var(--sans);letter-spacing:.16em;text-transform:uppercase;color:var(--coral2)}
+@media(max-width:760px){
+  section.opener{padding:56px 0 64px}
+  .opener-facts{grid-template-columns:1fr}
+  .fact,.fact:first-child{grid-template-columns:96px 1fr;align-items:center;gap:18px;padding:22px 0}
+  .fact+.fact{border-left:0;border-top:1px solid rgba(173,63,42,.22)}
+  .fig{height:auto;font-size:52px;justify-content:flex-start}
+  .faces img{width:54px;height:54px}.faces img+img{margin-left:-16px}
+  .fact strong{font-size:23px}.fact .note{font-size:14.5px;margin-top:3px}
+  .opener-quote{grid-template-columns:72px 1fr;column-gap:18px;padding:34px 24px 28px;border-radius:24px;margin-top:40px}
+  .opener-quote img{grid-row:auto;width:72px;height:72px;align-self:end}
+  .opener-quote blockquote{grid-column:1/-1;order:-1;margin-bottom:22px}
+  .opener-quote blockquote:before{font-size:80px;top:-44px}
+  .opener-quote p{font-size:21px}
+  .opener-quote figcaption{margin:0}
+}
+
+section.how.evening{position:relative;overflow:hidden;background:var(--plum);color:var(--cream)}
+section.how.evening:after{content:"";position:absolute;width:820px;height:820px;left:-360px;bottom:-480px;border-radius:50%;background:radial-gradient(circle,rgba(226,99,74,.30),transparent 65%)}
+.evening .wrap{position:relative;z-index:1}
+.evening .kicker{color:var(--gold)}
+.evening h2{color:#fff8f1}
+.evening h2 em{font-style:italic;color:var(--gold);font-weight:500}
+.evening-line{max-width:1000px;margin:54px auto 0}
+.evening-bar{display:flex;gap:6px;height:64px}
+.seg{display:flex;align-items:center;justify-content:center;gap:5px;border-radius:14px;color:#fff;font:500 14px var(--sans);white-space:nowrap;overflow:hidden}
+.seg b{font:500 30px/1 var(--serif);letter-spacing:-.02em}
+.seg-class{background:linear-gradient(135deg,#d0573b,#b0402b);border-radius:999px 14px 14px 999px}
+.seg-q{background:#e9a23b;color:#2b1d2e}
+.seg-circle{background:linear-gradient(135deg,#c98aa0,#a8667f);border-radius:14px 999px 999px 14px}
+.evening-clock{position:relative;height:30px;margin-top:10px;font:500 13px var(--sans);color:#cbb9c3}
+.evening-clock span{position:absolute;top:0;transform:translateX(-50%);white-space:nowrap}
+.evening-clock span:first-child{transform:none}
+.evening-clock span:last-child{transform:translateX(-100%)}
+.evening-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:22px;max-width:1000px;margin:34px auto 0}
+.evening-grid article{background:rgba(255,255,255,.05);border:1px solid #4c3650;border-radius:22px;padding:28px 28px 30px}
+.evening-grid article:before{content:"";display:block;width:46px;height:4px;border-radius:2px;margin-bottom:18px;background:var(--dot)}
+.evening-grid .e-class{--dot:#d0573b}.evening-grid .e-q{--dot:#e9a23b}.evening-grid .e-circle{--dot:#c98aa0}
+.evening .mins{margin:0 0 10px;font:700 11.5px var(--sans);letter-spacing:.14em;text-transform:uppercase;color:var(--gold)}
+.evening-grid h3{font-size:28px;color:#fff8f1;margin:0 0 10px}
+.evening-grid article p:not(.mins){margin:0;font-size:15.5px;line-height:1.6;color:#d9ccc5}
+.evening-when{max-width:1000px;margin:48px auto 0;text-align:center}
+.evening .when{margin:0 0 18px;font:500 clamp(20px,2vw,25px)/1.3 var(--serif);color:#fff8f1}
+.date-chips{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:repeat(6,1fr);gap:10px}
+.date-chips li{background:var(--bg);color:var(--ink);border-radius:16px;padding:12px 8px 13px;font:500 22px/1.1 var(--serif)}
+.date-chips li:first-child{background:var(--gold);color:var(--plum)}
+.date-chips small{display:block;margin-bottom:5px;font:700 10.5px var(--sans);letter-spacing:.12em;text-transform:uppercase;color:var(--coral2)}
+.date-chips li:first-child small{color:var(--plum)}
+.evening .schedule-note{margin-top:16px;color:#cbb9c3}
+.evening .schedule{color:#fff8f1}
+@media(max-width:760px){
+  .evening-bar{height:52px;gap:4px}
+  .seg{font-size:12px}.seg b{font-size:23px}
+  .evening-clock{font-size:11.5px}
+  .evening-grid{grid-template-columns:1fr;gap:14px}
+  .evening-grid article{padding:22px 22px 24px}
+  .evening-grid h3{font-size:24px}
+  .date-chips{grid-template-columns:repeat(3,1fr)}
+  .date-chips li{font-size:20px}
+}

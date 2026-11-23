@@ -6,7 +6,7 @@ export default defineConfig({
   output: 'static',
   // The young women's course page was first built at /or-habat; the public
   // address is /orhaisha. Keep the old link working.
-  redirects: { '/or-habat': '/orhaisha', '/orhaisha/long-island': '/orhaisha/zoom', '/orhaisha/long-island/first-class': '/orhaisha/zoom/first-class' },
+  redirects: { '/or-habat': '/orhaisha', '/orhaisha/long-island': '/orhaisha/zoom', '/orhaisha/long-island/first-class': '/orhaisha/zoom/first-class', '/orhaisha/lakewood': '/orhaisha/toms-river', '/orhaisha/lakewood/first-class': '/orhaisha/toms-river/first-class' },
   // Respects an externally-assigned dev port (e.g. when another local
   // session already holds the default), falling back to 4321.
   server: { port: process.env.PORT ? Number(process.env.PORT) : 4321 },

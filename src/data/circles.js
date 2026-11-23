@@ -12,6 +12,10 @@ export const course = {
   // Until it exists those pages show a blank where the video goes.
   firstClassYoutubeId: null,
   schedule: "Six Monday evenings at 7:00 pm Eastern (New York time): December 14, 21 and 28, January 4, 11 and 18", // decided 2026-11-23
+  // The six dates as short chips, and the evening's clock (Eastern), shown in "How a class works".
+  dates: ['Dec 14', 'Dec 21', 'Dec 28', 'Jan 4', 'Jan 11', 'Jan 18'],
+  when: 'Mondays · 7:00 pm Eastern (New York time)',
+  clock: ['7:00', '8:00', '8:15', '8:45 pm'],
   // From the business plan (draft 4): Class 1 free, Classes 2–6 one price, early bird within 24 hours of Class 1.
   priceEarly: '$300',
   priceLate: '$350',
@@ -19,11 +23,11 @@ export const course = {
 
 export const circles = [
   {
-    slug: 'lakewood',
-    place: 'Lakewood',
+    slug: 'toms-river', // was 'lakewood' until 2026-11-23 (the home is in Toms River, next to Lakewood); old links redirect
+    place: 'Toms River',
     region: 'New Jersey',
     host: 'Rivki Genuth', // her name as she wants it on the page
-    photo: '/orhaisha/circles/lakewood.jpg', // sent 2026-11-20
+    photo: '/orhaisha/circles/toms-river.jpg', // sent 2026-11-20
     about: "Rivki Genuth is a trained marriage and intimacy coach. With four years of training in the mental health field and two years coaching couples, she brings the wisdom of a woman and a mother of grown children into her work. After years of discovering her purpose as a Jewish woman, she now shares what she has learned, so that no young woman, no veteran married woman, and no couple should have to struggle with questions our beautiful Torah has always spoken about and answered.", // approved by her 2026-11-19 (our suggested rewrite)
     signupLink: 'https://tally.so/r/rDOxZ5', // where she reserves a place at the free first class (a form), e.g. "https://tally.so/r/..."
     payLink: null,   // her Stripe payment link for Classes 2–6, e.g. "https://buy.stripe.com/..."
