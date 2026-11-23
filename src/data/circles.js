@@ -11,8 +11,8 @@ export const course = {
   // The recording of this cohort's own first class (YouTube id), shown on the first-class pages.
   // Until it exists those pages show a blank where the video goes.
   firstClassYoutubeId: null,
-  schedule: null, // e.g. "Six Sunday evenings, 8:00 pm New York time, starting November 16"
-  // From the business plan (draft 4): Class 1 free, Classes 2–6 one price, early bird the night of Class 1.
+  schedule: "Six Monday evenings at 7:00 pm Eastern (New York time): December 14, 21 and 28, January 4, 11 and 18", // decided 2026-11-23
+  // From the business plan (draft 4): Class 1 free, Classes 2–6 one price, early bird within 24 hours of Class 1.
   priceEarly: '$300',
   priceLate: '$350',
 };
@@ -34,7 +34,7 @@ export const circles = [
     place: 'Staten Island',
     region: 'New York',
     host: 'Sivan Winkler',
-    photo: '/orhaisha/circles/staten-island.jpg', // sent 2026-11-20
+    photo: '/orhaisha/circles/staten-island-2.jpg', // the one Sivan chose, 2026-11-22
     about: [ // approved by her 2026-11-20 (our suggested rewrite; one string per paragraph)
       "Sivan Winkler is a life coach and devoted mother of four, with a passion for helping women reconnect with themselves, recognize their worth, and find their own voice. Her own journey of healing and personal growth inspired her to help others discover their inner strength and embrace who they truly are.",
       "Her approach is warm, compassionate and intuitive, and women feel seen, heard and understood with her. She believes that a deeper connection with ourselves, the Torah and Hashem is the foundation for confidence, self-trust and healthy, meaningful relationships.",
