@@ -10,7 +10,7 @@ import { course, circles, testimonials } from '../data/circles.js';
 const { circle = null, variant = 'teaser' } = Astro.props;
 const general = !circle;
 const firstClass = variant === 'first-class';
-const { slug = 'join', place, region, host, photo, about, signupLink, payLink, online } = circle || {};
+const { slug = 'join', place, region, host, photo, about, signupLink, payLink, online, whatsapp } = circle || {};
 const ready = general ? circles.every((c) => c.ready) : circle.ready;
 const homes = circles.filter((c) => !c.online);
 // who holds the Zoom circle, named wherever a page mentions it
@@ -24,6 +24,8 @@ const mainPage = `/orhaisha/join${sub}/`;
 const signUp = general ? '#circles' : (firstClass ? payLink : signupLink) || '#price';
 const cta = general ? 'Choose your circle' : firstClass ? 'Join Classes 2–6' : 'Reserve your place at the first class';
 const hostFirst = host ? host.replace(/^(Mrs\.?|Ms\.?|Rebbetzin)\s+/i, '').split(' ')[0] : null;
+// the host's own WhatsApp (questions and discount requests), with a first line already typed for the young woman
+const hostWa = (text) => whatsapp ? `https://wa.me/${whatsapp}?text=${encodeURIComponent(text)}` : null;
 const circleName = general ? null : online ? 'the Zoom circle' : `the ${place} circle`;
 const title = `The Love You're Meant to Build · ${general ? 'Live on Zoom' : online ? 'Live on Zoom' : place} — Rav Yisrael Frenkel`;
 const ogTitle = general ? `The Love You're Meant to Build · Rav Yisrael Frenkel` : online ? `The Love You're Meant to Build · Live on Zoom` : `The Love You're Meant to Build · ${place}`;
@@ -202,6 +204,7 @@ const url = `https://yisraelfrenkel.com/orhaisha/${slug}${firstClass ? '/first-c
     {about ? [].concat(about).map((para) => <p>{para}</p>) : <p><mark class="blank">Two or three sentences about her, in her own words</mark></p>}
     <p>{online ? <>Each week, after Rav Frenkel's class and the questions, {hostFirst || 'she'} holds the circle on Zoom for the young women joining from home: thirty minutes in a warm room to reflect and talk through what came up.</> : <>Each week, after Rav Frenkel's class and the questions, {hostFirst || 'she'} holds the circle for the young women of {place}: thirty minutes in a warm room to reflect and talk through what came up.</>}</p>
     <a class="btn" href={signUp}>{cta}</a>
+    {whatsapp && <p class="circle-ask">Questions, or want to ask about a discount? <a href={hostWa(`Hi ${hostFirst}, I saw the page for The Love You're Meant to Build and I have a question.`)} target="_blank" rel="noopener">Message {hostFirst} on WhatsApp</a>. Many young women find it easier to ask a woman.</p>}
     {!online && <p class="circle-alt">Can't make it to {place}? The whole course is also live on Zoom, with {coach}. <a href={`/orhaisha/zoom${sub}/`}>Join on Zoom →</a></p>}
   </div>
 </div></section>
@@ -219,7 +222,7 @@ const url = `https://yisraelfrenkel.com/orhaisha/${slug}${firstClass ? '/first-c
 <section class="price" id="price"><div class="wrap"><div class="centered intro"><p class="kicker">Six weeks</p><h2>Join the course.</h2></div><div class="price-grid">
   <article class={firstClass ? "" : "featured"}><small>The first class</small><div class="amount">Free</div><p>Come, listen, and see if it is for you.</p>{!firstClass && <a class="btn" href={signUp}>{cta}</a>}{!general && !firstClass && !signupLink && <p class="blank-note"><mark class="blank">{online ? 'The Zoom sign-up form link goes on this button' : 'Her sign-up form link goes on this button'}</mark></p>}</article>
   <article class={firstClass ? "featured" : ""}><small>Classes 2–6 and {general ? 'your circle' : circleName}</small><div class="amount">{course.priceLate}</div><p>The price is {course.priceLate}.<br><strong>Early-bird special: {course.priceEarly} if you sign up within 24 hours of the first class.</strong></p>{firstClass && <a class="btn" href={signUp}>{cta}</a>}{!general && firstClass && !payLink && <p class="blank-note"><mark class="blank">{online ? 'The Zoom payment link goes on this button' : 'Her Stripe payment link goes on this button'}</mark></p>}{!firstClass && <p class="later-note">You join after the first class.</p>}</article>
-  </div><p class="kind-note">If the price is the only thing keeping you away, <a href="https://wa.me/972587613153">write to me</a>. No one is turned away.</p>
+  </div><p class="kind-note">{whatsapp ? <>If the price is the only thing keeping you away, <a href={hostWa(`Hi ${hostFirst}, I would love to join The Love You're Meant to Build. Could we talk about the price?`)} target="_blank" rel="noopener">write to {hostFirst} on WhatsApp</a>. No one is turned away.</> : <>If the price is the only thing keeping you away, <a href="https://wa.me/972587613153">write to Rav Frenkel</a>. No one is turned away.</>}</p>
 </div></section>
 
 <section class="why"><div class="wrap why-grid"><figure class="why-photo"><img src="/orhaisha/assets/yisrael-why-smiling.jpg" alt="Rav Yisrael Frenkel, smiling"></figure><div><p class="kicker">Why I teach this</p><h2>The Torah teaches it in detail.</h2><p class="why-lead">For more than twenty years I have sat with couples, with chassanim, and with women carrying the pain of marriages that didn't work.</p><blockquote class="why-pull"><span>Not bad people. Not bad marriages.</span> Two people who were never shown how a husband and a wife actually fit together.</blockquote><p class="why-body">Most of what goes wrong was visible before the engagement. Not because anyone was hiding it, but because the young woman had never been taught what she was looking at, <em>or that she was allowed to need anything at all.</em></p><p class="why-body why-torah">It is in <span class="why-mark">the ketubah</span>, in <span class="why-mark">the words of kiddushin</span>, and in <span class="why-mark">halachos</span> that many chassanim and kallos never learn. <strong>I teach it to young women because it is theirs.</strong></p><p class="signature">— Rav Yisrael Frenkel</p><a class="text-link" href="https://yisraelfrenkel.com/about">About Rav Frenkel →</a></div></div></section>
@@ -236,7 +239,7 @@ const url = `https://yisraelfrenkel.com/orhaisha/${slug}${firstClass ? '/first-c
   {!general && !online && <details><summary>Can I join from home instead?</summary><p>Yes. The whole course is also live on Zoom, with {coach} holding the Zoom circle afterwards. <a href={`/orhaisha/zoom${sub}/`}>Join on Zoom →</a></p></details>}
 </div></div></section>
 
-<section class="closing"><div class="wrap centered"><p class="kicker">{general ? 'Live on Zoom' : online ? 'The Zoom circle' : <>The {place} circle</>}</p><h2>The love you're meant to build starts here.</h2><a class="btn light" href={signUp}>{cta}</a><p class="contact-line">Questions? <a href="https://wa.me/972587613153">WhatsApp</a> or <a href="mailto:Yisrael@YisraelFrenkel.com">email</a> Rav Frenkel.</p></div></section>
+<section class="closing"><div class="wrap centered"><p class="kicker">{general ? 'Live on Zoom' : online ? 'The Zoom circle' : <>The {place} circle</>}</p><h2>The love you're meant to build starts here.</h2><a class="btn light" href={signUp}>{cta}</a><p class="contact-line">{whatsapp ? <>Questions? <a href={hostWa(`Hi ${hostFirst}, I have a question about The Love You're Meant to Build.`)} target="_blank" rel="noopener">Message {hostFirst} on WhatsApp</a>, or <a href="https://wa.me/972587613153">WhatsApp</a> or <a href="mailto:Yisrael@YisraelFrenkel.com">email</a> Rav Frenkel.</> : <>Questions? <a href="https://wa.me/972587613153">WhatsApp</a> or <a href="mailto:Yisrael@YisraelFrenkel.com">email</a> Rav Frenkel.</>}</p></div></section>
 </main>
 
 <footer><div class="wrap footer-grid"><div><img src="/orhaisha/assets/yisrael-frenkel-wordmark.png" alt="Yisrael Frenkel"><p>© 2026 Yisrael Frenkel<br>The Love You're Meant to Build</p></div><nav><a href="https://yisraelfrenkel.com">YisraelFrenkel.com</a><a href="https://yisraelfrenkel.com/about">About</a><a href="mailto:Yisrael@YisraelFrenkel.com">Email</a><a href="tel:+972587613153">+972-58-761-3153</a></nav><p class="credit">{general ? <>Live on Zoom with Rav Yisrael Frenkel, with circles in {homeNames} and on Zoom.</> : online ? <>Live on Zoom with Rav Yisrael Frenkel, wherever you are.</> : <>The {place} circle. The address is sent when you sign up.</>}</p></div></footer>

@@ -229,3 +229,7 @@ section.how.evening:after{content:"";position:absolute;width:820px;height:820px;
   .date-chips{grid-template-columns:repeat(3,1fr)}
   .date-chips li{font-size:20px}
 }
+
+/* host's WhatsApp line under her sign-up button (2026-11-24) */
+.circle-ask{margin-top:18px;font-size:15px;line-height:1.55}
+.circle-ask a{color:var(--coral2);font-weight:600;text-underline-offset:4px}

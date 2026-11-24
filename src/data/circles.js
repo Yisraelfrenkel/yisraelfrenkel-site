@@ -27,6 +27,7 @@ export const circles = [
     place: 'Toms River',
     region: 'New Jersey',
     host: 'Rivki Genuth', // her name as she wants it on the page
+    whatsapp: '17326167771', // her WhatsApp for questions and discount requests (she agreed, 2026-11-24)
     photo: '/orhaisha/circles/toms-river.jpg', // sent 2026-11-20
     about: "Rivki Genuth is a trained marriage and intimacy coach. With four years of training in the mental health field and two years coaching couples, she brings the wisdom of a woman and a mother of grown children into her work. After years of discovering her purpose as a Jewish woman, she now shares what she has learned, so that no young woman, no veteran married woman, and no couple should have to struggle with questions our beautiful Torah has always spoken about and answered.", // approved by her 2026-11-19 (our suggested rewrite)
     signupLink: 'https://tally.so/r/rDOxZ5', // where she reserves a place at the free first class (a form), e.g. "https://tally.so/r/..."
@@ -38,6 +39,7 @@ export const circles = [
     place: 'Staten Island',
     region: 'New York',
     host: 'Sivan Winkler',
+    whatsapp: '16467317032', // her WhatsApp for questions and discount requests (she agreed, 2026-11-24)
     photo: '/orhaisha/circles/staten-island-2.jpg', // the one Sivan chose, 2026-11-22
     about: [ // approved by her 2026-11-20 (our suggested rewrite; one string per paragraph)
       "Sivan Winkler is a life coach and devoted mother of four, with a passion for helping women reconnect with themselves, recognize their worth, and find their own voice. Her own journey of healing and personal growth inspired her to help others discover their inner strength and embrace who they truly are.",
@@ -55,6 +57,7 @@ export const circles = [
     region: 'from anywhere',
     online: true,
     host: 'Sharona Noy', // holds the Zoom breakout room for everyone joining from home
+    whatsapp: '972526253500', // her WhatsApp for questions and discount requests (she agreed, 2026-11-24)
     photo: '/orhaisha/circles/zoom.jpg', // sent 2026-11-19
     about: "Sharona Noy is a marriage and intimacy coach, trained through the Torah Psychology School of Counseling and Coaching, an affiliate of the International Coaching Federation (ICF). She is also trained in Emotion Aid, an approach to emotional resilience, and believes deeply in the connection between mind and body. Her work is helping women and couples build meaningful, healthy and fulfilling relationships.", // approved by her 2026-11-20; its last sentence (about the circle) dropped 2026-11-21 at the Rav's request: the circle paragraph under the bio says it
     signupLink: 'https://tally.so/r/q5G2y8',
