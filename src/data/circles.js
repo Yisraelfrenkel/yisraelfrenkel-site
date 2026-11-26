@@ -72,6 +72,16 @@ export const circles = [
 // "OK to quote her words" column says Yes. `name` is what she asked to be shown.
 export const testimonials = [
   {
+    name: 'Malka Bergstein',
+    text: [
+      'Rabbi Frenkel is an exceptionally gifted and engaging lecturer with a profound understanding of the human soul and the complexities of relationships.',
+      'What makes his classes so unique is his ability to bridge tremendous depth with practical, everyday application. He courageously addresses existential questions, emotional realities, and relational struggles that are often left unspoken, approaching them with remarkable sensitivity, wisdom, and authenticity.',
+      'His interactive teaching style creates a space for genuine exploration, deeper self-awareness, and meaningful growth.',
+      'I would highly recommend these classes to anyone: young women just starting to explore relationships, women preparing for marriage, newly married women, and those who have been married for decades. Wherever one stands in her journey, there is so much to discover, understand, and deepen.',
+      'These classes are rooted in deep, authentic Torah, and offer not only a greater understanding of marriage, but a deeper understanding of ourselves and our capacity for meaningful connection.',
+    ],
+  },
+  {
     name: 'Gabby',
     text: [
       'I walked into Rav Yisrael’s course with major skepticism about dating and marriage because of poor past experiences, yet with an open mind, because I had nothing to lose and everything to gain. Through his teachings and our timeless Torah wisdom, Rav Yisrael gave me the knowledge I need to date purposefully and build a healthy, loving, real marriage in the future.',
