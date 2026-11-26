@@ -72,6 +72,13 @@ export const circles = [
 // "OK to quote her words" column says Yes. `name` is what she asked to be shown.
 export const testimonials = [
   {
+    name: 'Miriam', // sent by email 2026-11-26 (not through the form); her words exactly, punctuation only
+    text: [
+      'I really enjoyed the course and learned so much from it. Each class gave me deep insight on how to maintain a healthy relationship, not only with myself but with my future husband, from a Torah-based perspective, in order to have a happy, long-lasting marriage, which is the foundation to building a family. This course is very essential, and I feel like more people should take it, because it really helps you understand what’s truly important.',
+      'Thank you, Rabbi Yisrael Frenkel, for this wonderful, transformative opportunity.',
+    ],
+  },
+  {
     name: 'Malka Bergstein',
     text: [
       'Rabbi Frenkel is an exceptionally gifted and engaging lecturer with a profound understanding of the human soul and the complexities of relationships.',
