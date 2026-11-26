@@ -66,18 +66,11 @@ export const circles = [
   },
 ];
 
-// Testimonials shown on every circle page ("In their words."), newest approved first.
+// Testimonials shown on every circle page ("In their words."), Malka first, then by strength of the message (the Rav, 2026-11-26).
 // They come from the testimonial page (yisraelfrenkel.com/orhaisha/testimonial), saved in the
 // Google Sheet "Testimonials - The Love You're Meant to Build". Only add one whose
 // "OK to quote her words" column says Yes. `name` is what she asked to be shown.
 export const testimonials = [
-  {
-    name: 'Miriam', // sent by email 2026-11-26 (not through the form); her words exactly, punctuation only
-    text: [
-      'I really enjoyed the course and learned so much from it. Each class gave me deep insight on how to maintain a healthy relationship, not only with myself but with my future husband, from a Torah-based perspective, in order to have a happy, long-lasting marriage, which is the foundation to building a family. This course is very essential, and I feel like more people should take it, because it really helps you understand what’s truly important.',
-      'Thank you, Rabbi Yisrael Frenkel, for this wonderful, transformative opportunity.',
-    ],
-  },
   {
     name: 'Malka Bergstein',
     text: [
@@ -96,17 +89,24 @@ export const testimonials = [
     ],
   },
   {
-    name: 'Eli D.',
-    text: [
-      'If you want a deep, intimate connection, with yourself and in your marriage, Rav Frenkel’s course helps you uncover your values and gives you practical tools to build a marriage where you both flourish.',
-    ],
-  },
-  {
     name: 'Yael',
     text: [
       'This course has given me so much insight into the roles of a man and a woman in marriage, what I deserve in a marriage, and what marriage truly represents from a Torah perspective. It has brought me so much clarity when it comes to dating and understanding what to look for in a future husband, but also what a healthy, fulfilling marriage should look like.',
       'Learning about marriage through the lens of Torah has especially opened my eyes to the beauty and wisdom behind the laws of marriage. Rather than seeing them as restrictions that take away from pleasure, I now understand how they are designed to deepen intimacy, enhance pleasure, and protect the value, dignity, and uniqueness of a woman.',
       'I feel that I walk away from this course with not only more knowledge but also a completely different perspective on marriage and a much clearer understanding of what I am looking for.',
+    ],
+  },
+  {
+    name: 'Miriam', // sent by email 2026-11-26 (not through the form); her words exactly, punctuation only
+    text: [
+      'I really enjoyed the course and learned so much from it. Each class gave me deep insight on how to maintain a healthy relationship, not only with myself but with my future husband, from a Torah-based perspective, in order to have a happy, long-lasting marriage, which is the foundation to building a family. This course is very essential, and I feel like more people should take it, because it really helps you understand what’s truly important.',
+      'Thank you, Rabbi Yisrael Frenkel, for this wonderful, transformative opportunity.',
+    ],
+  },
+  {
+    name: 'Eli D.',
+    text: [
+      'If you want a deep, intimate connection, with yourself and in your marriage, Rav Frenkel’s course helps you uncover your values and gives you practical tools to build a marriage where you both flourish.',
     ],
   },
 ];
