@@ -82,6 +82,13 @@ export const testimonials = [
     ],
   },
   {
+    name: 'Chanie R.', // sent 2026-11-27 through the form; her words, typo and one preposition fixed
+    text: [
+      'Rav Frenkel’s course gives women a deeper understanding of their needs, what they deserve, the dynamics of marriage, and the qualities that truly matter in a husband. Grounded in Torah wisdom, it offers a refreshing perspective on what a healthy, intimate, and fulfilling marriage should look like. It brings a sense of clarity and purpose to dating that I believe every woman would benefit from before choosing a life partner.',
+      'I strongly believe that every seminary should implement this course in their curriculum. That’s how good and important it is!',
+    ],
+  },
+  {
     name: 'Gabby',
     text: [
       'I walked into Rav Yisrael’s course with major skepticism about dating and marriage because of poor past experiences, yet with an open mind, because I had nothing to lose and everything to gain. Through his teachings and our timeless Torah wisdom, Rav Yisrael gave me the knowledge I need to date purposefully and build a healthy, loving, real marriage in the future.',
